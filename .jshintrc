@@ -1,0 +1,21 @@
+{
+  "predef": [
+    "-Promise"
+  ],
+  "node": true,
+  "camelCase": true,
+  "eqeqeq": true,
+  "es5": true,
+  "immed": true,
+  "indent": 2,
+  "latedef": "nofunc",
+  "newcap": true,
+  "noarg": true,
+  "noempty": true,
+  "quotmark": "double",
+  "singleGroups": true,
+  "undef": true,
+  "unused": true,
+  "asi": true,
+  "devel": true
+}
