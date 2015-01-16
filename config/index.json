@@ -1,0 +1,7 @@
+{
+  "development": {
+    "db": {
+      "server": "http://localhost:7474"
+    }
+  }
+}
