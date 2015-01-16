@@ -1,16 +1,15 @@
 "use strict"
 
-var bcrypt = require("bcrypt")
+var hashPassword = require("../libs/password").hashPassword
 
-function hashPassword (user, cb) {
+function setPasswordHash (user, cb) {
   var password = user.password
   delete user.password
 
   if (!password) return cb(null, user)
 
-  bcrypt.hash(password, 10, function (err, hashed) {
+  hashPassword(password, function (err, hashed) {
     if (err) return cb(err)
-
     user.hashedPassword = hashed
     cb(null, user)
   })
@@ -24,7 +23,7 @@ module.exports = {
   },
   useTimestamps: true,
   uniqueFields: { email: false },
-  prepares: [ hashPassword ],
+  prepares: [ setPasswordHash ],
   relationships: {
     tokens: {
       model: "Token",
