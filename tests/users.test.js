@@ -28,5 +28,24 @@ describe("/api/v2/users resource", function () {
           json.user.tokens.should.not.have.properties("password")
         })
     })
+    it("Returns error on user creation with repeated email", function () {
+      var _this = this
+      var user = random.user()
+      return this.api
+        .post(url("users")).send({ user: user })
+        .expect(201).endAsync()
+        .then(function createRepeated () {
+          return _this.api
+            .post(url("users")).send({ user: user })
+            .expect(409).endAsync()
+        })
+        .then(function testResponse (res) {
+          var json = res.body
+          should.exist(json.errors.email)
+          json.errors.email.should.be.an.Array
+          json.errors.email.should.not.be.empty
+          json.errors.email[0].should.match(/email must be unique/)
+        })
+    })
   })
 })
