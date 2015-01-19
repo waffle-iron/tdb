@@ -16,7 +16,7 @@ function setReadiness (tech, cb) {
 }
 
 function setSlug (tech, cb) {
-  tech.slug = slug(tech.name)
+  tech.slug = slug(tech.name).toLowerCase()
   cb(null, tech)
 }
 
