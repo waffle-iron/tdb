@@ -31,10 +31,6 @@ function initializeModel (file) {
 
   model.schema = declaration.schema
 
-  _.each(declaration.uniqueFields, function (noConflict, field) {
-    model.setUniqueKey(field, noConflict)
-  })
-
   if (declaration.useTimestamps) model.useTimestamps()
 
   db[declaration.type] = model
