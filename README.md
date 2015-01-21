@@ -1,4 +1,4 @@
-# Futuredeck API [![Build Status](https://travis-ci.org/envisioning/futuredeck.svg?branch=master)](https://travis-ci.org/envisioning/futuredeck)
+# Futuredeck API [![Circle CI](https://circleci.com/gh/envisioning/futuredeck/tree/master.svg?style=svg)](https://circleci.com/gh/envisioning/futuredeck/tree/master)
 
 ## Resources
 
