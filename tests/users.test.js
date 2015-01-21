@@ -28,7 +28,7 @@ describe("/api/v2/users resource", function () {
           json.user.tokens.should.not.have.properties("password")
         })
     })
-    it.skip("Returns error on user creation with repeated email", function () {
+    it("Returns error on user creation with repeated email", function () {
       var _this = this
       var user = random.user()
       return this.api
