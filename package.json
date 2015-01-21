@@ -4,8 +4,7 @@
   "description": "API for futuredeck",
   "main": "server.js",
   "scripts": {
-    "test": "mocha -t 5000 tests/**/*.test.js",
-    "postinstall": "node bin/setup-database.js"
+    "test": "mocha -t 5000 tests/**/*.test.js"
   },
   "repository": {
     "type": "git",

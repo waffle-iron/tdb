@@ -3,5 +3,10 @@
     "db": {
       "server": "http://localhost:7474"
     }
+  },
+  "test": {
+    "db": {
+      "server": "http://localhost:7474"
+    }
   }
 }

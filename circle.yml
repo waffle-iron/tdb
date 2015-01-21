@@ -1,0 +1,6 @@
+machine:
+  node:
+    version: 0.10.28
+  services:
+    - neo4j
+

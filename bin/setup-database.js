@@ -13,8 +13,6 @@ function createUnique (label, field) {
   return new Promise(function (resolve, reject) {
     var cypher = "CREATE CONSTRAINT ON (n:{label}) ASSERT n.{field} IS UNIQUE"
     seraph.query(cypher, {label: label, field: field}, function (err, res) {
-      console.log(err)
-      console.log(res)
       if (err) return reject(err)
       return resolve(res)
     })
