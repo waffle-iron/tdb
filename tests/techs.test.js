@@ -74,4 +74,32 @@ describe("/api/v2/techs resource", function () {
         })
     })
   })
+
+  describe("GET /techs/:tech_id", function () {
+    var tech
+    before(function () {
+      return api
+        .post(url("techs")).send({ tech: random.tech() })
+        .expect(201).endAsync()
+        .then(function (res) {
+          tech = res.body.tech
+        })
+    })
+
+    it("Get a tech by id", function () {
+      return api
+        .get(url("techs", tech.id))
+        .expect(200).endAsync()
+        .then(function (res) {
+          var json = res.body
+          should.exist(json.tech)
+          json.tech.should.have.properties("id", "name", "slug", "summary",
+                                          "description", "thumbnail", "picture",
+                                          "question0", "question1", "question2",
+                                          "question3", "question4", "question5",
+                                          "question6", "question7", "question8",
+                                          "question9", "readiness")
+        })
+    })
+  })
 })

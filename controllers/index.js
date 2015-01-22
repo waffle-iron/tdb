@@ -32,13 +32,13 @@ exports.initializeRoutes = function initializeRoutes (app, namespace) {
 
         var resource = file.slice(0, -3)
         var plural = inflect.pluralize(resource)
-        var id = SLASH + ":" + inflect.foreign_key(resource)
+        var id = SLASH + ":" + inflect.singularize(resource) + "Id"
 
         var router = express.Router()
         var methods = controllerMethods(controller)
         _.each(methods, function (method) {
           var verb = METHOD_VERBS[method]
-          var endpoint = (verb === "put" || verb === "delete") ? id : SLASH
+          var endpoint = ["index", "create"].indexOf(method) === -1 ? id: SLASH
           router[verb](endpoint, controller[method])
         })
         app.use(path.join(namespace, plural), router)
