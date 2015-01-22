@@ -11,24 +11,23 @@ var random = require("./helpers/random")
 Promise.promisifyAll(request.Test.prototype)
 
 describe("/api/v2/techs resource", function () {
+  var api, user, token
+
   before(function () {
-    var _this = this
-    this.api = request(server)
-    this.user = null
-    this.token = null
-    return this.api
+    api = request(server)
+    return api
       .post(url("users")).send({ user: random.user() })
       .expect(201).endAsync()
       .then(function setVars (res) {
         var json = res.body
-        _this.user = json.user
-        _this.token = json.user.tokens[0]
+        user = json.user
+        token = json.user.tokens[0]
       })
   })
 
   describe("POST /techs", function () {
     it("Creates a tech", function () {
-      return this.api
+      return api
         .post(url("techs")).send({ tech: random.tech() })
         .expect(201).endAsync()
         .then(function testResponse (res) {
@@ -46,9 +45,8 @@ describe("/api/v2/techs resource", function () {
 
   describe("GET /techs", function () {
     before(function () {
-      var _this = this
       function createRandomTech () {
-        return _this.api
+        return api
           .post(url("techs")).send({ tech: random.tech() })
           .expect(201).endAsync()
       }
@@ -66,7 +64,7 @@ describe("/api/v2/techs resource", function () {
     })
 
     it("Get list of techs", function () {
-      return this.api
+      return api
         .get(url("techs"))
         .expect(200).endAsync()
         .then(function testResponse (res) {
