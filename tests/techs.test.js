@@ -102,4 +102,55 @@ describe("/api/v2/techs resource", function () {
         })
     })
   })
+
+  describe("PUT /techs/:tech_id", function () {
+    var tech
+    before(function () {
+      return api
+        .post(url("techs")).send({ tech: random.tech() })
+        .expect(201).endAsync()
+        .then(function (res) {
+          tech = res.body.tech
+        })
+    })
+
+    it("Update a tech", function () {
+      tech.name = tech.name + " 3D"
+      return api
+        .put(url("techs", tech.id))
+        .send({ tech: tech })
+        .expect(200).endAsync()
+        .then(function (res) {
+          var json = res.body
+          should.exist(json.tech)
+          json.tech.should.have.properties("id", "name", "slug", "summary",
+                                          "description", "thumbnail", "picture",
+                                          "question0", "question1", "question2",
+                                          "question3", "question4", "question5",
+                                          "question6", "question7", "question8",
+                                          "question9", "readiness")
+        })
+    })
+  })
+
+  describe("DELETE /techs/:tech_id", function () {
+    var tech
+    before(function () {
+      return api
+        .post(url("techs")).send({ tech: random.tech() })
+        .expect(201).endAsync()
+        .then(function (res) {
+          tech = res.body.tech
+        })
+    })
+
+    it("Delete a tech", function () {
+      return api
+        .delete(url("techs", tech.id))
+        .expect(204).endAsync()
+        .then(function (res) {
+          res.body.should.be.empty
+        })
+    })
+  })
 })

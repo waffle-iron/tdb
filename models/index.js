@@ -7,7 +7,7 @@ var path = require("path")
 var basename = path.basename(module.filename)
 var env = process.env.NODE_ENV || "development"
 var config = require(__dirname + "/../config")[env]
-var seraph = require("seraph")(config.db)
+var seraph = Promise.promisifyAll(require("seraph")(config.db))
 var seraphModel = require("seraph-model")
 
 var db = {}
