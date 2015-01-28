@@ -25,6 +25,8 @@
     "i": "^0.3.2",
     "lodash": "^2.4.1",
     "morgan": "^1.5.1",
+    "passport": "^0.2.1",
+    "passport-http-bearer": "^1.0.1",
     "seraph": "^0.9.12",
     "seraph-model": "^0.6.18",
     "slug": "^0.8.0"

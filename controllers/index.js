@@ -2,6 +2,7 @@
 
 var Promise = require("bluebird")
 var _ = require("lodash")
+var auth = require("../libs/auth")
 var express = require("express")
 var fs = Promise.promisifyAll(require("fs"))
 var inflect = require("i")()
@@ -39,7 +40,13 @@ exports.initializeRoutes = function initializeRoutes (app, namespace) {
         _.each(methods, function (method) {
           var verb = METHOD_VERBS[method]
           var endpoint = ["index", "create"].indexOf(method) === -1 ? id: SLASH
-          router[verb](endpoint, controller[method])
+          var controllerMethod = controller[method]
+
+          if (controllerMethod.requiresAuthentication) {
+            router[verb](endpoint, auth.isAuthenticated, controllerMethod)
+          } else {
+            router[verb](endpoint, controllerMethod)
+          }
         })
         app.use(path.join(namespace, plural), router)
       })
