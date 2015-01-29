@@ -14,6 +14,7 @@ exports.create = function tech$create (req, res) {
       return res.status(500).send()
     })
 }
+exports.create.requiresAuthentication = true
 
 exports.index = function tech$index (req, res) {
   models.Tech.findAllAsync()
@@ -58,6 +59,7 @@ exports.update = function tech$read (req, res) {
       return res.status(500).send()
     })
 }
+exports.update.requiresAuthentication = true
 
 exports.delete = function tech$read (req, res) {
   if (isNaN(req.params.techId)) return res.status(400).send()
@@ -72,3 +74,4 @@ exports.delete = function tech$read (req, res) {
       return res.status(500).send()
     })
 }
+exports.delete.requiresAuthentication = true

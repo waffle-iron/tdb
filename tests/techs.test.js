@@ -11,7 +11,7 @@ var random = require("./helpers/random")
 Promise.promisifyAll(request.Test.prototype)
 
 describe("/api/v2/techs resource", function () {
-  var api, user, token
+  var api, authorization
 
   before(function () {
     api = request(server)
@@ -20,8 +20,7 @@ describe("/api/v2/techs resource", function () {
       .expect(201).endAsync()
       .then(function setVars (res) {
         var json = res.body
-        user = json.user
-        token = json.user.tokens[0]
+        authorization = "Bearer " + json.user.tokens[0].hash
       })
   })
 
@@ -29,6 +28,7 @@ describe("/api/v2/techs resource", function () {
     it("Creates a tech", function () {
       return api
         .post(url("techs")).send({ tech: random.tech() })
+        .set("Authorization", authorization)
         .expect(201).endAsync()
         .then(function testResponse (res) {
           var json = res.body
@@ -41,6 +41,11 @@ describe("/api/v2/techs resource", function () {
                                           "question9", "readiness")
         })
     })
+    it("Denies unauthenticated tech creation", function () {
+      return api
+        .post(url("techs")).send({ tech: random.tech() })
+        .expect(401).endAsync()
+    })
   })
 
   describe("GET /techs", function () {
@@ -48,6 +53,7 @@ describe("/api/v2/techs resource", function () {
       function createRandomTech () {
         return api
           .post(url("techs")).send({ tech: random.tech() })
+          .set("Authorization", authorization)
           .expect(201).endAsync()
       }
 
@@ -80,6 +86,7 @@ describe("/api/v2/techs resource", function () {
     before(function () {
       return api
         .post(url("techs")).send({ tech: random.tech() })
+        .set("Authorization", authorization)
         .expect(201).endAsync()
         .then(function (res) {
           tech = res.body.tech
@@ -108,6 +115,7 @@ describe("/api/v2/techs resource", function () {
     before(function () {
       return api
         .post(url("techs")).send({ tech: random.tech() })
+        .set("Authorization", authorization)
         .expect(201).endAsync()
         .then(function (res) {
           tech = res.body.tech
@@ -119,6 +127,7 @@ describe("/api/v2/techs resource", function () {
       return api
         .put(url("techs", tech.id))
         .send({ tech: tech })
+        .set("Authorization", authorization)
         .expect(200).endAsync()
         .then(function (res) {
           var json = res.body
@@ -131,6 +140,14 @@ describe("/api/v2/techs resource", function () {
                                           "question9", "readiness")
         })
     })
+
+    it("Denies unauthenticated tech update", function () {
+      tech.name = tech.name + " 3D"
+      return api
+        .put(url("techs", tech.id))
+        .send({ tech: tech })
+        .expect(401).endAsync()
+    })
   })
 
   describe("DELETE /techs/:tech_id", function () {
@@ -138,6 +155,7 @@ describe("/api/v2/techs resource", function () {
     before(function () {
       return api
         .post(url("techs")).send({ tech: random.tech() })
+        .set("Authorization", authorization)
         .expect(201).endAsync()
         .then(function (res) {
           tech = res.body.tech
@@ -147,10 +165,17 @@ describe("/api/v2/techs resource", function () {
     it("Delete a tech", function () {
       return api
         .delete(url("techs", tech.id))
+        .set("Authorization", authorization)
         .expect(204).endAsync()
         .then(function (res) {
           res.body.should.be.empty
         })
+    })
+
+    it("Denies tech delete", function () {
+      return api
+        .delete(url("techs", tech.id))
+        .expect(401).endAsync()
     })
   })
 })
