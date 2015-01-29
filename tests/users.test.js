@@ -23,7 +23,7 @@ describe("/api/v2/users resource", function () {
         .then(function testResponse (res) {
           var json = res.body
           should.exist(json.user)
-          json.user.should.have.properties("id", "email", "tokens")
+          json.user.should.have.properties("_id", "email", "tokens")
           json.user.tokens.should.not.be.empty
           json.user.tokens.should.not.have.properties("password")
         })
