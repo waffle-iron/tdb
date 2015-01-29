@@ -8,5 +8,10 @@
     "db": {
       "server": "http://localhost:7474"
     }
+  },
+  "production": {
+    "db": {
+      "server": "https://54c70882e0468:putzTIyK9hZoxnW5KGjxQJ4WRhZCQyAXm0VErRUn@neo-54c70882e0468-364459c455.do-stories.graphstory.com:7473"
+    }
   }
 }

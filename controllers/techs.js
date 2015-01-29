@@ -21,7 +21,8 @@ exports.index = function tech$index (req, res) {
     .then(function (techs) {
       return res.status(200).send({ techs: techs })
     })
-    .catch(function () {
+    .catch(function (err) {
+      console.log(err)
       return res.status(500).send()
     })
 }
