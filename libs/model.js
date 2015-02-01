@@ -16,7 +16,7 @@ function createModel (db, config) {
 
   function Model (properties) {
     properties = properties || {}
-    this.id = properties && properties.id
+    this.id = properties && properties._id
     this.properties = {}
     _.each(SCHEMA, assignProperties(properties), this)
   }

@@ -1,15 +1,15 @@
 "use strict"
 
 var _ = require("lodash")
-var Promise = require("bluebird")
-var models = require("../models")
-var testPassword = require("../libs/password").testPassword
+var db = require("../libs/db")
+var User = require("../models2/user")
+var Token = require("../models2/token")
 
-function badCredentials () {
+function badCredentials (res) {
   var errors = [
     { message: "The combination of email and password supplied does not exist"}
   ]
-  return Promise.reject({ status: 400, errors: errors })
+  return res.status(400).send({ errors: errors })
 }
 
 exports.create = function user$create (req, res) {
@@ -18,35 +18,31 @@ exports.create = function user$create (req, res) {
   var hasCredentials = !_.isEmpty(email) && !_.isEmpty(password)
   if (!hasCredentials) return res.status(400).send()
 
-  models.User.whereAsync({ email: email }, { limit: 1 })
-    .then(function checkIfUserExists (users) {
-      var user = users[0]
-      if (user) return user
-      return badCredentials()
-    })
-    .then(function validatePassword (user) {
-      if (testPassword(user.hashedPassword, password)) return user
-      return badCredentials()
-
-    })
-    .then(function createToken (user) {
-      return Promise.props({
-        user: user,
-        token:models.Token.saveAsync({ owner: user.email })
+  db.cypherQueryAsync(
+    "MATCH (user:User {email: {email} }) RETURN user LIMIT 1",
+    {email: email}
+  )
+  .then(function (queryRes) { return queryRes.data })
+  .then(function (users) { return users[0] || badCredentials(res) })
+  .then(function (user) { return new User(user) })
+  .then(function (user) {
+    return user.testPassword(password) ? user : badCredentials(res)
+  })
+  .then(function (user) {
+    var token = new Token()
+    return token
+      .setHashForUser(user)
+      .then(function (token) { return token.save() })
+      .then(function (token) {
+        return db.insertRelationshipAsync(user.id, token.id, "has_token", {})
       })
-    })
-    .then(function respond (data) {
-      var json = {
-        accessToken: data.token.hash,
-        user: data.user.id
-      }
-      return res.status(201).send(json)
-    })
-    .catch(function handleErrors (err) {
-      if (err.status && err.errors) {
-        return res.status(err.status).send({ errors: err.errors })
-      }
-
-      return res.status(500).send()
-    })
+      .then(function () {
+        return {
+          accessToken: token.get("hash"),
+          user: user.id
+        }
+      })
+  })
+  .then(function (json) { return res.status(201).send(json) })
+  .catch(function () { return res.status(500).send() })
 }
