@@ -20,17 +20,17 @@ exports.create = function user$create (req, res) {
         .then(function (token) { return token.save() })
         .then(function (token) {
           return db
-            .insertRelationshipAsync(user._id, token._id, "has_token", {})
+            .insertRelationshipAsync(user.id, token.id, "has_token", {})
             .then(function () {
-              user.tokens = [ token.props.hash ]
+              user.tokens = [ token.get("hash") ]
               return user
             })
         })
     })
     .then(function (user) {
       var userRes = {
-        _id: user._id,
-        email: user.props.email,
+        _id: user.id,
+        email: user.get("email"),
         tokens: user.tokens
       }
       return res.status(201).send({ user: userRes })
