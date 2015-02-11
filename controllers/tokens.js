@@ -2,8 +2,8 @@
 
 var _ = require("lodash")
 var db = require("../libs/db")
-var User = require("../models2/user")
-var Token = require("../models2/token")
+var User = require("../models/user")
+var Token = require("../models/token")
 
 function badCredentials (res) {
   var errors = [

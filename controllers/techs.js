@@ -1,6 +1,6 @@
 "use strict"
 
-var Tech = require("../models2/tech")
+var Tech = require("../models/tech")
 var db = require("../libs/db")
 
 exports.create = function tech$create (req, res) {

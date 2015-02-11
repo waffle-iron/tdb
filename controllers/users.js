@@ -1,7 +1,7 @@
 "use strict"
 
-var User = require("../models2/user")
-var Token = require("../models2/token")
+var User = require("../models/user")
+var Token = require("../models/token")
 var db = require("../libs/db")
 
 var REPEATED_EMAIL = /Node \d* already exists with label User and property "email"/

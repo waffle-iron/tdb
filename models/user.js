@@ -1,37 +1,27 @@
 "use strict"
 
-var hashPassword = require("../libs/password").hashPassword
+var Model = require("../libs/model")
+var Promise = require("bluebird")
+var bcrypt = Promise.promisifyAll(require("bcrypt"))
+var db = require("../libs/db")
 
-function setPasswordHash (user, cb) {
-  var password = user.password
-  delete user.password
-
-  if (!password) return cb(null, user)
-
-  hashPassword(password, function (err, hashed) {
-    if (err) return cb(err)
-    user.hashedPassword = hashed
-    cb(null, user)
-  })
-}
-
-module.exports = {
+module.exports = new Model(db, {
   type: "User",
   schema: {
-    email: { type: String, required: true},
-    hashedPassword: { type: String }
+    email: String,
+    hashedPassword: String
   },
-  useTimestamps: true,
-  uniqueFields: { email: false },
-  prepares: [ setPasswordHash ],
-  relationships: {
-    tokens: {
-      model: "Token",
-      type: "has_token",
-      opts: {
-        many: true,
-        orderBy: {property: "created", desc: true}
-      }
+  instanceMethods: {
+    setPassword: function (password) {
+      return bcrypt
+        .hashAsync(password, 10)
+        .then(function (hash) {
+          this.set("hashedPassword", hash)
+          return this
+        }.bind(this))
+    },
+    testPassword: function (password) {
+      return bcrypt.compareSync(password, this.get("hashedPassword"))
     }
   }
-}
+})
