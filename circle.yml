@@ -3,4 +3,8 @@ machine:
     version: 0.10.28
   services:
     - neo4j
-
+deployment:
+  staging:
+    branch: master
+    heroku:
+      appname: futuredeck-api
