@@ -20,7 +20,7 @@ describe("/api/v2/techs resource", function () {
       .expect(201).endAsync()
       .then(function setVars (res) {
         var json = res.body
-        authorization = "Bearer " + json.user.tokens[0].hash
+        authorization = "Bearer " + json.user.tokens[0]
       })
   })
 

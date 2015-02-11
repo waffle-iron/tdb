@@ -1,32 +1,26 @@
 "use strict"
 
+var _ = require("lodash")
 var passport = require("passport")
 var BearerStrategy = require("passport-http-bearer")
-var models = require("../models")
+var db = require("../libs/db")
 
 passport.use(new BearerStrategy(
   function (hashToken, done) {
-    models.Token
-      .whereAsync(
-        { hash: hashToken },
-        { limit: 1,
-          include: {
-            User: {
-              model: models.User,
-              rel: "has_token",
-              direction: "in"
-            }
-          }
-        }
-      )
-      .then(function (tokens) {
-        if (tokens.length === 0) {
-          return done(null, false)
-        }
-
-        return done(null, tokens[0].User)
-      })
-      .catch(done)
+    db.cypherQueryAsync(
+      "MATCH (user:User)-[:has_token]->(token:Token {hash: {hash}}) RETURN user, token LIMIT 1",
+      { hash: hashToken }
+    )
+    .then(function (queryRes) {
+      return _.first(_.map(queryRes.data, function (data) {
+        return _.zipObject(queryRes.columns, data)
+      }))
+    })
+    .then(function (res) {
+      if (!res.token) return done(null, false)
+      return done(null, res.user)
+    })
+    .catch(done)
   }
 ))
 
