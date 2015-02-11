@@ -1,4 +1,4 @@
-# Futuredeck API [![Circle CI](https://circleci.com/gh/envisioning/futuredeck/tree/master.svg?style=svg)](https://circleci.com/gh/envisioning/futuredeck/tree/master)
+# Futuredeck API [![Circle CI](https://circleci.com/gh/envisioning/futuredeck.io/tree/master.svg?style=svg)](https://circleci.com/gh/envisioning/futuredeck.io/tree/master)
 
 ## Resources
 
