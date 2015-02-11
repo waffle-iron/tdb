@@ -33,7 +33,7 @@ describe("/api/v2/techs resource", function () {
         .then(function testResponse (res) {
           var json = res.body
           should.exist(json.tech)
-          json.tech.should.have.properties("id", "name", "slug", "summary",
+          json.tech.should.have.properties("_id", "name", "slug", "summary",
                                           "description", "thumbnail", "picture",
                                           "question0", "question1", "question2",
                                           "question3", "question4", "question5",
@@ -100,7 +100,7 @@ describe("/api/v2/techs resource", function () {
         .then(function (res) {
           var json = res.body
           should.exist(json.tech)
-          json.tech.should.have.properties("id", "name", "slug", "summary",
+          json.tech.should.have.properties("_id", "name", "slug", "summary",
                                           "description", "thumbnail", "picture",
                                           "question0", "question1", "question2",
                                           "question3", "question4", "question5",
@@ -132,7 +132,7 @@ describe("/api/v2/techs resource", function () {
         .then(function (res) {
           var json = res.body
           should.exist(json.tech)
-          json.tech.should.have.properties("id", "name", "slug", "summary",
+          json.tech.should.have.properties("_id", "name", "slug", "summary",
                                           "description", "thumbnail", "picture",
                                           "question0", "question1", "question2",
                                           "question3", "question4", "question5",

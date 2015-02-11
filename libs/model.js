@@ -29,12 +29,19 @@ function createModel (db, config) {
     return JSON.stringify(this.toNode())
   }
   Model.prototype.save = function () {
+    if (config.beforeSave) config.beforeSave.apply(this)
     return db
       .insertNodeAsync(this.toNode(), TYPE)
       .then(function (properties) {
         this.id = properties._id
         return this
       }.bind(this))
+  }
+  Model.prototype.update = function () {
+    if (config.beforeSave) config.beforeSave.apply(this)
+    return db
+      .updateNodeAsync(this.id, this.toNode())
+      .then(function () { return this }.bind(this))
   }
   Model.prototype.set = function (prop, value) {
     this.properties[prop] = value
