@@ -3,6 +3,7 @@
 var bodyParser = require("body-parser")
 var compression = require("compression")
 var controllers = require("./controllers")
+var cors = require("cors")
 var express = require("express")
 var morgan = require("morgan")
 
@@ -12,6 +13,7 @@ var app = express()
 
 app.use(compression())
 app.use(bodyParser.json())
+app.use(cors())
 
 if (env === "development") app.use(morgan("dev"))
 else if (env === "production") app.use(morgan("combined", { skip: successes }))
