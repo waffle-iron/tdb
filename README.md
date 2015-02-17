@@ -1,26 +1,7 @@
-# Futuredeck API [![Circle CI](https://circleci.com/gh/envisioning/futuredeck.io/tree/master.svg?style=svg)](https://circleci.com/gh/envisioning/futuredeck.io/tree/master)
+# Futuredeck API
+The graph API for Futuredeck's database. It is open married to [envisioning/futurekit-ui](https://github.com/envisioning/futurekit-ui).
 
-## Resources
+## Build status
+Master: [![Circle CI](https://circleci.com/gh/envisioning/futuredeck.io/tree/master.svg?style=svg)](https://circleci.com/gh/envisioning/futuredeck.io/tree/master)
 
-### /cards
-  - GET /
-  - GET :card_id
-  - POST /
-  - UPDATE :card_id
-  - DELETE :card_id
-
-### /categories
-  - GET /
-  - POST /
-  - DELETE :category_name
-  - GET :category_name
-
-### /users
-  - POST /
-  - UPDATE :user_id
-  - GET :user_id
-
-### /sessions
-  - POST /
-  - DELETE :access_token
-
+Dev: [![Circle CI](https://circleci.com/gh/envisioning/futuredeck.io/tree/dev.svg?style=svg)](https://circleci.com/gh/envisioning/futuredeck.io/tree/dev)
