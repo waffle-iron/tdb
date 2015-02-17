@@ -4,7 +4,11 @@ machine:
   services:
     - neo4j
 deployment:
-  staging:
+  production:
     branch: master
     heroku:
       appname: futuredeck-api
+  staging:
+    branch: dev
+    heroku:
+      appname: futuredeck-api-staging
