@@ -71,7 +71,7 @@ function calculateReadiness (tech) {
   var values = _.range(10)
                 .map(function (n) { return tech["question" + n]})
   var multiplied = _.reduce(values, function (x, y) { return x * y })
-  return Math.log10(multiplied)
+  return Math.log(multiplied) / Math.LN10
 }
 
 exports.Tech = {
