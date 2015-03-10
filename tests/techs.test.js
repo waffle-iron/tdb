@@ -12,6 +12,13 @@ Promise.promisifyAll(request.Test.prototype)
 
 describe("/api/v2/techs resource", function () {
   var api, authorization
+  var techProps = [ "_id", "name", "slug", "summary", "description", "image",
+    "impactBanking", "impactEducation", "impactEntertainment", "impactFood",
+    "impactHousing", "impactMedia", "impactMobile", "impactPolicy",
+    "impactRetail", "impactRobotics", "impactSustainability",
+    "impactTransportation", "impactTravel", "impactWellbeing", "question0",
+    "question1", "question2", "question3", "question4", "question5",
+    "question6", "question7", "question8", "question9", "readiness" ]
 
   before(function () {
     api = request(server)
@@ -33,12 +40,7 @@ describe("/api/v2/techs resource", function () {
         .then(function testResponse (res) {
           var json = res.body
           should.exist(json.tech)
-          json.tech.should.have.properties("_id", "name", "slug", "summary",
-                                          "description", "thumbnail", "picture",
-                                          "question0", "question1", "question2",
-                                          "question3", "question4", "question5",
-                                          "question6", "question7", "question8",
-                                          "question9", "readiness")
+          json.tech.should.have.properties(techProps)
         })
     })
     it("Denies unauthenticated tech creation", function () {
@@ -95,17 +97,12 @@ describe("/api/v2/techs resource", function () {
 
     it("Get a tech by id", function () {
       return api
-        .get(url("techs", tech.id))
+        .get(url("techs", tech._id))
         .expect(200).endAsync()
         .then(function (res) {
           var json = res.body
           should.exist(json.tech)
-          json.tech.should.have.properties("_id", "name", "slug", "summary",
-                                          "description", "thumbnail", "picture",
-                                          "question0", "question1", "question2",
-                                          "question3", "question4", "question5",
-                                          "question6", "question7", "question8",
-                                          "question9", "readiness")
+          json.tech.should.have.properties(techProps)
         })
     })
   })
@@ -125,26 +122,21 @@ describe("/api/v2/techs resource", function () {
     it("Update a tech", function () {
       tech.name = tech.name + " 3D"
       return api
-        .put(url("techs", tech.id))
+        .put(url("techs", tech._id))
         .send({ tech: tech })
         .set("Authorization", authorization)
         .expect(200).endAsync()
         .then(function (res) {
           var json = res.body
           should.exist(json.tech)
-          json.tech.should.have.properties("_id", "name", "slug", "summary",
-                                          "description", "thumbnail", "picture",
-                                          "question0", "question1", "question2",
-                                          "question3", "question4", "question5",
-                                          "question6", "question7", "question8",
-                                          "question9", "readiness")
+          json.tech.should.have.properties(techProps)
         })
     })
 
     it("Denies unauthenticated tech update", function () {
       tech.name = tech.name + " 3D"
       return api
-        .put(url("techs", tech.id))
+        .put(url("techs", tech._id))
         .send({ tech: tech })
         .expect(401).endAsync()
     })
@@ -164,7 +156,7 @@ describe("/api/v2/techs resource", function () {
 
     it("Delete a tech", function () {
       return api
-        .delete(url("techs", tech.id))
+        .delete(url("techs", tech._id))
         .set("Authorization", authorization)
         .expect(204).endAsync()
         .then(function (res) {
@@ -174,7 +166,7 @@ describe("/api/v2/techs resource", function () {
 
     it("Denies tech delete", function () {
       return api
-        .delete(url("techs", tech.id))
+        .delete(url("techs", tech._id))
         .expect(401).endAsync()
     })
   })

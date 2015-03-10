@@ -2,8 +2,7 @@
 
 var _ = require("lodash")
 var db = require("../libs/db")
-var User = require("../models/user")
-var Token = require("../models/token")
+var models = require("../models")
 
 function badCredentials (res) {
   var errors = [
@@ -18,29 +17,22 @@ exports.create = function user$create (req, res) {
   var hasCredentials = !_.isEmpty(email) && !_.isEmpty(password)
   if (!hasCredentials) return res.status(400).send()
 
-  db.cypherQueryAsync(
-    "MATCH (user:User {email: {email} }) RETURN user LIMIT 1",
-    {email: email}
-  )
-  .then(function (queryRes) { return queryRes.data })
-  .then(function (users) { return users[0] || badCredentials(res) })
-  .then(function (user) { return new User(user) })
+  models.User.findByEmail(email)
   .then(function (user) {
-    return user.testPassword(password) ? user : badCredentials(res)
-  })
-  .then(function (user) {
-    var token = new Token()
-    return token
-      .setHashForUser(user)
-      .then(function (token) { return token.save() })
+    if (!user || !models.User.checkPassword(user.hashedPassword, password)) {
+      return badCredentials(res)
+    }
+
+    return models.Token.create(user)
       .then(function (token) {
-        return db.insertRelationshipAsync(user.id, token.id, "has_token", {})
-      })
-      .then(function () {
-        return {
-          accessToken: token.get("hash"),
-          user: user.id
-        }
+        return db
+          .insertRelationshipAsync(user._id, token._id, "has_token", {})
+          .then(function () {
+            return {
+              accessToken: token.hash,
+              user: user._id
+            }
+          })
       })
   })
   .then(function (json) { return res.status(201).send(json) })
