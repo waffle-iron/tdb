@@ -1,6 +1,7 @@
 "use strict"
 
 var models = require("../models")
+var _ = require("lodash")
 
 exports.create = function tech$create (req, res) {
   var json = req.body.tech
@@ -15,9 +16,14 @@ exports.create = function tech$create (req, res) {
 exports.create.requiresAuthentication = true
 
 exports.index = function tech$index (req, res) {
-  models.Tech.findAll()
-    .then(function (techs) {
-      return res.status(200).send({ techs: techs })
+  var options = _.pick(req.query, ["limit", "skip"])
+  models.Tech.find({}, options)
+    .then(function (results) {
+      var json = { techs: results.nodes }
+      if (_.keys(options).length > 0) {
+        _.extend(json, { meta: { total: results.count }})
+      }
+      return res.status(200).send(json)
     })
     .catch(function (err) {
       console.log(err)

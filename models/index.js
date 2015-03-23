@@ -113,8 +113,32 @@ exports.Tech = {
     node.slug = slug(node.name.toLowerCase())
     return db.insertNodeAsync(node, "Tech")
   },
-  findAll: function () {
-    return db.readNodesWithLabelAsync("Tech")
+  find: function (criteria, options) {
+    var cypher = [
+      "MATCH (tech:Tech) WITH count(*) AS count",
+      "MATCH (tech:Tech) WITH tech, count ORDER BY ID(tech)",
+    ]
+
+    if (!_.isUndefined(options.skip)) {
+      cypher.push("SKIP " + options.skip)
+    }
+    if (!_.isUndefined(options.limit)) {
+      cypher.push("LIMIT " + options.limit)
+    }
+
+    cypher.push("RETURN {count: count, nodes: collect(tech)} AS result")
+
+    return db
+      .cypherQueryAsync(cypher.join(" "))
+      .then(function (res) {
+        var results = _.first(res.data)
+        return {
+          count: results.count,
+          nodes: _.map(results.nodes, function (rawNode) {
+            return _.extend({ _id: rawNode.metadata.id }, rawNode.data)
+          })
+        }
+      })
   },
   findById: function (id) {
     return db.readNodeAsync(id)

@@ -81,6 +81,20 @@ describe("/api/v2/techs resource", function () {
           json.techs.should.not.be.empty
         })
     })
+
+    it("Get a paginated list of techs", function () {
+      return api
+        .get(url("techs"))
+        .query({ limit: 3, skip: 3 })
+        .expect(200).endAsync()
+        .then(function testResponse (res) {
+          var json = res.body
+          should.exist(json.techs)
+          json.techs.should.be.an.Array.and.have.lengthOf(3)
+          should.exist(json.meta)
+          json.meta.total.should.be.a.Number
+        })
+    })
   })
 
   describe("GET /techs/:tech_id", function () {
