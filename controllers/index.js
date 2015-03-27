@@ -36,23 +36,21 @@ exports.initializeRoutes = function initializeRoutes (app, namespace) {
         var id = SLASH + ":" + inflect.singularize(resource) + "Id"
 
         var router = express.Router()
-        var methods = controllerMethods(controller)
-        _.each(methods, function (method) {
-          var verb = METHOD_VERBS[method]
-          var endpoint = ["index", "create"].indexOf(method) === -1 ? id: SLASH
-          var controllerMethod = controller[method]
+        _.each(_.methods(controller), function (methodName) {
+          if (_.startsWith(methodName, "_")) return
 
-          if (controllerMethod.requiresAuthentication) {
-            router[verb](endpoint, auth.isAuthenticated, controllerMethod)
+          var method = controller[methodName]
+          var verb = method.verb || METHOD_VERBS[methodName]
+          var endpoint = method.endpoint ||
+                          ( _.contains(["index", "create"], methodName) ? SLASH
+                                                                        : id )
+          if (method.requiresAuthentication) {
+            router[verb](endpoint, auth.isAuthenticated, method)
           } else {
-            router[verb](endpoint, controllerMethod)
+            router[verb](endpoint, method)
           }
         })
         app.use(path.join(namespace, plural), router)
       })
     })
-}
-
-function controllerMethods (ctrl) {
-  return _.filter(_.functions(ctrl), function (fn) { return fn[0] !== "_" })
 }
