@@ -4,7 +4,7 @@
   "description": "API for futuredeck",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha -t 5000 tests/**/*.test.js",
+    "test": "NODE_ENV=test mocha -t 5000",
     "import": "node bin/import.js"
   },
   "repository": {
@@ -38,6 +38,7 @@
   "devDependencies": {
     "chance": "^0.7.3",
     "mocha": "^2.2.1",
+    "mocha-jshint": "^1.0.0",
     "should": "^5.1.0",
     "supertest": "^0.15.0"
   }
