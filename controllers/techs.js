@@ -40,8 +40,18 @@ exports.createTranslation.endpoint = "/:techId/translations/:lang"
 exports.createTranslation.requiresAuthentication = true
 
 exports.index = function tech$index (req, res) {
+  var langToReturn = req.acceptsLanguages("en", "pt")
+  if (!langToReturn) return res.status(406).send()
+
   var options = _.pick(req.query, ["limit", "skip"])
   models.Tech.find({}, options)
+    .then(function translate (results) {
+      results.nodes = _.map(results.nodes, function (node) {
+        return models.Tech.filterForLanguage(langToReturn, node)
+      })
+
+      return results
+    })
     .then(function (results) {
       var json = { techs: results.nodes }
       if (_.keys(options).length > 0) {

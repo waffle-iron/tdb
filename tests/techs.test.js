@@ -116,9 +116,36 @@ describe("/api/v2/techs resource", function () {
         })
     })
 
+    it("Get traslated list of techs", function () {
+      return api
+        .get(url("techs"))
+        .set("Accept-Language", "pt, en;q=0.9")
+        .expect(200).endAsync()
+        .then(function testResponse (res) {
+          var json = res.body
+          should.exist(json.techs)
+          json.techs.should.not.be.empty
+        })
+    })
+
     it("Get a paginated list of techs", function () {
       return api
         .get(url("techs"))
+        .query({ limit: 3, skip: 3 })
+        .expect(200).endAsync()
+        .then(function testResponse (res) {
+          var json = res.body
+          should.exist(json.techs)
+          json.techs.should.be.an.Array.and.have.lengthOf(3)
+          should.exist(json.meta)
+          json.meta.total.should.be.a.Number
+        })
+    })
+
+    it("Get a paginated translated list of techs", function () {
+      return api
+        .get(url("techs"))
+        .set("Accept-Language", "pt, en;q=0.9")
         .query({ limit: 3, skip: 3 })
         .expect(200).endAsync()
         .then(function testResponse (res) {
