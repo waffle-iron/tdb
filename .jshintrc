@@ -3,10 +3,10 @@
     "-Promise"
   ],
   "node": true,
-  "camelCase": true,
+  "camelcase": true,
   "eqeqeq": true,
-  "es5": true,
   "immed": true,
+  "esnext": true,
   "indent": 2,
   "latedef": "nofunc",
   "newcap": true,
