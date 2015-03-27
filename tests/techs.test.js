@@ -12,7 +12,7 @@ Promise.promisifyAll(request.Test.prototype)
 
 describe("/api/v2/techs resource", function () {
   var api, authorization
-  var techProps = [ "_id", "name", "slug", "summary", "description", "image",
+  var techProps = [ "id", "name", "slug", "summary", "description", "image",
     "impactBanking", "impactEducation", "impactEntertainment", "impactFood",
     "impactHousing", "impactMedia", "impactMobile", "impactPolicy",
     "impactRetail", "impactRobotics", "impactSustainability",
@@ -111,7 +111,7 @@ describe("/api/v2/techs resource", function () {
 
     it("Get a tech by id", function () {
       return api
-        .get(url("techs", tech._id))
+        .get(url("techs", tech.id))
         .expect(200).endAsync()
         .then(function (res) {
           var json = res.body
@@ -136,7 +136,7 @@ describe("/api/v2/techs resource", function () {
     it("Update a tech", function () {
       tech.name = tech.name + " 3D"
       return api
-        .put(url("techs", tech._id))
+        .put(url("techs", tech.id))
         .send({ tech: tech })
         .set("Authorization", authorization)
         .expect(200).endAsync()
@@ -150,7 +150,7 @@ describe("/api/v2/techs resource", function () {
     it("Denies unauthenticated tech update", function () {
       tech.name = tech.name + " 3D"
       return api
-        .put(url("techs", tech._id))
+        .put(url("techs", tech.id))
         .send({ tech: tech })
         .expect(401).endAsync()
     })
@@ -170,7 +170,7 @@ describe("/api/v2/techs resource", function () {
 
     it("Delete a tech", function () {
       return api
-        .delete(url("techs", tech._id))
+        .delete(url("techs", tech.id))
         .set("Authorization", authorization)
         .expect(204).endAsync()
         .then(function (res) {
@@ -180,7 +180,7 @@ describe("/api/v2/techs resource", function () {
 
     it("Denies tech delete", function () {
       return api
-        .delete(url("techs", tech._id))
+        .delete(url("techs", tech.id))
         .expect(401).endAsync()
     })
   })

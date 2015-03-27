@@ -6,6 +6,7 @@ var bcrypt = Promise.promisifyAll(require("bcrypt"))
 var crypto = require("crypto")
 var db = require("../libs/db")
 var slug = require("slug")
+var uuid = require("../libs/uuid")
 
 function assemblyNode (node, field, fieldname) {
   /* jshint validthis: true */
@@ -111,6 +112,8 @@ exports.Tech = {
     var node = _.reduce(this.schema, assemblyNode, {}, tech)
     node.readiness = calculateReadiness(node)
     node.slug = slug(node.name.toLowerCase())
+    node.id = uuid()
+
     return db.insertNodeAsync(node, "Tech")
   },
   find: function (criteria, options) {
@@ -140,23 +143,26 @@ exports.Tech = {
         }
       })
   },
-  findById: function (id) {
-    return db.readNodeAsync(id)
+  findById: function (uuid) {
+    return db
+      .cypherQueryAsync(
+        "MATCH (tech:Tech { id: {uuid} }) RETURN tech",
+        { uuid: uuid }
+      )
+      .then(function (res) {
+        return res.data[0];
+      })
   },
-  update: function (id, tech) {
-    id = Number(id)
+  update: function (uuid, tech) {
     var node = _.reduce(this.schema, assemblyNode, {}, tech)
     node.readiness = calculateReadiness(node)
     node.slug = slug(node.name.toLowerCase())
+
     return db
-      .updateNodeAsync(id, node)
-      .then(function (success) {
-        if (!success) return false
-        node._id = id
-        return node
-      })
+      .updateNodesWithLabelsAndPropertiesAsync("Tech", { id: uuid }, node)
+      .then(_.first)
   },
-  delete: function (id) {
-    return db.deleteNodeAsync(id)
+  delete: function (uuid) {
+    return db.deleteNodesWithLabelsAndPropertiesAsync("Tech", { id: uuid })
   }
 }
