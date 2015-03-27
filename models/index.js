@@ -77,6 +77,7 @@ function calculateReadiness (tech) {
 
 exports.Tech = {
   schema: {
+    id: { type: String, required: true },
     name: { type: String, required: true },
     slug: { type: String, required: true },
     summary: { type: String, required: true },
@@ -108,6 +109,9 @@ exports.Tech = {
     question9: { type: Number, required: true },
     readiness: { type: Number, required: true }
   },
+  translations: {
+    props: ["name", "summary", "description"]
+  },
   create: function (tech) {
     var node = _.reduce(this.schema, assemblyNode, {}, tech)
     node.readiness = calculateReadiness(node)
@@ -115,6 +119,40 @@ exports.Tech = {
     node.id = uuid()
 
     return db.insertNodeAsync(node, "Tech")
+  },
+  createTranslation: function (uuid, lang, translation) {
+    var propsToTranslate = _.pick(translation, this.translations.props)
+    var translated = _.transform(propsToTranslate, function (trans, val, key) {
+      var transKey = [key, lang].join("_")
+      trans[transKey] = val
+    })
+    var langLabel = lang.toUpperCase()
+    var cypher = [
+      "MATCH (tech:Tech { id: {uuid} })",
+      "SET tech :" + langLabel,
+      "SET tech += {translated}",
+      "RETURN tech"
+    ]
+    return db
+      .cypherQueryAsync(
+        cypher.join(" "),
+        { uuid: uuid, translated: translated }
+      )
+      .then(function (res) { return _.first(res.data) })
+      .then(this.filterForLanguage.bind(this, lang))
+  },
+  filterForLanguage: function (lang, node) {
+    if (lang === "en") return _.pick(node, _.keys(this.schema))
+
+    _.forEach(this.translations.props, function (prop) {
+      var transKey = [prop, lang].join("_")
+      if (!_.isUndefined(node[transKey])) {
+        node[prop] = node[transKey]
+        delete node[transKey]
+      }
+    })
+
+    return node
   },
   find: function (criteria, options) {
     var cypher = [
@@ -143,15 +181,14 @@ exports.Tech = {
         }
       })
   },
-  findById: function (uuid) {
+  findById: function (lang, uuid) {
     return db
       .cypherQueryAsync(
         "MATCH (tech:Tech { id: {uuid} }) RETURN tech",
         { uuid: uuid }
       )
-      .then(function (res) {
-        return res.data[0];
-      })
+      .then(function (res) { return _.first(res.data) })
+      .then(this.filterForLanguage.bind(this, lang))
   },
   update: function (uuid, tech) {
     var node = _.reduce(this.schema, assemblyNode, {}, tech)

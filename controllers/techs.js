@@ -3,9 +3,13 @@
 var models = require("../models")
 var _ = require("lodash")
 
+function badRequest(res) {
+  return res.status(400).send()
+}
+
 exports.create = function tech$create (req, res) {
   var json = req.body.tech
-  if (!json) return res.status(400).send()
+  if (!json) return badRequest(res)
 
   models.Tech.create(json)
     .then(function (tech) {
@@ -14,6 +18,26 @@ exports.create = function tech$create (req, res) {
     .catch(function () { return res.status(500).send() })
 }
 exports.create.requiresAuthentication = true
+
+exports.createTranslation = function tech$translation$create (req, res) {
+  var techId = req.params.techId
+  if (techId && techId.length !== 36) return badRequest(res)
+
+  var lang = String(req.params.lang).toLowerCase()
+  if (lang.length !== 2) return badRequest(res)
+
+  var translation = req.body.tech
+  if (!translation) return badRequest(res)
+
+  models.Tech.createTranslation(techId, lang, translation)
+    .then(function (translated) {
+      return res.status(201).send({ tech: translated })
+    })
+    .catch(function () { return res.status(500).send() })
+}
+exports.createTranslation.verb = "post"
+exports.createTranslation.endpoint = "/:techId/translations/:lang"
+exports.createTranslation.requiresAuthentication = true
 
 exports.index = function tech$index (req, res) {
   var options = _.pick(req.query, ["limit", "skip"])
@@ -33,9 +57,12 @@ exports.index = function tech$index (req, res) {
 
 exports.read = function tech$read (req, res) {
   var techId = req.params.techId
-  if (techId && techId.length !== 36) return res.status(400).send()
+  if (techId && techId.length !== 36) return badRequest(res)
 
-  models.Tech.findById(techId)
+  var langToReturn = req.acceptsLanguages("en", "pt")
+  if (!langToReturn) return res.status(406).send()
+
+  models.Tech.findById(langToReturn, techId)
     .then(function (model) {
       if (!model) return res.status(404).send()
       return res.status(200).send({ tech: model })
@@ -48,8 +75,8 @@ exports.read = function tech$read (req, res) {
 
 exports.update = function tech$read (req, res) {
   var techId = req.params.techId
-  if (techId && techId.length !== 36) return res.status(400).send()
-  if (!req.body.tech) return res.status(400).send()
+  if (techId && techId.length !== 36) return badRequest(res)
+  if (!req.body.tech) return badRequest(res)
 
   models.Tech.update(techId, req.body.tech)
     .then(function (tech) {
@@ -65,7 +92,7 @@ exports.update.requiresAuthentication = true
 
 exports.delete = function tech$read (req, res) {
   var techId = req.params.techId
-  if (techId && techId.length !== 36) return res.status(400).send()
+  if (techId && techId.length !== 36) return badRequest(res)
 
   models.Tech.delete(techId)
     .then(function () {

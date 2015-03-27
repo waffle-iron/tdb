@@ -48,6 +48,40 @@ describe("/api/v2/techs resource", function () {
         .post(url("techs")).send({ tech: random.tech() })
         .expect(401).endAsync()
     })
+
+    describe("POST /techs/:tech_id/translations", function () {
+      var tech
+
+      before(function () {
+        return api
+          .post(url("techs")).send({ tech: random.tech() })
+          .set("Authorization", authorization)
+          .expect(201).endAsync()
+          .then(function (res) {
+            tech = res.body.tech
+          })
+      })
+
+      it("Creates a tech translation", function () {
+        return api
+          .post(url("techs", tech.id) + "/translations/pt")
+          .send({ tech: random.tech() })
+          .set("Authorization", authorization)
+          .expect(201).endAsync()
+          .then(function testResponse (res) {
+            var json = res.body
+            should.exist(json.tech)
+            json.tech.should.have.properties(techProps)
+          })
+      })
+
+      it("Denies unauthenticated tech translation", function () {
+        return api
+          .post(url("techs", tech.id) + "/translations/pt")
+          .send({ tech: random.tech() })
+          .expect(401).endAsync()
+      })
+    })
   })
 
   describe("GET /techs", function () {
@@ -98,7 +132,7 @@ describe("/api/v2/techs resource", function () {
   })
 
   describe("GET /techs/:tech_id", function () {
-    var tech
+    var tech, translated
     before(function () {
       return api
         .post(url("techs")).send({ tech: random.tech() })
@@ -106,6 +140,15 @@ describe("/api/v2/techs resource", function () {
         .expect(201).endAsync()
         .then(function (res) {
           tech = res.body.tech
+          return tech
+        })
+        .then(function (tech) {
+          translated = random.tech()
+          return api
+            .post(url("techs", tech.id) + "/translations/pt")
+            .send({ tech: translated })
+            .set("Authorization", authorization)
+            .expect(201).endAsync()
         })
     })
 
@@ -117,6 +160,21 @@ describe("/api/v2/techs resource", function () {
           var json = res.body
           should.exist(json.tech)
           json.tech.should.have.properties(techProps)
+        })
+    })
+
+    it("Get a translated tech by id", function () {
+      return api
+        .get(url("techs", tech.id))
+        .set("Accept-Language", "pt, en;q=0.9")
+        .expect(200).endAsync()
+        .then(function (res) {
+          var json = res.body
+          should.exist(json.tech)
+          json.tech.should.have.properties(techProps)
+          json.tech.name.should.equal(translated.name)
+          json.tech.summary.should.equal(translated.summary)
+          json.tech.description.should.equal(translated.description)
         })
     })
   })
