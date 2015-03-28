@@ -14,3 +14,7 @@ deployment:
     branch: dev
     heroku:
       appname: futuredeck-api-staging
+general:
+  branches:
+    ignore:
+      - gh-pages
