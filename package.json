@@ -19,15 +19,15 @@
   },
   "dependencies": {
     "bcrypt": "^0.8.1",
-    "bluebird": "^2.9.13",
-    "body-parser": "^1.12.0",
-    "compression": "^1.4.1",
+    "bluebird": "^2.9.16",
+    "body-parser": "^1.12.2",
+    "compression": "^1.4.3",
     "cors": "^2.5.3",
     "csv-parse": "0.0.9",
-    "express": "^4.12.2",
+    "express": "^4.12.3",
     "i": "^0.3.2",
-    "lodash": "^3.5.0",
-    "morgan": "^1.5.1",
+    "lodash": "^3.6.0",
+    "morgan": "^1.5.2",
     "node-neo4j": "^2.0.3",
     "node-uuid": "^1.4.3",
     "passport": "^0.2.1",
@@ -39,7 +39,7 @@
     "chance": "^0.7.3",
     "mocha": "^2.2.1",
     "mocha-jshint": "^1.0.0",
-    "should": "^5.1.0",
+    "should": "^5.2.0",
     "supertest": "^0.15.0"
   }
 }
