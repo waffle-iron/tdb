@@ -239,6 +239,48 @@ describe("/api/v2/techs resource", function () {
         .send({ tech: tech })
         .expect(401).endAsync()
     })
+
+    describe("PUT /techs/:tech_id/translations", function () {
+      var tech, translated
+
+      before(function () {
+        return api
+          .post(url("techs")).send({ tech: random.tech() })
+          .set("Authorization", authorization)
+          .expect(201).endAsync()
+          .then(function (res) {
+            tech = res.body.tech
+            return api
+              .post(url("techs", tech.id) + "/translations/pt")
+              .send({ tech: random.tech() })
+              .set("Authorization", authorization)
+              .expect(201).endAsync()
+              .then(function testResponse (res) {
+                translated = res.body.tech
+              })
+          })
+      })
+
+      it("Updates a tech translation", function () {
+        return api
+          .put(url("techs", tech.id) + "/translations/pt")
+          .send({ tech: random.tech() })
+          .set("Authorization", authorization)
+          .expect(200).endAsync()
+          .then(function testResponse (res) {
+            var json = res.body
+            should.exist(json.tech)
+            json.tech.should.have.properties(techProps)
+          })
+      })
+
+      it("Denies unauthenticated update tech translation", function () {
+        return api
+          .put(url("techs", tech.id) + "/translations/pt")
+          .send({ tech: random.tech() })
+          .expect(401).endAsync()
+      })
+    })
   })
 
   describe("DELETE /techs/:tech_id", function () {
