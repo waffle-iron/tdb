@@ -203,3 +203,109 @@ exports.Tech = {
     return db.deleteNodesWithLabelsAndPropertiesAsync("Tech", { id: uuid })
   }
 }
+
+exports.Startup = {
+  schema: {
+    id: { type: String, required: true },
+    name: { type: String, required: true },
+    slug: { type: String, required: true },
+    summary: { type: String, required: true },
+    image: { type: String, required: true },
+    websiteUrl: { type: String, required: true },
+    twitterUrl: { type: String, required: true },
+    crunchbaseUrl: { type: String, required: true },
+    angelUrl: { type: String, required: true }
+  },
+  translations: {
+    props: ["name", "summary"]
+  },
+  create: function (tech) {
+    var node = _.reduce(this.schema, assemblyNode, {}, tech)
+    node.slug = slug(node.name.toLowerCase())
+    node.id = uuid()
+
+    return db.insertNodeAsync(node, "Startup")
+  },
+  createTranslation: function (uuid, lang, translation) {
+    var propsToTranslate = _.pick(translation, this.translations.props)
+    var translated = _.transform(propsToTranslate, function (trans, val, key) {
+      var transKey = [key, lang].join("_")
+      trans[transKey] = val
+    })
+    var langLabel = lang.toUpperCase()
+    var cypher = [
+      "MATCH (startup:Startup { id: {uuid} })",
+      "SET startup :" + langLabel,
+      "SET startup += {translated}",
+      "RETURN startup"
+    ]
+    return db
+      .cypherQueryAsync(
+        cypher.join(" "),
+        { uuid: uuid, translated: translated }
+      )
+      .then(function (res) { return _.first(res.data) })
+      .then(this.filterForLanguage.bind(this, lang))
+  },
+  filterForLanguage: function (lang, node) {
+    if (lang === "en") return _.pick(node, _.keys(this.schema))
+
+    _.forEach(this.translations.props, function (prop) {
+      var transKey = [prop, lang].join("_")
+      if (!_.isUndefined(node[transKey])) {
+        node[prop] = node[transKey]
+        delete node[transKey]
+      }
+    })
+
+    return node
+  },
+  find: function (criteria, options) {
+    var cypher = [
+      "MATCH (startup:Startup) WITH count(*) AS count",
+      "MATCH (startup:Startup) WITH startup, count ORDER BY ID(startup)",
+    ]
+
+    if (!_.isUndefined(options.skip)) {
+      cypher.push("SKIP " + options.skip)
+    }
+    if (!_.isUndefined(options.limit)) {
+      cypher.push("LIMIT " + options.limit)
+    }
+
+    cypher.push("RETURN {count: count, nodes: collect(startup)} AS result")
+
+    return db
+      .cypherQueryAsync(cypher.join(" "))
+      .then(function (res) {
+        var results = _.first(res.data)
+        return {
+          count: results.count,
+          nodes: _.map(results.nodes, function (rawNode) {
+            return _.extend({ _id: rawNode.metadata.id }, rawNode.data)
+          })
+        }
+      })
+  },
+  findById: function (lang, uuid) {
+    return db
+      .cypherQueryAsync(
+        "MATCH (startup:Startup { id: {uuid} }) RETURN startup",
+        { uuid: uuid }
+      )
+      .then(function (res) { return _.first(res.data) })
+      .then(this.filterForLanguage.bind(this, lang))
+  },
+  update: function (uuid, tech) {
+    var node = _.reduce(this.schema, assemblyNode, {}, tech)
+    node.readiness = calculateReadiness(node)
+    node.slug = slug(node.name.toLowerCase())
+
+    return db
+      .updateNodesWithLabelsAndPropertiesAsync("Startup", { id: uuid }, node)
+      .then(_.first)
+  },
+  delete: function (uuid) {
+    return db.deleteNodesWithLabelsAndPropertiesAsync("Startup", { id: uuid })
+  }
+}

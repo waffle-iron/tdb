@@ -57,6 +57,17 @@ chance.mixin({
       question8: this.question(),
       question9: this.question()
     }
+  },
+  startup: function () {
+    return {
+      name: this.sentence({ words: 3 }),
+      summary: this.sentence(),
+      image: this.image(),
+      websiteUrl: this.url(),
+      twitterUrl: this.url(),
+      crunchbaseUrl: this.url(),
+      angelUrl: this.url()
+    }
   }
 })
 
