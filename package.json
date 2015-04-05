@@ -14,8 +14,8 @@
   "author": "Luiz Sócrate <luiz@socrate.com.br> (http://www.socrate.com.br)",
   "license": "MIT",
   "engines": {
-    "node": "0.12.x",
-    "npm": "2.5.x"
+    "iojs": "1.6.x",
+    "npm": "2.7.x"
   },
   "dependencies": {
     "bcrypt": "^0.8.1",
