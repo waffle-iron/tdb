@@ -6,7 +6,7 @@ var bcrypt = Promise.promisifyAll(require("bcrypt"))
 var crypto = require("crypto")
 var db = require("../libs/db")
 var slug = require("slug")
-var uuid = require("../libs/uuid")
+var Model = require("../libs/morpheus")
 
 function assemblyNode (node, field, fieldname) {
   /* jshint validthis: true */
@@ -75,237 +75,58 @@ function calculateReadiness (tech) {
   return Math.log(multiplied) / Math.LN10
 }
 
-exports.Tech = {
+exports.Tech = new Model({
+  type: "Tech",
   schema: {
-    id: { type: String, required: true },
-    name: { type: String, required: true },
-    slug: { type: String, required: true },
-    summary: { type: String, required: true },
-    description: { type: String, required: true },
-    image: { type: String, required: true },
-    impactBanking: { type: Number, required: true },
-    impactEducation: { type: Number, required: true },
-    impactEntertainment: { type: Number, required: true },
-    impactFood: { type: Number, required: true },
-    impactHousing: { type: Number, required: true },
-    impactMedia: { type: Number, required: true },
-    impactMobile: { type: Number, required: true },
-    impactPolicy: { type: Number, required: true },
-    impactRetail: { type: Number, required: true },
-    impactRobotics: { type: Number, required: true },
-    impactSustainability: { type: Number, required: true },
-    impactTransportation: { type: Number, required: true },
-    impactTravel: { type: Number, required: true },
-    impactWellbeing: { type: Number, required: true },
-    question0: { type: Number, required: true },
-    question1: { type: Number, required: true },
-    question2: { type: Number, required: true },
-    question3: { type: Number, required: true },
-    question4: { type: Number, required: true },
-    question5: { type: Number, required: true },
-    question6: { type: Number, required: true },
-    question7: { type: Number, required: true },
-    question8: { type: Number, required: true },
-    question9: { type: Number, required: true },
-    readiness: { type: Number, required: true }
+    name: { type: String, hasTranslations: true },
+    summary: { type: String, hasTranslations: true },
+    description: { type: String, hasTranslations: true },
+    image: { type: String },
+    impactBanking: { type: Number },
+    impactEducation: { type: Number },
+    impactEntertainment: { type: Number },
+    impactFood: { type: Number },
+    impactHousing: { type: Number },
+    impactMedia: { type: Number },
+    impactMobile: { type: Number },
+    impactPolicy: { type: Number },
+    impactRetail: { type: Number },
+    impactRobotics: { type: Number },
+    impactSustainability: { type: Number },
+    impactTransportation: { type: Number },
+    impactTravel: { type: Number },
+    impactWellbeing: { type: Number },
+    question0: { type: Number },
+    question1: { type: Number },
+    question2: { type: Number },
+    question3: { type: Number },
+    question4: { type: Number },
+    question5: { type: Number },
+    question6: { type: Number },
+    question7: { type: Number },
+    question8: { type: Number },
+    question9: { type: Number },
   },
-  translations: {
-    props: ["name", "summary", "description"]
-  },
-  create: function (tech) {
-    var node = _.reduce(this.schema, assemblyNode, {}, tech)
-    node.readiness = calculateReadiness(node)
+  preSave: function (node) {
     node.slug = slug(node.name.toLowerCase())
-    node.id = uuid()
-
-    return db.insertNodeAsync(node, "Tech")
-  },
-  createTranslation: function (uuid, lang, translation) {
-    var propsToTranslate = _.pick(translation, this.translations.props)
-    var translated = _.transform(propsToTranslate, function (trans, val, key) {
-      var transKey = [key, lang].join("_")
-      trans[transKey] = val
-    })
-    var langLabel = lang.toUpperCase()
-    var cypher = [
-      "MATCH (tech:Tech { id: {uuid} })",
-      "SET tech :" + langLabel,
-      "SET tech += {translated}",
-      "RETURN tech"
-    ]
-    return db
-      .cypherQueryAsync(
-        cypher.join(" "),
-        { uuid: uuid, translated: translated }
-      )
-      .then(function (res) { return _.first(res.data) })
-      .then(this.filterForLanguage.bind(this, lang))
-  },
-  filterForLanguage: function (lang, node) {
-    if (lang === "en") return _.pick(node, _.keys(this.schema))
-
-    _.forEach(this.translations.props, function (prop) {
-      var transKey = [prop, lang].join("_")
-      if (!_.isUndefined(node[transKey])) {
-        node[prop] = node[transKey]
-        delete node[transKey]
-      }
-    })
-
+    node.readiness = calculateReadiness(node)
     return node
-  },
-  find: function (criteria, options) {
-    var cypher = [
-      "MATCH (tech:Tech) WITH count(*) AS count",
-      "MATCH (tech:Tech) WITH tech, count ORDER BY ID(tech)",
-    ]
-
-    if (!_.isUndefined(options.skip)) {
-      cypher.push("SKIP " + options.skip)
-    }
-    if (!_.isUndefined(options.limit)) {
-      cypher.push("LIMIT " + options.limit)
-    }
-
-    cypher.push("RETURN {count: count, nodes: collect(tech)} AS result")
-
-    return db
-      .cypherQueryAsync(cypher.join(" "))
-      .then(function (res) {
-        var results = _.first(res.data)
-        return {
-          count: results.count,
-          nodes: _.map(results.nodes, function (rawNode) {
-            return _.extend({ _id: rawNode.metadata.id }, rawNode.data)
-          })
-        }
-      })
-  },
-  findById: function (lang, uuid) {
-    return db
-      .cypherQueryAsync(
-        "MATCH (tech:Tech { id: {uuid} }) RETURN tech",
-        { uuid: uuid }
-      )
-      .then(function (res) { return _.first(res.data) })
-      .then(this.filterForLanguage.bind(this, lang))
-  },
-  update: function (uuid, tech) {
-    var node = _.reduce(this.schema, assemblyNode, {}, tech)
-    node.readiness = calculateReadiness(node)
-    node.slug = slug(node.name.toLowerCase())
-
-    return db
-      .updateNodesWithLabelsAndPropertiesAsync("Tech", { id: uuid }, node)
-      .then(_.first)
-  },
-  delete: function (uuid) {
-    return db.deleteNodesWithLabelsAndPropertiesAsync("Tech", { id: uuid })
   }
-}
+})
 
-exports.Startup = {
+exports.Startup = new Model({
+  type: "Startup",
   schema: {
-    id: { type: String, required: true },
-    name: { type: String, required: true },
-    slug: { type: String, required: true },
-    summary: { type: String, required: true },
-    image: { type: String, required: true },
-    websiteUrl: { type: String, required: true },
-    twitterUrl: { type: String, required: true },
-    crunchbaseUrl: { type: String, required: true },
-    angelUrl: { type: String, required: true }
+    name: { type: String, hasTranslations: true },
+    summary: { type: String, hasTranslations: true },
+    image: { type: String },
+    websiteUrl: { type: String },
+    twitterUrl: { type: String },
+    crunchbaseUrl: { type: String },
+    angelUrl: { type: String }
   },
-  translations: {
-    props: ["name", "summary"]
-  },
-  create: function (tech) {
-    var node = _.reduce(this.schema, assemblyNode, {}, tech)
+  preSave: function (node) {
     node.slug = slug(node.name.toLowerCase())
-    node.id = uuid()
-
-    return db.insertNodeAsync(node, "Startup")
-  },
-  createTranslation: function (uuid, lang, translation) {
-    var propsToTranslate = _.pick(translation, this.translations.props)
-    var translated = _.transform(propsToTranslate, function (trans, val, key) {
-      var transKey = [key, lang].join("_")
-      trans[transKey] = val
-    })
-    var langLabel = lang.toUpperCase()
-    var cypher = [
-      "MATCH (startup:Startup { id: {uuid} })",
-      "SET startup :" + langLabel,
-      "SET startup += {translated}",
-      "RETURN startup"
-    ]
-    return db
-      .cypherQueryAsync(
-        cypher.join(" "),
-        { uuid: uuid, translated: translated }
-      )
-      .then(function (res) { return _.first(res.data) })
-      .then(this.filterForLanguage.bind(this, lang))
-  },
-  filterForLanguage: function (lang, node) {
-    if (lang === "en") return _.pick(node, _.keys(this.schema))
-
-    _.forEach(this.translations.props, function (prop) {
-      var transKey = [prop, lang].join("_")
-      if (!_.isUndefined(node[transKey])) {
-        node[prop] = node[transKey]
-        delete node[transKey]
-      }
-    })
-
     return node
-  },
-  find: function (criteria, options) {
-    var cypher = [
-      "MATCH (startup:Startup) WITH count(*) AS count",
-      "MATCH (startup:Startup) WITH startup, count ORDER BY ID(startup)",
-    ]
-
-    if (!_.isUndefined(options.skip)) {
-      cypher.push("SKIP " + options.skip)
-    }
-    if (!_.isUndefined(options.limit)) {
-      cypher.push("LIMIT " + options.limit)
-    }
-
-    cypher.push("RETURN {count: count, nodes: collect(startup)} AS result")
-
-    return db
-      .cypherQueryAsync(cypher.join(" "))
-      .then(function (res) {
-        var results = _.first(res.data)
-        return {
-          count: results.count,
-          nodes: _.map(results.nodes, function (rawNode) {
-            return _.extend({ _id: rawNode.metadata.id }, rawNode.data)
-          })
-        }
-      })
-  },
-  findById: function (lang, uuid) {
-    return db
-      .cypherQueryAsync(
-        "MATCH (startup:Startup { id: {uuid} }) RETURN startup",
-        { uuid: uuid }
-      )
-      .then(function (res) { return _.first(res.data) })
-      .then(this.filterForLanguage.bind(this, lang))
-  },
-  update: function (uuid, tech) {
-    var node = _.reduce(this.schema, assemblyNode, {}, tech)
-    node.readiness = calculateReadiness(node)
-    node.slug = slug(node.name.toLowerCase())
-
-    return db
-      .updateNodesWithLabelsAndPropertiesAsync("Startup", { id: uuid }, node)
-      .then(_.first)
-  },
-  delete: function (uuid) {
-    return db.deleteNodesWithLabelsAndPropertiesAsync("Startup", { id: uuid })
   }
-}
+})

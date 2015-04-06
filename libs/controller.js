@@ -50,14 +50,9 @@ exports.index = function (opts) {
     if (!langToReturn) return notAcceptable(res)
 
     var options = _.pick(req.query, ["limit", "skip"])
-    model.find({}, options)
-      .then(function translate (results) {
-        results.nodes = _.map(results.nodes, function (node) {
-          return model.filterForLanguage(langToReturn, node)
-        })
+    options.lang = langToReturn
 
-        return results
-      })
+    model.find({}, options)
       .then(function (results) {
         var json = wrap(opts.wrapper, results.nodes)
         if (_.keys(options).length > 0) {
