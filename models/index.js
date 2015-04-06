@@ -7,6 +7,7 @@ var crypto = require("crypto")
 var db = require("../libs/db")
 var slug = require("slug")
 var Model = require("../libs/morpheus")
+var hmean = require("compute-hmean")
 
 function assemblyNode (node, field, fieldname) {
   /* jshint validthis: true */
@@ -69,10 +70,8 @@ exports.Token = {
 }
 
 function calculateReadiness (tech) {
-  var values = _.range(10)
-                .map(function (n) { return tech["question" + n]})
-  var multiplied = _.reduce(values, function (x, y) { return x * y })
-  return Math.log(multiplied) / Math.LN10
+  let values = _.range(10).map(function (n) { return tech["question" + n]})
+  return hmean(values)
 }
 
 exports.Tech = new Model({
