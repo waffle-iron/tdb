@@ -1,19 +1,22 @@
 "use strict"
 
 var Promise = require("bluebird")
+var _ = require("lodash")
 var request = require("supertest")
-var should = require("should")
 
 var server = require("../server")
 var url = require("./helpers/url")
 var random = require("./helpers/random")
 
+var modelName = "startup"
+var modelProps = [ "id", "name", "slug", "summary", "image", "websiteUrl",
+                  "twitterUrl", "crunchbaseUrl", "angelUrl" ]
+var Test = require("./helpers/tests")(modelName, modelProps)
+
 Promise.promisifyAll(request.Test.prototype)
 
 describe("/api/v2/startups resource", function () {
   var api, authorization
-  var startupProps = [ "id", "name", "slug", "summary", "image", "websiteUrl",
-                    "twitterUrl", "crunchbaseUrl", "angelUrl" ]
 
   before(function () {
     api = request(server)
@@ -32,11 +35,8 @@ describe("/api/v2/startups resource", function () {
         .post(url("startups")).send({ startup: random.startup() })
         .set("Authorization", authorization)
         .expect(201).endAsync()
-        .then(function testResponse (res) {
-          var json = res.body
-          should.exist(json.startup)
-          json.startup.should.have.properties(startupProps)
-        })
+        .then(Test.returnModel)
+        .then(Test.haveOnlyModelProperties)
     })
     it("Denies unauthenticated startup creation", function () {
       return api
@@ -52,9 +52,7 @@ describe("/api/v2/startups resource", function () {
           .post(url("startups")).send({ startup: random.startup() })
           .set("Authorization", authorization)
           .expect(201).endAsync()
-          .then(function (res) {
-            startup = res.body.startup
-          })
+          .then(function (res) { startup = res.body.startup })
       })
 
       it("Creates a startup translation", function () {
@@ -63,11 +61,8 @@ describe("/api/v2/startups resource", function () {
           .send({ startup: random.startup() })
           .set("Authorization", authorization)
           .expect(201).endAsync()
-          .then(function testResponse (res) {
-            var json = res.body
-            should.exist(json.startup)
-            json.startup.should.have.properties(startupProps)
-          })
+          .then(Test.returnModel)
+          .then(Test.haveOnlyModelProperties)
       })
 
       it("Denies unauthenticated startup translation", function () {
@@ -104,11 +99,7 @@ describe("/api/v2/startups resource", function () {
       return api
         .get(url("startups"))
         .expect(200).endAsync()
-        .then(function testResponse (res) {
-          var json = res.body
-          should.exist(json.startups)
-          json.startups.should.not.be.empty
-        })
+        .then(Test.returnModels)
     })
 
     it("Get translated list of startups", function () {
@@ -116,11 +107,7 @@ describe("/api/v2/startups resource", function () {
         .get(url("startups"))
         .set("Accept-Language", "pt, en;q=0.9")
         .expect(200).endAsync()
-        .then(function testResponse (res) {
-          var json = res.body
-          should.exist(json.startups)
-          json.startups.should.not.be.empty
-        })
+        .then(Test.returnModels)
     })
 
     it("Get a paginated list of startups", function () {
@@ -128,13 +115,8 @@ describe("/api/v2/startups resource", function () {
         .get(url("startups"))
         .query({ limit: 3, skip: 3 })
         .expect(200).endAsync()
-        .then(function testResponse (res) {
-          var json = res.body
-          should.exist(json.startups)
-          json.startups.should.be.an.Array.and.have.lengthOf(3)
-          should.exist(json.meta)
-          json.meta.total.should.be.a.Number
-        })
+        .then(Test.returnModels)
+        .then(Test.isPaginated(3))
     })
 
     it("Get a paginated translated list of startups", function () {
@@ -143,13 +125,8 @@ describe("/api/v2/startups resource", function () {
         .set("Accept-Language", "pt, en;q=0.9")
         .query({ limit: 3, skip: 3 })
         .expect(200).endAsync()
-        .then(function testResponse (res) {
-          var json = res.body
-          should.exist(json.startups)
-          json.startups.should.be.an.Array.and.have.lengthOf(3)
-          should.exist(json.meta)
-          json.meta.total.should.be.a.Number
-        })
+        .then(Test.returnModels)
+        .then(Test.isPaginated(3))
     })
   })
 
@@ -178,11 +155,8 @@ describe("/api/v2/startups resource", function () {
       return api
         .get(url("startups", startup.id))
         .expect(200).endAsync()
-        .then(function (res) {
-          var json = res.body
-          should.exist(json.startup)
-          json.startup.should.have.properties(startupProps)
-        })
+        .then(Test.returnModel)
+        .then(Test.haveOnlyModelProperties)
     })
 
     it("Get a translated startup by id", function () {
@@ -190,13 +164,11 @@ describe("/api/v2/startups resource", function () {
         .get(url("startups", startup.id))
         .set("Accept-Language", "pt, en;q=0.9")
         .expect(200).endAsync()
-        .then(function (res) {
-          var json = res.body
-          should.exist(json.startup)
-          json.startup.should.have.properties(startupProps)
-          json.startup.name.should.equal(translated.name)
-          json.startup.summary.should.equal(translated.summary)
-        })
+        .then(Test.returnModel)
+        .then(Test.haveOnlyModelProperties)
+        .then(Test.haveMatchingProperties(
+                _.pick(translated, [ "name", "summary" ])
+        ))
     })
   })
 
@@ -207,9 +179,7 @@ describe("/api/v2/startups resource", function () {
         .post(url("startups")).send({ startup: random.startup() })
         .set("Authorization", authorization)
         .expect(201).endAsync()
-        .then(function (res) {
-          startup = res.body.startup
-        })
+        .then(function (res) { startup = res.body.startup })
     })
 
     it("Update a startup", function () {
@@ -219,11 +189,8 @@ describe("/api/v2/startups resource", function () {
         .send({ startup: startup })
         .set("Authorization", authorization)
         .expect(200).endAsync()
-        .then(function (res) {
-          var json = res.body
-          should.exist(json.startup)
-          json.startup.should.have.properties(startupProps)
-        })
+        .then(Test.returnModel)
+        .then(Test.haveOnlyModelProperties)
     })
 
     it("Denies unauthenticated startup update", function () {
@@ -249,9 +216,7 @@ describe("/api/v2/startups resource", function () {
               .send({ startup: random.startup() })
               .set("Authorization", authorization)
               .expect(201).endAsync()
-              .then(function testResponse (res) {
-                translated = res.body.startup
-              })
+              .then(function (res) { translated = res.body.startup })
           })
       })
 
@@ -261,11 +226,8 @@ describe("/api/v2/startups resource", function () {
           .send({ startup: random.startup() })
           .set("Authorization", authorization)
           .expect(200).endAsync()
-          .then(function testResponse (res) {
-            var json = res.body
-            should.exist(json.startup)
-            json.startup.should.have.properties(startupProps)
-          })
+          .then(Test.returnModel)
+          .then(Test.haveOnlyModelProperties)
       })
 
       it("Denies unauthenticated update startup translation", function () {
@@ -284,9 +246,7 @@ describe("/api/v2/startups resource", function () {
         .post(url("startups")).send({ startup: random.startup() })
         .set("Authorization", authorization)
         .expect(201).endAsync()
-        .then(function (res) {
-          startup = res.body.startup
-        })
+        .then(function (res) { startup = res.body.startup })
     })
 
     it("Delete a startup", function () {
@@ -294,9 +254,7 @@ describe("/api/v2/startups resource", function () {
         .delete(url("startups", startup.id))
         .set("Authorization", authorization)
         .expect(204).endAsync()
-        .then(function (res) {
-          res.body.should.be.empty
-        })
+        .then(Test.responseEmpty)
     })
 
     it("Denies startup delete", function () {

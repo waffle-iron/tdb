@@ -1,24 +1,27 @@
 "use strict"
 
 var Promise = require("bluebird")
+var _ = require("lodash")
 var request = require("supertest")
-var should = require("should")
 
 var server = require("../server")
 var url = require("./helpers/url")
 var random = require("./helpers/random")
 
+var modelName = "tech"
+var modelProps = [ "id", "name", "slug", "summary", "description", "image",
+  "impactBanking", "impactEducation", "impactEntertainment", "impactFood",
+  "impactHousing", "impactMedia", "impactMobile", "impactPolicy",
+  "impactRetail", "impactRobotics", "impactSustainability",
+  "impactTransportation", "impactTravel", "impactWellbeing", "question0",
+  "question1", "question2", "question3", "question4", "question5", "question6",
+  "question7", "question8", "question9", "readiness" ]
+var Test = require("./helpers/tests")(modelName, modelProps)
+
 Promise.promisifyAll(request.Test.prototype)
 
 describe("/api/v2/techs resource", function () {
   var api, authorization
-  var techProps = [ "id", "name", "slug", "summary", "description", "image",
-    "impactBanking", "impactEducation", "impactEntertainment", "impactFood",
-    "impactHousing", "impactMedia", "impactMobile", "impactPolicy",
-    "impactRetail", "impactRobotics", "impactSustainability",
-    "impactTransportation", "impactTravel", "impactWellbeing", "question0",
-    "question1", "question2", "question3", "question4", "question5",
-    "question6", "question7", "question8", "question9", "readiness" ]
 
   before(function () {
     api = request(server)
@@ -37,11 +40,8 @@ describe("/api/v2/techs resource", function () {
         .post(url("techs")).send({ tech: random.tech() })
         .set("Authorization", authorization)
         .expect(201).endAsync()
-        .then(function testResponse (res) {
-          var json = res.body
-          should.exist(json.tech)
-          json.tech.should.have.properties(techProps)
-        })
+        .then(Test.returnModel)
+        .then(Test.haveOnlyModelProperties)
     })
     it("Denies unauthenticated tech creation", function () {
       return api
@@ -57,9 +57,7 @@ describe("/api/v2/techs resource", function () {
           .post(url("techs")).send({ tech: random.tech() })
           .set("Authorization", authorization)
           .expect(201).endAsync()
-          .then(function (res) {
-            tech = res.body.tech
-          })
+          .then(function (res) { tech = res.body.tech })
       })
 
       it("Creates a tech translation", function () {
@@ -68,11 +66,8 @@ describe("/api/v2/techs resource", function () {
           .send({ tech: random.tech() })
           .set("Authorization", authorization)
           .expect(201).endAsync()
-          .then(function testResponse (res) {
-            var json = res.body
-            should.exist(json.tech)
-            json.tech.should.have.properties(techProps)
-          })
+          .then(Test.returnModel)
+          .then(Test.haveOnlyModelProperties)
       })
 
       it("Denies unauthenticated tech translation", function () {
@@ -109,11 +104,7 @@ describe("/api/v2/techs resource", function () {
       return api
         .get(url("techs"))
         .expect(200).endAsync()
-        .then(function testResponse (res) {
-          var json = res.body
-          should.exist(json.techs)
-          json.techs.should.not.be.empty
-        })
+        .then(Test.returnModels)
     })
 
     it("Get traslated list of techs", function () {
@@ -121,11 +112,7 @@ describe("/api/v2/techs resource", function () {
         .get(url("techs"))
         .set("Accept-Language", "pt, en;q=0.9")
         .expect(200).endAsync()
-        .then(function testResponse (res) {
-          var json = res.body
-          should.exist(json.techs)
-          json.techs.should.not.be.empty
-        })
+        .then(Test.returnModels)
     })
 
     it("Get a paginated list of techs", function () {
@@ -133,13 +120,8 @@ describe("/api/v2/techs resource", function () {
         .get(url("techs"))
         .query({ limit: 3, skip: 3 })
         .expect(200).endAsync()
-        .then(function testResponse (res) {
-          var json = res.body
-          should.exist(json.techs)
-          json.techs.should.be.an.Array.and.have.lengthOf(3)
-          should.exist(json.meta)
-          json.meta.total.should.be.a.Number
-        })
+        .then(Test.returnModels)
+        .then(Test.isPaginated(3))
     })
 
     it("Get a paginated translated list of techs", function () {
@@ -148,13 +130,8 @@ describe("/api/v2/techs resource", function () {
         .set("Accept-Language", "pt, en;q=0.9")
         .query({ limit: 3, skip: 3 })
         .expect(200).endAsync()
-        .then(function testResponse (res) {
-          var json = res.body
-          should.exist(json.techs)
-          json.techs.should.be.an.Array.and.have.lengthOf(3)
-          should.exist(json.meta)
-          json.meta.total.should.be.a.Number
-        })
+        .then(Test.returnModels)
+        .then(Test.isPaginated(3))
     })
   })
 
@@ -183,11 +160,8 @@ describe("/api/v2/techs resource", function () {
       return api
         .get(url("techs", tech.id))
         .expect(200).endAsync()
-        .then(function (res) {
-          var json = res.body
-          should.exist(json.tech)
-          json.tech.should.have.properties(techProps)
-        })
+        .then(Test.returnModel)
+        .then(Test.haveOnlyModelProperties)
     })
 
     it("Get a translated tech by id", function () {
@@ -195,14 +169,11 @@ describe("/api/v2/techs resource", function () {
         .get(url("techs", tech.id))
         .set("Accept-Language", "pt, en;q=0.9")
         .expect(200).endAsync()
-        .then(function (res) {
-          var json = res.body
-          should.exist(json.tech)
-          json.tech.should.have.properties(techProps)
-          json.tech.name.should.equal(translated.name)
-          json.tech.summary.should.equal(translated.summary)
-          json.tech.description.should.equal(translated.description)
-        })
+        .then(Test.returnModel)
+        .then(Test.haveOnlyModelProperties)
+        .then(Test.haveMatchingProperties(
+                _.pick(translated, [ "name", "summary", "description"])
+        ))
     })
   })
 
@@ -213,9 +184,7 @@ describe("/api/v2/techs resource", function () {
         .post(url("techs")).send({ tech: random.tech() })
         .set("Authorization", authorization)
         .expect(201).endAsync()
-        .then(function (res) {
-          tech = res.body.tech
-        })
+        .then(function (res) { tech = res.body.tech })
     })
 
     it("Update a tech", function () {
@@ -225,11 +194,8 @@ describe("/api/v2/techs resource", function () {
         .send({ tech: tech })
         .set("Authorization", authorization)
         .expect(200).endAsync()
-        .then(function (res) {
-          var json = res.body
-          should.exist(json.tech)
-          json.tech.should.have.properties(techProps)
-        })
+        .then(Test.returnModel)
+        .then(Test.haveOnlyModelProperties)
     })
 
     it("Denies unauthenticated tech update", function () {
@@ -255,9 +221,7 @@ describe("/api/v2/techs resource", function () {
               .send({ tech: random.tech() })
               .set("Authorization", authorization)
               .expect(201).endAsync()
-              .then(function testResponse (res) {
-                translated = res.body.tech
-              })
+              .then(function (res) { translated = res.body.tech })
           })
       })
 
@@ -267,11 +231,8 @@ describe("/api/v2/techs resource", function () {
           .send({ tech: random.tech() })
           .set("Authorization", authorization)
           .expect(200).endAsync()
-          .then(function testResponse (res) {
-            var json = res.body
-            should.exist(json.tech)
-            json.tech.should.have.properties(techProps)
-          })
+          .then(Test.returnModel)
+          .then(Test.haveOnlyModelProperties)
       })
 
       it("Denies unauthenticated update tech translation", function () {
@@ -290,9 +251,7 @@ describe("/api/v2/techs resource", function () {
         .post(url("techs")).send({ tech: random.tech() })
         .set("Authorization", authorization)
         .expect(201).endAsync()
-        .then(function (res) {
-          tech = res.body.tech
-        })
+        .then(function (res) { tech = res.body.tech })
     })
 
     it("Delete a tech", function () {
@@ -300,9 +259,7 @@ describe("/api/v2/techs resource", function () {
         .delete(url("techs", tech.id))
         .set("Authorization", authorization)
         .expect(204).endAsync()
-        .then(function (res) {
-          res.body.should.be.empty
-        })
+        .then(Test.responseEmpty)
     })
 
     it("Denies tech delete", function () {
