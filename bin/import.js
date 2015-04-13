@@ -6,6 +6,7 @@ var parse = require("csv-parse")
 var slug = require("slug")
 var transform = require("stream-transform")
 var path = require("path")
+var uuid = require("../libs/uuid")
 
 
 var csvFile = path.resolve(process.cwd(), process.argv[2])
@@ -16,6 +17,7 @@ var transformer = transform(function (record, cb) {
   if (record[1] === "tech") return cb(null)
 
   var node = {
+    id: uuid(),
     name: record[1],
     slug: slug(record[1].toLowerCase()),
     description: record[3]
