@@ -15,6 +15,18 @@ function firstData (res) {
   return _.first(res.data)
 }
 
+function cleanNode (node) {
+  delete node._id
+  return node
+}
+
+function cleanNodes (nodes) {
+  if (_.isArray(nodes)) {
+    return _.map(nodes, cleanNode)
+  }
+  return cleanNode(nodes)
+}
+
 function extractLanguage (schema, translations, lang, node) {
   if (lang === "en") {
     _.forEach(_.keys(node), function (prop) {
@@ -47,7 +59,7 @@ function Model (blueprint) {
     create: function model$create (doc) {
       let node = _.reduce(SCHEMA, assemblyNode, { id: uuid() }, doc)
       if (PRE_SAVE) { node = PRE_SAVE(node) }
-      return db.insertNodeAsync(node, TYPE)
+      return db.insertNodeAsync(node, TYPE).then(cleanNodes)
     },
     find: function model$find (conditions, options) {
       let cypher = [
@@ -81,6 +93,7 @@ function Model (blueprint) {
       return db
         .cypherQueryAsync(query, { uuid: uuid })
         .then(firstData)
+        .then(cleanNodes)
         .then(_.partial(extractLanguage, SCHEMA, TRANSLATIONS, lang))
     },
     update: function model$update (uuid, doc) {
@@ -89,6 +102,7 @@ function Model (blueprint) {
       return db
         .updateNodesWithLabelsAndPropertiesAsync(TYPE, { id: uuid }, node)
         .then(_.first)
+        .then(cleanNodes)
     },
     delete: function model$delete (uuid) {
       return db.deleteNodesWithLabelsAndPropertiesAsync(TYPE, { id: uuid })
@@ -109,6 +123,7 @@ function Model (blueprint) {
       return db
         .cypherQueryAsync(cypher, { uuid: uuid, translated: translated })
         .then(firstData)
+        .then(cleanNodes)
         .then(_.partial(extractLanguage, SCHEMA, TRANSLATIONS, lang))
     }
   }
