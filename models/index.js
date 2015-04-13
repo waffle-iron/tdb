@@ -129,3 +129,11 @@ exports.Startup = new Model({
     return node
   }
 })
+
+exports.Link = new Model({
+  type: "Link",
+  schema: {
+    title: { type: String },
+    url: { type: String }
+  }
+})

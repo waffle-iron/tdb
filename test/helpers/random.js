@@ -68,6 +68,12 @@ chance.mixin({
       crunchbaseUrl: this.url(),
       angelUrl: this.url()
     }
+  },
+  link: function () {
+    return {
+      title: this.sentence({ words: 6 }),
+      url: this.url()
+    }
   }
 })
 
