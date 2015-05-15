@@ -1,8 +1,8 @@
 machine:
   pre:
-      - curl https://raw.githubusercontent.com/creationix/nvm/v0.24.1/install.sh | bash
+      - curl https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash
   node:
-    version: iojs-1.6.3
+    version: iojs-2.0.1
   services:
     - neo4j
 deployment:
