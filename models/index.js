@@ -2,7 +2,7 @@
 
 var Promise = require("bluebird")
 var _ = require("lodash")
-var bcrypt = Promise.promisifyAll(require("bcrypt"))
+var bcrypt = Promise.promisifyAll(require("bcryptjs"))
 var crypto = require("crypto")
 var db = require("../libs/db")
 var slug = require("slug")
