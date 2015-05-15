@@ -1,9 +1,9 @@
 jdk:
   - oraclejdk7
 before_install:
-  - wget dist.neo4j.org/neo4j-community-2.1.6-unix.tar.gz
-  - tar -zxf neo4j-community-2.1.6-unix.tar.gz
-  - neo4j-community-2.1.6/bin/neo4j start
+  - wget dist.neo4j.org/neo4j-community-2.1.8-unix.tar.gz
+  - tar -zxf neo4j-community-2.1.8-unix.tar.gz
+  - neo4j-community-2.1.8/bin/neo4j start
 
 language: node_js
 node_js:
