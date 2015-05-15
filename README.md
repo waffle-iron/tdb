@@ -2,6 +2,6 @@
 The graph API for Futuredeck's database. It is open married to [envisioning/futurekit-ui](https://github.com/envisioning/futurekit-ui).
 
 ## Build status
-Master: [![Circle CI](https://circleci.com/gh/envisioning/futuredeck.io/tree/master.svg?style=svg)](https://circleci.com/gh/envisioning/futuredeck.io/tree/master)
+Master: [![Build Status Master](https://travis-ci.org/envisioning/techdb.svg?branch=master)](https://travis-ci.org/envisioning/techdb)
 
-Dev: [![Circle CI](https://circleci.com/gh/envisioning/futuredeck.io/tree/dev.svg?style=svg)](https://circleci.com/gh/envisioning/futuredeck.io/tree/dev)
+Dev: [![Build Status Dev](https://travis-ci.org/envisioning/techdb.svg?branch=development)](https://travis-ci.org/envisioning/techdb)
