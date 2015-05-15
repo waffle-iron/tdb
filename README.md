@@ -4,4 +4,4 @@ The graph API for Futuredeck's database. It is open married to [envisioning/futu
 ## Build status
 Master: [![Build Status Master](https://travis-ci.org/envisioning/techdb.svg?branch=master)](https://travis-ci.org/envisioning/techdb)
 
-Dev: [![Build Status Dev](https://travis-ci.org/envisioning/techdb.svg?branch=development)](https://travis-ci.org/envisioning/techdb)
+Dev: [![Build Status](https://travis-ci.org/envisioning/techdb.svg?branch=dev)](https://travis-ci.org/envisioning/techdb)
