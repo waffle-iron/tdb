@@ -1,0 +1,17 @@
+jdk:
+  - oraclejdk7
+
+before_install:
+  - wget dist.neo4j.org/neo4j-community-2.1.6-unix.tar.gz
+  - tar -zxf neo4j-community-2.1.6-unix.tar.gz
+  - neo4j-community-2.1.6/bin/neo4j start
+  - curl localhost:7474
+
+language: node_js
+
+node_js:
+  - "iojs-v2.0.1"
+
+branches:
+  only:
+    - iojs
