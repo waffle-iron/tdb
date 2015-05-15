@@ -1,17 +1,22 @@
 jdk:
   - oraclejdk7
-
 before_install:
   - wget dist.neo4j.org/neo4j-community-2.1.6-unix.tar.gz
   - tar -zxf neo4j-community-2.1.6-unix.tar.gz
   - neo4j-community-2.1.6/bin/neo4j start
-  - curl localhost:7474
 
 language: node_js
-
 node_js:
   - "iojs-v2.0.1"
 
 branches:
-  only:
-    - iojs
+  except:
+    - gh-pages
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: XlBuTWq58C1WJ6inFX4iegbX4Udc5A1Mun/QqqSnD328KxCfRVGmPD4GMo/DMIyoHc9Z4F2NypVl5LIMmM0pgBjHavQiHXfJhHE8lo9UsKP7xpvP1XZD4Sdfn+yJRXjgBWpsQR6JV8l66MdHrGpdB9AcyFbNthJxdl9CyGAXEeo=
+  app:
+    master: techdb-api
+    dev: techdb-api-staging
