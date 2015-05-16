@@ -78,6 +78,10 @@ function Model (blueprint) {
         .cypherQueryAsync(cypher.join(" "))
         .then(firstData)
         .then(function (results) {
+          if (!results) {
+            return { count: 0, nodes: [] }
+          }
+
           let nodes = _.map(
             _.pluck(results.nodes, "data"),
             _.partial(extractLanguage, SCHEMA, TRANSLATIONS, options.lang)
