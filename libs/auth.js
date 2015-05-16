@@ -17,7 +17,7 @@ passport.use(new BearerStrategy(
       }))
     })
     .then(function (res) {
-      if (!res.token) return done(null, false)
+      if (!res || !res.token) return done(null, false)
       return done(null, res.user)
     })
     .catch(done)
