@@ -74,6 +74,19 @@ chance.mixin({
       title: this.sentence({ words: 6 }),
       url: this.url()
     }
+  },
+  vector: function () {
+    return {
+      position: this.natural({ min: 0, max: 9}),
+      question: this.sentence({ words: 4 }) + "?",
+      levels: [
+        this.sentence({ words: 4 }),
+        this.sentence({ words: 4 }),
+        this.sentence({ words: 4 }),
+        this.sentence({ words: 4 }),
+        this.sentence({ words: 4 })
+      ]
+    }
   }
 })
 
