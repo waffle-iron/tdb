@@ -137,3 +137,12 @@ exports.Link = new Model({
     url: { type: String }
   }
 })
+
+exports.Vector = new Model({
+  type: "Vector",
+  schema: {
+    levels: { type: Array },
+    position: { type: Number },
+    question: { type: String }
+  }
+})

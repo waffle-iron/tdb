@@ -7,7 +7,14 @@ var uuid = require("../libs/uuid")
 function assemblyNode (node, field, fieldname) {
   /* jshint validthis: true */
   var raw = this[fieldname]
-  node[fieldname] = _.isUndefined(raw) ? raw : field.type(raw)
+  if (_.isUndefined(raw)) {
+    node[fieldname] = raw
+  } else if (field.type.name === "Array" && _.isArray(raw)) {
+    node[fieldname] = raw
+  } else {
+    node[fieldname] = field.type(raw)
+  }
+
   return node
 }
 
