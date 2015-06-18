@@ -10,8 +10,8 @@ node_js:
   - "iojs-v2.0.1"
 
 branches:
-  except:
-    - gh-pages
+  only:
+    - master
 
 deploy:
   provider: heroku
