@@ -38,5 +38,41 @@ describe("/api/v2/vectors resource", function () {
         .then(Test.returnModel)
         .then(Test.haveOnlyModelProperties)
     })
+    it("Denies unauthenticated vector creation", function () {
+      let vector = random.vector()
+      vector.position = 1
+      return api
+        .post(url("vectors")).send({ vector  })
+        .expect(401).endAsync()
+    })
+  })
+
+  describe("GET /vectors", function () {
+    before(function () {
+      function createRandomVector () {
+        return api
+          .post(url("vectors")).send({ vector: random.vector() })
+          .set("Authorization", authorization)
+          .expect(201).endAsync()
+      }
+
+      return createRandomVector()
+        .then(createRandomVector)
+        .then(createRandomVector)
+        .then(createRandomVector)
+        .then(createRandomVector)
+        .then(createRandomVector)
+        .then(createRandomVector)
+        .then(createRandomVector)
+        .then(createRandomVector)
+        .then(createRandomVector)
+    })
+
+    it("Get list of vectors", function () {
+      return api
+        .get(url("vectors"))
+        .expect(200).endAsync()
+        .then(Test.returnModels)
+    })
   })
 })
