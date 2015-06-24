@@ -44,6 +44,28 @@ describe("/api/v2/startups resource", function () {
         .expect(401).endAsync()
     })
 
+    it("Creates a startup with technologies", function () {
+      return api
+        .post(url("techs")).send({ tech: random.tech() })
+        .set("Authorization", authorization)
+        .endAsync()
+        .then(function (res) {
+          let tech = res.body.tech
+          let startup = random.startup()
+          startup.techs = [ tech.id ]
+          return api
+            .post(url("startups")).send({ startup })
+            .set("Authorization", authorization)
+            .expect(201).endAsync()
+            .then(Test.returnModel)
+            .then(function (res) {
+              let model = res.body.startup
+              model.should.have.properties(modelProps)
+              model.should.have.property("techs").with.lengthOf(1)
+            })
+        })
+    })
+
     describe("POST /startups/:startup_id/translations", function () {
       var startup
 

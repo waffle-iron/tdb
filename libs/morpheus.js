@@ -1,6 +1,7 @@
 "use strict"
 
 var _ = require("lodash")
+var Promise = require("bluebird")
 var db = require("../libs/db")
 var uuid = require("../libs/uuid")
 
@@ -57,6 +58,7 @@ function Model (blueprint) {
   const SCHEMA = blueprint.schema
   const TYPE = blueprint.type
   const PRE_SAVE = blueprint.preSave
+  const RELATIONSHIPS = blueprint.relationships || []
   const TRANSLATIONS = _.reduce(SCHEMA, function (list, opts, prop) {
     if (opts.hasTranslations) { list.push(prop) }
     return list
@@ -66,7 +68,54 @@ function Model (blueprint) {
     create: function model$create (doc) {
       let node = _.reduce(SCHEMA, assemblyNode, { id: uuid() }, doc)
       if (PRE_SAVE) { node = PRE_SAVE(node) }
-      return db.insertNodeAsync(node, TYPE).then(cleanNodes)
+      return db.insertNodeAsync(node, TYPE)
+        .then(function (node) {
+          let relationshipsCreated = {}
+          let creatingAllRelationships = _.map(RELATIONSHIPS, function (relationship) {
+            let otherLabel = relationship.other
+            let relProp = otherLabel.toLowerCase() + "s"
+            let relatedUids = doc[relProp]
+            if (_.isEmpty(relatedUids)) { return }
+
+            let relatedList = relatedUids.map(function (uid) { return `"${uid}"`}).join(",")
+
+            let getRelatedUidNodes = `MATCH (nodes:${otherLabel})
+                                      WHERE nodes.id IN [${relatedList}]
+                                      RETURN nodes`
+            return db
+              .cypherQueryAsync(getRelatedUidNodes)
+              .then(function (res) {
+                let uidToId = _.reduce(res.data, function (map, obj) {
+                  map[obj.id] = obj._id
+                  return map
+                  }, {})
+                let creatingRelationships = _.map(uidToId, function (id, uid) {
+                  let data = {}
+                  if (relationship.timestamp) {
+                    data.created = new Date().getTime()
+                  }
+
+                  let creatingRelationship = relationship.direction === "out" ?
+                    db.insertRelationshipAsync(node._id, id, relationship.label, data) :
+                    db.insertRelationshipAsync(id, node._id, relationship.label, data)
+                  return creatingRelationship.then(function () {
+                    if (_.isUndefined(relationshipsCreated[relProp])) {
+                      relationshipsCreated[relProp] = []
+                    }
+                    relationshipsCreated[relProp].push(uid)
+                  })
+                })
+
+                return Promise.all(creatingRelationships)
+              })
+          })
+          return Promise
+            .all(creatingAllRelationships)
+            .then(function () {
+              return _.extend(node, relationshipsCreated)
+            })
+        })
+        .then(cleanNodes)
     },
     find: function model$find (conditions, options) {
       let cypher = [
