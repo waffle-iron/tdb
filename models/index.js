@@ -124,6 +124,14 @@ exports.Startup = new Model({
     crunchbaseUrl: { type: String },
     angelUrl: { type: String }
   },
+  relationships: [
+    {
+      direction: "out",
+      label: "develops",
+      other: "Tech",
+      timestamp: true
+    }
+  ],
   preSave: function (node) {
     node.slug = slug(node.name.toLowerCase())
     return node
