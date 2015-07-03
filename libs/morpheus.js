@@ -149,10 +149,47 @@ function Model (blueprint) {
         })
     },
     findById: function model$findById (lang, uuid) {
-      let query = `MATCH (node:${TYPE} { id: {uuid} }) RETURN node`
+      let queryParts = {
+        match: {
+          cypher: `MATCH (node:${TYPE} { id: {uuid} })`,
+          ret: "node"
+        },
+        optional: []
+      }
+      _.forEach(RELATIONSHIPS, function (relationship) {
+        let label = relationship.other
+        let name = label.toLowerCase()
+        queryParts.optional.push({
+          cypher: `OPTIONAL MATCH (node:${TYPE} { id: {uuid} })--(${name}:${label})`,
+          ret: name
+        })
+      })
+
+      let matches = _.union([queryParts.match.cypher], _.pluck(queryParts.optional, "cypher")).join(" ")
+      let rets = _.union([queryParts.match.ret], _.pluck(queryParts.optional, "ret")).join(",")
+      let query = `${matches} RETURN ${rets}`
       return db
         .cypherQueryAsync(query, { uuid: uuid })
-        .then(firstData)
+        .then(function (results) {
+          let joinedResults = _.map(results.data, function (result) {
+            if (!_.isArray(result)) { return result }
+
+            let node = _.first(result)
+            let relationships = _.pluck(_.tail(result), "id")
+            let relationshipTypes = _.tail(results.columns).map(function (name) { return `${name}s` })
+            let pairs = _.zip(relationshipTypes, [ relationships ])
+            let obj = _.zipObject(pairs)
+            return _.assign(node, obj)
+          })
+          return _.reduce(joinedResults, function (a, b) {
+            _.forEach(RELATIONSHIPS, function (relationship) {
+              let name = relationship.other.toLowerCase()
+              let prop = `${name}s`
+              a[prop] = _.union(a[prop], b[prop])
+            })
+            return a
+          })
+        })
         .then(cleanNodes)
         .then(_.partial(extractLanguage, SCHEMA, TRANSLATIONS, lang))
     },
