@@ -11,12 +11,20 @@ var random = require("./helpers/random")
 var modelName = "startup"
 var modelProps = [ "id", "name", "slug", "summary", "image", "websiteUrl",
                   "twitterUrl", "crunchbaseUrl", "angelUrl" ]
-var Test = require("./helpers/tests")(modelName, modelProps)
+var modelRelationships = [ "techs" ]
+var Test = require("./helpers/tests")(modelName, modelProps, modelRelationships)
 
 Promise.promisifyAll(request.Test.prototype)
 
 describe("/api/v2/startups resource", function () {
-  var api, authorization
+  var api, authorization, tech1, tech2
+
+  function createTech () {
+    return api
+      .post(url("techs")).send({ tech: random.tech() })
+      .set("Authorization", authorization)
+      .endAsync()
+  }
 
   before(function () {
     api = request(server)
@@ -27,6 +35,10 @@ describe("/api/v2/startups resource", function () {
         var json = res.body
         authorization = "Bearer " + json.user.tokens[0]
       })
+      .then(createTech)
+      .then(function (res) { tech1 = res.body.tech })
+      .then(createTech)
+      .then(function (res) { tech2 = res.body.tech })
   })
 
   describe("POST /startups", function () {
@@ -99,8 +111,10 @@ describe("/api/v2/startups resource", function () {
   describe("GET /startups", function () {
     before(function () {
       function createRandomStartup () {
+        var startup = random.startup()
+        startup.techs = [ tech1.id, tech2.id ]
         return api
-          .post(url("startups")).send({ startup: random.startup() })
+          .post(url("startups")).send({ startup: startup })
           .set("Authorization", authorization)
           .expect(201).endAsync()
       }
@@ -155,15 +169,17 @@ describe("/api/v2/startups resource", function () {
   describe("GET /startups/:startup_id", function () {
     var startup, translated
     before(function () {
+      startup = random.startup()
+      startup.techs = [ tech1.id, tech2.id ]
       return api
-        .post(url("startups")).send({ startup: random.startup() })
+        .post(url("startups")).send({ startup: startup })
         .set("Authorization", authorization)
         .expect(201).endAsync()
         .then(function (res) {
           startup = res.body.startup
           return startup
         })
-        .then(function (startup) {
+        .then(function () {
           translated = random.startup()
           return api
             .post(url("startups", startup.id) + "/translations/pt")
@@ -179,6 +195,9 @@ describe("/api/v2/startups resource", function () {
         .expect(200).endAsync()
         .then(Test.returnModel)
         .then(Test.haveOnlyModelProperties)
+        .then(function (res) {
+          res.body.startup.techs.should.be.Array.an.have.lengthOf(2)
+        })
     })
 
     it("Get a translated startup by id", function () {

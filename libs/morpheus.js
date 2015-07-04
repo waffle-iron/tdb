@@ -54,6 +54,15 @@ function extractLanguage (schema, translations, lang, node) {
   return node
 }
 
+function extractNodeId (url) {
+  let results = /node\/(\d+)$/.exec(url)
+  return results[1]
+}
+
+function typeToKey (type) {
+  return type.toLowerCase() + "s"
+}
+
 function Model (blueprint) {
   const SCHEMA = blueprint.schema
   const TYPE = blueprint.type
@@ -118,41 +127,137 @@ function Model (blueprint) {
         .then(cleanNodes)
     },
     find: function model$find (conditions, options) {
-      let cypher = [
-        `MATCH (node:${TYPE}) WITH count(*) AS count`,
-        `MATCH (node:${TYPE}) WITH count, node ORDER BY ID(node)`
-      ]
-      if (!_.isUndefined(options.skip)) {
-        cypher.push(`SKIP ${options.skip}`)
-      }
-      if (!_.isUndefined(options.limit)) {
-        cypher.push(`LIMIT ${options.limit}`)
-      }
-      cypher.push("RETURN { count: count, nodes: COLLECT(node)} AS result")
+      let matchStatements = []
+      let withStatements = []
+      let returnStatements = []
+
+      matchStatements.push(`MATCH (node:${TYPE}) WITH COUNT(*) AS count`)
+      withStatements.push("count")
+      returnStatements.push("count")
+
+      withStatements.push("node")
+      let withVars = withStatements.join(",")
+      let skip = _.isUndefined(options.skip) ? "" : `SKIP ${options.skip}`
+      let limit = _.isUndefined(options.limit) ? "" : `LIMIT ${options.limit}`
+      matchStatements.push(`MATCH (node:${TYPE}) WITH ${withVars} ORDER BY ID(node) ${skip} ${limit}`)
+      returnStatements.push("COLLECT(DISTINCT node) AS node")
+
+      _.forEach(RELATIONSHIPS, function (relationship) {
+        let label = relationship.other
+        let name = label.toLowerCase()
+        let rel = `${name}Rel`
+        withStatements.push(name)
+        withStatements.push(rel)
+        returnStatements.push(`COLLECT(DISTINCT ${name}) AS ${name}`)
+        returnStatements.push(`COLLECT(${rel}) AS ${rel}`)
+        let withVars = withStatements.join(", ")
+        matchStatements.push(`OPTIONAL MATCH (node:${TYPE})-[${rel}]-(${name}:${label}) WITH ${withVars}`)
+      })
+
+      let matches = matchStatements.join(" ")
+      let returns = returnStatements.join(", ")
+      let cypher = `${matches} RETURN ${returns}`
 
       return db
-        .cypherQueryAsync(cypher.join(" "))
-        .then(firstData)
+        .cypherQueryAsync(cypher)
         .then(function (results) {
-          if (!results) {
-            return { count: 0, nodes: [] }
-          }
+          let zipped = _.zipObject(results.columns, _.first(results.data))
 
-          let nodes = _.map(
-            _.pluck(results.nodes, "data"),
-            _.partial(extractLanguage, SCHEMA, TRANSLATIONS, options.lang)
-          )
+          let count;
+          let nodes = []
+          let relationships = []
+          _.forEach(zipped, function (items, key) {
+            if (key === "count") { count = items }
+            else if (key.endsWith("Rel")) { relationships = _.union(relationships, items) }
+            else { nodes = _.union(nodes, items) }
+          })
+
+          let relationshipIdHash = relationships.reduce(function (acc, rel) {
+            let start = extractNodeId(rel.start)
+            let end = extractNodeId(rel.end)
+            ;(acc[start] || (acc[start] = [])).push(end)
+            ;(acc[end] || (acc[end] = [])).push(start)
+            return acc
+          }, {})
+
+          let mainNodes = []
+          let nodesById = nodes.reduce(function (acc, node) {
+            let id = node.metadata.id
+            acc[id] = node
+
+            if (node.metadata.labels.indexOf(TYPE) !== -1) { mainNodes.push(id) }
+            return acc
+          }, {})
+
+          let builtData = mainNodes.map(function (id) {
+            let node = nodesById[id]
+            let data = node.data
+            let nodeRelationships = relationshipIdHash[id]
+            if (nodeRelationships) {
+              nodeRelationships
+                .map(function (id) { return nodesById[id]})
+                .forEach(function (related) {
+                  let key = typeToKey(related.metadata.labels[0])
+                  ;(data[key] || (data[key] = [])).push(related.data.id)
+                })
+            }
+
+            return data
+          })
+          return { count: count, nodes: builtData }
+        })
+        .then(function (results) {
           return {
             count: results.count,
-            nodes: nodes
+            nodes: _.map(
+              results.nodes,
+              _.partial(extractLanguage, SCHEMA, TRANSLATIONS, options.lang)
+            )
           }
         })
     },
     findById: function model$findById (lang, uuid) {
-      let query = `MATCH (node:${TYPE} { id: {uuid} }) RETURN node`
+      let queryParts = {
+        match: {
+          cypher: `MATCH (node:${TYPE} { id: {uuid} })`,
+          ret: "node"
+        },
+        optional: []
+      }
+      _.forEach(RELATIONSHIPS, function (relationship) {
+        let label = relationship.other
+        let name = label.toLowerCase()
+        queryParts.optional.push({
+          cypher: `OPTIONAL MATCH (node:${TYPE} { id: {uuid} })--(${name}:${label})`,
+          ret: name
+        })
+      })
+
+      let matches = _.union([queryParts.match.cypher], _.pluck(queryParts.optional, "cypher")).join(" ")
+      let rets = _.union([queryParts.match.ret], _.pluck(queryParts.optional, "ret")).join(",")
+      let query = `${matches} RETURN ${rets}`
       return db
         .cypherQueryAsync(query, { uuid: uuid })
-        .then(firstData)
+        .then(function (results) {
+          let joinedResults = _.map(results.data, function (result) {
+            if (!_.isArray(result)) { return result }
+
+            let node = _.first(result)
+            let relationships = _.pluck(_.tail(result), "id")
+            let relationshipTypes = _.tail(results.columns).map(function (name) { return `${name}s` })
+            let pairs = _.zip(relationshipTypes, [ relationships ])
+            let obj = _.zipObject(pairs)
+            return _.assign(node, obj)
+          })
+          return _.reduce(joinedResults, function (a, b) {
+            _.forEach(RELATIONSHIPS, function (relationship) {
+              let name = relationship.other.toLowerCase()
+              let prop = `${name}s`
+              a[prop] = _.union(a[prop], b[prop])
+            })
+            return a
+          })
+        })
         .then(cleanNodes)
         .then(_.partial(extractLanguage, SCHEMA, TRANSLATIONS, lang))
     },

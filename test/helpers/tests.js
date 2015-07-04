@@ -3,7 +3,8 @@
 var _ = require("lodash")
 var should = require("should")
 
-module.exports = function (modelName, props) {
+module.exports = function (modelName, props, relationships) {
+  relationships = relationships || []
   var modelPlural = `${modelName}s`
 
   return {
@@ -19,7 +20,7 @@ module.exports = function (modelName, props) {
     haveOnlyModelProperties: function (res) {
       var model = res.body[modelName]
       model.should.have.properties(props)
-      _.keys(model).should.have.lengthOf(props.length)
+      _.keys(model).length.should.be.within(props.length, props.length + relationships.length)
       return res
     },
     isPaginated: function (qty) {
