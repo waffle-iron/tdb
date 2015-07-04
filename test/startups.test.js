@@ -17,7 +17,14 @@ var Test = require("./helpers/tests")(modelName, modelProps, modelRelationships)
 Promise.promisifyAll(request.Test.prototype)
 
 describe("/api/v2/startups resource", function () {
-  var api, authorization
+  var api, authorization, tech1, tech2
+
+  function createTech () {
+    return api
+      .post(url("techs")).send({ tech: random.tech() })
+      .set("Authorization", authorization)
+      .endAsync()
+  }
 
   before(function () {
     api = request(server)
@@ -28,6 +35,10 @@ describe("/api/v2/startups resource", function () {
         var json = res.body
         authorization = "Bearer " + json.user.tokens[0]
       })
+      .then(createTech)
+      .then(function (res) { tech1 = res.body.tech })
+      .then(createTech)
+      .then(function (res) { tech2 = res.body.tech })
   })
 
   describe("POST /startups", function () {
@@ -100,8 +111,10 @@ describe("/api/v2/startups resource", function () {
   describe("GET /startups", function () {
     before(function () {
       function createRandomStartup () {
+        var startup = random.startup()
+        startup.techs = [ tech1.id, tech2.id ]
         return api
-          .post(url("startups")).send({ startup: random.startup() })
+          .post(url("startups")).send({ startup: startup })
           .set("Authorization", authorization)
           .expect(201).endAsync()
       }
@@ -154,29 +167,17 @@ describe("/api/v2/startups resource", function () {
   })
 
   describe("GET /startups/:startup_id", function () {
-    var startup, tech, tech2, translated
+    var startup, translated
     before(function () {
-      function createTech () {
-        return api
-          .post(url("techs")).send({ tech: random.tech() })
-          .set("Authorization", authorization)
-          .endAsync()
-      }
-      return createTech()
-        .then(function (res) { tech = res.body.tech })
-        .then(createTech)
-        .then(function (res) { tech2 = res.body.tech })
-        .then(function () {
-          startup = random.startup()
-          startup.techs = [ tech.id, tech2.id ]
-          return api
-            .post(url("startups")).send({ startup: startup })
-            .set("Authorization", authorization)
-            .expect(201).endAsync()
-            .then(function (res) {
-              startup = res.body.startup
-              return startup
-            })
+      startup = random.startup()
+      startup.techs = [ tech1.id, tech2.id ]
+      return api
+        .post(url("startups")).send({ startup: startup })
+        .set("Authorization", authorization)
+        .expect(201).endAsync()
+        .then(function (res) {
+          startup = res.body.startup
+          return startup
         })
         .then(function () {
           translated = random.startup()
