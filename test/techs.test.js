@@ -16,7 +16,8 @@ var modelProps = [ "id", "name", "slug", "summary", "description", "image",
   "impactTransportation", "impactTravel", "impactWellbeing", "question0",
   "question1", "question2", "question3", "question4", "question5", "question6",
   "question7", "question8", "question9", "readiness" ]
-var Test = require("./helpers/tests")(modelName, modelProps)
+var modelRelationships = [ "startups" ]
+var Test = require("./helpers/tests")(modelName, modelProps, modelRelationships)
 
 Promise.promisifyAll(request.Test.prototype)
 
@@ -47,6 +48,28 @@ describe("/api/v2/techs resource", function () {
       return api
         .post(url("techs")).send({ tech: random.tech() })
         .expect(401).endAsync()
+    })
+    it("Creates a startup with technologies", function () {
+      let startup
+      return api
+        .post(url("startups")).send({ startup: random.startup() })
+        .set("Authorization", authorization)
+        .expect(201).endAsync()
+        .then(function (res) { startup = res.body.startup })
+        .then(function () {
+          let tech = random.tech()
+          tech.startups = [ startup.id ]
+          return api
+            .post(url("techs")).send({ tech })
+            .set("Authorization", authorization)
+            .expect(201).endAsync()
+            .then(Test.returnModel)
+            .then(function (res) {
+              let model = res.body.tech
+              model.should.have.properties(modelProps)
+              model.should.have.property("startups").with.lengthOf(1)
+            })
+        })
     })
 
     describe("POST /techs/:tech_id/translations", function () {

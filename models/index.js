@@ -106,6 +106,14 @@ exports.Tech = new Model({
     question8: { type: Number },
     question9: { type: Number },
   },
+  relationships: [
+    {
+      direction: "in",
+      label: "develops",
+      other: "Startup",
+      timestamp: true
+    }
+  ],
   preSave: function (node) {
     node.slug = slug(node.name.toLowerCase())
     node.readiness = calculateReadiness(node)
