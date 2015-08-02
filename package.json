@@ -14,7 +14,7 @@
   "author": "Luiz Sócrate <luiz@socrate.com.br> (http://www.socrate.com.br)",
   "license": "MIT",
   "engines": {
-    "iojs": "2.0.x",
+    "iojs": "2.4.x",
     "npm": "2.9.x"
   },
   "dependencies": {
