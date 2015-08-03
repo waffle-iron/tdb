@@ -246,7 +246,10 @@ function Model (blueprint) {
             let relationships = _.pluck(_.tail(result), "id")
             let relationshipTypes = _.tail(results.columns).map(function (name) { return `${name}s` })
             let pairs = _.zip(relationshipTypes, [ relationships ])
-            let obj = _.zipObject(pairs)
+            let obj = _.omit(_.zipObject(pairs), function (val) {
+              return _.isUndefined(val[0])
+            })
+
             return _.assign(node, obj)
           })
           return _.reduce(joinedResults, function (a, b) {
