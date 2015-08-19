@@ -22,7 +22,14 @@ var Test = require("./helpers/tests")(modelName, modelProps, modelRelationships)
 Promise.promisifyAll(request.Test.prototype)
 
 describe("/api/v2/techs resource", function () {
-  var api, authorization
+  let api, authorization
+
+  function createStartup (startup) {
+    return api
+      .post(url("startups")).send({ startup })
+      .set("Authorization", authorization)
+      .expect(201).endAsync()
+  }
 
   before(function () {
     api = request(server)
@@ -49,7 +56,7 @@ describe("/api/v2/techs resource", function () {
         .post(url("techs")).send({ tech: random.tech() })
         .expect(401).endAsync()
     })
-    it("Creates a startup with technologies", function () {
+    it("Creates a tech with startups", function () {
       let startup
       return api
         .post(url("startups")).send({ startup: random.startup() })
@@ -227,6 +234,39 @@ describe("/api/v2/techs resource", function () {
         .put(url("techs", tech.id))
         .send({ tech: tech })
         .expect(401).endAsync()
+    })
+
+    it.only("Updates a tech with startups", function () {
+      let startup1, startup2, startup3
+      return Promise
+        .all([ createStartup(random.startup()), createStartup(random.startup()) ,createStartup(random.startup()) ])
+        .then(function (res) {
+          startup1 = res[0].body.startup
+          startup2 = res[1].body.startup
+          startup3 = res[2].body.startup
+        })
+        .then(function () {
+          let tech = random.tech()
+          tech.startups = [ startup1.id, startup2.id ]
+          return api
+            .post(url("techs")).send({ tech })
+            .set("Authorization", authorization)
+            .expect(201).endAsync()
+        })
+        .then(function (res) {
+          let tech = res.body.tech
+          tech.startups = [ startup2.id, startup3 ]
+          return api
+            .put(url("techs", tech.id)).send({ tech })
+            .set("Authorization", authorization)
+            .expect(200).endAsync()
+        })
+        .then(Test.returnModel)
+        .then(function (res) {
+          let model = res.body.tech
+          model.should.have.properties(modelProps)
+          model.should.have.property("startups").with.lengthOf(2)
+        })
     })
 
     describe("PUT /techs/:tech_id/translations", function () {

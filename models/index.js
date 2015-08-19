@@ -106,14 +106,14 @@ exports.Tech = new Model({
     question8: { type: Number },
     question9: { type: Number },
   },
-  relationships: [
-    {
+  relationships: {
+    startups: {
       direction: "in",
       label: "develops",
       other: "Startup",
       timestamp: true
     }
-  ],
+  },
   preSave: function (node) {
     node.slug = slug(node.name.toLowerCase())
     node.readiness = calculateReadiness(node)
@@ -132,14 +132,14 @@ exports.Startup = new Model({
     crunchbaseUrl: { type: String },
     angelUrl: { type: String }
   },
-  relationships: [
-    {
+  relationships: {
+    techs: {
       direction: "out",
       label: "develops",
       other: "Tech",
       timestamp: true
     }
-  ],
+  },
   preSave: function (node) {
     node.slug = slug(node.name.toLowerCase())
     return node

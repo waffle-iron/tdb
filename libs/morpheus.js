@@ -2,6 +2,7 @@
 
 var _ = require("lodash")
 var Promise = require("bluebird")
+var cyphers = require("../libs/cyphers")
 var db = require("../libs/db")
 var uuid = require("../libs/uuid")
 
@@ -63,11 +64,68 @@ function typeToKey (type) {
   return type.toLowerCase() + "s"
 }
 
+function toUidListQuery (uids) {
+  return uids.map(function (uid) { return `"${uid}"` }).join(", ")
+}
+
+function deleteOutdatedRelationships (validUids, node) {
+  const uidList = toUidListQuery(validUids)
+  const cypher = `MATCH (node { id: {uid} })-[r]-(related)
+                  WHERE NOT related.id IN [${uidList}]
+                  DELETE r`
+  return db.cypherQueryAsync(cypher, { uid: node.id })
+}
+
+function createRelationships (relationships, doc, node) {
+  const docRels = _.pick(doc, _.keys(relationships))
+  const relUids = _.flatten(_.values(docRels))
+
+  const deletingOutdated = deleteOutdatedRelationships(relUids, node)
+  if (_.isEmpty(relUids)) { return deletingOutdated }
+
+  let previousRelationships = []
+
+  return deletingOutdated
+    .then(function () {
+      const uidList = toUidListQuery(relUids)
+      const cypher = `MATCH (node { id: {uid} })--(related)
+                      WHERE related.id IN [${uidList}]
+                      RETURN related`
+      return db.cypherQueryAsync(cypher, { uid: node.id })
+        .then(function (res) { previousRelationships = _.pluck(res.data, "id") })
+    })
+    .then(function () { return cyphers.getNodesById(relUids) })
+    .then(function (res) {
+      const nodeByUid = _.groupBy(res.data, "id")
+      return Promise.props(_.transform(relationships, function (created, opts, rel) {
+        const uids = docRels[rel] || []
+        created[rel] = Promise.all(uids.map(function (uid) {
+          if (previousRelationships.indexOf(uid) !== -1) {
+            return Promise.resolve(uid)
+          }
+
+          const data = {}
+          if (opts.timestamp) {
+            data.created = new Date().getTime()
+          }
+
+          const thisId = node._id
+          const relId = _.get(nodeByUid, `${uid}.0._id`)
+          const origin = opts.direction === "out" ? thisId : relId
+          const target = opts.direction === "out" ? relId : thisId
+          return db
+            .insertRelationshipAsync(origin, target, opts.label, data)
+            .then(function () { return uid })
+        }))
+      }))
+    })
+}
+
 function Model (blueprint) {
   const SCHEMA = blueprint.schema
   const TYPE = blueprint.type
   const PRE_SAVE = blueprint.preSave
-  const RELATIONSHIPS = blueprint.relationships || []
+  const RELATIONSHIPS = blueprint.relationships || {}
   const TRANSLATIONS = _.reduce(SCHEMA, function (list, opts, prop) {
     if (opts.hasTranslations) { list.push(prop) }
     return list
@@ -79,48 +137,8 @@ function Model (blueprint) {
       if (PRE_SAVE) { node = PRE_SAVE(node) }
       return db.insertNodeAsync(node, TYPE)
         .then(function (node) {
-          let relationshipsCreated = {}
-          let creatingAllRelationships = _.map(RELATIONSHIPS, function (relationship) {
-            let otherLabel = relationship.other
-            let relProp = otherLabel.toLowerCase() + "s"
-            let relatedUids = doc[relProp]
-            if (_.isEmpty(relatedUids)) { return }
-
-            let relatedList = relatedUids.map(function (uid) { return `"${uid}"`}).join(",")
-
-            let getRelatedUidNodes = `MATCH (nodes:${otherLabel})
-                                      WHERE nodes.id IN [${relatedList}]
-                                      RETURN nodes`
-            return db
-              .cypherQueryAsync(getRelatedUidNodes)
-              .then(function (res) {
-                let uidToId = _.reduce(res.data, function (map, obj) {
-                  map[obj.id] = obj._id
-                  return map
-                  }, {})
-                let creatingRelationships = _.map(uidToId, function (id, uid) {
-                  let data = {}
-                  if (relationship.timestamp) {
-                    data.created = new Date().getTime()
-                  }
-
-                  let creatingRelationship = relationship.direction === "out" ?
-                    db.insertRelationshipAsync(node._id, id, relationship.label, data) :
-                    db.insertRelationshipAsync(id, node._id, relationship.label, data)
-                  return creatingRelationship.then(function () {
-                    if (_.isUndefined(relationshipsCreated[relProp])) {
-                      relationshipsCreated[relProp] = []
-                    }
-                    relationshipsCreated[relProp].push(uid)
-                  })
-                })
-
-                return Promise.all(creatingRelationships)
-              })
-          })
-          return Promise
-            .all(creatingAllRelationships)
-            .then(function () {
+          return createRelationships(RELATIONSHIPS, doc, node)
+            .then(function (relationshipsCreated) {
               return _.extend(node, relationshipsCreated)
             })
         })
@@ -253,9 +271,7 @@ function Model (blueprint) {
             return _.assign(node, obj)
           })
           return _.reduce(joinedResults, function (a, b) {
-            _.forEach(RELATIONSHIPS, function (relationship) {
-              let name = relationship.other.toLowerCase()
-              let prop = `${name}s`
+            _.forEach(RELATIONSHIPS, function (opts, prop) {
               a[prop] = _.union(a[prop], b[prop])
             })
             return a
@@ -270,6 +286,12 @@ function Model (blueprint) {
       return db
         .updateNodesWithLabelsAndPropertiesAsync(TYPE, { id: uuid }, node)
         .then(_.first)
+        .then(function (node) {
+          return createRelationships(RELATIONSHIPS, doc, node)
+            .then(function (relationshipsCreated) {
+              return _.extend(node, relationshipsCreated)
+            })
+        })
         .then(cleanNodes)
     },
     delete: function model$delete (uuid) {
@@ -298,3 +320,4 @@ function Model (blueprint) {
 }
 
 module.exports = Model
+
