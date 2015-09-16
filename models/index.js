@@ -70,7 +70,9 @@ exports.Token = {
 }
 
 function calculateReadiness (tech) {
-  let values = _.range(10).map(function (n) { return tech["question" + n]})
+  let values = _.range(10)
+                .map(function (n) { return tech["question" + n]})
+                .filter(function (n) { return n >= 1 })
   return hmean(values)
 }
 
