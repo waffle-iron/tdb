@@ -1,0 +1,7 @@
+<template name="feriadosEdit">
+{{#with feriado}}
+	{{#borderedContent title="Editar Feriado"}}
+		{{> quickForm collection="Feriados" id="updateFeriadosForm" doc=this type="update"}}
+	{{/borderedContent}}
+{{/with}}
+</template>

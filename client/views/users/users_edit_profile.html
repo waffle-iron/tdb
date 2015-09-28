@@ -1,0 +1,28 @@
+
+<template name="usersEditProfile">
+	{{#borderedContent title="Editar Perfil"}}
+		{{#with user}}
+			{{#autoForm collection="Meteor.users" doc=this type="update" id="updateUsersProfileForm"}}
+				{{> afQuickField name="profile.nome" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="profile.sobrenome" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="profile.nascimento" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="profile.genero" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="profile.cpf" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="profile.rg" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="profile.endereco" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="profile.telefone" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="profile.celular" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="profile.email" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="profile.oab" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+
+
+				
+				<div class="form-group">
+				    <button type="submit" class="btn btn-primary">      
+				      Submit
+				    </button>
+				  </div>		
+			{{/autoForm}}	
+		{{/with}}
+	{{/borderedContent}}
+</template>

@@ -1,0 +1,3 @@
+Template.overlaySearch.rendered = function (){
+
+};

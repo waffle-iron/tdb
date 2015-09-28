@@ -1,0 +1,11 @@
+<template name="toggleRole">
+	<div class="btn-group">
+		{{#each roles}}
+			{{#if $neq name 'god'}}
+				<span class="btn btn-primary {{checked}}"  style="min-width:150px;">
+					{{{formatarRole name 'false'}}}
+				</span>
+			{{/if}}
+		{{/each}}	
+	</div>
+</template>

@@ -1,0 +1,12 @@
+<template name="setores">
+	{{#borderedContent title="Setores"}}
+		{{> tabular table=TabularTables.Setores class="table table-striped table-bordered table-hover" id="setoresDT" width="100%"}}
+	{{/borderedContent}}
+</template>
+
+
+
+<template name="setoresAcoes">
+	<a class="btn btn-success btn-xs" href="{{pathFor 'setores.edit' id=_id}}"><i class="fa fa-edit"></i></a>
+	{{#quickRemoveButton collection="Setores" _id=_id class="btn btn-danger btn-xs" beforeRemove=beforeRemove}}<i class="fa fa-trash"></i>{{/quickRemoveButton}}
+</template>

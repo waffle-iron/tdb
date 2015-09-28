@@ -1,0 +1,7 @@
+<template name="cargosEdit">
+{{#with cargo}}
+	{{#borderedContent title="Editar Cargo"}}
+		{{> quickForm collection="Cargos" id="updateCargosForm" doc=this type="update"}}
+	{{/borderedContent}}
+{{/with}}
+</template>

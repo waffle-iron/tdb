@@ -1,0 +1,19 @@
+<template name="estatisticasPagamentos">
+	{{#borderedContent title="Filtros"}}
+		{{> filtro schema='Schema.Pagamentos' fields='setorId|cargoId|userId' id="EstatisticasPagamentos"}}		
+		<div class="row form-group">
+			<label class="col-sm-3 control-label" style="padding-left:30px;">
+				Anos
+			</label>
+			<div class="col-md-9">
+				{{> selecionarAno id='EstatisticasAnoSelecionado'}}
+			</div>
+		</div>
+	{{/borderedContent}}
+
+	{{#borderedContent title="Gráfico de pagamentos mensais"}}
+	<div style="background-color:white;">
+	<canvas id="myChart"></canvas>
+	</div>
+	{{/borderedContent}}
+</template>

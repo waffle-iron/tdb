@@ -1,0 +1,55 @@
+<template name="usersViewProfile">
+	<div class="row">
+		<div class="col-lg-4">
+			<address>
+				<strong>Nome</strong><br>	
+				{{profile.nome}}
+			</address>
+			<address>
+				<strong>Sobrenome</strong><br>
+				{{profile.sobrenome}}
+			</address>
+			<address>
+				<strong>Nascimento</strong><br>
+				{{formatarData profile.nascimento}}
+			</address>
+			<address>
+				<strong>Gênero</strong><br>
+				{{profile.genero}}
+			</address>   
+		</div>
+		<div class="col-lg-4">
+			<address>
+				<strong>RG</strong><br>	
+				{{profile.rg}}
+			</address>
+			<address>
+				<strong>CPF</strong><br>
+				{{profile.cpf}}
+			</address>
+			<address>
+				<strong>OAB</strong><br>
+				{{profile.oab.numero}}<br>
+				{{formatarData profile.oab.data}}
+			</address>  
+		</div>
+		<div class="col-lg-4">
+			<address>
+				<strong>Endereço</strong><br>	
+				{{profile.endereco}}
+			</address>
+			<address>
+				<strong>Telefone</strong><br>
+				{{profile.telefone}}
+			</address>
+			<address>
+				<strong>Celular</strong><br>
+				{{profile.celular}}
+			</address>                 
+			<address>
+				<strong>Email</strong><br>
+				{{profile.email}}
+			</address>  
+		</div>                    		                    		
+	</div>
+</template>

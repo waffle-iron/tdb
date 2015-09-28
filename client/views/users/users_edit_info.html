@@ -1,0 +1,32 @@
+<template name="usersEditInfo">
+	{{#borderedContent title="Editar Informações Relevantes"}}
+		{{#with user}}
+			{{#autoForm collection="Meteor.users" doc=this type="update" id="updateUsersInfoForm"}}
+				{{> afQuickField name="info.remunerado" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+				{{> afQuickField name="info.status" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+				{{> afQuickField name="info.setorId" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="info.cargoId" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="info.salario" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="info.transporteId" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="info.va" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			  	{{> afQuickField name="info.admissao" template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+
+			  	<!--
+			    {{#if isInRole 'admin'}}
+					<div class="form-group">	
+					{{>toggleRole this}}
+					</div>
+				{{/if}}
+				-->
+				
+				<div class="form-group">
+				    <button type="submit" class="btn btn-primary">      
+				      Submit
+				    </button>
+				  </div>		
+			{{/autoForm}}	
+
+		{{/with}}
+	{{/borderedContent}}
+</template>
+

@@ -1,0 +1,7 @@
+<template name="setoresEdit">
+{{#borderedContent title="Editar Setor"}}
+	{{#with setor}}
+		{{> quickForm collection="Setores" id="updateSetoresForm" doc=this type="update"}}
+	{{/with}}
+{{/borderedContent}}
+</template>

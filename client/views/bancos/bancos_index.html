@@ -1,0 +1,21 @@
+<template name="bancos">
+	{{#borderedContent title="Bancos"}}
+		<div class="row">
+			<div class="col-md-6">
+				{{> bancosAdd}}
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-12">
+				{{> tabular table=TabularTables.Bancos class="table table-striped table-bordered table-hover" id="bancosDT"  width="100%"}}
+			</div>
+		</div>			
+		
+	{{/borderedContent}}
+</template>
+
+<template name="bancosAcoes">
+	{{>bancosEdit _id=_id}}
+	{{#quickRemoveButton collection="Bancos" _id=_id class="btn btn-danger btn-xs" beforeRemove=beforeRemove}}<i class="fa fa-trash"></i>{{/quickRemoveButton}}
+</template>

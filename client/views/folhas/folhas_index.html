@@ -1,0 +1,70 @@
+<template name="folhas">
+	{{> autoformModals}}
+	<div class="wrapper wrapper-content animated fadeInRight" style="padding-bottom:0px">
+		<div class="row">
+			<div class="col-md-12" align="right">
+
+			</div>
+        </div>       
+
+		<div class="row" style="padding-bottom:10px;">
+			<div class="col-md-2" align="center">
+				{{#if folha}}
+					{{#with folha}}
+						{{> folhasDeletar}}	
+						{{#if $eq status 'aberta'}}
+							{{> folhasFechar}} 
+						{{else}}
+							<span class="btn btn-success" id="folha-info">Fechada</span>
+						{{/if}}
+					{{/with}}
+				{{/if}}
+			</div>
+		    <div class="col-md-8" align="center">
+				{{> selecionarAno id="anoSelecionado"}}	
+		    </div>
+			<div class="col-md-2" align="right">
+				<div class="btn btn-primary" id="mostrar-filtros">Filtros</div>
+				<div class="btn-group">
+			        <button data-toggle="dropdown" class="btn btn-primary dropdown-toggle ">Colunas <span class="caret"></span></button>
+			        <ul class="dropdown-menu pull-left">
+		        		{{#each getColunas}}
+							<li><label><input type="checkbox" value="" class="toggle-coluna" {{colunaAtivo}}> {{nome}} </label></li>
+		        		{{/each}}		        
+			        </ul>
+			    </div>			
+			</div>		    
+		</div>	        
+		<div class="row">
+			<div class="col-md-12">
+				<div class="tabs-container">
+					<ul class="nav nav-tabs" width="100%">
+						{{#each meses}}
+						<li class="{{mesAtivo}}" style="width:8,34% !important;"><a href="#{{nome}}"  data-mes="{{valor}}" class="setar-mes">{{nome}}{{#if existeFolha}} <i class='fa fa-check' style='color:green'></i>{{/if}}</a></li>
+						{{/each}}    
+					</ul>                   
+					<div class="tab-content">
+						<div id="tab-1" class="tab-pane active">
+							<div class="panel-body">
+								{{#if folha}}
+								{{#with folha}}
+								{{> pagamentos folha=_id}}
+								{{/with}}
+								{{else}}
+									{{>folhasAdd}}
+								{{/if}}
+							</div>
+						</div>		
+					</div>
+				</div>	
+			</div>
+		</div>		
+	</div>
+</template>
+
+<template name="folhasAcoes">
+	
+		<a class="btn btn-complete btn-xs" href="{{pathFor 'folhas.edit' id=_id}}"><i class="fa fa-edit"></i></a>
+		{{#quickRemoveButton collection="Folhas" _id=_id class="btn btn-danger btn-xs" beforeRemove=beforeRemove}}<i class="fa fa-trash"></i>{{/quickRemoveButton}}
+	
+</template>

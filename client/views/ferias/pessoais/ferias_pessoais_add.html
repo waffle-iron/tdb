@@ -1,0 +1,22 @@
+<template name="feriasPessoaisAdd">
+{{#afModal class="btn btn-primary" collection="FeriasPessoais" omitFields=omitFields operation="insert" formId="insertFeriasPessoaisForm"}}
+  Adicionar Férias Pessoais
+{{/afModal}}
+
+<!--
+{{#borderedContent title="Adicionar Férias"}}
+	{{#autoForm collection="Ferias" id="insertFeriasPessoaisForm" type="insert"}}
+		{{#if isInRole 'god,admin,gestor'}}
+			{{> afQuickField name='userId'}}
+		{{/if}}
+		{{> afQuickField name='data'}}
+		
+		<div class="form-group">
+		    <button type="submit" class="btn btn-primary">      
+		      Adicionar férias pessoais
+		    </button>
+		  </div>			
+	{{/autoForm}}
+{{/borderedContent}}	
+-->
+</template>

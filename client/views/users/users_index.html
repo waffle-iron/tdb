@@ -1,0 +1,17 @@
+<template name="users">
+    {{#borderedContent title="Usuários"}}
+	   {{> tabular table=TabularTables.Users class="table table-striped table-bordered table-hover" id="usersDT" width="100%"}}
+    {{/borderedContent}}
+</template>
+
+<template name="userLink">
+<a href="{{link}}">{{emails.[0].address}}</a>
+</template>
+
+<template name="usersAcoes">
+	<a class="btn btn-primary btn-xs" href="{{pathFor 'users.edit' id=_id}}"><i class="fa fa-edit"></i></a>
+	{{#quickRemoveButton collection="Meteor.users" _id=_id class="btn btn-danger btn-xs" beforeRemove=beforeRemove}}<i class="fa fa-trash"></i>{{/quickRemoveButton}}
+</template>
+
+
+

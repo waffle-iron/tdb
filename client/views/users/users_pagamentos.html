@@ -1,0 +1,23 @@
+<template name="usersPagamentos">
+	{{#each pagamentos}}
+		<div class="row">
+			<div class="col-lg-6">
+				<strong>
+					{{#if aceito}}
+						<span class="text-green">
+							<i class="fa fa-check"></i>
+						</span>
+					{{else}}
+						<span class="text-danger">
+							<i class="fa fa-times"></i>
+						</span>
+					{{/if}}
+					{{formatarDataMesDia folha.data}}
+				</strong>
+			</div>
+			<div class="col-lg-6">
+				<span class="text-green pull-right">{{formatarReais salarioReal}}</span>
+			</div>
+		</div>
+	{{/each}}
+</template>

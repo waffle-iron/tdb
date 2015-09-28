@@ -1,0 +1,11 @@
+{
+	"public":{
+
+	},
+	"FacePPBaseUrl":"http://apius.faceplusplus.com",
+ 	"FacePPAPIKey":"9818caad021d7c7d82d140a53892bd2c",
+ 	"FacePPAPISecret" : "EOwa0xI_3ngypyWU0dttHhyQ12-lRhh6",
+ 	"CloudinaryName": "shact",
+  	"CloudinaryAPIKey": "652647434859267",
+ 	"CloudinaryAPISecret": "j16qpah5cehMZu3TyT4G2zKDC4s"
+}

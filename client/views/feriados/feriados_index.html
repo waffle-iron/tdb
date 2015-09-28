@@ -1,0 +1,12 @@
+<template name="feriados">
+	{{#borderedContent title="Feriados"}}
+		{{> tabular table=TabularTables.Feriados class="table table-striped table-bordered table-hover" id="feriadosDT" width="100%"}}
+	{{/borderedContent}}
+</template>
+
+
+
+<template name="feriadosAcoes">
+	<a class="btn btn-success btn-xs" href="{{pathFor 'feriados.edit' id=_id}}"><i class="fa fa-edit"></i></a>
+	{{#quickRemoveButton collection="Feriados" _id=_id class="btn btn-danger btn-xs" beforeRemove=beforeRemove}}<i class="fa fa-trash"></i>{{/quickRemoveButton}}
+</template>

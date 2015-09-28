@@ -1,0 +1,7 @@
+<template name="carreirasEdit">
+{{#with carreira}}
+	{{#borderedContent title="Editar Carreira"}}
+		{{> quickForm collection="Carreiras" id="updateCarreirasForm" doc=this type="update"}}
+	{{/borderedContent}}
+{{/with}}
+</template>
