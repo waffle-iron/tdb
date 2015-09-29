@@ -81,7 +81,7 @@ function createRelationships (relationships, doc, node) {
   const relUids = _.flatten(_.values(docRels))
 
   const deletingOutdated = deleteOutdatedRelationships(relUids, node)
-  if (_.isEmpty(relUids)) { return deletingOutdated }
+  if (_.isEmpty(relUids)) { return deletingOutdated.then(function () { return {}}) }
 
   let previousRelationships = []
 

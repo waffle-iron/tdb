@@ -236,7 +236,7 @@ describe("/api/v2/techs resource", function () {
         .expect(401).endAsync()
     })
 
-    it.only("Updates a tech with startups", function () {
+    it("Updates a tech with startups", function () {
       let startup1, startup2, startup3
       return Promise
         .all([ createStartup(random.startup()), createStartup(random.startup()) ,createStartup(random.startup()) ])
