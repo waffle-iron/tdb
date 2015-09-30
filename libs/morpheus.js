@@ -225,10 +225,16 @@ function Model (blueprint) {
           return { count: count, nodes: builtData }
         })
         .then(function (results) {
+          const nodeIds = []
+          const uniqueNodes = results.nodes.filter(function (node) {
+            if (nodeIds.indexOf(node.id) !== -1) { return false }
+            nodeIds.push(node.id)
+            return true
+          })
           return {
             count: results.count,
             nodes: _.map(
-              results.nodes,
+              uniqueNodes,
               _.partial(extractLanguage, SCHEMA, TRANSLATIONS, options.lang)
             )
           }
@@ -265,7 +271,7 @@ function Model (blueprint) {
             let relationshipTypes = _.tail(results.columns).map(function (name) { return `${name}s` })
             let pairs = _.zip(relationshipTypes, [ relationships ])
             let obj = _.omit(_.zipObject(pairs), function (val) {
-              return _.isUndefined(val[0])
+              return _.isUndefined(val) || _.isUndefined(val[0])
             })
 
             return _.assign(node, obj)
