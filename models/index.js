@@ -114,6 +114,12 @@ exports.Tech = new Model({
       label: "develops",
       other: "Startup",
       timestamp: true
+    },
+    techs: {
+      direction: "in",
+      label: "related_to",
+      other: "Tech",
+      timestamp: true
     }
   },
   preSave: function (node) {

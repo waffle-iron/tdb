@@ -31,6 +31,13 @@ describe("/api/v2/techs resource", function () {
       .expect(201).endAsync()
   }
 
+  function createTech (tech) {
+    return api
+      .post(url("techs")).send({ tech })
+      .set("Authorization", authorization)
+      .expect(201).endAsync()
+  }
+
   before(function () {
     api = request(server)
     return api
@@ -57,24 +64,22 @@ describe("/api/v2/techs resource", function () {
         .expect(401).endAsync()
     })
     it("Creates a tech with startups", function () {
-      let startup
-      return api
-        .post(url("startups")).send({ startup: random.startup() })
-        .set("Authorization", authorization)
-        .expect(201).endAsync()
+      let startup, relatedTech
+      return createStartup(random.startup())
         .then(function (res) { startup = res.body.startup })
+        .then(function () { return createTech(random.tech())})
+        .then(function (res) { relatedTech = res.body.tech })
         .then(function () {
           let tech = random.tech()
           tech.startups = [ startup.id ]
-          return api
-            .post(url("techs")).send({ tech })
-            .set("Authorization", authorization)
-            .expect(201).endAsync()
+          tech.techs = [ relatedTech.id ]
+          return createTech(tech)
             .then(Test.returnModel)
             .then(function (res) {
               let model = res.body.tech
               model.should.have.properties(modelProps)
               model.should.have.property("startups").with.lengthOf(1)
+              model.should.have.property("techs").with.lengthOf(1)
             })
         })
     })
