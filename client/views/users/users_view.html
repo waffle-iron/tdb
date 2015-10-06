@@ -1,28 +1,5 @@
 <template name="usersView">
 
-<!--
-<div class="tabs-container">
-    <div class="tabs-left">
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#tab-6" aria-expanded="true">Informações de Perfil</a></li>
-            <li class=""><a data-toggle="tab" href="#tab-7" aria-expanded="false">Informações Relevantes</a></li>
-        </ul>
-        <div class="tab-content ">
-            <div id="tab-6" class="tab-pane active">
-                <div class="panel-body">
-
-                </div>
-            </div>
-            <div id="tab-7" class="tab-pane">
-                <div class="panel-body">
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
--->
-
 
 {{#with user}}
 
@@ -54,18 +31,20 @@
                 <small>último login</small>
                 <h3 class="no-margins">{{formatarData status.lastLogin.date}}</h3>
             </div>
+            {{#if isInRole 'god,admin,gestor'}}
             <div class="col-md-2">
                 <a href="{{pathFor 'users.edit' id=_id}}" class="btn btn-primary btn-block"><i class="fa fa-edit"></i> Editar </a>
-                <button class="btn btn-warning btn-block"><i class="fa fa-edit"></i> Grupo </button>
-                <button class="btn btn-danger btn-block"><i class="fa fa-edit"></i> Demitir </button>            
+                <button class="btn btn-warning btn-block" id="escolher-grupo"><i class="fa fa-edit"></i> Grupo </button>
+                    {{#quickRemoveButton collection="Meteor.users" _id=_id class="btn btn-danger btn-block" beforeRemove=beforeRemove onSuccess=onSuccess}}<i class="fa fa-trash"></i> Deletar{{/quickRemoveButton}}
             </div>
+            {{/if}}
         </div>
 
 
         <div class="row" style="margin-bottom:10px">
 
             <div class="col-lg-8 col-lg-offset-4" align="right">
-                {{>toggleRole}}
+<!--                {{>toggleRole}}-->
             </div>
         </div>
 
@@ -82,6 +61,8 @@
                 </div>
             </div>
         </div>
+
+        <!--
  		<div class="row">
             <div class="col-lg-12">
                 <div class="ibox">
@@ -94,6 +75,9 @@
                 </div>
             </div>
         </div>        
+        -->
+
+        <!--
         <div class="row">
             <div class="col-lg-6">
                 <div class="ibox">
@@ -116,6 +100,7 @@
                 </div>
             </div>            
         </div>              
+        -->
     </div>
 {{/with}}
 </template>

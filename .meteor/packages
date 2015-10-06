@@ -53,7 +53,6 @@ aldeed:autoform-bs-datepicker
 rajit:bootstrap3-datepicker
 mizzao:bootboxjs
 ovcharik:alertifyjs
-meteortoys:allthings
 aldeed:delete-button
 tap:i18n
 sewdn:masked-input
@@ -89,3 +88,5 @@ mizzao:user-status
 chart:chart
 rzymek:moment-locale-pt-br
 vazco:universe-autoform-select
+sujith3g:jstree
+meteortoys:allthings

@@ -1,7 +1,9 @@
 var hooksObject = {
   // Called when any submit operation succeeds
   onSuccess: function(formType, result) {
-    toastr.success("Usuário editada com sucesso: " + this.currentDoc.profile.nome, "Sucesso");
+    console.log(this.currentDoc);
+    console.log(this.updateDoc);
+    toastr.success("Usuário editado com sucesso: " + this.updateDoc.$set['profile.nome'], "Sucesso");
   },
 
   // Called when any submit operation fails

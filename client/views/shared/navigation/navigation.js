@@ -79,6 +79,24 @@ Template.navigation.helpers({
 				]
 			},
 			{
+				regex: '^senioridades',
+				name: 'Senioridades',
+				icon: 'fa fa-list-ol',
+				roles: ['god','admin','gestor'],
+				submenu:[
+					{
+						roles: ['god','admin','gestor'],
+						linkTo: 'senioridades.index',
+						name: 'Gerenciar',
+					},
+					{
+						roles: ['god','admin','gestor'],
+						linkTo: 'senioridades.add',
+						name: 'Adicionar'
+					}
+				]
+			},			
+			{
 				regex: '^parametros',
 				name: 'Parâmetros',
 				icon: 'fa fa-cogs',

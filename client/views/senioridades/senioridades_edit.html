@@ -1,0 +1,7 @@
+<template name="senioridadesEdit">
+{{#with carreira}}
+	{{#borderedContent title="Editar Senioridade"}}
+		{{> quickForm collection="Senioridades" id="updateSenioridadesForm" doc=this type="update"}}
+	{{/borderedContent}}
+{{/with}}
+</template>

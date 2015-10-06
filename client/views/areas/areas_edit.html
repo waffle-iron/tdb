@@ -1,0 +1,7 @@
+<template name="areasEdit">
+{{#with carreira}}
+	{{#borderedContent title="Editar Area"}}
+		{{> quickForm collection="Areas" id="updateAreasForm" doc=this type="update"}}
+	{{/borderedContent}}
+{{/with}}
+</template>
