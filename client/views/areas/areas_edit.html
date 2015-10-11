@@ -1,7 +1,20 @@
 <template name="areasEdit">
-{{#with carreira}}
+
 	{{#borderedContent title="Editar Area"}}
-		{{> quickForm collection="Areas" id="updateAreasForm" doc=this type="update"}}
-	{{/borderedContent}}
-{{/with}}
+		{{#with area}}
+		{{#autoForm collection="Areas" id="updateAreasForm" type="update" doc=this class="form-horizontal"}}
+			{{> afQuickField name='nome' template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			{{> afQuickField name='tipo' template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			{{#unless afFieldValueIs name='tipo' value=1}}
+				{{> afQuickField name='paiId' template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			{{/unless}}
+			{{> afQuickField name='ativo' template="bootstrap3-horizontal" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			
+
+			{{> submit texto="Editar"}}
+		{{/autoForm}}
+		{{/with}}
+	{{/borderedContent}}	
+
+
 </template>

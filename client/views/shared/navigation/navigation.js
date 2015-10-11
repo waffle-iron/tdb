@@ -95,14 +95,21 @@ Template.navigation.helpers({
 						name: 'Adicionar'
 					}
 				]
-			},			
+			},	
 			{
-				regex: '^parametros',
-				name: 'Parâmetros',
-				icon: 'fa fa-cogs',
+				regex: '^arvore',
+				name: 'Árvore',
+				icon: 'fa fa-tree',
 				roles: ['god','admin'],
-				linkTo:"parametros.index"
-			}																					
+				linkTo:"arvore.index"
+			},								
+			{
+				regex: '^diagrama',
+				name: 'Diagrama',
+				icon: 'fa fa-circle',
+				roles: ['god','admin'],
+				linkTo:"diagrama.index"
+			},																										
 		]
 	}
 })

@@ -1,6 +1,8 @@
+Template.registerHelper('logg',function(what){
+  console.log(what);
+})
+
 Template.registerHelper('isInRoles', function(roles){
-
-
   if (!roles) return true;
   roles.push('god');
   if (Roles.userIsInRole(Meteor.userId(), roles)){
@@ -127,4 +129,8 @@ Template.registerHelper('formatarStatusOnline',function(status){
       return "<span class='text-danger'>Offline</span>";
     break;    
   }
+})
+
+Template.registerHelper('formatarAreasTipo',function(tipo){
+  return formatarAreasTipo(tipo);
 })
