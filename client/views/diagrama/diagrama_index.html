@@ -11,7 +11,7 @@
 					{{#if nome}}
 						<span class="bloco-area">
 							{{nome}} 
-							<span class="subir-nivel">{{#if botaoUp}}<i class="fa fa-level-up"></i>{{/if}}</span>
+							<span class="subir-nivel ">{{#if botaoUp}}<i class="fa fa-level-up"></i>{{/if}}</span>
 						</span>
 					{{/if}}
 
@@ -26,7 +26,7 @@
 						{{#each this}}
 							<!--{{logg this}}-->
 							<td class="cargo">
-								{{#if this}}
+								{{#if cargoId}}
 									<div class="bloco-cargo hvr-float-shadow">
 										<p>
 											{{#if temPai}}

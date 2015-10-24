@@ -1,0 +1,54 @@
+<template name="diagrama2">
+	<div class="scroll-diagrama" align="center">
+	<table class="diagrama">
+		{{#each matrizAreas}}
+			<tr class="animated fadeIn">
+				{{#each this}}
+					<td colspan={{colspan}} class="area">
+						{{#if areaId}}
+							<span class="bloco-area mudar-raiz {{classe}}">
+								
+								{{#if botaoSubir}}
+									<span class="btn subir-nivel">
+										<i class="fa fa-level-up"></i>
+									</span>
+								{{/if}}
+
+								{{nome}} 
+							</span>
+						{{/if}}
+					</td>
+				{{/each}}
+			</tr>
+		{{/each}}
+
+		{{#each matrizCargos}}
+			<tr class="animated fadeInDown">
+				{{#each this}}
+					<!--{{logg this}}-->
+					<td class="cargo">
+						{{#if cargoId}}
+							<div class="bloco-cargo hvr-float-shadow">
+								<p>
+									{{#if temPai}}
+										<div class="arrow-up"></div>
+									{{else}}
+										{{texto}}
+									{{/if}}
+								</p>
+								{{#if classificacao}}
+									<div class="bola ver-classificacao" style="background-color:{{cor}}">{{label}}</div>
+								{{else}}
+									<div class="bola" style="background-color:{{cor}};opacity:0.1;">{{label}}</div>
+								{{/if}}
+							</div>
+						{{else}}
+							-
+						{{/if}}
+					</td>
+				{{/each}}
+			</tr>
+		{{/each}}
+	</table>
+	</div>
+</template>

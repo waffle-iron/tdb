@@ -1,6 +1,6 @@
 <template name="_mostrarCargo">
 {{#with cargo}}
-	{{#modal titulo=nome subtitulo=carreira.nome avatar=carreira.avatar}}
+	{{#modal titulo=nome subtitulo=carreira.nome avatar=(concat 'a' carreira.avatar)}}
 	    {{#modalBody}}
 
 			<div class="tabs-container">

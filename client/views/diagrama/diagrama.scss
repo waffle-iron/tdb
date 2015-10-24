@@ -17,6 +17,7 @@
 
 
 .diagrama{
+	font-family: 'Roboto', sans-serif;
  	text-align:center;
  	border-collapse: collapse;
  	table-layout: fixed;
@@ -32,6 +33,7 @@
 
 	tr{
 		border-bottom: 1px dashed rgba(0,0,0,0.2);
+		height:50px;
 	}
 }
 
@@ -71,10 +73,11 @@
 
 	
 .bloco-area{
-	background-color:rgba(0,42,58,0.7);
-	color:white;
-
-	font-size:15px;
+	box-shadow: 2px 2px 1px #a1a1a1;
+	color:black;
+	//-webkit-text-stroke: 0.5px white;
+	//font-weight:bold;
+	font-size:16px;
 
 	height:40px;
 	line-height:40px;
@@ -82,12 +85,13 @@
 
 	display:inline-block;
 
-	border:2px solid rgba(0,0,0,0.5); 	
+	border:1.5px solid rgba(0,0,0,0.5); 	
 	border-radius:10px;
 	white-space: nowrap;
 
+
 	&:hover{
-		background-color:rgba(0,52,58,0.6);
+		//background-color:rgba(0,52,58,0.6);
 		font-weight:bold;
 	}
 }
@@ -95,12 +99,35 @@
 .subir-nivel{
 	font-size:20px;
 	&:hover{
-		color:#7bc043;
+		//color:#7bc043;
 	}
 }
 
 	
-.scroll-teste{
+.scroll-diagrama{
 	overflow:auto;
 	width:100%;
+}
+
+.vp{
+	background-color: #547980 !important;
+}
+
+.dir{
+	background-color: #45ada8 !important;
+
+}
+
+.ger{
+	background-color: #9de0ad !important;
+
+}
+
+.coord{
+	background-color: #e5fcc2 !important;
+}
+
+.aes{
+	background-color:#594f4f;
+	color:#e5e5e5;
 }

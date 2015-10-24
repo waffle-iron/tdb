@@ -7,6 +7,22 @@ Template._arvoreAreas.events({
 	},
 })
 
+var tipoToImg = function(tipo){
+	switch(tipo){
+		case 1:
+			return 'vp.png'
+		break;
+		case 2:
+			return 'dir.png'	
+		break;
+		case 3:
+			return 'ger.png'
+		break;
+		case 4:
+			return 'coord.png'
+		break;
+	}
+}
 
 Template._arvoreAreas.onRendered(function(){
 	treeAreas = this.$('#jsTreeAreas');
@@ -73,11 +89,12 @@ Template._arvoreAreas.onRendered(function(){
 
 					var nodes = areas.map(function(area){
 						var children = !!Areas.findOne({paiId: area._id});
+
 						return {
 							text: area.nome,
 							id: area._id,
 							children: children,
-							icon:"fa fa-database",
+							icon:'/img/areas/16/' +tipoToImg(area.tipo),
 							data:{
 								tipo: area.tipo
 							}

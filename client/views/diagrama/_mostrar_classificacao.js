@@ -9,7 +9,7 @@ Template._mostrarClassificacao.helpers({
 		return this.cargo().carreira().nome;
 	},
 	avatar:function(){
-		return this.cargo().carreira().avatar;
+		return '/img/carreiras/64/' + this.cargo().carreira().avatar;
 	}
 })
 

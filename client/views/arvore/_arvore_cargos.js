@@ -50,22 +50,27 @@ Template._arvoreCargos.onRendered(function(){
 				var areasDescendentes = _.pluck(Areas.find({caminho:areaSelecionada}).fetch(),'_id');
 				var areasEmContexto = _.union(areaSelecionada,areasDescendentes);
 
-				var cargos = Cargos.find({areaId: {$in: areasEmContexto}});
+				var cargos = Cargos.find({areaId: {$in: areasEmContexto}},{sort:{carreiraId:1}});
+
 				var nodes = cargos.map(function(cargo){
 	        		var classificacoes = Classificacoes.find({cargoId: cargo._id}).fetch();
+	        		var carreira = cargo.carreira();
 
 	        		var children = _.map(classificacoes,function(classificacao){
 	        			var senioridade = Senioridades.findOne({_id: classificacao.senioridadeId});
 			        	return {
+
 			        		text: senioridade.nome,
-			        		icon: senioridade.icone
+			        		icon: "/img/senioridades/16/" + senioridade.avatar
 			        	}
 	        		});
 
+	        		var cor = (cargo.areaId==areaSelecionada)? 'text-black' : 'text-grey'
 			        return {
+			        	li_attr:{'class':cor},
 			        	text: cargo.nome,
 			        	id: cargo._id,
-			        	icon: "fa fa-briefcase",
+			        	icon: "/img/carreiras/16/" + carreira.avatar,
 			        	children:children
 			        }
     			})

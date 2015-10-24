@@ -2,6 +2,10 @@ Template.registerHelper('logg',function(what){
   console.log(what);
 })
 
+Template.registerHelper('concat',function(){
+  console.log(arguments);
+});
+
 Template.registerHelper('isInRoles', function(roles){
   if (!roles) return true;
   roles.push('god');
