@@ -1,4 +1,4 @@
-<template name="diagrama2">
+<template name="diagrama">
 	<div class="scroll-diagrama" align="center">
 	<table class="diagrama">
 		{{#each matrizAreas}}
@@ -22,6 +22,26 @@
 			</tr>
 		{{/each}}
 
+		
+		<tr>
+		{{#each matrizCoordenadores}}
+			
+				<td colspan={{colspan}} class="cargo">
+					{{#each cargos}}
+						<div class="bloco-cargo hvr-float-shadow">
+							<p>{{texto}}</p>
+							{{#if classificacao}}
+								<div class="bola ver-classificacao" style="background-color:{{cor}}">{{label}}</div>
+							{{else}}
+								<div class="bola" style="background-color:{{cor}};opacity:0.1;">{{label}}</div>
+							{{/if}}
+						</div>
+					{{/each}}
+				</td>
+			
+		{{/each}}
+		</tr>
+		
 		{{#each matrizCargos}}
 			<tr class="animated fadeInDown">
 				{{#each this}}

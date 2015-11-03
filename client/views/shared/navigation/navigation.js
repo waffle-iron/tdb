@@ -108,7 +108,7 @@ Template.navigation.helpers({
 				name: 'Diagrama',
 				icon: 'fa fa-circle',
 				roles: ['god','admin'],
-				linkTo:"diagrama.index2"
+				linkTo:"diagrama.index"
 			},																										
 		]
 	}

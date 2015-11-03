@@ -19,20 +19,20 @@
 .diagrama{
 	font-family: 'Roboto', sans-serif;
  	text-align:center;
- 	border-collapse: collapse;
+
  	table-layout: fixed;
 	
 	td{
 		padding:4px;
 		text-align:center;
-		
+		border-bottom: 1px solid rgba(0,0,0,0.05);
 
 
 
 	}
 
 	tr{
-		border-bottom: 1px dashed rgba(0,0,0,0.2);
+		//border-bottom: 1px solid rgba(0,0,0,0.05);
 		height:50px;
 	}
 }
