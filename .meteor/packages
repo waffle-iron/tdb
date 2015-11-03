@@ -80,7 +80,6 @@ random
 ejson
 spacebars
 check
-autoform-modals
 aldeed:tabular
 cloudspider:icheck
 benmgreene:moment-range
@@ -94,3 +93,4 @@ natestrauser:animate-css
 mquandalle:perfect-scrollbar
 maazalik:malihu-jquery-custom-scrollbar
 danappelxx:hover.css
+yogiben:autoform-modals
