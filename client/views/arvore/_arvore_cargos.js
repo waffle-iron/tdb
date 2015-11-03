@@ -34,7 +34,6 @@ Template._arvoreCargos.onRendered(function(){
 					ver: {
 						label: "Ver",
 						action: function (obj) { 
-							console.log($node);
 							FlowRouter.go('cargos.view',{id: $node.id})
 						}                  
 					}
@@ -46,6 +45,8 @@ Template._arvoreCargos.onRendered(function(){
 				return true;
 			},    
 			data: function(node,cb){
+				console.log("running", node);
+				treeCargos.jstree("open_node", node);
 				var areaSelecionada = Session.get('areaSelecionada');
 				var areasDescendentes = _.pluck(Areas.find({caminho:areaSelecionada}).fetch(),'_id');
 				var areasEmContexto = _.union(areaSelecionada,areasDescendentes);
@@ -53,15 +54,22 @@ Template._arvoreCargos.onRendered(function(){
 				var cargos = Cargos.find({areaId: {$in: areasEmContexto}},{sort:{carreiraId:1}});
 
 				var nodes = cargos.map(function(cargo){
-	        		var classificacoes = Classificacoes.find({cargoId: cargo._id}).fetch();
+					var carreira = cargo.carreira();
+					var estrutura = carreira.estrutura;
+
+	        		
 	        		var carreira = cargo.carreira();
 
-	        		var children = _.map(classificacoes,function(classificacao){
-	        			var senioridade = Senioridades.findOne({_id: classificacao.senioridadeId});
+	        		var children = _.map(estrutura,function(senioridadeId){
+	        			var senioridade = Senioridades.findOne({_id: senioridadeId});
+	        			var classificacao = Classificacoes.findOne({cargoId: cargo._id, senioridadeId: senioridadeId});
+	        			
+	        			var cor = (classificacao)?'text-black': 'text-grey';
+	        			
 			        	return {
-
 			        		text: senioridade.nome,
-			        		icon: "/img/senioridades/16/" + senioridade.avatar
+			        		icon: "/img/senioridades/16/" + senioridade.avatar,
+			        		li_attr:{'class':cor}
 			        	}
 	        		});
 
@@ -78,6 +86,16 @@ Template._arvoreCargos.onRendered(function(){
 				cb(nodes);
 			}
 		}
-	})	
+	}).bind('rename_node.jstree',function(e,obj){
+		console.log("rename");
+		var node = obj.node;
+		var cargo = Cargos.findOne({_id: obj.node.id});
+
+		if (cargo.nome != obj.text){
+			Cargos.update({_id: obj.node.id},{$set:{nome:obj.text}},{reactive:false});
+		}
+	}).on('loaded.jstree', function() {
+		$(this).jstree('open_all');
+	})
 })
 

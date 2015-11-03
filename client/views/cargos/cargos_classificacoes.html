@@ -10,14 +10,29 @@
 		    	{{#each senioridadesPossiveis}}
 		    		<div id="senioridade-{{_id}}" class="tab-pane {{#unless @index}}active{{/unless}}">
 		                <div class="panel-body">
-		                {{#if classificacao}}
-		                	{{#with classificacao}}
+		                {{#with classificacao}}
+		                	{{#if edit}}
+			                	{{#autoForm collection="Classificacoes" id="updateClassificacoesForm" type="update" doc=this}}
+			                		{{> afQuickField name="atribuicoes"}}
+			                		{{> afQuickField name="conhecimentos"}}
+			                		{{> afQuickField name="formacao"}}
+			                		{{> afQuickField name="experiencia"}}
+			                		{{> submit texto="Salvar"}}
+			                	{{/autoForm}}		                		
+	                		{{else}}
+	                			<div class="row">
+	                				<div class="col-sm-12" align="right">
+	                					<button class="btn btn-primary edit">
+	                						<i class="fa fa-edit"></i> Editar
+	                					</button>
+	                				</div>
+	                			</div>
 		                		{{> _descreverLista titulo="Atribuições" lista=atribuicoes}}
 		                		{{> _descreverLista titulo="Conhecimentos" lista=conhecimentos}}
 		                		{{> _descreverLista titulo="Formação" lista=formacao}}
-	                			{{> _descreverLista titulo="Experiência" lista=experiencia}}
+	                			{{> _descreverLista titulo="Experiência" lista=experiencia}}	                		
+	                		{{/if}}
 
-		                	{{/with}}
 		                {{else}}
 		                	
 		                	{{#autoForm collection="Classificacoes" id="insertClassificacoesForm" type="insert"}}
@@ -31,7 +46,7 @@
 		                	{{/autoForm}}
 
 		                	<!--{{> quickForm collection="Classificacoes" type="insert" id="teste"}}-->
-		                {{/if}}
+		                {{/with}}
 		                </div>
 		    		</div>
 		    	{{/each}}

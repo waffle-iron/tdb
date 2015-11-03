@@ -3,6 +3,12 @@ Template.cargosClassificacoes.onRendered(function(){
 
 })
 
+Template.cargosClassificacoes.events({
+	'click .edit': function(){
+		FlowRouter.setQueryParams({edit:true});
+	}
+})
+
 Template.cargosClassificacoes.helpers({
 	classificacao:function(){
 		var cargoId = Template.instance().data.cargoId;
@@ -14,6 +20,9 @@ Template.cargosClassificacoes.helpers({
 		
 		
 		return Cargos.findOne({_id: cargoId}) || false;
+	},
+	edit:function(){
+		return FlowRouter.getQueryParam('edit');
 	}
 })
 
@@ -33,4 +42,24 @@ var hooksObject = {
 
 AutoForm.hooks({
   "insertClassificacoesForm": hooksObject
+});
+
+
+
+
+var hooksObject = {
+  // Called when any submit operation succeeds
+  onSuccess: function(formType, result) {
+    toastr.success("Classificação editada com sucesso", "Sucesso");
+    FlowRouter.setQueryParams({edit: null});
+  },
+
+  // Called when any submit operation fails
+  onError: function(formType, error) {
+
+  },
+};
+
+AutoForm.hooks({
+  "updateClassificacoesForm": hooksObject
 });
