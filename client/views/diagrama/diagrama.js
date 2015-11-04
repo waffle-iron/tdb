@@ -203,6 +203,7 @@ function constroiDiagrama(){
 	mapaAreas = [];
 	mapaCargos = [];
 	mapaCoordenadores = [];
+
 	matrizCargos.set(null);
 	matrizAreas.set(null);
 	matrizCoordenadores.set(null);
@@ -239,12 +240,12 @@ Template.diagrama.onRendered(function(){
 	    axis:"x"
 	});		
 
-	Tracker.autorun(constroiDiagrama);
+	this.autorun(constroiDiagrama);
 })
 
 Template.diagrama.events({
 	'click .mudar-raiz':function(){
-		//console.log(this);
+		if (this.areaId=="*") return;
 		FlowRouter.setQueryParams({raiz: this.areaId});
 	},
 	'click .subir-nivel':function(e){
