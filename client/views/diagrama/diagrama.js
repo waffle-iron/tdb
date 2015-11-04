@@ -18,6 +18,8 @@ Template.diagrama.onCreated(function(){
 	coordSenioridade = Senioridades.findOne({_id: coordSenioridadeId});	
 });
 
+
+
 var constroiHierarquia = function(raiz){
 	//debugger;
 
@@ -220,6 +222,17 @@ function constroiDiagrama(){
 
 
 Template.diagrama.helpers({
+	areas: function(){
+		return Areas.find().fetch();
+	},
+	  selected: function(event, suggestion, datasetName) {
+	    // event - the jQuery event object
+	    // suggestion - the suggestion object
+	    // datasetName - the name of the dataset the suggestion belongs to
+	    // TODO your event handler here
+	    console.log(suggestion._id);
+	    FlowRouter.setQueryParams({raiz: suggestion._id});
+	  },
 	matrizAreas:function(){
 		//console.log(matrizAreas.get());
 		return matrizAreas.get();
@@ -239,6 +252,7 @@ Template.diagrama.onRendered(function(){
 	$(".scroll-diagrama").mCustomScrollbar({
 	    axis:"x"
 	});		
+	Meteor.typeahead.inject();
 
 	this.autorun(constroiDiagrama);
 })

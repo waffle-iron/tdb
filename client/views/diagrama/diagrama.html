@@ -1,4 +1,23 @@
+
 <template name="diagrama">
+	
+	<div class="row">
+		<div class="col-sm-12" align="right" style="padding:20px">
+			<input class="typeahead" name="team" type="text"
+       			placeholder="Áreas"
+       			autocomplete="off" 
+       			spellcheck="off" 
+       			data-highlight="true" 
+       			data-hint="true" 
+       			data-value-key="nome"
+       			data-autoselect="true"
+       			data-source="areas" 
+       			data-select="selected"/>
+       	</div>
+    </div>
+    
+
+
 	<div class="scroll-diagrama" align="center">
 	<table class="diagrama">
 		{{#each matrizAreas}}
