@@ -1,5 +1,12 @@
 <template name="cargosAdd">
 {{#borderedContent title="Adicionar Cargo"}}
-	{{> quickForm collection="Cargos" id="insertCargosForm" type="insert"}}
+	{{#autoForm collection="Cargos" id="insertCargosForm" type="insert" class="form-horizontal"}}
+		{{>afQuickField name="nome" label-class="col-sm-3" input-col-class="col-sm-9"}}
+		{{>afQuickField name="carreiraId" label-class="col-sm-3" input-col-class="col-sm-9"}}
+		{{>afQuickField name="ativo" label-class="col-sm-3" input-col-class="col-sm-9"}}
+		{{>afQuickField name="areaId" label-class="col-sm-3" input-col-class="col-sm-9"}}
+
+		{{> submit texto="Adicionar"}}
+	{{/autoForm}}
 {{/borderedContent}}	
 </template>

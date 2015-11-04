@@ -1,7 +1,7 @@
 var hooksObject = {
   // Called when any submit operation succeeds
   onSuccess: function(formType, result) {
-    toastr.success("Senioridade adicionado com sucesso: " + this.insertDoc.nome, "Sucesso");
+    toastr.success("Senioridade adicionada com sucesso: " + this.insertDoc.nome, "Sucesso");
     FlowRouter.go('senioridades.index');
   },
 

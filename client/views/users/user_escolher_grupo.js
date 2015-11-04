@@ -19,19 +19,16 @@ Template._usersEscolherGrupo.events({
 		e.preventDefault();
 		
 		var userId = tmpl.data._id;
-
-		//Session.set('toggledRole', this.name);
+		
 		Modal.hide();
-		console.log(this.name);
 		
 		var role = this.name;
 		alertify.confirm('Tem certeza?', function(){
 			Meteor.call('updateRoles', userId,role, function(err,res){
 				if (err) {
-					console.log(err);
 					toastr.error(err,"Erro")
 				}else{
-					toastr.success("Role setado: " + role, 'Sucesso');
+					toastr.success("Grupo setado: " + role, 'Sucesso');
 				}
 			});
 		});

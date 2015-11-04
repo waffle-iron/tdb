@@ -8,7 +8,7 @@ Template.carreirasEdit.helpers({
 var hooksObject = {
   // Called when any submit operation succeeds
   onSuccess: function(formType, result) {
-    toastr.success("Carreira editado com sucesso: " + this.currentDoc.nome, "Sucesso");
+    toastr.success("Carreira editada com sucesso: " + this.currentDoc.nome, "Sucesso");
     FlowRouter.go('carreiras.index');
   },
 

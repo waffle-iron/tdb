@@ -21,7 +21,9 @@ AccountsTemplates.configure({
         console.log(info);
     },
     hideSignInLink: true,
-    hideSignUpLink: true
+    hideSignUpLink: true,
+    showLabels:false,
+    showForgotPasswordLink: true,
 
 });
 
@@ -63,20 +65,6 @@ AccountsTemplates.configureRoute('resetPwd', {
     contentRegion: 'main'
 });
 
-
-AccountsTemplates.configure({
-    texts: {
-      title: {
-        changePwd: "Password Title",
-        enrollAccount: "Enroll Title",
-        forgotPwd: "Forgot Pwd Title",
-        resetPwd: "Reset Pwd Title",
-        signIn: "",
-        signUp: "Sign Up Title",
-        verifyEmail: "Verify Email Title",
-      }
-    }
-});
 
 
 

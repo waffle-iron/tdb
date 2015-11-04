@@ -1,4 +1,4 @@
 <template name="carreirasAcoes">
 	<a class="btn btn-success btn-xs" href="{{pathFor 'carreiras.edit' id=_id}}"><i class="fa fa-edit"></i></a>
-	{{#quickRemoveButton collection="Carreiras" _id=_id class="btn btn-danger btn-xs" beforeRemove=beforeRemove}}<i class="fa fa-trash"></i>{{/quickRemoveButton}}
+	{{#quickRemoveButton collection="Carreiras" _id=_id class="btn btn-danger btn-xs" onSuccess=onSuccess beforeRemove=beforeRemove}}<i class="fa fa-trash"></i>{{/quickRemoveButton}}
 </template>

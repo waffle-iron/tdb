@@ -8,7 +8,7 @@ Template.senioridadesEdit.helpers({
 var hooksObject = {
   // Called when any submit operation succeeds
   onSuccess: function(formType, result) {
-    toastr.success("Senioridade editado com sucesso: " + this.currentDoc.nome, "Sucesso");
+    toastr.success("Senioridade editada com sucesso: " + this.currentDoc.nome, "Sucesso");
     FlowRouter.go('senioridades.index');
   },
 

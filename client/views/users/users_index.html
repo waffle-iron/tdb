@@ -9,7 +9,7 @@
 </template>
 
 <template name="usersAcoes">
-	<a class="btn btn-primary btn-xs" href="{{pathFor 'users.edit' id=_id}}"><i class="fa fa-edit"></i></a>
+	<a class="btn btn-success btn-xs" href="{{pathFor 'users.edit' id=_id}}"><i class="fa fa-edit"></i></a>
 	{{#quickRemoveButton collection="Meteor.users" _id=_id class="btn btn-danger btn-xs" beforeRemove=beforeRemove}}<i class="fa fa-trash"></i>{{/quickRemoveButton}}
 </template>
 

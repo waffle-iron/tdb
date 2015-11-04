@@ -13,7 +13,13 @@ Template.senioridadesAcoes.helpers({
         var object = this;
 		alertify.confirm('Remover <b>' + doc.nome + '</b>?', function(){
 			object.remove();
-		});
+		}).set('title', 'Confirmar');
       };
+    },
+    onSuccess: function(){
+    	return function(result){
+    		console.log(result);
+    		toastr.success("Senioridade removida com sucesso", "Sucesso");
+    	}
     }
 })

@@ -1,2 +1,2 @@
-AutoForm.setDefaultTemplateForType('afFormGroup', 'pages');
-AutoForm.setDefaultTemplate("bootstrap3");
+//AutoForm.setDefaultTemplateForType('afFormGroup', 'pages');
+AutoForm.setDefaultTemplate("bootstrap3-horizontal");

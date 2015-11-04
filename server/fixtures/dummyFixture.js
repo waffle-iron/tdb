@@ -9,6 +9,11 @@ Meteor.startup(function(){
 		Roles.addUsersToRoles(userId, 'god',Roles.GLOBAL_GROUP);
 	}
 
+	var roles = ['god','admin','usuario']
+
+	var rolesInDB = Meteor.roles.find({}).fetch();
+	
+
 	/*
 	var out1 = JSON.parse(Assets.getText('out1.json'));
 	var out2 = JSON.parse(Assets.getText('out2.json'));

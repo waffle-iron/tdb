@@ -1,4 +1,4 @@
-<template name="navigation">
+    <template name="navigation">
     <nav class="navbar-default navbar-static-side" role="navigation">
         <div class="sidebar-collapse">
 
@@ -9,10 +9,12 @@
 
             <ul class="nav" id="side-menu">
                 <li class="nav-header">
-                    <div class="dropdown profile-element">
+
+                    <div class="dropdown profile-element" style="height:150px;">
+                        <!--
                         <span>
                             {{> cloudinaryThumb publicId=currentUser.profile.avatar.publicId class="image-circle" width=48 height=48}}
-                            <!--<img alt="image" class="img-circle" src="/img/profile_small.jpg">-->
+                            
                             
                         </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -30,9 +32,10 @@
                             <li class="divider"></li>
                             <li><a href="#" id="logout">Sair</a></li>
                         </ul>
+                        -->
                     </div>
-                    <div class="logo-element">
-                        <img src="/ico/favicon-32x32.png">
+                    <div class="logo-element animated lightSpeedIn" style="padding:0px">
+                        <img src="/patterns/header-profile-closed-trans.png">
                     </div>
                 </li>
                 {{#each $mapped menu}}

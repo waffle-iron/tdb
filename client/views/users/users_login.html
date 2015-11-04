@@ -1,36 +1,17 @@
 <template name="login">
 	<div class="middle-box text-center loginscreen animated fadeInDown">
-		<div>
-			<div>
-			<!--<img src="/img/logo-login.png">-->
-			
+		<img src="/img/logo-login.png">
 
-			</div>
-			<br><br>
-			<h3>Bem vindo ao sistema Siga-Livre</h3>
-			<p>
 
-			</p>
-			<p>Se você ainda não tem uma conta, entre em contato com seu gestor.</p>
+		<br><br>
+		<h3>Bem vindo ao sistema Siga-Livre</h3>
+		<p>
 
-			{{> atForm state="signIn" class="m-t"}}
+		</p>
+		<p>Se você ainda não tem uma conta, entre em contato com seu gestor.</p>
 
-			<!--
-			<form class="m-t" role="form" action="{{pathFor route='dashboard1'}}">
-				<div class="form-group">
-					<input type="email" class="form-control" placeholder="Username" required="">
-				</div>
-				<div class="form-group">
-					<input type="password" class="form-control" placeholder="Password" required="">
-				</div>
-				<button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+		{{> atForm class="m-t"}}
 
-				<a href="#"><small>Forgot password?</small></a>
-				<p class="text-muted text-center"><small>Do not have an account?</small></p>
-				<a class="btn btn-sm btn-white btn-block" href="{{pathFor route='register'}}">Create an account</a>
-			</form>
-			-->
-			<p class="m-t"> <small>Rafael Ribeiro Correia &copy; 2015</small> </p>
-		</div>
+		<p class="m-t"> <small>Rafael Ribeiro Correia &copy; 2015</small> </p>
 	</div>
 </template>

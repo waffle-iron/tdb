@@ -13,7 +13,13 @@ Template.carreirasAcoes.helpers({
         var object = this;
 		alertify.confirm('Remover <b>' + doc.nome + '</b>?', function(){
 			object.remove();
-		});
+		}).set('title', 'Confirmar');
       };
+    },
+    onSuccess: function(){
+    	return function(result){
+    		console.log(result);
+    		toastr.success("Carreira removida com sucesso", "Sucesso");
+    	}
     }
 })

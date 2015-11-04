@@ -25,7 +25,9 @@
 }
 
 body.mini-navbar .nav-header {
-  background-color: @nav-bg;
+  background: @nav-bg;
+  background-image: none;
+  -webkit-transitions: background 1s;
 }
 
 .skin-1 .spin-icon {
@@ -33,8 +35,8 @@ body.mini-navbar .nav-header {
 }
 
 .skin-1 .nav-header {
-  background: @skin-1-color;
-  background: url('patterns/header-profile-skin-1.png');
+  background: @nav-bg;
+  background-image: url('patterns/header-profile-2.png');
 }
 
 .skin-1.mini-navbar .nav-second-level {
@@ -107,6 +109,7 @@ body.skin-1 {
 
 .skin-1 .nav-header {
   padding: 35px 25px 25px 25px;
+  padding: 0px;
 }
 
 .skin-1 .nav-header a.dropdown-toggle {

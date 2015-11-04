@@ -34,7 +34,7 @@
             {{#if isInRole 'god,admin,gestor'}}
             <div class="col-md-2">
                 <a href="{{pathFor 'users.edit' id=_id}}" class="btn btn-primary btn-block"><i class="fa fa-edit"></i> Editar </a>
-                <button class="btn btn-warning btn-block" id="escolher-grupo"><i class="fa fa-edit"></i> Grupo </button>
+                <button class="btn btn-primary btn-block" id="escolher-grupo"><i class="fa fa-users"></i> Grupo </button>
                     {{#quickRemoveButton collection="Meteor.users" _id=_id class="btn btn-danger btn-block" beforeRemove=beforeRemove onSuccess=onSuccess}}<i class="fa fa-trash"></i> Deletar{{/quickRemoveButton}}
             </div>
             {{/if}}

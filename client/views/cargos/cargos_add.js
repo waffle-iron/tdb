@@ -2,7 +2,7 @@ var hooksObject = {
   // Called when any submit operation succeeds
   onSuccess: function(formType, result) {
     toastr.success("Cargo adicionado com sucesso: " + this.insertDoc.nome, "Sucesso");
-    FlowRouter.go('areas.index');
+    FlowRouter.go('cargos.index');
   },
 
   // Called when any submit operation fails

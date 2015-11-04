@@ -18,7 +18,7 @@ Template._arvoreCargos.onRendered(function(){
 		contextmenu:{
 			items: function($node) {
 				var tree = treeCargos.jstree(true);
-				return {
+				var items = {
 					renomear: {
 						label: "Renomear",
 						action: function (obj) { 
@@ -38,6 +38,8 @@ Template._arvoreCargos.onRendered(function(){
 						}                  
 					}
 				};
+				console.log($node);
+				return items;
 			}
 		},  
 		core:{
@@ -79,7 +81,8 @@ Template._arvoreCargos.onRendered(function(){
 			        	text: cargo.nome,
 			        	id: cargo._id,
 			        	icon: "/img/carreiras/16/" + carreira.avatar,
-			        	children:children
+			        	children:children,
+			        	type: 'cargo'
 			        }
     			})
 
