@@ -143,7 +143,8 @@ var constroiHierarquia = function(raiz){
 		nome: area.nome,
 		colspan: cs,
 		classe: tipoToNome[area.tipo],
-		areaId: area._id
+		areaId: area._id,
+		areaImg: tipoToImg(area.tipo)
 	});	 
 
 	return cs;
@@ -180,17 +181,24 @@ function constroiDiagrama(){
 	mapaCargos = [];
 	mapaCoordenadores = [];
 
+	/*
 	matrizCargos.set(null);
 	matrizAreas.set(null);
 	matrizCoordenadores.set(null);
+	*/
 
 	var raiz = FlowRouter.getQueryParam('raiz') || null;
 	console.log("construindo...", raiz);
 	constroiHierarquia(raiz);
 
+	/*
 	Meteor.setTimeout(function(){matrizCoordenadores.set(mapaCoordenadores)});
 	Meteor.setTimeout(function(){matrizAreas.set(mapaAreas.clean())});;
 	Meteor.setTimeout(function(){matrizCargos.set(transpose(mapaCargos))});
+	*/
+	matrizCoordenadores.set(mapaCoordenadores);
+	matrizAreas.set(mapaAreas.clean());
+	matrizCargos.set(transpose(mapaCargos));
 
 	Meteor.setTimeout(function(){$(".scroll-diagrama").mCustomScrollbar("update");});
 }

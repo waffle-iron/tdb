@@ -22,7 +22,7 @@
 			</div>
 			<div class="col-sm-4" align="right" style="padding:20px">
 				<input class="typeahead" name="team" type="text"
-	       			placeholder="Áreas"
+	       			placeholder="Buscar áreas"
 	       			autocomplete="off" 
 	       			spellcheck="off" 
 	       			data-highlight="true" 
@@ -58,7 +58,7 @@
 	    		{{/with}}
 	    		<tbody>
 	    		{{#each filhosDiretos}}
-	    		<tr>
+	    		<tr  class="animated fadeInLeft">
 	    			<td><img src='/img/areas/16/{{areaImg}}'></td>
 	    			<td><h3>{{nome}}</h3></td>
 
@@ -77,21 +77,24 @@
 
 <template name="diagramaArvore">
 	<div class="scroll-diagrama" align="center">
-		<table class="diagrama">
+		<table class="table-striped diagrama">
 			{{#each matrizAreas}}
 				<tr class="animated fadeIn">
 					{{#each this}}
 						<td colspan={{colspan}} class="area">
 							{{#if areaId}}
-								<span class="bloco-area mudar-raiz {{classe}}">
-									
+								<span class="hvr-fade bloco-area mudar-raiz {{classe}}">
+
+									<img src='/img/areas/16/{{areaImg}}'>
+									{{nome}} 
+
+
 									{{#if botaoSubir}}
-										<span class="btn subir-nivel">
+										<button class="btn btn-primary subir-nivel">
 											<i class="fa fa-level-up"></i>
-										</span>
+										</button>
 									{{/if}}
 
-									{{nome}} 
 								</span>
 							{{/if}}
 						</td>
