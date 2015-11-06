@@ -7,22 +7,7 @@ Template._arvoreAreas.events({
 	},
 })
 
-var tipoToImg = function(tipo){
-	switch(tipo){
-		case 1:
-			return 'vp.png'
-		break;
-		case 2:
-			return 'dir.png'	
-		break;
-		case 3:
-			return 'ger.png'
-		break;
-		case 4:
-			return 'coord.png'
-		break;
-	}
-}
+
 
 Template._arvoreAreas.onRendered(function(){
 	treeAreas = this.$('#jsTreeAreas');

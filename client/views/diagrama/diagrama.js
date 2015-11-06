@@ -1,3 +1,4 @@
+GHOST_CHAR = "#";
 
 mapaAreas = [];
 mapaCargos = [];
@@ -6,25 +7,17 @@ var matrizAreas = new ReactiveVar();
 var matrizCargos = new ReactiveVar();
 var matrizCoordenadores = new ReactiveVar();
 
-//var carreiraCoordenadorId = _.pluck(Carreiras.find({coordenador:true}).fetch(),'_id');
-
 var coordCarreira;;
 var coordSenioridadeId;
 var coordSenioridade;
 
-Template.diagrama.onCreated(function(){
-	coordCarreira = Carreiras.findOne({coordenador: true});
-	coordSenioridadeId = coordCarreira.estrutura[0];
-	coordSenioridade = Senioridades.findOne({_id: coordSenioridadeId});	
-});
+
 
 
 
 var constroiHierarquia = function(raiz){
-	//debugger;
-
-	var area = Areas.findOne({_id: raiz}) || {nome: "AES", tipo: 0,_id: "*"}
-	if (area._id=="#") raiz = null;
+	var area = Areas.findOne({_id: raiz}) || {nome: "AES", tipo: 0,_id: GHOST_CHAR}
+	if (area._id==GHOST_CHAR) raiz = null;
 
 	var filhos = Areas.find({paiId: raiz},{sort:{nome:1}}).fetch();
 	var cargos = Cargos.find({areaId: raiz, carreiraId: {$ne: coordCarreira._id}}).fetch();	
@@ -36,11 +29,7 @@ var constroiHierarquia = function(raiz){
 	}
 
 	var csCargos = cargos.length;
-
 	var csFilhos = 0;
-
-
-
 
 	_.each(filhos,function(filho){
 		csFilhos = csFilhos + constroiHierarquia(filho._id);
@@ -90,7 +79,7 @@ var constroiHierarquia = function(raiz){
 	})
 
 
-	var ultimoNaColuna = !Areas.findOne({caminho:area._id, tipo:{$gt:area.tipo}}) && area._id!="*";
+	var ultimoNaColuna = !Areas.findOne({caminho:area._id, tipo:{$gt:area.tipo}}) && area._id!=GHOST_CHAR;
 
 	//coordenadores
 	var coordenadores = Cargos.find({areaId: area._id,carreiraId: coordCarreira._id}).fetch();
@@ -107,7 +96,6 @@ var constroiHierarquia = function(raiz){
 	})
 
 	if (ultimoNaColuna){
-		console.log(area.nome);
 		mapaCoordenadores.push({
 			colspan: cs,
 			cargos: coordCargos,
@@ -121,12 +109,7 @@ var constroiHierarquia = function(raiz){
 		}
 	}
 
-	//console.log("Coordenadores ", area.nome, " (" , cs, ") ->", coordenadores);
-
-
 	//areas sem cargos
-	
-	//console.log(area.nome, " ultimo na linha-> ", ultimoNaColuna);
 	if (!cargos.length && ultimoNaColuna){
 		mapaCargos.push([{
 			cargoId:null,
@@ -137,9 +120,7 @@ var constroiHierarquia = function(raiz){
 
 	//buracos nas areas que estão abaixo do atual
 	if (cargos.length || cs > (csCargos + csFilhos)){
-		//console.log(area.nome + "!!!!!");
 		if (area.tipo<4){
-			////console.log(area.nome, "!!");
 			for (i=area.tipo+1;i<=4;i++){
 				pushNull(i, csCargos || 1, area.nome + " olhando pra baixo")
 			}
@@ -163,14 +144,7 @@ var constroiHierarquia = function(raiz){
 		colspan: cs,
 		classe: tipoToNome[area.tipo],
 		areaId: area._id
-	});
-	
-
-
-	 
-	//console.log(area.nome," -> colspan:", cs); 	
-	 
-	
+	});	 
 
 	return cs;
 }
@@ -218,48 +192,28 @@ function constroiDiagrama(){
 	Meteor.setTimeout(function(){matrizAreas.set(mapaAreas.clean())});;
 	Meteor.setTimeout(function(){matrizCargos.set(transpose(mapaCargos))});
 
+	Meteor.setTimeout(function(){$(".scroll-diagrama").mCustomScrollbar("update");});
 }
 
 
-Template.diagrama.helpers({
-	areas: function(){
-		return Areas.find().fetch();
-	},
-	  selected: function(event, suggestion, datasetName) {
-	    // event - the jQuery event object
-	    // suggestion - the suggestion object
-	    // datasetName - the name of the dataset the suggestion belongs to
-	    // TODO your event handler here
-	    console.log(suggestion._id);
-	    FlowRouter.setQueryParams({raiz: suggestion._id});
-	  },
-	matrizAreas:function(){
-		//console.log(matrizAreas.get());
-		return matrizAreas.get();
-	},
-	matrizCargos:function(){
-		//console.log(matrizAreas.get());
-		return matrizCargos.get();
-	},
-	matrizCoordenadores: function(){
-		return matrizCoordenadores.get();
-	},
-	botaoSubir:function(){
-		return this.areaId!="*" && FlowRouter.getQueryParam('raiz')==this.areaId;
-	}
-})
-Template.diagrama.onRendered(function(){
+
+Template.diagramaArvore.onRendered(function(){
+	coordCarreira = Carreiras.findOne({coordenador: true});
+	coordSenioridadeId = coordCarreira.estrutura[0];
+	coordSenioridade = Senioridades.findOne({_id: coordSenioridadeId});	
+		
+
 	$(".scroll-diagrama").mCustomScrollbar({
 	    axis:"x"
-	});		
-	Meteor.typeahead.inject();
+	});			
 
 	this.autorun(constroiDiagrama);
-})
+});
 
-Template.diagrama.events({
+
+Template.diagramaArvore.events({
 	'click .mudar-raiz':function(){
-		if (this.areaId=="*") return;
+		if (this.areaId==GHOST_CHAR) return;
 		FlowRouter.setQueryParams({raiz: this.areaId});
 	},
 	'click .subir-nivel':function(e){
@@ -271,5 +225,72 @@ Template.diagrama.events({
 		if (this.classificacao){
 			Modal.show('_mostrarClassificacao',{classificacaoId: this.classificacao._id});
 		}
-	}	
+	},	
+})
+
+Template.diagramaArvore.helpers({
+	matrizAreas:function(){
+		return matrizAreas.get();
+	},
+	matrizCargos:function(){
+		return matrizCargos.get();
+	},
+	matrizCoordenadores: function(){
+		return matrizCoordenadores.get();
+	},
+	botaoSubir:function(){
+		return this.areaId!=GHOST_CHAR && FlowRouter.getQueryParam('raiz')==this.areaId;
+	},
+})
+
+
+Template.diagrama.onRendered(function(){
+	Meteor.typeahead.inject();	
+})
+
+Template.diagrama.events({
+	'click .conhecer' : function(){
+		FlowRouter.setQueryParams({raiz: this._id});
+	},
+	'click .btn-voltar':function(e){
+		console.log(this);
+		e.stopPropagation();
+		var area = Areas.findOne({_id: this._id});
+		FlowRouter.setQueryParams({raiz: area.paiId || null});
+	},	
+})
+
+
+
+Template.diagrama.helpers({
+	areaRaiz: function(){
+		var raiz = FlowRouter.getQueryParam('raiz');
+		if (!raiz) return {nome:"AES"};
+		var area = Areas.findOne({_id: raiz});
+		return area;
+	},
+	filhosDiretos: function(){
+		var raiz = FlowRouter.getQueryParam('raiz') || null;
+		var filhos = Areas.find({paiId: raiz});
+		return filhos;
+	},
+	areas: function(){
+		return Areas.find().fetch();
+	},
+	selected: function(event, suggestion, datasetName) {
+		FlowRouter.setQueryParams({raiz: suggestion._id});
+	},
+	listaHorizontal: function(){
+		var raiz = FlowRouter.getQueryParam('raiz') || null;
+		if (!raiz) return true;
+		var area = Areas.findOne({_id: raiz});
+		if (area.tipo==1) return true;
+		return false;
+	},
+	areaImg: function(){
+		return tipoToImg(this.tipo);
+	},
+	area: function(id){
+		return Areas.findOne({_id: id});
+	}
 })
