@@ -1,3 +1,6 @@
+Template.registerHelper('$log',function(what){
+  console.log(what);
+})
 Template.registerHelper('$concat', function (a,b){
   a = String(a);
   b = String(b);

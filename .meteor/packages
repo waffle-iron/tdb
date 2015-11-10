@@ -15,13 +15,11 @@ fortawesome:fontawesome
 aldeed:collection2
 audit-argument-checks
 dburles:collection-helpers
-fastclick
 meteorhacks:fast-render
 meteorhacks:subs-manager
 raix:handlebar-helpers
 reactive-dict
 underscore
-zimme:select2-bootstrap3-css
 aldeed:autoform
 chrismbeckett:toastr
 kadira:flow-router
@@ -38,7 +36,6 @@ zimme:collection-timestampable
 aldeed:autoform-bs-button-group-input
 useraccounts:core
 accounts-password
-accounts-facebook
 service-configuration
 risul:chance
 alanning:roles
@@ -100,4 +97,5 @@ mrt:fitvids
 johannesma:meteor-flexslider
 isotope:isotope
 juliomac:prettyphoto
-mizzao:jquery-ui
+lbee:moment-helpers
+hinas:meteor-bootstrap-confirmation

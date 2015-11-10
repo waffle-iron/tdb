@@ -175,6 +175,9 @@
 
 
 .bloco-area{
+	padding-left:10px;
+	padding-right:10px;
+	white-space: nowrap;
 	color:black;
 	border: 1px solid rgba(0,0,0,0.15);
 	cursor: pointer;
@@ -193,8 +196,6 @@
 		font-size:14px;
 		margin-left:20px;
 	}
-
-
 }
 
 .scroll-diagrama{

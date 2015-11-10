@@ -1,58 +1,76 @@
 <template name="cargosClassificacoes">
-	{{#with cargo}}
-		<div class="tabs-container">
-		    <ul class="nav nav-tabs">
-		    	{{#each senioridadesPossiveis}}
-		    		<li class="{{#unless @index}}active{{/unless}}"><a data-toggle="tab" href="#senioridade-{{_id}}" aria-expanded="true">{{nome}}</a></li>
-		    	{{/each}}
-		    </ul>
-		    <div class="tab-content">
-		    	{{#each senioridadesPossiveis}}
-		    		<div id="senioridade-{{_id}}" class="tab-pane {{#unless @index}}active{{/unless}}">
-		                <div class="panel-body">
-		                {{#with classificacao}}
-		                	{{#if edit}}
-			                	{{#autoForm collection="Classificacoes" id="updateClassificacoesForm" type="update" doc=this}}
-			                		{{> afQuickField name="atribuicoes"}}
-			                		{{> afQuickField name="conhecimentos"}}
-			                		{{> afQuickField name="formacao"}}
-			                		{{> afQuickField name="experiencia"}}
-			                		{{> submit texto="Salvar"}}
-			                	{{/autoForm}}		                		
-	                		{{else}}
-	                			<div class="row">
-	                				<div class="col-sm-12" align="right">
-	                					<button class="btn btn-primary edit">
-	                						<i class="fa fa-edit"></i> Editar
-	                					</button>
-	                				</div>
-	                			</div>
-		                		{{> _descreverLista titulo="Atribuições" lista=atribuicoes}}
-		                		{{> _descreverLista titulo="Conhecimentos" lista=conhecimentos}}
-		                		{{> _descreverLista titulo="Formação" lista=formacao}}
-	                			{{> _descreverLista titulo="Experiência" lista=experiencia}}	                		
-	                		{{/if}}
+	<div class="tabs-container">
+	    <ul class="nav nav-tabs">
+	    	{{#each senioridadesPossiveis}}
+	    		<li class="{{#if selecionada}}active{{/if}} seleciona-senioridade"><a data-toggle="tab" href="#senioridade-{{_id}}" aria-expanded="true">{{nome}}</a></li>
+	    	{{/each}}
+	    </ul>
+	    <div class="tab-content">
+    		<div class="tab-pane active">
+                <div class="panel-body">
+	                {{#with classificacao}}
+            			<div class="row">
+            				<div class="col-sm-12" align="right">
+				    			<button class="btn btn-primary abrir-backup">
+				    				<i class="fa fa-database"></i> Histórico de edições
+				    			</button>
+            				</div>
+            			</div>		    			                
 
-		                {{else}}
-		                	
-		                	{{#autoForm collection="Classificacoes" id="insertClassificacoesForm" type="insert"}}
-		                		{{> afQuickField type="hidden" name="cargoId" value=../../_id}}
-		                		{{> afQuickField type="hidden" name="senioridadeId" value=_id}}
-		                		{{> afQuickField name="atribuicoes"}}
-		                		{{> afQuickField name="conhecimentos"}}
-		                		{{> afQuickField name="formacao"}}
-		                		{{> afQuickField name="experiencia"}}
-		                		{{> submit texto="Adicionar"}}
-		                	{{/autoForm}}
 
-		                	<!--{{> quickForm collection="Classificacoes" type="insert" id="teste"}}-->
-		                {{/with}}
-		                </div>
-		    		</div>
-		    	{{/each}}
-		    </div>
-		</div>	
-	{{/with}}
+            			<!-- Estou no modo Edit -->
+	                	{{#if edit}}
+                			<div class="row">
+                				<div class="col-sm-12" align="right">
+                					<button class="btn btn-warning cancelar-edit">
+                						<i class="fa fa-times"></i> Cancelar
+                					</button>
+                				</div>
+                			</div>
+                			
+                			{{> formUpdateClassificacao}}
+                		{{else}}
+                			<!--Estou visualizando normalmente -->
+                			<div class="row">
+                				<div class="col-sm-12" align="right">
+                					<button class="btn btn-primary edit">
+                						<i class="fa fa-edit"></i> Editar
+                					</button>
+                				</div>
+                			</div>
+	                		{{> _descreverLista titulo="Atribuições" lista=atribuicoes}}
+	                		{{> _descreverLista titulo="Conhecimentos" lista=conhecimentos}}
+	                		{{> _descreverLista titulo="Formação" lista=formacao}}
+                			{{> _descreverLista titulo="Experiência" lista=experiencia}}	                		
+                		{{/if}}
+	                {{else}}
+	                	<!-- Não tem nenhuma entrada para esta senioridade -->
+	                	<h3>Nenhum dado sobre esta senioridade</h3>
+	                	{{> formInsertClassificacao}}
+	                {{/with}}
+                </div>
+    		</div>
+	    </div>
+	</div>	
+</template>
+
+<template name="formUpdateClassificacao">
+	{{#autoForm collection="Classificacoes" template="bootstrap3" id='updateClassificacoesForm' type="update" doc=this}}
+		{{> afQuickField name="atribuicoes"}}
+		{{> afQuickField name="conhecimentos"}}
+		{{> afQuickField name="formacao"}}
+		{{> afQuickField name="experiencia"}}
+		{{> submit texto="Salvar"}}
+	{{/autoForm}}	
+</template>
+<template name="formInsertClassificacao">
+	{{#autoForm collection="Classificacoes" template="bootstrap3" id="insertClassificacoesForm" type='insert'}}
+		{{> afQuickField name="atribuicoes"}}
+		{{> afQuickField name="conhecimentos"}}
+		{{> afQuickField name="formacao"}}
+		{{> afQuickField name="experiencia"}}
+		{{> submit texto="Adicionar"}}
+	{{/autoForm}}
 </template>
 
 <template name="_descreverLista">
