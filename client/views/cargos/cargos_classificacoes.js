@@ -43,7 +43,20 @@ Template.cargosClassificacoes.helpers({
 	},
 	selecionada: function(){
 		return Session.get('senioridade-selecionada')==this._id;
-	}
+	},
+	beforeRemove: function () {
+      return function (collection, id) {
+        var object = this;
+		alertify.confirm('Remover?', function(){
+			object.remove();
+		}).set('title', 'Confirmar');
+      };
+    },
+    onSuccess: function(){
+    	return function(result){
+    		toastr.success("Backup removido com sucesso", "Sucesso");
+    	}
+    }	
 })
 
 
