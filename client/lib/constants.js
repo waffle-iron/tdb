@@ -1,10 +1,5 @@
 // Define App Constants
-
-if (Meteor.App) {
-  throw new Meteor.Error('Meteor.App already defined? see client/lib/constants.js');
-}
-
 Meteor.App = {
-  NAME: 'EPI Control System',
-  DESCRIPTION: 'A boilerplate for meteorjs projects http://matteodem.github.io/meteor-boilerplate/'
+  NAME: 'TechDB',
+  DESCRIPTION: 'TDB, or Technology Database is an Envisioning project for describing and analysing technologies.'
 };

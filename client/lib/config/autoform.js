@@ -1,18 +1,17 @@
-//AutoForm.setDefaultTemplateForType('afFormGroup', 'pages');
-AutoForm.setDefaultTemplate("bootstrap3-horizontal");
+AutoForm.setDefaultTemplate('bootstrap3-horizontal');
 
-
+//
+//  Autoform Fix for array fields
+//
 AutoForm.hooks({
   updateClassificacoesForm: {
     before: {
       update: function(doc) {
-      	console.log(doc);
-        var ref;
-
-        var corrige = function(campo){
-	        if (((ref = doc.$set) != null ? ref[campo] : void 0) != null) {
-	          doc.$set[campo] = _.without(doc.$set[campo], null);
-	        }
+        function corrige(campo) {
+          let ref;
+          if (((ref = doc.$set) !== null ? ref[campo] : void 0) !== null) {
+            doc.$set[campo] = _.without(doc.$set[campo], null);
+          }
         }
 
         corrige('atribuicoes');

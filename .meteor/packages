@@ -4,8 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-autopublish
-insecure
 less
 jquery
 momentjs:moment
@@ -99,3 +97,9 @@ isotope:isotope
 juliomac:prettyphoto
 lbee:moment-helpers
 hinas:meteor-bootstrap-confirmation
+reywood:publish-composite
+meteorhacks:unblock
+ecmascript
+es5-shim
+sacha:spin
+insecure

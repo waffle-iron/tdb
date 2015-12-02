@@ -7,7 +7,7 @@
 
 // Main colors
 @skin-1-color: #0e9aef;
-@skin-1-nav-bg: #002a3a;
+@skin-1-nav-bg: #3e495f;
 @skin-1-a-color: #9ea6b9;
 @skin-1-page-bg: #f4f6fa;
 
@@ -24,19 +24,13 @@
   margin: 14px 5px 5px 15px;
 }
 
-body.mini-navbar .nav-header {
-  background: @nav-bg;
-  background-image: none;
-  -webkit-transitions: background 1s;
-}
-
 .skin-1 .spin-icon {
   background: @skin-1-color !important;
 }
 
 .skin-1 .nav-header {
-  background: @nav-bg;
-  background-image: url('patterns/header-profile-2.png');
+  background: @skin-1-color;
+  background: url('patterns/header-profile-skin-1.png');
 }
 
 .skin-1.mini-navbar .nav-second-level {
@@ -52,7 +46,7 @@ body.mini-navbar .nav-header {
 }
 
 .skin-1 .nav > li.active {
-  background: darken(@skin-1-nav-bg, 1%);
+  background: darken(@skin-1-nav-bg, 2%);
 }
 
 .skin-1 .nav > li > a {
@@ -109,7 +103,6 @@ body.skin-1 {
 
 .skin-1 .nav-header {
   padding: 35px 25px 25px 25px;
-  padding: 0px;
 }
 
 .skin-1 .nav-header a.dropdown-toggle {

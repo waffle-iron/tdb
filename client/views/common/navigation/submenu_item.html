@@ -1,0 +1,5 @@
+<template name="submenuItem">
+    {{#if isInRole roles}}
+        <li><a href="{{pathFor linkTo}}">{{name}}</a></li>
+    {{/if}}
+</template>
