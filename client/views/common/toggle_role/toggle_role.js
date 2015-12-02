@@ -1,35 +1,31 @@
-
-
 Template.toggleRole.helpers({
-	roles:function(){
-		return Meteor.roles.find();
-	},
-	checked:function(){
-
-		var userId = Template.parentData(1)._id;
-		var user = Meteor.users.findOne({_id:userId})
-		
-		
-		
-		return (this.name==user.role())?"active":"";
-	}
-})
+  roles: function() {
+    return Meteor.roles.find();
+  },
+  checked: function() {
+    let userId = Template.instance().data._id;
+    let user = Meteor.users.findOne({
+      _id: userId
+    });
+    return this.name === user.role() ? 'active' : '';
+  }
+});
 
 Template.toggleRole.events({
-	"click .btn":function(e){
-		e.preventDefault();
-		var userId = Template.currentData()._id;		
-		Session.set('toggledRole', this.name);
+  'click .btn': function(e, tmpl) {
+    e.preventDefault();
+    let userId = tmpl.data._id;
+    let role = this.name;
+    alertify.confirm('Tem certeza?', function() {
+      Meteor.call('updateRoles', userId, role, (err) => {
+        if (err) {
+          toastr.error(err.toString(), 'Erro');
+        } else {
+          toastr.success('Role changed: ' + role, 'Success');
+        }
+        Modal.hide();
+      });
+    });
+  }
+});
 
-		alertify.confirm('Tem certeza?', function(){
-			Meteor.call('updateRoles', userId, Session.get('toggledRole'), function(err,res){
-				if (err) {
-					console.log(err);
-					toastr.error(err,"Erro")
-				}else{
-					toastr.success("Role setado: " + Session.get('toggledRole'), 'Sucesso');
-				}
-			});
-		});
-	}
-})

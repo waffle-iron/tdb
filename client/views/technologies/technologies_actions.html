@@ -1,0 +1,13 @@
+<template name="technologiesActions">
+	<a class="btn btn-success btn-xs" href="{{pathFor 'technologies.edit' id=_id}}">
+    <i class="fa fa-edit"></i>
+  </a>
+	{{#quickRemoveButton 
+    collection="Senioridades" 
+    _id=_id class="btn btn-danger btn-xs" 
+    beforeRemove=beforeRemove
+    onSuccess=onSuccess
+    onError=onError}}
+    <i class="fa fa-trash"></i>
+  {{/quickRemoveButton}}
+</template>

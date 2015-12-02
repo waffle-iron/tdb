@@ -3,108 +3,112 @@ Template.menu.helpers({
     return [
       {
         regex: '^users',
-        name: 'Usuários',
+        name: 'Users',
         icon: 'fa fa-users',
-        roles: ['god', 'admin', 'gestor'],
+        roles: ['god', 'admin'],
         submenu: [
           {
-            name: 'Gerenciar',
+            name: 'Manage',
             linkTo: 'users.index',
-            roles: ['god', 'admin', 'gestor']
+            roles: ['god', 'admin']
           },
           {
-            roles: ['god', 'admin', 'gestor'],
+            roles: ['god', 'admin'],
             linkTo: 'users.add',
-            name: 'Adicionar'
+            name: 'New'
           }
         ]
       },
       {
-        regex: '^areas',
-        name: 'Áreas',
+        regex: '^technologies',
+        name: 'Technologies',
         icon: 'fa fa-database',
-        roles: ['god', 'admin', 'gestor'],
+        roles: ['god', 'admin'],
         submenu: [
           {
-            roles: ['god', 'admin', 'gestor'],
-            linkTo: 'areas.index',
-            name: 'Gerenciar'
+            roles: ['god', 'admin'],
+            linkTo: 'technologies.index',
+            name: 'Manage'
           },
           {
-            roles: ['god', 'admin', 'gestor'],
-            linkTo: 'areas.add',
-            name: 'Adicionar'
+            roles: ['god', 'admin'],
+            linkTo: 'technologies.add',
+            name: 'New'
           }
         ]
       },
       {
-        regex: '^cargos',
-        name: 'Cargos',
+        regex: '^projects',
+        name: 'Projects',
         icon: 'fa fa-briefcase',
-        roles: ['god', 'admin', 'gestor'],
+        roles: ['god', 'admin'],
         submenu: [
           {
-            roles: ['god', 'admin', 'gestor'],
-            linkTo: 'cargos.index',
-            name: 'Gerenciar'
+            roles: ['god', 'admin'],
+            linkTo: 'projects.index',
+            name: 'Manage'
           },
           {
-            roles: ['god', 'admin', 'gestor'],
-            linkTo: 'cargos.add',
-            name: 'Adicionar'
+            roles: ['god', 'admin'],
+            linkTo: 'projects.add',
+            name: 'New'
           }
         ]
       },
       {
-        regex: '^carreiras',
-        name: 'Carreiras',
+        regex: '^organizations',
+        name: 'Organizations',
         icon: 'fa fa-map-o',
-        roles: ['god', 'admin', 'gestor'],
+        roles: ['god', 'admin'],
         submenu: [
           {
-            roles: ['god', 'admin', 'gestor'],
-            linkTo: 'carreiras.index',
-            name: 'Gerenciar',
+            roles: ['god', 'admin'],
+            linkTo: 'organizations.index',
+            name: 'Manage',
           },
           {
-            roles: ['god', 'admin', 'gestor'],
-            linkTo: 'carreiras.add',
-            name: 'Adicionar'
+            roles: ['god', 'admin'],
+            linkTo: 'organizations.add',
+            name: 'New'
           }
         ]
       },
       {
-        regex: '^senioridades',
-        name: 'Senioridades',
+        regex: '^persons',
+        name: 'Persons',
         icon: 'fa fa-list-ol',
-        roles: ['god', 'admin', 'gestor'],
+        roles: ['god', 'admin'],
         submenu: [
           {
-            roles: ['god', 'admin', 'gestor'],
-            linkTo: 'senioridades.index',
-            name: 'Gerenciar',
+            roles: ['god', 'admin'],
+            linkTo: 'persons.index',
+            name: 'Manage',
           },
           {
-            roles: ['god', 'admin', 'gestor'],
-            linkTo: 'senioridades.add',
-            name: 'Adicionar'
+            roles: ['god', 'admin'],
+            linkTo: 'persons.add',
+            name: 'New'
           }
         ]
       },
       {
-        regex: '^arvore',
-        name: 'Árvore',
-        icon: 'fa fa-tree',
+        regex: '^scifis',
+        name: 'Sci Fi',
+        icon: 'fa fa-list-ol',
         roles: ['god', 'admin'],
-        linkTo: 'arvore.index'
-      },
-      {
-        regex: '^diagrama',
-        name: 'Diagrama',
-        icon: 'fa fa-circle',
-        roles: ['god', 'admin'],
-        linkTo: 'diagrama.index'
-      },
+        submenu: [
+          {
+            roles: ['god', 'admin'],
+            linkTo: 'scifis.index',
+            name: 'Manage',
+          },
+          {
+            roles: ['god', 'admin'],
+            linkTo: 'scifis.add',
+            name: 'New'
+          }
+        ]
+      }
     ];
   }
 });
