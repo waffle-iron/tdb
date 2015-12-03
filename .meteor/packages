@@ -102,7 +102,5 @@ meteorhacks:unblock
 ecmascript
 es5-shim
 sacha:spin
-insecure
-autopublish
 yogiben:autoform-tags
 mpowaga:autoform-summernote
