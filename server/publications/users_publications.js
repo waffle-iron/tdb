@@ -18,10 +18,7 @@ Meteor.publishComposite('tabular_UsersList', function(tableName, ids, fields) {
   };
 });
 
-
-/*
 Meteor.publish(null, function() {
-  return Meteor.users.find({}, {fields: {info: 1, roles: 1, criadoEm: 1, criadoPorId: 1, emails: 1, status: 1}});
+  return Meteor.users.find({}, {fields: {roles: 1, status: 1}});
 });
-*/
 

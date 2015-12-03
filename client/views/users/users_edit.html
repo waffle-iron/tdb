@@ -1,8 +1,30 @@
 <template name="usersEdit">
-{{#with user}}
-	{{>usersEditProfile user=this}}
-	<!--{{>usersEditInfo user=this}}-->
-{{/with}}
+{{#if subsReady user}}
+  {{#with user}}
+    {{#panel title="Edit Profile"}}
+        {{#autoForm collection="Meteor.users" 
+        template="bootstrap3-horizontal" 
+        doc=this type="update" 
+        id="updateUsersProfileForm" 
+        class="form-horizontal"}}
+          {{> afQuickField name="profile.nome" label-class="col-sm-3" input-col-class="col-sm-9"}}
+          {{> afQuickField name="profile.sobrenome" label-class="col-sm-3" input-col-class="col-sm-9"}}
+          {{> afQuickField name="profile.nascimento" label-class="col-sm-3" input-col-class="col-sm-9"}}
+          {{> afQuickField name="profile.genero" label-class="col-sm-3" input-col-class="col-sm-9"}}
+          {{> afQuickField name="profile.cpf" label-class="col-sm-3" input-col-class="col-sm-9"}}
+          {{> afQuickField name="profile.rg" label-class="col-sm-3" input-col-class="col-sm-9"}}
+          {{> afQuickField name="profile.endereco" label-class="col-sm-3" input-col-class="col-sm-9"}}
+          {{> afQuickField name="profile.telefone" label-class="col-sm-3" input-col-class="col-sm-9"}}
+          {{> afQuickField name="profile.celular" label-class="col-sm-3" input-col-class="col-sm-9"}}
+          {{> afQuickField name="profile.email" label-class="col-sm-3" input-col-class="col-sm-9"}}
+          {{> submit texto="Save" buttonClass="col-sm-9" offsetClass="col-sm-offset-3"}}
+        {{/autoForm}} 
+    {{/panel}}
+  {{/with}}
+{{else}}
+  {{> spinner}}
+{{/if}}
+
 </template>
 
 
