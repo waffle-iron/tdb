@@ -72,42 +72,6 @@ Template.menu.helpers({
             name: 'New'
           }
         ]
-      },
-      {
-        regex: '^persons',
-        name: 'Persons',
-        icon: 'fa fa-list-ol',
-        roles: ['god', 'admin'],
-        submenu: [
-          {
-            roles: ['god', 'admin'],
-            linkTo: 'persons.index',
-            name: 'Manage',
-          },
-          {
-            roles: ['god', 'admin'],
-            linkTo: 'persons.add',
-            name: 'New'
-          }
-        ]
-      },
-      {
-        regex: '^scifis',
-        name: 'Sci Fi',
-        icon: 'fa fa-list-ol',
-        roles: ['god', 'admin'],
-        submenu: [
-          {
-            roles: ['god', 'admin'],
-            linkTo: 'scifis.index',
-            name: 'Manage',
-          },
-          {
-            roles: ['god', 'admin'],
-            linkTo: 'scifis.add',
-            name: 'New'
-          }
-        ]
       }
     ];
   }
