@@ -3,7 +3,7 @@
         {{#modalBody}}
             <div class='user-change-image'>
                 <img src={{currentImage}} class='current-image'>
-                <button class="file-upload btn btn-primary btn-large" id='upload-image'>
+                <button class="file-upload btn btn-primary btn-large" id='select-image'>
                     <i class="fa fa-folder-open"></i>
                     <input type="file" class="upload" />
                 </button>
@@ -11,6 +11,10 @@
                 <button class="btn btn-primary btn-large" id='take-photo'>
                     <i class="fa fa-camera"></i>
                 </button>
+
+                {{#with FS.GetFile "Images" selectedImageId}}
+                    {{> FS.UploadProgressBar bootstrap=true}}
+                {{/with}}
             </div>
         {{/modalBody}}
         {{#modalFooter}}

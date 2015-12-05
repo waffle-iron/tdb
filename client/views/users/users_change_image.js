@@ -1,5 +1,5 @@
 Template.usersChangeImage.events({
-  'change #upload-image': function(e, tmpl) {
+  'change #select-image': function(e, tmpl) {
     let file = e.target.files[0];
     let reader = new FileReader();
     reader.readAsDataURL(file);
@@ -10,7 +10,7 @@ Template.usersChangeImage.events({
   'click #upload-image': function(e, tmpl) {
     let file = tmpl.currentImage.get();
     if (!file) return;
-    Images.insert(file, function(err, fileObj) {
+    let uploadedImage = Images.insert(file, function(err, fileObj) {
       if (err) {
         return toastr.error('some error occurred', 'Error');
       }
@@ -22,8 +22,27 @@ Template.usersChangeImage.events({
           'profile.imageId': fileObj._id
         }
       });
-      return toastr.success('file uploaded!', 'Success');
+
+      var cursor = Images.find(fileObj._id);
+
+
+      var liveQuery = cursor.observe({
+        changed: function(newImage, oldImage) {
+          if (newImage.isUploaded()) {
+            liveQuery.stop();
+            Meteor.setTimeout(() => {
+              Modal.hide();
+              return toastr.success('file uploaded!', 'Success');
+            }, 1000)
+            
+          }
+        }
+      });      
+      
     });
+
+    tmpl.selectedImageId.set(uploadedImage._id);
+
   },
   'click #take-photo': function(e, tmpl) {
     MeteorCamera.getPicture({
@@ -42,10 +61,15 @@ Template.usersChangeImage.events({
 
 Template.usersChangeImage.onCreated(function() {
   this.currentImage = new ReactiveVar;
+  this.selectedImageId = new ReactiveVar;
 });
 
 Template.usersChangeImage.helpers({
   currentImage() {
     return Template.instance().currentImage.get();
+  },
+  selectedImageId() {
+    console.log(Template.instance().selectedImageId.get());
+    return Template.instance().selectedImageId.get();
   }
 });
