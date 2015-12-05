@@ -1,0 +1,13 @@
+<template name="organizationsActions">
+  <a class="btn btn-success btn-xs" href="{{pathFor 'organizations.edit' id=_id}}">
+    <i class="fa fa-edit"></i>
+  </a>
+  {{#quickRemoveButton 
+    collection="Organizations" 
+    _id=_id class="btn btn-danger btn-xs" 
+    beforeRemove=beforeRemove
+    onSuccess=onSuccess
+    onError=onError}}
+    <i class="fa fa-trash"></i>
+  {{/quickRemoveButton}}
+</template>
