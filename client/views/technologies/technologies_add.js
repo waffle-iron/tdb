@@ -5,7 +5,7 @@ AutoForm.hooks({
       FlowRouter.go('technologies.index');
     },
     onError(formType, error) {
-      toastr.success(error.toString(), 'Error');
+      toastr.error(error.toString(), 'Error');
     },
   }
 });
