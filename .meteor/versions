@@ -85,6 +85,7 @@ logging@1.0.8
 maazalik:malihu-jquery-custom-scrollbar@3.0.6
 matb33:collection-hooks@0.8.1
 mdg:camera@1.2.0
+mdg:validated-method@0.2.0
 mdg:validation-error@0.1.0
 meteor@1.1.10
 meteor-base@1.0.1
