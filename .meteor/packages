@@ -38,11 +38,11 @@ service-configuration
 risul:chance
 alanning:roles
 meteorhacks:npm
-
+mdg:camera-original
 
 npm-container
 matb33:collection-hooks
-okland:camera-ui
+
 lepozepo:cloudinary
 aldeed:autoform-bs-datepicker
 rajit:bootstrap3-datepicker
@@ -105,3 +105,10 @@ sacha:spin
 yogiben:autoform-tags
 mpowaga:autoform-summernote
 forwarder:autoform-wizard
+insecure
+cfs:s3
+cfs:standard-packages
+cfs:gridfs
+yogiben:autoform-file
+autopublish
+cfs:ejson-file

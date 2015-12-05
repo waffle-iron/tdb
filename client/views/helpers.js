@@ -1,3 +1,27 @@
+formatarRole = function(role, cor = false) {
+  let spanClass = texto = '';
+  switch (role) {
+  case 'god':
+    spanClass = 'badge-success';
+    texto = 'God';
+    break;
+  case 'admin':
+    spanClass = 'badge-danger';
+    texto = 'Administrador';
+    break;
+  case 'user':
+    spanClass = 'badge-primary';
+    texto = 'User';
+    break;
+  default:
+    spanClass = 'badge-primary';
+    texto = 'Desconhecido';
+  }
+
+  return cor ? '<span class="badge ' + spanClass + '">' + texto + '</span>' : texto;
+};
+
+
 Template.registerHelper('$log', function(what) {
   console.log(what);
 });
@@ -23,4 +47,9 @@ Template.registerHelper('isInRoles', function(roles) {
 
 Template.registerHelper('formatarReais', function(valor) {
   return accounting.formatMoney(valor, 'R$ ', 2, '.', ',');
+});
+
+
+Template.registerHelper('formatarRole', function(role, color) {
+  return formatarRole(role, color);
 });

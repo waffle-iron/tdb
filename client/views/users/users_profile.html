@@ -1,0 +1,35 @@
+<template name="usersProfile">
+    <table class="table table-striped pair-table">
+        <tbody>
+            <tr>
+                <td>Full name</td>
+                <td>{{profile.fullName}}</td>
+            </tr>
+            <tr>
+                <td>Birth</td>
+                <td>{{moFormat profile.birth 'YYYY-MM-DD'}}</td>
+            </tr>
+            <tr>
+                <td>Gender</td>
+                <td>{{profile.gender}}</td>
+            </tr>
+            <tr>
+                <td>Telephone</td>
+                <td>{{profile.telephone}}</td>
+            </tr>
+            <tr>
+                <td>Cellphone</td>
+                <td>{{profile.cellphone}}</td>
+            </tr>
+            <tr>
+                <td>Role</td>
+                <td>{{{formatarRole role true}}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-md-12" align='right'>
+            <button class="btn btn-primary btn-lg" id='btn-edit-profile'>Edit Profile</button>
+        </div>
+    </div>
+</template>

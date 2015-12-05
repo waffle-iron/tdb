@@ -1,0 +1,22 @@
+<template name="usersChangeImage">
+    {{#modal titulo="Profile picture" subtitulo="Select an image from your PC or take a new photo with your webcam" icone="fa fa-photo" }}
+        {{#modalBody}}
+            <div class='user-change-image'>
+                <img src={{currentImage}} class='current-image'>
+                <button class="file-upload btn btn-primary btn-large" id='upload-image'>
+                    <i class="fa fa-folder-open"></i>
+                    <input type="file" class="upload" />
+                </button>
+            
+                <button class="btn btn-primary btn-large" id='take-photo'>
+                    <i class="fa fa-camera"></i>
+                </button>
+            </div>
+        {{/modalBody}}
+        {{#modalFooter}}
+            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" id="upload-image">Upload</button>
+        {{/modalFooter}}
+    {{/modal}}
+</template>
+
