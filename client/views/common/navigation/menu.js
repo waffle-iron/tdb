@@ -55,6 +55,7 @@ Template.menu.helpers({
           }
         ]
       },
+
       {
         regex: '^organizations',
         name: 'Organizations',
@@ -72,8 +73,25 @@ Template.menu.helpers({
             name: 'New'
           }
         ]
+      },
+      {
+        regex: '^attachments',
+        name: 'Attachments',
+        icon: 'fa fa-map-o',
+        roles: ['god', 'admin'],
+        submenu: [
+          {
+            roles: ['god', 'admin'],
+            linkTo: 'attachments.index',
+            name: 'Manage',
+          },
+          {
+            roles: ['god', 'admin'],
+            linkTo: 'attachments.add',
+            name: 'New'
+          }
+        ]
       }
     ];
   }
 });
-
