@@ -2,19 +2,19 @@ Template.projectsActions.helpers({
   beforeRemove() {
     return function(collection, id) {
       let doc = collection.findOne(id);
-      alertify.confirm('Remove <b>' + doc.name + '</b>?', () => {
+      removeConfirmation(doc.name, () => {
         this.remove();
-      }).set('title', 'Confirm');
+      });
     };
   },
   onSuccess() {
-    return function() {
-      toastr.success('Project deleted successfully', 'Success');
+    return function(result) {
+      removeSuccess();
     };
   },
   onError() {
     return function() {
-      toastr.error(error.toString(), 'Error');
+      removeError();
     };
   }
 });

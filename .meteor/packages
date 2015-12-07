@@ -114,3 +114,4 @@ autopublish
 cfs:ejson-file
 mdg:validated-method
 newnectar:meteor-autoform-select-country-flags
+kevohagan:sweetalert
