@@ -1,16 +1,22 @@
-Template.organizationsActions.helpers({
-  beforeRemove(collection, id) {
+Template.attachmentsActions.helpers({
+  beforeRemove() {
+    return function(collection, id) {
       let doc = collection.findOne(id);
-      alertify.confirm('Remove <b>' + doc.name + '</b>?', () => {
+      removeConfirmation(doc.name, () => {
         this.remove();
-      }).set('title', 'Confirm');
-    },
-    onSuccess() {
-      toastr.success('Organization deleted successfully', 'Success');
-    },
-    onError() {
-      toastr.error(error.toString(), 'Error');
-    }
+      });
+    };
+  },
+  onSuccess() {
+    return function() {
+      removeSuccess();
+    };
+  },
+  onError() {
+    return function() {
+      removeError();
+    };
+  }
 });
 
 
@@ -19,7 +25,7 @@ Template.attachmentsActions.events({
     e.stopPropagation();
     FlowRouter.go('attachments.edit', {id: this._id});
   },
-  'click #btn-delete': function(e) {
+  'click #btn-remove': function(e) {
     e.stopPropagation();
   }
 });
