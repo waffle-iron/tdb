@@ -55,6 +55,7 @@ Template.menu.helpers({
           }
         ]
       },
+
       {
         regex: '^organizations',
         name: 'Organizations',
@@ -74,37 +75,19 @@ Template.menu.helpers({
         ]
       },
       {
-        regex: '^persons',
-        name: 'Persons',
-        icon: 'fa fa-list-ol',
+        regex: '^attachments',
+        name: 'Attachments',
+        icon: 'fa fa-map-o',
         roles: ['god', 'admin'],
         submenu: [
           {
             roles: ['god', 'admin'],
-            linkTo: 'persons.index',
+            linkTo: 'attachments.index',
             name: 'Manage',
           },
           {
             roles: ['god', 'admin'],
-            linkTo: 'persons.add',
-            name: 'New'
-          }
-        ]
-      },
-      {
-        regex: '^scifis',
-        name: 'Sci Fi',
-        icon: 'fa fa-list-ol',
-        roles: ['god', 'admin'],
-        submenu: [
-          {
-            roles: ['god', 'admin'],
-            linkTo: 'scifis.index',
-            name: 'Manage',
-          },
-          {
-            roles: ['god', 'admin'],
-            linkTo: 'scifis.add',
+            linkTo: 'attachments.add',
             name: 'New'
           }
         ]
@@ -112,4 +95,3 @@ Template.menu.helpers({
     ];
   }
 });
-

@@ -105,7 +105,12 @@ localstorage@1.0.5
 logging@1.0.8
 maazalik:malihu-jquery-custom-scrollbar@3.0.6
 matb33:collection-hooks@0.8.1
+<<<<<<< HEAD
 mdg:camera-constraints@1.2.0
+=======
+mdg:camera@1.2.0
+mdg:validated-method@0.2.0
+>>>>>>> 25ee233f8eb07c62a77c40dacaaef1028d3781f6
 mdg:validation-error@0.1.0
 meteor@1.1.10
 meteor-base@1.0.1

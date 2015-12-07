@@ -112,3 +112,4 @@ cfs:gridfs
 yogiben:autoform-file
 autopublish
 cfs:ejson-file
+mdg:validated-method
