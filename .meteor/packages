@@ -38,7 +38,7 @@ service-configuration
 risul:chance
 alanning:roles
 meteorhacks:npm
-mdg:camera-original
+mdg:camera-constraints
 
 npm-container
 matb33:collection-hooks

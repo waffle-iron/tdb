@@ -12,7 +12,7 @@
                     <i class="fa fa-camera"></i>
                 </button>
 
-                {{#with FS.GetFile "Images" selectedImageId}}
+                {{#with FS.GetFile "Images" uploadingImage}}
                     {{> FS.UploadProgressBar bootstrap=true}}
                 {{/with}}
             </div>

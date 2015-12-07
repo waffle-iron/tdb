@@ -1,5 +1,5 @@
 Package.describe({
-  name: "mdg:camera-original",
+  name: "mdg:camera-constraints",
   summary: "Photos with one function call on desktop and mobile.",
   version: "1.2.0",
   git: "https://github.com/meteor/mobile-packages"

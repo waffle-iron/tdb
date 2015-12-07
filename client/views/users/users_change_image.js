@@ -23,26 +23,21 @@ Template.usersChangeImage.events({
         }
       });
 
-      var cursor = Images.find(fileObj._id);
-
-
-      var liveQuery = cursor.observe({
-        changed: function(newImage, oldImage) {
+      let cursor = Images.find(fileObj._id);
+      let liveQuery = cursor.observe({
+        changed(newImage) {
           if (newImage.isUploaded()) {
             liveQuery.stop();
             Meteor.setTimeout(() => {
               Modal.hide();
               return toastr.success('file uploaded!', 'Success');
-            }, 1000)
-            
+            }, 1000);
           }
         }
-      });      
-      
+      });
     });
 
-    tmpl.selectedImageId.set(uploadedImage._id);
-
+    tmpl.uploadingImage.set(uploadedImage._id);
   },
   'click #take-photo': function(e, tmpl) {
     MeteorCamera.getPicture({
@@ -61,15 +56,14 @@ Template.usersChangeImage.events({
 
 Template.usersChangeImage.onCreated(function() {
   this.currentImage = new ReactiveVar;
-  this.selectedImageId = new ReactiveVar;
+  this.uploadingImage = new ReactiveVar;
 });
 
 Template.usersChangeImage.helpers({
   currentImage() {
     return Template.instance().currentImage.get();
   },
-  selectedImageId() {
-    console.log(Template.instance().selectedImageId.get());
-    return Template.instance().selectedImageId.get();
+  uploadingImage() {
+    return Template.instance().uploadingImage.get();
   }
 });
