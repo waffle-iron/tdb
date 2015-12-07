@@ -1,13 +1,15 @@
 <template name="projectsActions">
-	<a class="btn btn-success btn-xs" href="{{pathFor 'projects.edit' id=_id}}">
-    <i class="fa fa-edit"></i>
-  </a>
-	{{#quickRemoveButton 
-    collection="Projects" 
-    _id=_id class="btn btn-danger btn-xs" 
-    beforeRemove=beforeRemove
-    onSuccess=onSuccess
-    onError=onError}}
-    <i class="fa fa-trash"></i>
-  {{/quickRemoveButton}}
+    <button class="btn btn-success btn-xs" id="btn-edit">
+        <i class="fa fa-edit"></i>
+    </button>
+    {{#quickRemoveButton 
+      id='btn-remove' 
+      collection="Projects" 
+      _id=_id 
+      class="btn btn-danger btn-xs" 
+      beforeRemove=beforeRemove 
+      onSuccess=onSuccess 
+      onError=onError}}
+      <i class="fa fa-trash"></i>
+    {{/quickRemoveButton}}
 </template>

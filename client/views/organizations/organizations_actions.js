@@ -19,3 +19,12 @@ Template.organizationsActions.helpers({
   }
 });
 
+Template.organizationsActions.events({
+  'click #btn-edit': function(e) {
+    e.stopPropagation();
+    FlowRouter.go('organizations.edit', {id: this._id});
+  },
+  'click #btn-remove': function(e) {
+    e.stopPropagation();
+  }
+});

@@ -39,6 +39,14 @@ div.dataTables_info{
 }
 */
 
+
+table.table { 
+    tbody{
+        tr {
+          cursor: pointer;  
+        }
+    }
+}
 .pair-table {
     tbody {
         tr {

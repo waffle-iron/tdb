@@ -1,8 +1,9 @@
 <template name="organizationsActions">
-  <a class="btn btn-success btn-xs" href="{{pathFor 'organizations.edit' id=_id}}">
+  <button class="btn btn-success btn-xs" id="btn-edit">
     <i class="fa fa-edit"></i>
-  </a>
+  </button>
   {{#quickRemoveButton 
+    id="btn-remove"
     collection="Organizations" 
     _id=_id class="btn btn-danger btn-xs" 
     beforeRemove=beforeRemove
