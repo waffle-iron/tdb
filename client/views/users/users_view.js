@@ -6,20 +6,6 @@ Template.usersView.helpers({
 
     return user;
   },
-  beforeRemove: function() {
-    return function(collection, id) {
-      let doc = collection.findOne(id);
-      let object = this;
-      alertify.confirm('Remover <b>' + doc.emails[0].address + '</b>?', function() {
-        object.remove();
-      });
-    };
-  },
-  onSuccess: function() {
-    return function() {
-      FlowRouter.go('users.index');
-    };
-  },
   editingProfile: function() {
     return Session.get('editingProfile');
   }
@@ -41,17 +27,4 @@ Template.usersView.events({
 
 Template.usersView.onCreated(function() {
   Session.setDefault('editingProfile', false);
-});
-
-Template.usersView.onRendered(function() {
-  /*
-  $('.line').peity('line', {
-      fill: '#1ab394',
-      stroke: '#169c81'
-  });
-
-  $('.bar').peity('bar', {
-      fill: ['#1ab394', '#d7d7d7']
-  });
-  */
 });

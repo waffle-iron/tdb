@@ -12,7 +12,7 @@ Template.usersChangeImage.events({
     if (!file) return;
     let uploadedImage = Images.insert(file, function(err, fileObj) {
       if (err) {
-        return toastr.error('some error occurred', 'Error');
+        return toastr.error('Some error occurred', 'Error');
       }
 
       Meteor.users.update({
@@ -30,7 +30,7 @@ Template.usersChangeImage.events({
             liveQuery.stop();
             Meteor.setTimeout(() => {
               Modal.hide();
-              return toastr.success('file uploaded!', 'Success');
+              return toastr.success('File uploaded!', 'Success');
             }, 1000);
           }
         }
