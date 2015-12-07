@@ -1,4 +1,4 @@
-formatarRole = function(role, cor = false) {
+formatRole = function(role, cor = false) {
   let spanClass = texto = '';
   switch (role) {
   case 'god':
@@ -7,7 +7,7 @@ formatarRole = function(role, cor = false) {
     break;
   case 'admin':
     spanClass = 'badge-danger';
-    texto = 'Administrador';
+    texto = 'Administrator';
     break;
   case 'user':
     spanClass = 'badge-primary';
@@ -15,7 +15,7 @@ formatarRole = function(role, cor = false) {
     break;
   default:
     spanClass = 'badge-primary';
-    texto = 'Desconhecido';
+    texto = 'Unknown';
   }
 
   return cor ? '<span class="badge ' + spanClass + '">' + texto + '</span>' : texto;
@@ -30,6 +30,7 @@ Template.registerHelper('$concat', function(a = String(a), b = String(b)) {
   return a + b;
 });
 
+/*
 Template.registerHelper('isInRoles', function(roles) {
   if (!roles) return true;
   roles.push('god');
@@ -44,12 +45,14 @@ Template.registerHelper('isInRoles', function(roles) {
   });
   return autho;
 });
+*/
 
 Template.registerHelper('formatarReais', function(valor) {
   return accounting.formatMoney(valor, 'R$ ', 2, '.', ',');
 });
 
 
-Template.registerHelper('formatarRole', function(role, color) {
-  return formatarRole(role, color);
+Template.registerHelper('formatRole', function(role, color) {
+  if (color === 'false') color = false;
+  return formatRole(role, color);
 });

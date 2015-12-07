@@ -15,19 +15,19 @@
                             <span class="clear"> 
                                 <span class="block m-t-xs"> 
                                     <strong class="font-bold">
-                                        {{currentUser.profile.nome}} {{currentUser.profile.sobrenome}}
+                                        {{currentUser.profile.fullName}}
                                     </strong>
                                 </span>
                             <span class="text-muted text-xs">
-                                    <b style="color:white !important;">{{currentUser.role}}</b> 
+                                    <b style="color:white !important;">{{{formatRole currentUser.role false}}}</b> 
                                     <b class="caret"></b>
                                 </span>
                             </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            <li><a href="{{pathFor 'users.edit' id=currentUser._id}}">Editar Perfil</a></li>
+                            <li><a href="{{pathFor 'users.view' id=currentUser._id}}">My Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="#" id="logout">Sair</a></li>
+                            <li><a href="#" id="logout">Logout</a></li>
                         </ul>
                     </div>
                     <div class="logo-element animated lightSpeedIn">
