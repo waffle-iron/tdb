@@ -90,6 +90,7 @@ insecure@1.0.4
 isotope:isotope@2.1.0_1
 johannesma:meteor-flexslider@0.0.1
 jquery@1.11.4
+jss:flag-icon@0.7.3
 jss:jstree@3.1.3
 juliomac:prettyphoto@3.1.6
 kadira:blaze-layout@2.3.0
@@ -156,6 +157,7 @@ msavin:jetsetter@1.5.2
 msavin:mongol@1.6.2
 natestrauser:animate-css@3.4.0
 netanelgilad:moment-business@0.0.1
+newnectar:meteor-autoform-select-country-flags@0.0.1
 npm-bcrypt@0.7.8_2
 npm-container@1.1.0
 npm-mongo@1.4.39_1
