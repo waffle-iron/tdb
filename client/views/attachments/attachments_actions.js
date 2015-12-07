@@ -12,3 +12,14 @@ Template.organizationsActions.helpers({
       toastr.error(error.toString(), 'Error');
     }
 });
+
+
+Template.attachmentsActions.events({
+  'click #btn-edit': function(e) {
+    e.stopPropagation();
+    FlowRouter.go('attachments.edit', {id: this._id});
+  },
+  'click #btn-delete': function(e) {
+    e.stopPropagation();
+  }
+});

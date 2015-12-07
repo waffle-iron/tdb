@@ -1,8 +1,9 @@
 <template name="attachmentsActions">
-  <a class="btn btn-success btn-xs" href="{{pathFor 'organizations.edit' id=_id}}">
+  <button class="btn btn-success btn-xs" id="btn-edit">
     <i class="fa fa-edit"></i>
-  </a>
+  </button>
   {{#quickRemoveButton 
+    id="btn-remove"
     collection="Attachments" 
     _id=_id class="btn btn-danger btn-xs" 
     beforeRemove=beforeRemove
