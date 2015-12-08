@@ -100,8 +100,8 @@ Template.menu.helpers({
         submenu: [
           {
             roles: ['god', 'admin'],
-            linkTo: 'sandbox.index',
-            name: 'Technologies',
+            linkTo: 'sandbox.technologyCard',
+            name: 'Technology Card',
           }
         ]
       },
