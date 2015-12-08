@@ -1,0 +1,12 @@
+.modal-body{
+	overflow:hidden;
+	min-height:100%; // add this line ;
+	//min-height:500px;
+
+}
+
+.modal-footer{
+	z-index:100 !important;
+}
+
+.selectize-dropdown { z-index: 99999 !important; }

@@ -1,0 +1,12 @@
+<template name="afRadioGroup_inspinia">
+  <div class="af-radio-group" {{dsk}}>
+    {{#each this.items}}
+    <div class="radio2">
+    <input type="radio" value="{{this.value}}" {{atts}} />
+      <label>
+        {{this.label}}
+      </label>
+    </div>
+    {{/each}}
+  </div>
+</template>

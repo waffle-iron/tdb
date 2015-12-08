@@ -1,0 +1,45 @@
+<template name="usersView">
+    {{#with user}}
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Profile Detail</h5>
+                        </div>
+                        <div>
+                            <div class="ibox-content no-padding border-left-right">
+                                {{#with profileImage}}
+                                    <img alt="image" class="img-responsive" src="{{url}}">
+                                {{/with}}
+                                <!-- <input type='file' id='profile-picture'> -->
+                                
+                                <button class='btn btn-primary btn-sm' id='change-profile-image' style="width: 100%">Change picture</button>
+
+                            </div>
+                            <div class="ibox-content profile-content">
+                                <h4><strong>{{profile.fullName}}</strong></h4>
+                                <p><i class="fa fa-map-marker"></i> {{profile.address}}</p>
+                                <h5>
+                                About me
+                            </h5>
+                                <p>
+                                    {{profile.about}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    {{#simplePanel title="Info" }}
+                        {{#if editingProfile}}
+                            {{> usersEdit}}
+                        {{else}}
+                            {{> usersProfile}}
+                        {{/if}}
+                    {{/simplePanel}}
+                </div>
+            </div>
+        </div>
+    {{/with}}
+</template>

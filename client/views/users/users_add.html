@@ -1,0 +1,9 @@
+<template name="usersAdd">
+	{{#panel title="Invite User"}}
+		{{#autoForm schema="InviteSchema" id="insertUsersForm" type="method" meteormethod="inviteUser" class="form-horizontal"}}
+			{{>afQuickField name="email" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			{{>afQuickField name="roles" label-class="col-sm-3" input-col-class="col-sm-9"}}
+			{{> submit texto="Invite"}}
+		{{/autoForm}}
+	{{/panel}}
+</template>
