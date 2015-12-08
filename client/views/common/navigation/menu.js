@@ -28,7 +28,7 @@ Template.menu.helpers({
           {
             roles: ['god', 'admin'],
             linkTo: 'technologies.index',
-            name: 'Manage'
+            name: 'Dashboard'
           },
           {
             roles: ['god', 'admin'],
@@ -91,7 +91,20 @@ Template.menu.helpers({
             name: 'New'
           }
         ]
-      }
+      },
+      {
+        regex: '^sandbox',
+        name: 'Sandbox',
+        icon: 'fa fa-map-o',
+        roles: ['god', 'admin'],
+        submenu: [
+          {
+            roles: ['god', 'admin'],
+            linkTo: 'sandbox.index',
+            name: 'Technologies',
+          }
+        ]
+      },
     ];
   }
 });
