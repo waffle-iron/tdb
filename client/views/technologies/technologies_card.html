@@ -1,0 +1,56 @@
+<template name="technologiesCard">
+    <div class="ibox float-e-margins">
+        {{#if Template.subscriptionsReady}}
+            {{#with technology}}
+                <div class="ibox technology-box">
+                    <div class="ibox-content no-padding techLabel panel-primary">
+                        <div class="technologyTools">
+                            <div class="btn-group">
+                                <button data-toggle="dropdown" class="btn btn-xs btn-outline btn-primary dropdown-toggle" aria-expanded="false"><i class="fa fa-bars"></i> <span class="caret"></span></button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Add to Project</a> </li>
+                                    <li><a href="#">Add to Collection</a> </li>
+                                    <li><a href="#">Add an Attachment</a> </li>
+                                    <li><a href="#">Change status</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Add a comment</a> </li>
+                                    <li><a href="#">Edit status</a> </li>
+                                    <li class="divider"></li>
+                                    <li><a href="#">Edit technology</a> </li>
+                                    <li><a href="#">Delete technology</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        {{#with getShowcasedImage}}
+                          <img src="{{url}}" class="img-responsive" />
+                        {{/with}}
+                        <div class="technology-desc">
+                            <div class="addonsInfo">
+                                <a href="#" class="label label-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="11 attachments">
+                                  <i class="fa fa-paperclip"></i> 11</a> 
+                                <a href="#" class="label label-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="04 organizations">
+                                  <i class="fa fa-building"></i> 4</a> 
+                                <a href="#" class="label label-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="02 projects"><i class="fa fa-folder-o"></i> 2</a> <a href="#" class="label label-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Readiness: 4">RD 4</a> <a href="#" class="label label-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Average Industry Impact: 4">IP 4</a> </div>
+                            <div>
+                                <h5 href="#" class="technology-name">{{name}}</h5> </div>
+                            {{#with getPublishedDescription}}
+                                <p>
+                                    {{shortText}}
+                                    <small><a href="#">More information </a></small>
+                                </p>
+                            {{/with}}
+                            <div class="m-t-sm">
+                                <button class="btn btn-white btn-xs">drone</button>
+                                <button class="btn btn-white btn-xs">uav</button>
+                                <button class="btn btn-white btn-xs">Rag</button>
+                                <button class="btn btn-xs btn-link"><i class="fa fa-plus-square"></i> Add</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {{/with}}
+        {{else}}
+            {{> spinner}}
+        {{/if}}
+    </div>
+</template>
