@@ -18,7 +18,7 @@ Meteor.publishComposite('tabularTechnologiesList', function(tableName, ids, fiel
 });
 
 
-Meteor.publishComposite('technologieCard', function(id) {
+Meteor.publishComposite('technology', function(id) {
   check(id, String);
   this.unblock();
 
