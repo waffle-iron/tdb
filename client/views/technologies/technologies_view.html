@@ -1,0 +1,15 @@
+<template name="technologiesView">
+    {{#if subsReady 'technology'}}
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-md-4">
+                    {{> technologiesCard technologiesCardData}}
+                </div>
+                <div class="col-md-8">
+                </div>
+            </div>
+        </div>
+    {{else}}
+        {{> spinner}}
+    {{/if}}
+</template>

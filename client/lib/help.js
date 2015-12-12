@@ -22,7 +22,6 @@ removeError = function() {
 
 
 handleTableClick = function(event, callback) {
-    console.log(event); 
     let dataTable = $(event.target).closest('table').DataTable();
     let rowData = dataTable.row(event.currentTarget).data();
     if (!rowData) return; // Won't be data if a placeholder row is clicked
