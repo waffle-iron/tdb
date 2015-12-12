@@ -18,7 +18,8 @@
                     <li><a href="#">Delete technology</a></li>
                 </ul>
             </div>
-            <img src="{{imageUrl}}" class="img-responsive" />
+            {{> safeImg src=imageUrl class="img-responsive" width="400" height="400"}}
+
             <div class="technology-desc">
                 <div class="addons-info">
                     {{#technologiesCardTooltip labelClass="label-primary" title="Attachments" }}
