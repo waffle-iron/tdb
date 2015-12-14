@@ -8163,7 +8163,8 @@ padding: 10px;
 #techStash {
   position: fixed;
   left: 0px;
-  margin-left: -315px;
+  padding-left: -300px;
+  margin-left: -15px;
   height: 120%;
   display: block;
   width: 300px;
@@ -8187,7 +8188,7 @@ padding: 10px;
     padding-top: 0px;
     min-height: 100%;
     height: auto;
-    margin-left: 300px;
+    padding-left: 300px;
   }
   #main-content > .row {
     overflow-x:scroll;
