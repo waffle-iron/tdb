@@ -1873,6 +1873,7 @@ a.DTTT_button:hover:not(.DTTT_disabled) {
   border: 1px dashed #cecece !important;
   visibility: visible !important;
   background: #e7eaec;
+  z-index: 1;
 }
 .ibox.ui-sortable-placeholder {
   margin: 0px 0px 23px !important;
@@ -8099,10 +8100,12 @@ body.md-skin {
 /* E-commerce */
 .technology-box {
   padding: 0;
+  z-index: 1;
   border: 1px solid #e7eaec;
 }
 .technology-desc {
   padding: 10px;
+  z-index: 1;
   position: relative;
 }
 .technology-name {
@@ -8136,6 +8139,7 @@ padding: 10px;
   border-image: none;
   border-style: solid solid none;
   border-width: 4px 0 0 0px;
+  z-index: 1;
 }
 
 .collectionsub {
@@ -8143,20 +8147,36 @@ padding: 10px;
   clear: both;
   margin-left: -20px;
   margin-right: -20px;
+  z-index: 1;
 /*  background-color: gray;*/
 }
 
 .collectionsub .ibox {
   margin-bottom: 10px;
-}
-
-.collectionsub .col-lg-6 {
-  padding-right: 8px;
-  padding-left: 8px;
+ z-index: 1;
 }
 
 .collectionsub .collectionSubColumn {
-  border: 4px solid lightgray;
+  border: 1px solid lightgray;
+}
+
+#techStash {
+  position: fixed;
+  left: 0px;
+  margin-left: -315px;
+  height: 120%;
+  display: block;
+  width: 300px;
+  background-color: white;
+  border-right: 4px solid lightgray;
+  overflow-y: scroll;
+}
+
+#techStash .sortable-list {
+  z-index: 1;
+  min-height: 800px;
+  width: 300px;
+  overflow-y: scroll;
 }
 
 @media (min-width:768px) {
@@ -8164,8 +8184,10 @@ padding: 10px;
     width:100%;
   }
   #main-content{
+    padding-top: 0px;
     min-height: 100%;
     height: auto;
+    margin-left: 300px;
   }
   #main-content > .row {
     overflow-x:scroll;
