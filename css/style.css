@@ -8156,6 +8156,21 @@ padding: 10px;
  z-index: 1;
 }
 
+.collectionLabel {
+  border-radius: 0px;
+  border-image: none;
+  border-style: solid solid solid;
+  border-width: 6px 2px 2px 2px;
+  z-index: 1;
+}
+.collectionLabel .ibox-title {
+  border-width: 0 0 0 0;
+}
+
+.collectionLabel .ibox-content {
+  padding: 10px 10px 10px 10px;
+}
+
 .collectionsub .collectionSubColumn {
   border: 1px solid lightgray;
 }
@@ -8179,6 +8194,42 @@ padding: 10px;
   width: 300px;
   overflow-y: scroll;
 }
+
+.project-people,
+.project-actions {
+  text-align: right;
+  vertical-align: middle;
+}
+td.project-people {
+  text-align: left;
+  /*margin-top: 5px;*/
+}
+.project-people img {
+  width: 20px;
+  height: 20px;
+}
+
+#collectionSetBox {
+  overflow-x:scroll;
+  overflow-y:hidden;
+  white-space:nowrap;
+  margin: 0 0px 0 0px;
+}
+
+#collectionSetBox .collectionSubColumn {
+  /*width:200px;*/
+}
+
+.collectionSubColumn {
+  width: 300px;
+  float:none;
+  display:inline-block;
+  white-space:normal;
+  padding: 0px;
+  vertical-align:top;
+}
+
+
 
 @media (min-width:768px) {
   .wrapper{
