@@ -169,6 +169,7 @@
   display: table-cell;
   font-weight: bold;
   padding-right: 0.5em;
+  vertical-align: top;
 }
 .footable-row-detail-value {
   display: table-cell;

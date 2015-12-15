@@ -8182,7 +8182,7 @@ padding: 10px;
 
 @media (min-width:768px) {
   .wrapper{
-    width:100%;
+    /*width:100%;*/
   }
   #main-content{
     padding-top: 0px;
