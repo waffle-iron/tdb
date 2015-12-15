@@ -1,3 +1,0 @@
-<template name="cloudinaryThumb">
-	<img class="{{class}}" src="{{#if publicId}}{{c.url publicId format='png' gravity='faces' mode='thumb' crop='thumb' height=80 width=80}}{{else}}/img/unknown.jpg{{/if}}" width="{{#if width}}{{width}}{{else}}80{{/if}}" height="{{#if height}}{{height}}{{else}}80{{/if}}" id="profile-avatar">		
-</template>
