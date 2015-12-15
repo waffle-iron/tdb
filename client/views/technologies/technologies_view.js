@@ -11,7 +11,8 @@ Template.technologiesView.helpers({
       organizationsCount: technology.organizations && technology.organizations.length || 0,
       projectsCount: technology.projects && technology.projects.length || 0,
       readinessScore: 1,
-      impactScore: 2
+      impactScore: 2,
+      status: technology.status
     };
   }
 });
