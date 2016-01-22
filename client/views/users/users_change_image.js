@@ -15,13 +15,10 @@ Template.usersChangeImage.events({
         return toastr.error('Some error occurred', 'Error');
       }
 
-      Meteor.users.update({
-        _id: FlowRouter.getParam('id')
-      }, {
-        $set: {
-          'profile.imageId': fileObj._id
-        }
-      });
+      console.log(fileObj)
+      Meteor.call('users.setUserImage', FlowRouter.getParam('id'), fileObj._id);
+
+
 
       let cursor = Images.find(fileObj._id);
       let liveQuery = cursor.observe({

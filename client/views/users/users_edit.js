@@ -5,7 +5,7 @@ AutoForm.hooks({
         Session.set('editingProfile', false);
       },
       onError(formType, error) {
-        toastr.error(error.toString, 'Erro');
+        toastr.error(error.toString(), 'Erro');
         Session.set('editingProfile', false);
       },
   },

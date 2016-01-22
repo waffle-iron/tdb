@@ -12,7 +12,8 @@ Template.usersView.helpers({
 });
 
 Template.usersView.events({
-  'click #change-profile-image': function(){
+  'click #change-profile-image': function() {
+    console.log("aqui!");
     Modal.show('usersChangeImage');
   },
   'click #escolher-grupo': function() {

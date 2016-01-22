@@ -26,7 +26,9 @@
 
   {{#autoForm collection="Meteor.users" 
   template="bootstrap3-horizontal" 
-  doc=this type="update" 
+  doc=this 
+  type="method-update" 
+  meteormethod="users/edit"
   id="updateUsersProfileForm" 
   class="form-horizontal"}}
     {{> afQuickField name="profile.firstName" label-class="col-sm-3" input-col-class="col-sm-9"}}

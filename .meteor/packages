@@ -108,8 +108,14 @@ forwarder:autoform-wizard
 cfs:s3
 cfs:standard-packages
 cfs:gridfs
-yogiben:autoform-file
 cfs:ejson-file
 mdg:validated-method
 newnectar:meteor-autoform-select-country-flags
 kevohagan:sweetalert
+yogiben:autoform-file
+easysearch:core
+insecure
+autopublish
+jaredmartin:future
+zimme:collection-behaviours
+meteorhacks:search-source
