@@ -1,10 +1,12 @@
 <template name="log">
   <h3>Recent updates nas organizations</h3>
-  {{> recentUpdates collection='organizations'}}
+  {{> recentUpdates collection='organizations' initialCount=30}}
 
+  
   <h3>Recent updates nas technologies</h3>
-  {{> recentUpdates collection='technologies'}}
+  {{> recentUpdates collection='technologies' countIncrement=1}}
 
   <h3>Recent updates em todas as collections</h3>
   {{> recentUpdates collection='*'}}
+  
 </template>

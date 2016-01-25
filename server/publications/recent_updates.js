@@ -1,4 +1,5 @@
 const ALL_COLLECTIONS_CHAR = '*';
+const COUNTER_PREFIX = 'recentUpdatesCounter-';
 
 Meteor.publish('recentUpdates', function(collection, limit) {
   check(collection, String);
@@ -11,14 +12,17 @@ Meteor.publish('recentUpdates', function(collection, limit) {
     };
   }
 
-  Counts.publish(this, 'recentUpdatesCounter-' + collection, Logs.find(selector));
+  Counts.publish(this, COUNTER_PREFIX + collection, Logs.find(selector));
 
 
-  return Logs.find(selector, {
-    limit: limit,
-    sort: {
-      createdAt: -1
-    }
-  });
+  if (limit !== 0) {
+    return Logs.find(selector, {
+      limit: limit,
+      sort: {
+        createdAt: -1
+      }
+    });
+  } else {
+    this.ready();
+  }
 });
-
