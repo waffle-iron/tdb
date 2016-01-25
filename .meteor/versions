@@ -14,7 +14,6 @@ aldeed:tabular@1.4.2
 aldeed:template-extension@3.4.3
 arillo:flow-router-helpers@0.4.6
 audit-argument-checks@1.0.4
-autopublish@1.0.4
 autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
@@ -203,6 +202,7 @@ tap:i18n@1.7.0
 templates:tabs@2.2.0
 templating@1.1.5
 templating-tools@1.0.0
+tmeasday:publish-counts@0.7.3
 tracker@1.0.9
 twbs:bootstrap@3.3.6
 ui@1.0.8

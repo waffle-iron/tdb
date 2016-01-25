@@ -10,8 +10,11 @@
                         {{> recentUpdatesItem}}
                     {{/each}}
                     <li class="list-group-item">
-                        <a class="text-info" href="#">
-                            <p>View more..</p>
+                        <a class="text-info" id='view-more'>
+                            <p>View more... ({{displayCount}} / {{totalCount}})</p>
+                        </a>
+                        <a class='text-info' id='view-less'>
+                            <p>View less</p>
                         </a>
                     </li>
                 </ul>

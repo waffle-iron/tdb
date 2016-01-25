@@ -1,10 +1,15 @@
 <template name="recentUpdatesItem">
   <li class="list-group-item">
-    <i class="{{icon}}" style="color: {{color}}"></i>
-    <p>
-      <a class="text-info" href="#">
-      @{{username}}</a> {{description}} 
-      <a class="text-info" href="#">@{{docName}}</a> at {{moFormat createdAt 'DD/MM/YYYY'}}
+    <button class='btn btn-{{color}} icon-holder'>
+      <i class="icon {{icon}}"></i>
+    </button>
+    <p style='width:100%'>
+      <a class="text-info" href="#">@{{username}}</a> 
+      {{description}} 
+      <a class="text-info" href="#">@{{docName}}</a> 
+      <div class='date'>
+        {{moFormat createdAt 'DD/MM/YYYY hh:mm:ss'}}
+      </div>      
     </p>
   </li>
 </template>

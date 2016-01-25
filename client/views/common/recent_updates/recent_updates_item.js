@@ -6,13 +6,13 @@ Template.recentUpdatesItem.helpers({
   color() {
     switch (this.operation) {
       case 'insert':
-        return INSERT_COLOR;
+        return 'info';
       case 'update':
-        return UPDATE_COLOR;
+        return 'success';
       case 'remove':
-        return REMOVE_COLOR;
+        return 'danger';
       default:
-        return DEFAULT_COLOR;
+        return 'default';
     }
   },
   icon() {
@@ -20,11 +20,11 @@ Template.recentUpdatesItem.helpers({
       case 'technologies':
         return 'fa fa-database';
       case 'organizations':
-        return 'fa fa-diamond';
-      case 'projects':
-        return 'fa fa-briefase';
-      case 'attachments':
         return 'fa fa-building';
+      case 'projects':
+        return 'fa fa-briefcase';
+      case 'attachments':
+        return 'fa fa-paperclip';
       default:
         return 'fa fa-question';
     }

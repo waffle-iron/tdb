@@ -1,3 +1,10 @@
 <template name="log">
-  {{> recentUpdates selector=selector}}
+  <h3>Recent updates nas organizations</h3>
+  {{> recentUpdates collection='organizations'}}
+
+  <h3>Recent updates nas technologies</h3>
+  {{> recentUpdates collection='technologies'}}
+
+  <h3>Recent updates em todas as collections</h3>
+  {{> recentUpdates collection='*'}}
 </template>
