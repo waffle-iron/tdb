@@ -76,6 +76,4 @@ LogAdapter = class LogAdapter {
     }
     */
   }
-
-
 };
