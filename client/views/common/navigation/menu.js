@@ -2,6 +2,13 @@ Template.menu.helpers({
   items: function() {
     return [
       {
+        regex: '^dashboard',
+        name: 'Dashboard',
+        linkTo: 'mainDashboard.index',
+        icon: 'fa fa-dashboard',
+        roles: ['god', 'admin'],
+      },
+      {
         regex: '^log',
         name: 'Log',
         linkTo: 'log.index',
@@ -54,7 +61,7 @@ Template.menu.helpers({
       {
         regex: '^projects',
         name: 'Projects',
-        icon: 'fa fa-briefcase',
+        icon: 'fa fa-columns',
         roles: ['god', 'admin'],
         submenu: [
           {

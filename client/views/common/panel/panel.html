@@ -20,3 +20,23 @@
         </div>
     </div>
 </template>
+
+
+<template name="panelContainer">
+  <div class="ibox float-e-margins">
+    {{ > UI.contentBlock}}
+  </div>
+</template>
+
+<template name="panelTitle">
+  <div class="ibox-title">
+    {{> UI.contentBlock}}
+  </div>
+</template>
+
+<template name="panelContent">
+   <div class="ibox-content {{panelClass}}">
+     {{> UI.contentBlock}}
+   </div>
+</template>
+

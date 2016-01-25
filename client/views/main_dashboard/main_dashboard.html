@@ -1,0 +1,21 @@
+<template name="mainDashboard">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+      {{>dashboardStat icon='fa fa-database' title='Technologies' value=technologiesCount}}
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+      {{>dashboardStat icon='fa fa-columns' title='Projects' value=projectsCount}}
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+      {{>dashboardStat icon='fa fa-building' title='Organizations' value=organizationsCount}}
+    </div>
+    <div class="col-xs-12 col-sm-6 col-lg-3">
+      {{>dashboardStat icon='fa fa-paperclip' title='Attachments' value=attachmentsCount}}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      {{> recentUpdates}}
+    </div>
+  </div>
+</template>
