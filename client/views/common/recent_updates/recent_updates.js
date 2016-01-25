@@ -7,6 +7,10 @@ Template.recentUpdates.helpers({
   logs() {
     let displayCount = Template.instance().data.displayCount.get();
 
+    if (displayCount === 0) {
+      return [];
+    }
+
     let selector = {};
     if (this.collection !== ALL_COLLECTIONS_CHAR) {
       selector = {

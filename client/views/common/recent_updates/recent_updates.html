@@ -10,12 +10,15 @@
                         {{> recentUpdatesItem}}
                     {{/each}}
                     <li class="list-group-item">
-                        <a class="text-info" id='view-more'>
-                            <p>View more... ({{displayCount}} / {{totalCount}})</p>
-                        </a>
-                        <a class='text-info' id='view-less'>
-                            <p>View less</p>
-                        </a>
+                        <p>
+                            <a class="text-info" id='view-more'>
+                                View more... ({{displayCount}} / {{totalCount}})
+                            </a><br>
+                            <a class='text-info' id='view-less'>
+                                View less                                
+                            </a>                            
+                        </p>
+
                     </li>
                 </ul>
             </div>
