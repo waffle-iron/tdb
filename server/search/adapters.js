@@ -20,30 +20,30 @@ ElasticSearchAdapter = class ElasticSearchAdapter { // implements riverOperation
     this.docTransformer = docTransformer;
   }
 
-  insertDoc(id, doc) {
+  insertDoc(userId, doc) {
     let finalDoc = this.docTransformer(doc);
     return this.client.index({
       index: this.index,
       type: this.type,
-      id: id,
+      id: doc._id,
       body: finalDoc
     });
   }
 
-  removeDoc(id) {
+  removeDoc(userId, doc) {
     return this.client.delete({
       index: this.index,
       type: this.type,
-      id: id
+      id: doc._id
     });
   }
 
-  updateDoc(id, doc) {
+  updateDoc(userId, doc) {
     let finalDoc = this.docTransformer(doc);
     return this.client.update({
       index: this.index,
       type: this.type,
-      id: id,
+      id: doc._id,
       body: {
         doc: finalDoc
       }

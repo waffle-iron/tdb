@@ -1,3 +1,20 @@
+/*Making this global, since it will be used in many other places*/
+/*This was originally made just for .dashboardStat*/
+.ibox-title {
+  h1, h2, h3, h4, h5 {
+    display: inline-block; /*To align icon with heading tag inside the same line*/
+  }
+  i { margin: 0 5px;}
+}
+
+/*Flex class (marvelous creation of humanity)*/
+.flex {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
 .border-radius (@radius: 3px) {
   -webkit-border-radius: @radius;
   -moz-border-radius: @radius;

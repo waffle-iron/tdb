@@ -1,0 +1,23 @@
+.recentUpdates {
+  .list-group-item {
+    .flex;
+
+    p {
+      display: inline-block; /*To fit at the same line with icon*/
+      margin: 10px 0;
+    }
+    i {
+      margin-right: 5px;
+      font-size: 3em; /*Declaring this, instead of placing fa-3x in every icon of recentUpdates*/
+    }
+
+    /*Matches with the 'View More' item */
+    &:last-child {
+      -webkit-justify-content: center;
+      justify-content: center;
+    }
+  }
+}
+
+// pendências:
+// definir um tamanho padrão para os ícones, para alinhar com o parágrafo 

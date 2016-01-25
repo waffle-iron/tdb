@@ -1,0 +1,10 @@
+<template name="recentUpdatesItem">
+  <li class="list-group-item">
+    <i class="{{icon}}" style="color: {{color}}"></i>
+    <p>
+      <a class="text-info" href="#">
+      @{{username}}</a> {{description}} 
+      <a class="text-info" href="#">@{{docName}}</a> at {{moFormat createdAt 'DD/MM/YYYY'}}
+    </p>
+  </li>
+</template>

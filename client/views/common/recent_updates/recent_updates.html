@@ -1,0 +1,21 @@
+<template name="recentUpdates">
+    <div class="recentUpdates">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>Recent Updates</h5>
+            </div>
+            <div class="ibox-content no-padding">
+                <ul class="list-group">
+                    {{#each logs}}
+                        {{> recentUpdatesItem}}
+                    {{/each}}
+                    <li class="list-group-item">
+                        <a class="text-info" href="#">
+                            <p>View more..</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>

@@ -2,6 +2,13 @@ Template.menu.helpers({
   items: function() {
     return [
       {
+        regex: '^log',
+        name: 'Log',
+        linkTo: 'log.index',
+        icon: 'fa fa-database',
+        roles: ['god', 'admin'],
+      },
+      {
         regex: '^search',
         name: 'Search',
         linkTo: 'search.index',
