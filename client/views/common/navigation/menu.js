@@ -43,7 +43,7 @@ Template.menu.helpers({
       {
         regex: '^technologies',
         name: 'Technologies',
-        icon: 'fa fa-database',
+        icon: TECHNOLOGIES_ICON,
         roles: ['god', 'admin'],
         submenu: [
           {
@@ -61,7 +61,7 @@ Template.menu.helpers({
       {
         regex: '^projects',
         name: 'Projects',
-        icon: 'fa fa-columns',
+        icon: PROJECTS_ICON,
         roles: ['god', 'admin'],
         submenu: [
           {
@@ -80,7 +80,7 @@ Template.menu.helpers({
       {
         regex: '^organizations',
         name: 'Organizations',
-        icon: 'fa fa-map-o',
+        icon: PROJECTS_ICON,
         roles: ['god', 'admin'],
         submenu: [
           {
@@ -98,7 +98,7 @@ Template.menu.helpers({
       {
         regex: '^attachments',
         name: 'Attachments',
-        icon: 'fa fa-map-o',
+        icon: ATTACHMENTS_ICON,
         roles: ['god', 'admin'],
         submenu: [
           {

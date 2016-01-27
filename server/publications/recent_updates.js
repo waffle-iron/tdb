@@ -22,7 +22,7 @@ Meteor.publish('recentUpdates', function(collection, limit) {
         createdAt: -1
       }
     });
-  } else {
-    this.ready();
   }
+  this.ready();
 });
+

@@ -51,19 +51,19 @@ Template.selectEntities.helpers({
     return [
       {
         name: 'organizations',
-        icon: 'fa fa-star'
+        icon: ORGANIZATIONS_ICON
       },
       {
         name: 'projects',
-        icon: 'fa fa-building'
+        icon: PROJECTS_ICON
       },
       {
         name: 'technologies',
-        icon: 'fa fa-user'
+        icon: TECHNOLOGIES_ICON
       },
       {
         name: 'attachments',
-        icon: 'fa fa-diamond'
+        icon: ATTACHMENTS_ICON
       },
     ];
   },

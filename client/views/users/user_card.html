@@ -1,0 +1,116 @@
+<template name="userCard">
+  <div class="user-card">
+    {{#panelContainer}}
+      {{#panelTitle}}
+        <h5>
+          <i class="fa fa-user"></i> 
+          {{profile.fullName}}
+        </h5>
+      {{/panelTitle}}
+
+      {{#panelContent panelClass='no-padding'}}
+        <div class="profile-photo">
+          {{#with profileImage}}
+            <img src="{{url}}" class="img-responsive" alt="profile-img">
+          {{/with}}
+          <a href="#">
+            <i class="fa fa-camera fa-2x"></i>
+            <p>Update Profile Picture</p>
+          </a>
+        </div>
+      {{/panelContent}}
+
+      {{#panelTitle}}
+        <h5>
+          <i class="fa fa-info"></i> Information
+        </h5>
+        <div class="ibox-tools">
+          <a href="#">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </div>        
+      {{/panelTitle}}
+
+      {{#panelContent}}
+        <ul class="unstyled pair-list">
+          <li>
+            <p>Role:</p>
+            <p><a href="#" class="text-info"><i class="fa fa-gear"></i> {{role}}</a></p>
+          </li>
+          <li>
+            <p>Affiliation:</p>
+            <p>{{profile.affiliation}}</p>
+          </li>
+          <li>
+            <p>Country:</p>
+            <p>{{profile.country}}</p>
+          </li>
+          <li>
+            <p>Gender:</p>
+            <p><i class="{{genderIcon}}"></i> {{profile.gender}}</p>
+          </li>
+          <li>
+            <p>Birthday:</p>
+            <p>{{moFormat profile.birth 'YYYY-MM-DD'}}</p>
+          </li>
+        </ul>
+
+      {{/panelContent}}
+      
+      {{#panelTitle}}
+        <h5>
+          <i class="fa fa-globe"></i> Contact
+        </h5>
+        <div class="ibox-tools">
+          <a href="#">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </div>        
+      {{/panelTitle}}
+
+      {{#panelContent}}
+
+        <ul class="unstyled pair-list">
+          <li>
+            <i class="fa fa-twitter"></i>
+            <p>@{{profile.contactInfo.twitter}}</p>
+          </li>
+          <li>
+            <i class="fa fa-facebook"></i>
+            <p>{{profile.contactInfo.facebook}}</p>
+          </li>
+          <li>
+            <i class="fa fa-hashtag"></i>
+            <p>{{profile.contactInfo.hashtag}}</p>
+          </li>
+          <li>
+            <i class="fa fa-phone"></i>
+            <p>{{profile.contactInfo.phone}}</p>
+          </li>
+          <li>
+            <i class="fa fa-mobile"></i>
+            <p>{{profile.contactInfo.mobile}}</p>
+          </li>
+        </ul>
+
+      {{/panelContent}}
+
+      {{#panelTitle}}
+        <h5>
+          <i class="fa fa-book"></i> Bio
+        </h5>
+        <div class="ibox-tools">
+          <a href="#">
+            <i class="fa fa-pencil"></i>
+          </a>
+        </div>        
+      {{/panelTitle}}
+
+      {{#panelContent}}
+
+        <p>{{profile.bio}}</p>  
+
+      {{/panelContent}}
+    {{/panelContainer}}
+  </div>
+</template>

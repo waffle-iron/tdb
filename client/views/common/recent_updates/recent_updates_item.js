@@ -1,30 +1,30 @@
-const INSERT_COLOR = 'green';
-const UPDATE_COLOR = 'blue';
-const REMOVE_COLOR = 'red';
-const DEFAULT_COLOR = 'black';
+const INSERT_COLOR = 'info';
+const UPDATE_COLOR = 'success';
+const REMOVE_COLOR = 'danger';
+const DEFAULT_COLOR = 'default';
 Template.recentUpdatesItem.helpers({
   color() {
     switch (this.operation) {
       case 'insert':
-        return 'info';
+        return INSERT_COLOR;
       case 'update':
-        return 'success';
+        return UPDATE_COLOR;
       case 'remove':
-        return 'danger';
+        return REMOVE_COLOR;
       default:
-        return 'default';
+        return DEFAULT_COLOR;
     }
   },
   icon() {
     switch (this.collection) {
       case 'technologies':
-        return 'fa fa-database';
+        return TECHNOLOGIES_ICON;
       case 'organizations':
-        return 'fa fa-building';
+        return ORGANIZATIONS_ICON;
       case 'projects':
-        return 'fa fa-briefcase';
+        return PROJECTS_ICON;
       case 'attachments':
-        return 'fa fa-paperclip';
+        return ATTACHMENTS_ICON;
       default:
         return 'fa fa-question';
     }

@@ -1,3 +1,16 @@
+Template.registerHelper('ORGANIZATIONS_ICON', function() {
+  return ORGANIZATIONS_ICON;
+});
+Template.registerHelper('PROJECTS_ICON', function() {
+  return PROJECTS_ICON;
+});
+Template.registerHelper('TECHNOLOGIES_ICON', function() {
+  return TECHNOLOGIES_ICON;
+});
+Template.registerHelper('ATTACHMENTS_ICON', function() {
+  return ATTACHMENTS_ICON;
+});
+
 formatRole = function(role, cor = false) {
   let spanClass = texto = '';
   switch (role) {
