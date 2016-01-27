@@ -43,7 +43,7 @@ Template.menu.helpers({
       {
         regex: '^technologies',
         name: 'Technologies',
-        icon: TECHNOLOGIES_ICON,
+        icon: Icons.collections.technologies,
         roles: ['god', 'admin'],
         submenu: [
           {
@@ -61,7 +61,7 @@ Template.menu.helpers({
       {
         regex: '^projects',
         name: 'Projects',
-        icon: PROJECTS_ICON,
+        icon: Icons.collections.projects,
         roles: ['god', 'admin'],
         submenu: [
           {
@@ -80,7 +80,7 @@ Template.menu.helpers({
       {
         regex: '^organizations',
         name: 'Organizations',
-        icon: ORGANIZATIONS_ICON,
+        icon: Icons.collections.organizations,
         roles: ['god', 'admin'],
         submenu: [
           {
@@ -98,7 +98,7 @@ Template.menu.helpers({
       {
         regex: '^attachments',
         name: 'Attachments',
-        icon: ATTACHMENTS_ICON,
+        icon: Icons.collections.attachments,
         roles: ['god', 'admin'],
         submenu: [
           {

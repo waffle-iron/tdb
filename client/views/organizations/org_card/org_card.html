@@ -2,7 +2,7 @@
   {{#panelContainer class='float-e-margins org-card' }}
     {{#panelTitle}}
       <h3>
-        <i class="fa fa-building"></i>
+        <i class="{{Icons.collections.organizations}}"></i>
         {{name}}
       </h3>
       <div class="ibox-tools">
@@ -22,11 +22,12 @@
         </tr>
         <tr>
           <td>Country</td>
-          <td>{{country}}</td>
+          <td>{{{getCountryFlag country}}} {{getCountryName country}}</td>
         </tr>
         <tr>
+        
           <td>Type</td>
-          <td>{{type}}</td>
+          <td>{{{formatOrgType type true}}}</td>
         </tr>
         <tr>
           <td>People</td>

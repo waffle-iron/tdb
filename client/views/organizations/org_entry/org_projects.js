@@ -1,0 +1,4 @@
+Template.orgProjects.helpers({ 
+
+});
+

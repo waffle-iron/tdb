@@ -28,7 +28,6 @@ michalvalasek:autoform-bootstrap-colorpicker
 useraccounts:bootstrap
 fourseven:scss
 useraccounts:flow-routing
-aldeed:template-extension
 email
 zimme:collection-timestampable
 aldeed:autoform-bs-button-group-input
@@ -48,7 +47,6 @@ aldeed:autoform-bs-datepicker
 rajit:bootstrap3-datepicker
 mizzao:bootboxjs
 ovcharik:alertifyjs
-aldeed:delete-button
 tap:i18n
 sewdn:masked-input
 ahref:flow-router-breadcrumb
@@ -58,7 +56,6 @@ peppelg:bootstrap-3-modal
 abpetkov:switchery
 rainhaven:mask-money
 lepozepo:accounting
-dangrossman:bootstrap-daterangepicker
 templates:tabs
 netanelgilad:moment-business
 reactive-var
@@ -77,7 +74,6 @@ spacebars
 check
 aldeed:tabular
 cloudspider:icheck
-benmgreene:moment-range
 mizzao:user-status
 chart:chart
 rzymek:moment-locale-pt-br
@@ -109,10 +105,7 @@ cfs:s3
 cfs:standard-packages
 cfs:gridfs
 cfs:ejson-file
-mdg:validated-method
-newnectar:meteor-autoform-select-country-flags
 kevohagan:sweetalert
-yogiben:autoform-file
 easysearch:core
 insecure
 jaredmartin:future
@@ -120,3 +113,10 @@ zimme:collection-behaviours
 meteorhacks:search-source
 copleykj:tagstripper
 tmeasday:publish-counts
+aldeed:delete-button
+aldeed:template-extension
+benmgreene:moment-range
+dangrossman:bootstrap-daterangepicker
+mdg:validated-method
+yogiben:autoform-file
+newnectar:meteor-autoform-select-country-flags
