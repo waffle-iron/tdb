@@ -6,7 +6,20 @@ Meteor.publishComposite('tabularOrganizationsList', function(tableName, ids, fie
   return {
     find() {
       this.unblock();
-      return Organizations.find({_id: {$in: ids}}, {fields: fields});
+      return Organizations.find({
+        _id: {
+          $in: ids
+        }
+      }, {
+        fields: fields
+      });
     },
   };
+});
+
+Meteor.publish('organizations.single', function(organizationId) {
+  check(organizationId, String);
+  return Organizations.find({
+    _id: organizationId
+  });
 });

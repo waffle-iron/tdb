@@ -5,39 +5,37 @@ const COUNTER_PREFIX = 'recentUpdatesCounter-';
 
 Template.recentUpdates.helpers({
   logs() {
-    let displayCount = Template.instance().displayCount.get();
+      let displayCount = Template.instance().displayCount.get();
 
-    if (displayCount === 0) {
-      return [];
+      if (displayCount === 0) {
+        return [];
+      }
+
+      let selector = Template.instance().selector;
+
+      return Logs.find(selector, {
+        sort: {
+          createdAt: -1
+        },
+        limit: displayCount
+      });
+    },
+    displayCount() {
+      return Template.instance().displayCount.get();
+    },
+    totalCount() {
+      return Counts.get(Template.instance().counterIdentifier);
     }
-
-    let selector = Template.instance().selector;
-
-    return Logs.find(selector, {
-      sort: {
-        createdAt: -1
-      },
-      limit: displayCount
-    });
-  },
-  displayCount() {
-    return Template.instance().displayCount.get();
-  },
-  totalCount() {
-    return Counts.get(Template.instance().counterIdentifier);
-  }
 });
 
 Template.recentUpdates.onRendered(function() {
-  Meteor.setTimeout(() => {
-    this.$('.scrollbar-recent-updates').mCustomScrollbar({
-      axis: 'y',
-      setHeight:200,
-      advanced: {
-        updateOnContentResize: true
-      }
-    });
-  }, 1000);
+  this.$('.scrollbar-recent-updates').mCustomScrollbar({
+    axis: 'y',
+    setHeight: 200,
+    advanced: {
+      updateOnContentResize: true
+    }
+  });
 });
 
 
@@ -63,7 +61,7 @@ Template.recentUpdates.onCreated(function() {
         this.displayCount.set(0);
       }
       this.subscribe('recentUpdates', this.selector, this.counterId, this.displayCount.get());
-    }else {  // if I don't have, subscribe with limit 0, so I can get the counter cursor
+    } else { // if I don't have, subscribe with limit 0, so I can get the counter cursor
       this.subscribe('recentUpdates', this.selector, this.counterId, 0);
     }
   });

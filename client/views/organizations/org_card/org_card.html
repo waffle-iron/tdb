@@ -1,0 +1,44 @@
+<template name="orgCard">
+  {{#panelContainer class='float-e-margins org-card' }}
+    {{#panelTitle}}
+      <h3>
+        <i class="fa fa-building"></i>
+        {{name}}
+      </h3>
+      <div class="ibox-tools">
+        <a href="#">
+          <i class="fa fa-pencil"></i>
+        </a>
+      </div>
+    {{/panelTitle}}
+    {{#panelContent}}
+      <img src="http://www.tvredepetropolis.com.br/portal/wp-content/uploads/Microsoft-Logo-20121.jpg" class="img-responsive" alt="organization image">
+    {{/panelContent}}
+    {{#panelContent}}
+      <table class="table">
+        <tr>
+          <td>Founding Year</td>
+          <td>{{foundingYear}}</td>
+        </tr>
+        <tr>
+          <td>Country</td>
+          <td>{{country}}</td>
+        </tr>
+        <tr>
+          <td>Type</td>
+          <td>{{type}}</td>
+        </tr>
+        <tr>
+          <td>People</td>
+          <td>
+            {{#each keyPeople}}
+            <a href="#">
+              <img src="{{image}}" class="img-circle" alt="bill-gates">
+            </a>
+            {{/each}}
+          </td>
+        </tr>
+      </table>
+    {{/panelContent}}
+  {{/panelContainer}}
+</template>
