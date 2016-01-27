@@ -6,26 +6,25 @@ Template.usersView.helpers({
 
     return user;
   },
-  editingProfile: function() {
-    return Session.get('editingProfile');
+  userSelector() {
+    return {
+      userId: FlowRouter.getParam('id')
+    };
   }
 });
 
 Template.usersView.events({
   'click #change-profile-image': function() {
-    console.log("aqui!");
     Modal.show('usersChangeImage');
   },
-  'click #escolher-grupo': function() {
-    Modal.show('_usersEscolherGrupo', {
-      _id: FlowRouter.getParam('id')
-    });
-  },
-  'click #btn-edit-profile': function() {
-    Session.set('editingProfile', !Session.get('editingProfile'));
+  'click #change-role': function() {
+    // must implement
   }
 });
 
 Template.usersView.onCreated(function() {
-  Session.setDefault('editingProfile', false);
+  this.autorun(() => {
+    let userId = FlowRouter.getParam('id');
+    this.subscribe('singleUser', userId);
+  });
 });

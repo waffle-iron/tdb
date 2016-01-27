@@ -1,29 +1,29 @@
 <template name="recentUpdates">
-    <div class="recentUpdates">
-        {{#panelContainer}}
-            {{#panelTitle}}
-                <h5>
-                    <i class="fa fa-bell"></i> 
-                    Recent Updates
-                </h5>
-            {{/panelTitle}}
-            {{#panelContent}}
-                <ul class="list-group">
-                    {{#each logs}}
-                        {{> recentUpdatesItem}}
-                    {{/each}}
-                    <li class="list-group-item">
-                        <p>
-                            <a class="text-info" id='view-more'>
-                                View more... ({{displayCount}} / {{totalCount}})
-                            </a><br>
-                            <a class='text-info' id='view-less'>
-                                View less                                
-                            </a>                            
-                        </p>
-                    </li>
-                </ul>
-            {{/panelContent}}
-        {{/panelContainer}}
-    </div>
+  {{#panelContainer class='float-e-margins recent-updates' }}
+    {{#panelTitle}}
+      <h1>
+        <i class="fa fa-bell"></i>
+        Recent Updates
+      </h1>
+    {{/panelTitle}}
+    {{#panelContent}}
+      <div class="scrollbar-recent-updates">
+        <ul class="list-group">
+          {{#each logs}}
+            {{> recentUpdatesItem}}
+          {{/each}}
+        </ul>
+      </div>
+    {{/panelContent}}
+    {{#panelFooter}}
+      <span class="pull-right">
+        <a class="text-info" id='view-more'>
+          View more... ({{displayCount}} / {{totalCount}})
+        </a>
+      </span>
+      <a class='text-info' id='view-less'>
+        View less
+      </a>
+      {{/panelFooter}}
+  {{/panelContainer}}
 </template>

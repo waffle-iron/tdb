@@ -80,7 +80,7 @@ Template.menu.helpers({
       {
         regex: '^organizations',
         name: 'Organizations',
-        icon: PROJECTS_ICON,
+        icon: ORGANIZATIONS_ICON,
         roles: ['god', 'admin'],
         submenu: [
           {

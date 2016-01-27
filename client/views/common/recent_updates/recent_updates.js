@@ -5,18 +5,13 @@ const COUNTER_PREFIX = 'recentUpdatesCounter-';
 
 Template.recentUpdates.helpers({
   logs() {
-    let displayCount = Template.instance().data.displayCount.get();
+    let displayCount = Template.instance().displayCount.get();
 
     if (displayCount === 0) {
       return [];
     }
 
-    let selector = {};
-    if (this.collection !== ALL_COLLECTIONS_CHAR) {
-      selector = {
-        collection: this.collection
-      };
-    }
+    let selector = Template.instance().selector;
 
     return Logs.find(selector, {
       sort: {
@@ -26,36 +21,50 @@ Template.recentUpdates.helpers({
     });
   },
   displayCount() {
-    return this.displayCount.get();
+    return Template.instance().displayCount.get();
   },
   totalCount() {
-    return Counts.get(this.counterIdentifier);
+    return Counts.get(Template.instance().counterIdentifier);
   }
 });
 
-Template.recentUpdates.onCreated(function() {
-  this.data.initialCount = this.data.initialCount || DEFAULT_INITIAL_COUNT;
-  this.data.countIncrement = this.data.countIncrement || DEFAULT_COUNT_INCREMENT;
-  this.data.collection = this.data.collection || ALL_COLLECTIONS_CHAR;
-  this.data.counterIdentifier = COUNTER_PREFIX + this.data.collection;
+Template.recentUpdates.onRendered(function() {
+  Meteor.setTimeout(() => {
+    this.$('.scrollbar-recent-updates').mCustomScrollbar({
+      axis: 'y',
+      setHeight:200,
+      advanced: {
+        updateOnContentResize: true
+      }
+    });
+  }, 1000);
+});
 
-  this.data.displayCount = new ReactiveVar(this.data.initialCount);
+
+Template.recentUpdates.onCreated(function() {
+  if (!this.data.counterId) throw new Error('Must specify a counter Id');
+  this.initialCount = this.data.initialCount || DEFAULT_INITIAL_COUNT;
+  this.countIncrement = this.data.countIncrement || DEFAULT_COUNT_INCREMENT;
+  this.counterIdentifier = COUNTER_PREFIX + this.data.counterId;
+  this.counterId = this.data.counterId;
+  this.selector = this.data.selector || {};
+  this.displayCount = new ReactiveVar(this.initialCount);
 
   this.autorun(() => {
-    let displayCount = this.data.displayCount;
+    let displayCount = this.displayCount;
 
-    if (Counts.has(this.data.counterIdentifier)) { //  if I have the total amount of documents
+    if (Counts.has(this.counterIdentifier)) { //  if I have the total amount of documents
       //  upper bound
-      if (this.data.displayCount.get() > Counts.get(this.data.counterIdentifier)) {
-        return this.data.displayCount.set(Counts.get(this.data.counterIdentifier));
+      if (this.displayCount.get() > Counts.get(this.counterIdentifier)) {
+        return this.displayCount.set(Counts.get(this.counterIdentifier));
       }
       //  lower bound
-      if (this.data.displayCount.get() < 0) {
-        this.data.displayCount.set(0);
+      if (this.displayCount.get() < 0) {
+        this.displayCount.set(0);
       }
-      this.subscribe('recentUpdates', this.data.collection, this.data.displayCount.get());
+      this.subscribe('recentUpdates', this.selector, this.counterId, this.displayCount.get());
     }else {  // if I don't have, subscribe with limit 0, so I can get the counter cursor
-      this.subscribe('recentUpdates', this.data.collection, 0);
+      this.subscribe('recentUpdates', this.selector, this.counterId, 0);
     }
   });
 });
@@ -63,22 +72,9 @@ Template.recentUpdates.onCreated(function() {
 
 Template.recentUpdates.events({
   'click #view-more': function(e, template) {
-    let templateData = template.data;
-    /*
-    let displayCount = templateData.displayCount;
-    let count = Counts.get(templateData.counterIdentifier);
-    let increment = count - displayCount.get() < templateData.countIncrement ?
-      count - displayCount.get() : templateData.countIncrement;
-    */
-    templateData.displayCount.set(templateData.displayCount.get() + templateData.countIncrement);
+    template.displayCount.set(template.displayCount.get() + template.countIncrement);
   },
   'click #view-less': function(e, template) {
-    let templateData = template.data;
-    /*
-    let displayCount = templateData.displayCount;
-    let increment = displayCount.get() - templateData.countIncrement < templateData.initialCount ?
-      displayCount.get() - templateData.initialCount : templateData.countIncrement;
-    */
-    templateData.displayCount.set(templateData.displayCount.get() - templateData.countIncrement);
+    template.displayCount.set(template.displayCount.get() - template.countIncrement);
   }
 });

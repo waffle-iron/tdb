@@ -1,42 +1,43 @@
 <template name="panel">
-    <div class="wrapper wrapper-content animated fadeInRight" style="padding-bottom:0px">
-        <div class="ibox float-e-margins" style="margin-bottom:0px">
-            <div class="ibox-title">
-                <h5>{{title}}</h5> {{> iboxTools}}
-            </div>
-            <div class="ibox-content">
-                {{> UI.contentBlock}}
-            </div>
-        </div>
+  <div class="wrapper wrapper-content animated fadeInRight" style="padding-bottom:0px">
+    <div class="ibox float-e-margins" style="margin-bottom:0px">
+      <div class="ibox-title">
+        <h5>{{title}}</h5> {{> iboxTools}}
+      </div>
+      <div class="ibox-content">
+        {{> UI.contentBlock}}
+      </div>
     </div>
+  </div>
 </template>
 <template name="simplePanel">
-    <div class="ibox float-e-margins" style="margin-bottom:0px">
-        <div class="ibox-title">
-            <h5>{{title}}</h5> {{> iboxTools}}
-        </div>
-        <div class="ibox-content">
-            {{> UI.contentBlock}}
-        </div>
+  <div class="ibox float-e-margins" style="margin-bottom:0px">
+    <div class="ibox-title">
+      <h5>{{title}}</h5> {{> iboxTools}}
     </div>
+    <div class="ibox-content">
+      {{> UI.contentBlock}}
+    </div>
+  </div>
 </template>
-
-
 <template name="panelContainer">
-  <div class="ibox float-e-margins">
+  <div class="ibox {{class}}">
     {{ > UI.contentBlock}}
   </div>
 </template>
-
 <template name="panelTitle">
   <div class="ibox-title">
     {{> UI.contentBlock}}
   </div>
 </template>
-
 <template name="panelContent">
-   <div class="ibox-content {{panelClass}}">
-     {{> UI.contentBlock}}
-   </div>
+  <div class="ibox-content {{panelClass}}">
+    {{> UI.contentBlock}}
+  </div>
 </template>
 
+<template name="panelFooter">
+  <div class="ibox-footer">
+    {{> UI.contentBlock}}
+  </div>
+</template>

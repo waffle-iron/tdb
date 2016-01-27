@@ -19,13 +19,14 @@ Meteor.publishComposite('tabular_UsersList', function(tableName, ids, fields) {
 });
 
 // TODO: SECURITY
-Meteor.publish('user', function(userId) {
+Meteor.publish('singleUser', function(userId) {
   check(userId, String);
 
   return Meteor.users.find({_id: userId});
 });
 
+/*
 Meteor.publish(null, function() {
   return Meteor.users.find({}, {fields: {roles: 1, status: 1, emails: 1}});
 });
-
+*/

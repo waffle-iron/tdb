@@ -1,18 +1,18 @@
 <template name="toggleRole">
-    {{#modal titulo="Grupos" subtitulo="Selecione o grupo a qual este usuário pertence" icone="fa fa-users" }}
-        {{#modalBody}}
-            <div align="center">
-                {{#each roles}}
-                    {{#if $neq name 'god'}}
-                        <span class="btn btn-primary {{checked}}" style="min-width:150px;">
-          {{{formatarRole name 'false'}}}
-        </span>
-                    {{/if}}
-                {{/each}}
-            </div>
-        {{/modalBody}}
-        {{#modalFooter}}
-            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-        {{/modalFooter}}
-    {{/modal}}
+  {{#modal titulo="Grupos" subtitulo="Selecione o grupo a qual este usuário pertence" icone="fa fa-users" }}
+    {{#modalBody}}
+      <div align="center">
+        {{#each roles}}
+          {{#if $neq name 'god'}}
+            <span class="btn btn-primary {{checked}}" style="min-width:150px;">
+              {{{formatarRole name 'false'}}}
+            </span>
+          {{/if}}
+        {{/each}}
+      </div>
+    {{/modalBody}}
+    {{#modalFooter}}
+      <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+    {{/modalFooter}}
+  {{/modal}}
 </template>

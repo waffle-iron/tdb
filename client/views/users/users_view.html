@@ -44,22 +44,23 @@
     {{/with}}
     -->
 
-    {{#with user}}
-    <div class="row">
-        {{!-- Not sure about small, sm-offset is bugged somehow --}}
-        <div class="col-md-4">
-            {{>userCard }}
-        </div>
-        <div class="col-xs-12 col-md-8">
+    {{#if Template.subscriptionsReady}}
+        {{#with user}}
             <div class="row">
-                <div class="col-md-12">
-                    {{> recentUpdates collection='users'}}
+                <div class="col-md-3">
+                    {{>userCard }}
                 </div>
-                <div class="col-md-12">
-                    {{> projectsWorking}}
+                <div class="col-xs-12 col-md-9">
+                    <div class="row">
+                        <div class="col-md-12">
+                            {{> recentUpdates selector=userSelector counterId='userUpdates' initialCount=40}}
+                        </div>
+                        <div class="col-md-12">
+                            {{> projectsWorking}}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </div>    
-    {{/with}}
+            </div>    
+        {{/with}}
+    {{/if}}
 </template>

@@ -1,15 +1,29 @@
-Template.registerHelper('ORGANIZATIONS_ICON', function() {
+Template.registerHelper('ORGANIZATIONS_ICON', () => {
   return ORGANIZATIONS_ICON;
 });
-Template.registerHelper('PROJECTS_ICON', function() {
+Template.registerHelper('PROJECTS_ICON', () => {
   return PROJECTS_ICON;
 });
-Template.registerHelper('TECHNOLOGIES_ICON', function() {
+Template.registerHelper('TECHNOLOGIES_ICON', () => {
   return TECHNOLOGIES_ICON;
 });
-Template.registerHelper('ATTACHMENTS_ICON', function() {
+Template.registerHelper('ATTACHMENTS_ICON', () => {
   return ATTACHMENTS_ICON;
 });
+Template.registerHelper('getLabelClassForRole', (role) => {
+  switch (role) {
+    case 'admin':
+      return 'info';
+    case 'god':
+      return 'danger';
+    case 'user':
+      return 'primary';
+    default:
+      return 'default';
+  }
+});
+Template.registerHelper('Schemas', () => Schemas);
+
 
 formatRole = function(role, cor = false) {
   let spanClass = texto = '';

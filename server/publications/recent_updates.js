@@ -1,18 +1,12 @@
 const ALL_COLLECTIONS_CHAR = '*';
 const COUNTER_PREFIX = 'recentUpdatesCounter-';
 
-Meteor.publish('recentUpdates', function(collection, limit) {
-  check(collection, String);
+Meteor.publish('recentUpdates', function(selector, counterId, limit) {
+  check(selector, Object);
+  check(counterId, String);
   check(limit, Number);
 
-  let selector = {};
-  if (collection !== ALL_COLLECTIONS_CHAR) {
-    selector = {
-      collection: collection
-    };
-  }
-
-  Counts.publish(this, COUNTER_PREFIX + collection, Logs.find(selector));
+  Counts.publish(this, COUNTER_PREFIX + counterId, Logs.find(selector));
 
 
   if (limit !== 0) {

@@ -28,60 +28,6 @@ SearchSource.defineSource('globalSearch', function(searchText, options) {
   let descriptionFuzziness = options.descriptionFuzziness || DEFAULT_DESCRIPTION_FUZZINESS;
   let types = options.types || [];
 
-  /*
-  let search = esEngine.search({
-    index: 'techdb',
-    body: {
-      query: {
-        bool: {
-          should: [
-            {
-              match: {
-                name: {
-                  query: searchText,
-                  boost: 20,
-                  fuzziness: nameFuzziness
-                }
-              },
-            },
-            {
-              match: {
-                description: {
-                  query: searchText,
-                  boost: 1,
-                  //fuzziness: descriptionFuzziness
-                }
-              }
-            }]
-        }
-      },
-      highlight: {
-        fields: {
-          name: {},
-          'description.longText': {},
-          description: {}
-        }
-      }
-    }
-  });
-*/
-  /*
-  let search = esEngine.search({
-    index: 'techdb',
-    body: {
-      query: {
-        dis_max: {
-          queries: [
-            {match: {name: searchText}},
-            {match: {description: searchText}}
-          ],
-          tie_breaker: 0.3
-        }
-      }
-    }
-  });
-  */
-
 
   let words = searchText.trim().split(' ');
   let lastWord = words[words.length - 1] || '';

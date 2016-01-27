@@ -1,12 +1,8 @@
 <template name="log">
   <h3>Recent updates nas organizations</h3>
-  {{> recentUpdates collection='organizations' initialCount=30}}
-
+  {{> recentUpdates counterId='org' selector=orgSelector initialCount=30}}
   
-  <h3>Recent updates nas technologies</h3>
-  {{> recentUpdates collection='technologies' countIncrement=1}}
-
-  <h3>Recent updates em todas as collections</h3>
-  {{> recentUpdates collection='*'}}
+  <h3>Recent updates do user</h3>
+  {{> recentUpdates counterId='user' selector=userSelector initialCount=20}}
   
 </template>

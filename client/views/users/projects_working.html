@@ -1,26 +1,12 @@
 <template name="projectsWorking">
-  {{#panelContainer}}
+  {{#panelContainer class='float-e-margins'}}
     {{#panelTitle}}
-      <h5>Projects Working</h5>
+      <h1>
+        <i class="{{PROJECTS_ICON}}"></i>
+        Projects Working</h1>
     {{/panelTitle}}
     {{#panelContent}}
-        {{>simpleListItem 
-            img='https://upload.wikimedia.org/wikipedia/commons/7/72/Message-icon-grey.png'
-            title='Título 1'
-            subtitle='Subtítulo 1'
-        }}
 
-        {{>simpleListItem 
-            img='https://cdn1.iconfinder.com/data/icons/logotypes/32/square-facebook-512.png'
-            title='Título 2'
-            subtitle='Subtítulo 2'
-        }}
-
-        {{>simpleListItem 
-            img='https://cdn0.iconfinder.com/data/icons/Pinterest/512/Pinterest_Favicon.png'
-            title='Título 3'
-            subtitle='Subtítulo 3'
-        }}
     {{/panelContent}}
   {{/panelContainer}}
 </template>
