@@ -2,6 +2,36 @@
 
 A fresh start. Reboot on 11.23.2015.
 
+## Searching with elastic search
+We must attach a **river behaviour** to the collection we want to search with ElasticSearch, so it can river all the incoming operations to our ElasticSearch server
+
+```
+Organizations.attachBehaviour('river', {
+  adapters: [
+    new ElasticSearchAdapter(esClient, 'techdb', 'organizations', (doc) => {
+      let finalDoc = _.clone(doc);
+
+      let schema = new SimpleSchema({
+        name: {
+          type: String
+        }
+      });
+      schema.clean(finalDoc);
+      return finalDoc;
+    })
+  ]
+});
+```
+
+```
+class ElasticSearchAdapter
+constructor:
+@client {elasticSearch.Client} a client instance (from elasticsearch npm package)
+@index {String} ElasticSearch index
+@type {String} ElasticSearch type
+@docTransformer {function} a function that takes the original doc and transforms it before rivering to ElasticSearch
+```
+
 ## Log operations
 We must attach a **river behaviour** to the collections we want to track updates, passing the LogAdapter as an adapter:
 
