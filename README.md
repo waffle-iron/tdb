@@ -6,6 +6,8 @@ A fresh start. Reboot on 11.23.2015.
 
 ## Components
 ### Recent Updates
+- Will draw a box with a list of recent updateds inside a scrollable region and buttons to load more or load less results.
+- The updates will arrive in real time as they are created on our server
 ```
 {{> recentUpdates}}
 @params:
@@ -34,7 +36,8 @@ Template.userUpdates.helpers({
 ```
 ### SearchSource
 
-Will draw a search input, with an icon indicating status (loaded, loading or error), will print some search metadata (time to execute the query on elasticsearch and total number of results)
+- Will draw a search input, with an icon indicating status (loaded, loading or error), will print some search metadata (time to execute the query on elasticsearch and total number of results)
+- Will bring new results as you type, with an input throttle delay
 ```
 {{> searchSource}}
 Params:
