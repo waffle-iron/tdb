@@ -291,6 +291,7 @@ Icons = {
   }
 };
 
+Template.registerHelper('SearchSources', () => SearchSources);
 Template.registerHelper('Schemas', () => Schemas);
 Template.registerHelper('Icons', () => Icons);
 Template.registerHelper('getCountryName', (code) => {

@@ -4,28 +4,9 @@
       {{> selectEntities}}
     </div>
   </div>
-  <div class='row'>
-    <div class='col col-md-10'>
-      <input class='form-control' type="text" id="search">
-    </div>
-    <div class='col col-md-2'>
-      {{#if searchStatus.loading}}
-        <i class='fa fa-spinner fa-spin'></i>
-      {{/if}}
-      {{#if searchStatus.loaded}}
-        <i class='fa fa-check'></i>
-      {{/if}}      
-      {{#if searchStatus.error}}
-        <i class='fa fa-error'></i>
-      {{/if}}            
-    </div>
-  </div>
+  {{> searchSource source=SearchSources.globalSearch options=getOptions}}
   <div class='row'> 
     <div class='col col-md-12'>
-      {{#with metadata}}
-        <i><b>took:</b> {{took}}ms </i><br>
-        <i><b>total:</b> {{total}} records </i><hr>
-      {{/with}}
       {{#each results}}
         <h3>{{{name}}}</h3>
         <h5>
@@ -35,18 +16,5 @@
         <hr />
       {{/each}}
     </div>
-  </div>
-</template>
-
-<template name="selectEntities">
-  <div class="row">
-  {{#each entities}}
-    <div class="col-md-3" align="center">
-      <h3>{{name}}</h3>
-      <button class='btn btn-block {{#if isSelected}}btn-primary{{else}}btn-default{{/if}} select-entity'>
-        <i class='{{icon}}'></i>
-      </button>
-    </div>
-  {{/each}}
   </div>
 </template>

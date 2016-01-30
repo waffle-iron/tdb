@@ -20,10 +20,7 @@ esEngine = new ElasticSearchEngine(esClient);
  *  @data -> results
  *  @metadata -> total, took
  */
-SearchSource.defineSource('globalSearch', function(searchText, options) {
-  Meteor._sleepForMs(500); //remove!!!!
-  
-  options = options || {};
+SearchSource.defineSource('globalSearch', function(searchText, options = {}) {
   let nameBoost = options.nameBoost || DEFAULT_NAME_BOOST;
   let nameFuzziness = options.nameFuzziness || DEFAULT_NAME_FUZZINESS;
   let descriptionBoost = options.descriptionBoost || DEFAULT_DESCRIPTION_BOOST;
@@ -72,7 +69,7 @@ SearchSource.defineSource('globalSearch', function(searchText, options) {
                     boost: descriptionBoost
                   }
                 }
-              }
+              },
             ]
           }
         }
@@ -136,13 +133,11 @@ SearchSource.defineSource('globalSearch', function(searchText, options) {
 
 const DEFAULT_USER_USERNAME_BOOST = 10;
 const DEFAULT_USER_NAME_BOOST = 1;
-SearchSource.defineSource('userSearch', function(searchText, options) {
-
-  Meteor._sleepForMs(500); //remove!!!!
-
-  options = options || {};
+const DEFAULT_EMAIL_BOOST = 5;
+SearchSource.defineSource('userSearch', function(searchText, options = {}) {
   let nameBoost = options.nameBoost || DEFAULT_USER_NAME_BOOST;
   let usernameBoost = options.usernameBoost || DEFAULT_DESCRIPTION_BOOST;
+  let emailBoost = options.emailBoost || DEFAULT_EMAIL_BOOST;
 
   let words = searchText.trim().split(' ');
   let lastWord = words[words.length - 1] || '';
@@ -182,6 +177,22 @@ SearchSource.defineSource('userSearch', function(searchText, options) {
                   username: {
                     value: lastWord,
                     boost: usernameBoost
+                  }
+                }
+              },
+              {
+                match: {
+                  emails: {
+                    query: searchText,
+                    boost: emailBoost
+                  }
+                }
+              },
+              {
+                prefix: {
+                  emails: {
+                    value: lastWord,
+                    boost: emailBoost
                   }
                 }
               }

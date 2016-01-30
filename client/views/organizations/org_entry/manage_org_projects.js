@@ -1,18 +1,11 @@
 Template.manageOrgProjects.helpers({
   projects() {
-    let results =  globalSearch.getData({
+    return SearchSources.globalSearch.getData({
       transform(matchText, regExp) {
         return matchText.replace(regExp, '<b>$&</b>');
       },
       sort: {_score: -1}
     });
-    return results;
-  },
-  metadata() {
-    return globalSearch.getMetadata();
-  },
-  searchStatus() {
-    return globalSearch.getStatus();
   },
   inProject() {
     let organizationId = Template.instance().data.organizationId;
@@ -22,9 +15,6 @@ Template.manageOrgProjects.helpers({
     });
 
     return inProject;
-  },
-  getSource() {
-    return globalSearch;
   },
   getOptions() {
     return {

@@ -1,9 +1,18 @@
+SearchSources = {};
+const SEARCH_THROTTLE = 200;
+const SEARCH_OPTIONS = {
+  keepHistory: false,
+  localSearch: false
+};
+SearchSources.globalSearch = new SearchSource('globalSearch', ['name', 'description'], SEARCH_OPTIONS);
+SearchSources.userSearch = new SearchSource('userSearch', ['fullName', 'username', 'email'], SEARCH_OPTIONS);
+
 Template.searchSource.helpers({
   metadata() {
-    return globalSearch.getMetadata();
+    return Template.instance().source.getMetadata();
   },
   searchStatus() {
-    return globalSearch.getStatus();
+    return Template.instance().source.getStatus();
   }
 });
 
@@ -19,10 +28,14 @@ Template.searchSource.events({
 
 Template.searchSource.onCreated(function() {
   this.source = this.data.source;
-  this.options = this.data.options;
+  this.options = this.data.options || {};
   this.searchText = new ReactiveVar('');
 
+  if (!this.source || !this.source instanceof SearchSource) {
+    throw new Error('source must be instance of SearchSource');
+  }
   this.autorun(() => {
-    this.source.search(this.searchText.get(), this.options);
+    let opt = typeof this.options === 'function' ? this.options() : this.options;
+    this.source.search(this.searchText.get(), opt);
   });
 });
