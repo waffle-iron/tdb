@@ -31,6 +31,10 @@ constructor:
 @type {String} ElasticSearch type
 @docTransformer {function} a function that takes the original doc and transforms it before rivering to ElasticSearch
 ```
+**Notes: **: 
+- we must wrap the elasticSearch.Client method's with Async.wrap so we can call the asynchronous methods on a synchronous way
+- we should make docTransformer a pure function: it must not change the original doc object, since other adapters may utilize this doc as well. Instead, we must make a copy, mutate and return it
+
 
 ## Log operations
 We must attach a **river behaviour** to the collections we want to track updates, passing the LogAdapter as an adapter:
