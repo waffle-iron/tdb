@@ -5,7 +5,7 @@ A fresh start. Reboot on 11.23.2015.
 
 
 ## Components
-1. Recent Updates
+### Recent Updates
 ```
 {{> recentUpdates}}
 @params:
@@ -32,7 +32,8 @@ Template.userUpdates.helpers({
   }
 })
 ```
-2. SearchSource
+### SearchSource
+
 Will draw a search input, with an icon indicating status (loaded, loading or error), will print some search metadata (time to execute the query on elasticsearch and total number of results)
 ```
 {{> searchSource}}
