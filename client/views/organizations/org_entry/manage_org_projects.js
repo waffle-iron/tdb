@@ -6,7 +6,6 @@ Template.manageOrgProjects.helpers({
       },
       sort: {_score: -1}
     });
-    console.log(results);
     return results;
   },
   metadata() {
@@ -23,11 +22,20 @@ Template.manageOrgProjects.helpers({
     });
 
     return inProject;
+  },
+  getSource() {
+    return globalSearch;
+  },
+  getOptions() {
+    return {
+      types: ['projects']
+    };
   }
 });
 
 
 Template.manageOrgProjects.events({
+    /*
   'input #search-projects': function(e) {
     let el = $(e.target);
     let searchText = el.val();
@@ -35,6 +43,7 @@ Template.manageOrgProjects.events({
       types: ['projects']
     });
   },
+  */
   'click .add-project': function(e, t) {
     Meteor.call('organizations/addProject', t.data.organizationId, this._id);
   },

@@ -21,6 +21,8 @@ esEngine = new ElasticSearchEngine(esClient);
  *  @metadata -> total, took
  */
 SearchSource.defineSource('globalSearch', function(searchText, options) {
+  Meteor._sleepForMs(500); //remove!!!!
+  
   options = options || {};
   let nameBoost = options.nameBoost || DEFAULT_NAME_BOOST;
   let nameFuzziness = options.nameFuzziness || DEFAULT_NAME_FUZZINESS;
@@ -135,6 +137,9 @@ SearchSource.defineSource('globalSearch', function(searchText, options) {
 const DEFAULT_USER_USERNAME_BOOST = 10;
 const DEFAULT_USER_NAME_BOOST = 1;
 SearchSource.defineSource('userSearch', function(searchText, options) {
+
+  Meteor._sleepForMs(500); //remove!!!!
+
   options = options || {};
   let nameBoost = options.nameBoost || DEFAULT_USER_NAME_BOOST;
   let usernameBoost = options.usernameBoost || DEFAULT_DESCRIPTION_BOOST;

@@ -1,0 +1,25 @@
+<template name="searchSource">
+  <div class="row search-source">
+    <div class="col col-sm-12">
+      <div class="input-group">
+        <span class="input-group-addon">
+          {{#if searchStatus.loaded}}
+            <i class='fa fa-search'></i>
+          {{/if}}
+          {{#if searchStatus.loading}}
+            <i class='fa fa-spinner fa-spin'></i>
+          {{/if}}
+          {{#if searchStatus.error}}
+            <i class='fa fa-error' style='color: red;'></i>
+          {{/if}}
+        </span>
+        <input class="form-control" placeholder="Search for something..." name="search" type="text" id="search-text">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col col-xs-12 metadata" align='right'>
+      <i>took: <b>{{metadata.took}}ms</b>, total: <b>{{metadata.total}}</b> results</i>
+      </div>
+  </div>
+</template>

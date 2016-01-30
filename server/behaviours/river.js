@@ -108,7 +108,6 @@ Meteor.users.attachBehaviour('river', {
     new ElasticSearchAdapter(esClient, 'techdb', 'users', (doc) => {
       let finalDoc = _.clone(doc);
 
-      console.log(finalDoc);
       let schema = new SimpleSchema({
         'profile.fullName': {
           type: String
@@ -127,12 +126,9 @@ Meteor.users.attachBehaviour('river', {
         finalDoc.fullName = finalDoc.profile.fullName;
       }
 
-      console.log(finalDoc.emails);
-      finalDoc.emails = finalDoc.emails.map(function(email) {
+      finalDoc.emails = finalDoc.emails.length && finalDoc.emails.map(function(email) {
         return email.address;
       });
-
-      console.log(finalDoc);
 
       delete finalDoc.profile;
       return finalDoc;
