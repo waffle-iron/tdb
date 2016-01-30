@@ -1,7 +1,7 @@
 .recent-updates {
+  
   .list-group-item {
     .flex;
-
 
     p {
       display: inline-block; /*To fit at the same line with icon*/
@@ -16,13 +16,14 @@
     }
 
     .icon-holder {
-      width: 38px;
-      height: 38px;
+      .inline-flex;
       .x-center-flex;
-      .y-center-flex;      
-      i{
-        color:white
-      }      
+      .y-center-flex;
+      
+      margin: 0;
+        width: @icon-size-recent-updates;
+        height: @icon-size-recent-updates;
+        i { color: @icon-color-recent-updates; }     
     }
 
   }

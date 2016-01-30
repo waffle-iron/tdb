@@ -2,18 +2,19 @@
   {{#panelContainer class='float-e-margins recent-updates' }}
     {{#panelTitle}}
       <h1>
-        <i class="fa fa-bell"></i>
+        <i class="{{Icons.misc.updates}}"></i>
         Recent Updates
       </h1>
     {{/panelTitle}}
     {{#panelContent}}
-      <div class="scrollbar-recent-updates">
-        <ul class="list-group">
-          {{#each logs}}
-            {{> recentUpdatesItem}}
-          {{/each}}
-        </ul>
-      </div>
+      {{#if totalCount}}
+        {{> scrollbarList logs=logs}}
+      {{else}}
+        <h3>
+          <i class='fa fa-info'></i>
+          No recent updates
+        </h3>
+      {{/if}}
     {{/panelContent}}
     {{#panelFooter}}
       <span class="pull-right">
@@ -24,6 +25,16 @@
       <a class='text-info' id='view-less'>
         View less
       </a>
-      {{/panelFooter}}
+    {{/panelFooter}}
   {{/panelContainer}}
+</template>
+
+<template name="scrollbarList">
+  <div class="scrollbar-recent-updates">
+    <ul class="list-group">
+      {{#each logs}}
+        {{> recentUpdatesItem}}
+      {{/each}}
+    </ul>
+  </div>
 </template>

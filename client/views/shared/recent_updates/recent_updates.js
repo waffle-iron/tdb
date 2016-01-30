@@ -1,5 +1,5 @@
 const ALL_COLLECTIONS_CHAR = '*';
-const DEFAULT_INITIAL_COUNT = 1;
+const DEFAULT_INITIAL_COUNT = 5;
 const DEFAULT_COUNT_INCREMENT = 5;
 const COUNTER_PREFIX = 'recentUpdatesCounter-';
 
@@ -28,7 +28,7 @@ Template.recentUpdates.helpers({
     }
 });
 
-Template.recentUpdates.onRendered(function() {
+Template.scrollbarList.onRendered(function() {
   this.$('.scrollbar-recent-updates').mCustomScrollbar({
     axis: 'y',
     setHeight: 200,

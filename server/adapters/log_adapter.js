@@ -20,6 +20,7 @@ LogAdapter = class LogAdapter {
   }
 
   getUserIdentifier(userId) {
+    console.log(userId);
     if (userId) {
       let user = Meteor.users.findOne({
         _id: userId
@@ -47,12 +48,10 @@ LogAdapter = class LogAdapter {
       docName: docName
     };
 
-    if (userId && username) {
-      _.extend(obj, {
-        userId: userId,
-        username: username,
-      });
+    if (userId) {
+      obj.userId = userId;
     }
+
     this.logCollection.insert(obj);
   }
 
@@ -66,6 +65,9 @@ LogAdapter = class LogAdapter {
   }
 
   updateDoc(userId, doc, fieldNames, modifier, options) {
+    if (this.config.trackedFields) {
+      if (!_.intersection(fieldNames, this.config.trackedFields).length) return false;
+    }
     this.logOperation(OPERATION_UPDATE, DEFAULT_UPDATE_DESCRIPTION, userId, doc);
 
     /*

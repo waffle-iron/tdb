@@ -1,14 +1,14 @@
 Template.userCard.helpers({
-  genderIcon() {
-    if (this && this.gender) {
-      return this.gender === 'Male' ? 'fa fa-mars' : 'fa fa-venus';
-    }
-    return 'fa fa-question';
-  }
+  
 });
 
 
 Template.userCard.events({
+  'click #manage-user-role': function(e) {
+    e.preventDefault();
+    console.log('ok');
+    Modal.show('manageUserRole');
+  },
   'click #edit-info': function(e) {
     e.preventDefault();
     Modal.show('editInformation', {

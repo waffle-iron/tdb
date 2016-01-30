@@ -35,10 +35,10 @@ SearchSource.defineSource('globalSearch', function(searchText, options) {
 
   let query = {
     bool: {
-      must: [                   //  At least one must match
+      must: [ //  At least one must match
         {
           bool: {
-            should: [           // Any of these conditions should match, the most, more relevant
+            should: [ // Any of these conditions should match, the most, more relevant
               {
                 match: {
                   name: {
@@ -107,9 +107,117 @@ SearchSource.defineSource('globalSearch', function(searchText, options) {
 
   let search = esEngine.search({
     index: 'techdb',
-    type: types.join(','),    // filter types
+    type: types.join(','), // filter types
     body: {
-      query: finalQuery
+      query: finalQuery,
+      highlight: {
+        pre_tags: ['<b>'],
+        post_tags: ['</b>'],
+        fields: {
+          name: {},
+          description: {}
+        }
+      }
+    }
+  });
+
+  let metadata = {
+    total: search.total,
+    took: search.took
+  };
+
+  return {
+    data: search.results,
+    metadata: metadata
+  };
+});
+
+const DEFAULT_USER_USERNAME_BOOST = 10;
+const DEFAULT_USER_NAME_BOOST = 1;
+SearchSource.defineSource('userSearch', function(searchText, options) {
+  options = options || {};
+  let nameBoost = options.nameBoost || DEFAULT_USER_NAME_BOOST;
+  let usernameBoost = options.usernameBoost || DEFAULT_DESCRIPTION_BOOST;
+
+  let words = searchText.trim().split(' ');
+  let lastWord = words[words.length - 1] || '';
+
+  let query = {
+    bool: {
+      must: [ //  At least one must match
+        {
+          bool: {
+            should: [ // Any of these conditions should match, the most, more relevant
+              {
+                match: {
+                  name: {
+                    query: searchText,
+                    boost: nameBoost
+                  }
+                }
+              },
+              {
+                prefix: {
+                  name: {
+                    value: lastWord,
+                    boost: nameBoost
+                  }
+                }
+              },
+              {
+                match: {
+                  username: {
+                    query: searchText,
+                    boost: usernameBoost
+                  }
+                }
+              },
+              {
+                prefix: {
+                  username: {
+                    value: lastWord,
+                    boost: usernameBoost
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ],
+      should: [
+        {
+          match_phrase_prefix: {
+            name: {
+              query: searchText,
+              boost: nameBoost,
+              slop: 5
+            }
+          }
+        },
+      ]
+    }
+  };
+
+  let finalQuery = {
+    filtered: {
+      filter: {},
+      query: query
+    }
+  };
+
+  let search = esEngine.search({
+    index: 'techdb',
+    type: 'users',
+    body: {
+      query: finalQuery,
+      highlight: {
+        pre_tags: ['<b>'],
+        post_tags: ['</b>'],
+        fields: {
+          name: {},
+          username: {}
+        }
+      }
     }
   });
 

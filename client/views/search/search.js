@@ -16,6 +16,7 @@ Template.search.helpers({
       },
       sort: {_score: -1}
     });
+    
     return results;
   },
   metadata() {
@@ -51,19 +52,19 @@ Template.selectEntities.helpers({
     return [
       {
         name: 'organizations',
-        icon: ORGANIZATIONS_ICON
+        icon: Icons.collections.organizations
       },
       {
         name: 'projects',
-        icon: PROJECTS_ICON
+        icon: Icons.collections.projects
       },
       {
         name: 'technologies',
-        icon: TECHNOLOGIES_ICON
+        icon: Icons.collections.technologies
       },
       {
         name: 'attachments',
-        icon: ATTACHMENTS_ICON
+        icon: Icons.collections.attachments
       },
     ];
   },

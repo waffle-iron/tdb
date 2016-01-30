@@ -18,7 +18,20 @@
   }
 
   .img-circle {
-      width: @people-img-size-org-card;
-      height: @people-img-size-org-card;
+      width: @people-img-size;
+      height: @people-img-size;
     }
+
+  a.add-people {
+    .img-circle;
+
+    margin-bottom: 0; /*Removing the default margin-bottom of btn class*/
+    border-radius: 50%;
+    background-color: @add-people-button-color;
+    color: #fff; /*icon will inherit this color*/
+
+    .inline-flex;
+    .x-center-flex;
+    .y-center-flex;
+  }
 }

@@ -17,9 +17,6 @@ Template.usersView.events({
   'click #change-profile-image': function() {
     Modal.show('usersChangeImage');
   },
-  'click #change-role': function() {
-    // must implement
-  }
 });
 
 Template.usersView.onCreated(function() {

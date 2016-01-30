@@ -22,31 +22,48 @@ ElasticSearchAdapter = class ElasticSearchAdapter { // implements riverOperation
 
   insertDoc(userId, doc) {
     let finalDoc = this.docTransformer(doc);
-    return this.client.index({
-      index: this.index,
-      type: this.type,
-      id: doc._id,
-      body: finalDoc
-    });
+    try {
+      return this.client.index({
+        index: this.index,
+        type: this.type,
+        id: doc._id,
+        body: finalDoc
+      });
+    } catch (e) {
+      console.log('ElasticSearchAdapter error:');
+      console.log(e.toString());
+    }
   }
 
   removeDoc(userId, doc) {
-    return this.client.delete({
-      index: this.index,
-      type: this.type,
-      id: doc._id
-    });
+    try {
+      return this.client.delete({
+        index: this.index,
+        type: this.type,
+        id: doc._id
+      });
+    } catch (e) {
+      console.log('ElasticSearchAdapter error:');
+      console.log(e.toString());
+    }
+
   }
 
   updateDoc(userId, doc) {
     let finalDoc = this.docTransformer(doc);
-    return this.client.update({
-      index: this.index,
-      type: this.type,
-      id: doc._id,
-      body: {
-        doc: finalDoc
-      }
-    });
+    if (!finalDoc) return false;
+    try {
+      return this.client.update({
+        index: this.index,
+        type: this.type,
+        id: doc._id,
+        body: {
+          doc: finalDoc
+        }
+      });
+    } catch (e) {
+      console.log('ElasticSearchAdapter error:');
+      console.log(e.toString());
+    }
   }
 };

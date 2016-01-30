@@ -101,3 +101,58 @@ Technologies.attachBehaviour('river', {
     })
   ]
 });
+
+
+Meteor.users.attachBehaviour('river', {
+  adapters: [
+    new ElasticSearchAdapter(esClient, 'techdb', 'users', (doc) => {
+      let finalDoc = _.clone(doc);
+
+      console.log(finalDoc);
+      let schema = new SimpleSchema({
+        'profile.fullName': {
+          type: String
+        },
+        username: {
+          type: [Schemas.Description]
+        },
+        emails: {
+          type: [Object],
+          blackbox: true
+        },
+      });
+
+      schema.clean(finalDoc);
+      if (finalDoc.profile && finalDoc.profile.fullName) {
+        finalDoc.fullName = finalDoc.profile.fullName;
+      }
+
+      console.log(finalDoc.emails);
+      finalDoc.emails = finalDoc.emails.map(function(email) {
+        return email.address;
+      });
+
+      console.log(finalDoc);
+
+      delete finalDoc.profile;
+      return finalDoc;
+    }),
+    new LogAdapter(Logs, Meteor.users, function(doc) {
+      if (doc.username) {
+        return doc.username;
+      }
+
+      if (doc.profile.fullName) {
+        return doc.profile.fullName;
+      }
+
+      if (doc.emails.length) {
+        return doc.emails[0].address;
+      }
+
+      return 'unknown';
+    }, {
+      trackedFields: ['profile', 'emails', 'username']
+    })
+  ]
+});

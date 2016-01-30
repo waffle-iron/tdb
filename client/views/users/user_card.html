@@ -2,10 +2,10 @@
   {{#panelContainer class='float-e-margins user-card' }}
     {{#panelTitle}}
       <h1>
-        <i class="fa fa-user"></i>
+        <i class="{{Icons.misc.user}}"></i>
         {{profile.fullName}}
       </h1>
-      <div class='user-role' id='change-role'>
+      <div class='user-role' id='manage-user-role'>
         {{{formatRole role 'true'}}}
       </div>
     {{/panelTitle}}
@@ -41,12 +41,12 @@
           </li>
           <li>
             <p>Country:</p>
-            <p>{{country}}</p>
+            <p>{{{getCountryFlag country}}} {{getCountryName country}}</p>
           </li>
           <li>
             <p>Gender:</p>
             <p>
-              <i class="{{genderIcon}}"></i> {{gender}}</p>
+              {{{getGenderIcon gender}}} {{capitalizeFirstLetter gender}}</p>
           </li>
           <li>
             <p>Birthday:</p>
