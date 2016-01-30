@@ -2,6 +2,33 @@
 
 A fresh start. Reboot on 11.23.2015.
 
+## Log operations
+We must attach a **river behaviour** to the collections we want to track updates, passing the LogAdapter as an adapter:
+
+```
+Organizations.attachBehaviour('river', {
+  adapters: [
+    new LogAdapter(Logs, Organizations, function(doc) {
+      return doc.name;
+    }, {
+      trackedFields: ['profile', 'emails', 'username']
+    })
+  ]
+});
+```
+
+```
+class LogAdapter
+constructor:
+@logCollection {Collection} the collection where we will store our logs
+@collection {Collection} the collection to be tracked
+@getDocIdentifier {function} a function to extract the document's identifier
+@config {object} a config object
+```
+we can pass on the config Object the array trackedFields, only fields found on this array will be tracked. If we don't pass this key on the config Object, all fields on the collection will be tracked
+**TODO**
+We must provide a way to specify a custom text for each operation
+
 
 
 ## Components
