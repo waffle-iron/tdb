@@ -15,6 +15,7 @@ initialCount {Integer} (optional, defaults to 5) initial number of loaded update
 countIncrement {Integer} (optional, defaults to 5) number of new updates loaded per request
 ```
 Example, filter all updates from a specific user:
+
 **template.html**
 ```
 <template name="userUpdates>
@@ -22,6 +23,7 @@ Example, filter all updates from a specific user:
 </template>
 ```
 **template.js**
+```
 Template.userUpdates.helpers({
   userSelector() {
     return {
@@ -29,3 +31,4 @@ Template.userUpdates.helpers({
     }
   }
 })
+```
