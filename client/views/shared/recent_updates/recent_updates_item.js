@@ -1,12 +1,11 @@
-const INSERT_COLOR = 'info';
-const UPDATE_COLOR = 'success';
-const REMOVE_COLOR = 'danger';
-const DEFAULT_COLOR = 'default';
-Template.recentUpdatesItem.helpers({
+ Template.recentUpdatesItem.helpers({
   color() {
-    ColorMap.operations[this.operation] || ColorMap.operations.default;
+    return ColorMap.operations[this.operation] || ColorMap.operations.default;
   },
   icon() {
     return Icons.collections[this.collection] || Icons.collections.default;
+  },
+  userIdentification() {
+    return this.user().identification(['username', 'fullName', 'email']);
   }
 });

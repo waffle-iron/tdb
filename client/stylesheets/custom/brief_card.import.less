@@ -1,0 +1,40 @@
+.brief-card {
+  h3 {
+    margin: 0; /*Leaving the padding/margin stuff to the .title-tools since it has flex*/
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  h5 {
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  .ibox-content {
+    padding: 10px 15px 5px; /*Reducing a little bit, to fits better in griedView of search*/
+  }
+
+  /*This class was created to hold title and ibox-tools at the same line (just needed it 'cause it's within ibox-content, not ibox-title)*/
+  .title-tools {
+    .flex;
+    .x-between-flex;
+    .y-center-flex;
+
+    padding: 5px 0;
+
+    i { margin: 0 3px;}
+  }
+
+  .brief-img {
+    position: relative;
+
+    /*The icon in the corner of the image*/
+    i {
+        position: absolute;
+        top: 5%;
+        left: 3%;
+        opacity: 0.6;
+        color: #fff;
+    }
+  }
+}

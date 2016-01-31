@@ -1,47 +1,42 @@
-<template name="panel">
-  <div class="wrapper wrapper-content animated fadeInRight" style="padding-bottom:0px">
-    <div class="ibox float-e-margins" style="margin-bottom:0px">
-      <div class="ibox-title">
-        <h5>{{title}}</h5> {{> iboxTools}}
-      </div>
-      <div class="ibox-content">
-        {{> UI.contentBlock}}
-      </div>
-    </div>
-  </div>
-</template>
-<template name="simplePanel">
-  <div class="ibox float-e-margins" style="margin-bottom:0px">
-    <div class="ibox-title">
-      <h5>{{title}}</h5> {{> iboxTools}}
-    </div>
-    <div class="ibox-content">
-      {{> UI.contentBlock}}
-    </div>
-  </div>
-</template>
 <template name="panelContainer">
   <div class="ibox {{class}}">
-    {{ > UI.contentBlock}}
+    {{> UI.contentBlock}}
   </div>
 </template>
 <template name="panelTitle">
-  <div class="ibox-title">
+  <div class="ibox-title {{class}}">
     {{> UI.contentBlock}}
   </div>
 </template>
 <template name="panelContent">
-  <div class="ibox-content {{panelClass}}">
+  <div class="ibox-content {{class}}">
     {{> UI.contentBlock}}
   </div>
 </template>
 <template name="panelFooter">
-  <div class="ibox-footer">
+  <div class="ibox-footer {{class}}">
     {{> UI.contentBlock}}
   </div>
 </template>
 <template name="panelTools">
-  <div class="ibox-tools">
+  <div class="ibox-tools {{class}}">
     {{> UI.contentBlock}}
   </div>
+</template>
+
+<template name="panel">
+  {{#panelContainer}}
+    {{#panelTitle}}
+      <h3>
+      {{#if icon}}
+        <i class='{{icon}}'></i>
+      {{/if}}
+      {{title}}
+      </h3>
+    {{/panelTitle}}
+
+    {{#panelContent}}
+      {{> UI.contentBlock}}
+    {{/panelContent}}
+  {{/panelContainer}}
 </template>

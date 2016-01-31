@@ -10,10 +10,12 @@
       {{#if totalCount}}
         {{> scrollbarList logs=logs}}
       {{else}}
-        <h3>
-          <i class='fa fa-info'></i>
-          No recent updates
-        </h3>
+        <div class="empty-message">
+          <i class='fa fa-frown-o'></i>
+          <h3>
+            No recent updates
+          </h3>
+        </div>
       {{/if}}
     {{/panelContent}}
     {{#panelFooter}}
@@ -28,7 +30,6 @@
     {{/panelFooter}}
   {{/panelContainer}}
 </template>
-
 <template name="scrollbarList">
   <div class="scrollbar-recent-updates">
     <ul class="list-group">

@@ -2,19 +2,26 @@
   <div class="modal inmodal manage-user-groups">
     <div class="modal-dialog">
       <div class="modal-content animated fadeIn">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">
-              <span aria-hidden="true">&times;</span>
-              <span class="sr-only">Close</span>
-            </button>
-            <h4 class="modal-title">Manage User Groups</h4>
-            </div>
-            <div class="modal-body">
-            {{> searchSource source=SearchSources.userSearch options=getOptions}}
-            {{#each users}}
-              {{>manageUserRoleItem username=username}}
-            {{/each}}
-          </div>
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+          </button>
+          <h4 class="modal-title">Manage User Groups</h4>
+        </div>
+        <div class="modal-body">
+          {{> searchSource source=SearchSources.userSearch options=getOptions}}
+          <table class="table table-striped">
+            <tbody>
+              {{#each users}}
+                {{>manageUserRoleItem 
+                  username=username
+                  role=getRolesForUser
+                  }}
+              {{/each}}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

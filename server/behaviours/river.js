@@ -134,19 +134,7 @@ Meteor.users.attachBehaviour('river', {
       return finalDoc;
     }),
     new LogAdapter(Logs, Meteor.users, function(doc) {
-      if (doc.username) {
-        return doc.username;
-      }
-
-      if (doc.profile.fullName) {
-        return doc.profile.fullName;
-      }
-
-      if (doc.emails.length) {
-        return doc.emails[0].address;
-      }
-
-      return 'unknown';
+      return doc.identification(['username', 'email', 'fullName']);
     }, {
       trackedFields: ['profile', 'emails', 'username']
     })

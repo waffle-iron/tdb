@@ -14,5 +14,10 @@ Template.manageUserRole.helpers({
     return {
       types: ['users']
     };
+  },
+  getRolesForUser() {
+    console.log(this._id);
+    console.log(Roles.getRolesForUser(this._id));
+    return Roles.getRolesForUser(this._id)[0];
   }
 });

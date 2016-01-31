@@ -1,33 +1,45 @@
 .recent-updates {
-  
+  .scrollbar-recent-updates {
+    max-height:200px;
+  }
   .list-group-item {
     .flex;
-
     p {
-      display: inline-block; /*To fit at the same line with icon*/
+      display: inline-block;
+      /*To fit at the same line with icon*/
       margin: 10px 0px 10px 10px;
       width: 100%;
-
       .date {
         float: right;
         font-style: italic;
         font-size: 0.9em;
       }
     }
-
     .icon-holder {
       .inline-flex;
       .x-center-flex;
       .y-center-flex;
-      
       margin: 0;
-        width: @icon-size-recent-updates;
-        height: @icon-size-recent-updates;
-        i { color: @icon-color-recent-updates; }     
+      width: @icon-size-recent-updates;
+      height: @icon-size-recent-updates;
+      i {
+        color: @icon-color-recent-updates;
+      }
     }
-
+  }
+  .empty-message {
+    .flex-direction-column;
+    .x-center-flex;
+    .y-center-flex;
+    text-align:center;
+    h3, i{
+      color: #c3c3c3;  
+    }
+    i {
+      font-size: 50px;
+    }
   }
 }
 
 // pendências:
-// definir um tamanho padrão para os ícones, para alinhar com o parágrafo 
+// definir um tamanho padrão para os ícones, para alinhar com o parágrafo

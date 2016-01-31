@@ -99,7 +99,7 @@ Countries = {
   hk: 'Hong Kong',
   hu: 'Hungary',
   is: 'Iceland',
-  in : 'India',
+  in: 'India',
   id: 'Indonesia',
   ir: 'Iran, Islamic Republic Of',
   iq: 'Iraq',
@@ -247,6 +247,11 @@ Countries = {
 };
 
 ColorMap = {
+  roles: {
+    admin: 'danger',
+    viewer: 'warning',
+    editor: 'info'
+  },
   org: {
     type: {
       academic: 'info',
@@ -273,13 +278,18 @@ ColorMap = {
 };
 
 Icons = {
+  roles: {
+    admin: 'fa fa-wrench',
+    viewer: 'fa fa-eye',
+    editor: 'fa fa-pencil-square-o'
+  },
   misc: {
     updates: 'fa fa-bell',
     user: 'fa fa-user'
   },
   collections: {
     organizations: 'fa fa-building',
-    projects: 'fa fa-columns',
+    projects: 'fa fa-folder',
     technologies: 'fa fa-database',
     attachments: 'fa fa-paperclip',
     users: 'fa fa-users',
@@ -290,6 +300,7 @@ Icons = {
     female: 'fa fa-venus'
   }
 };
+
 
 Template.registerHelper('SearchSources', () => SearchSources);
 Template.registerHelper('Schemas', () => Schemas);

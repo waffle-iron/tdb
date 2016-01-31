@@ -1,0 +1,18 @@
+<template name="briefCard">
+  {{#panelContainer class='product-box brief-card'}}
+    {{#panelContent class='no-padding'}}
+      <div class="brief-img">
+        <i class="{{icon}} fa-2x"></i>
+        <img src="http://flores.culturamix.com/blog/wp-content/gallery/paisagem-3/Elementos-da-Paisagem-Natural.jpg" class="img-responsive" alt="brief-image">
+      </div>
+    {{/panelContent}}
+
+    {{#panelContent}}
+      <div class="title-tools">
+        <h3>{{{title}}}</h3>
+      </div>
+      <h5>{{{subtitle}}}</h5>
+      <p>{{{description}}}</p>
+    {{/panelContent}}
+  {{/panelContainer}}
+</template>

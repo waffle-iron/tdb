@@ -1,9 +1,23 @@
 <template name="usersAdd">
-	{{#panel title="Invite User"}}
-		{{#autoForm schema="InviteSchema" id="insertUsersForm" type="method" meteormethod="inviteUser" class="form-horizontal"}}
-			{{>afQuickField name="email" label-class="col-sm-3" input-col-class="col-sm-9"}}
-			{{>afQuickField name="roles" label-class="col-sm-3" input-col-class="col-sm-9"}}
-			{{> submit texto="Invite"}}
-		{{/autoForm}}
-	{{/panel}}
+  {{#panelContainer class='elastic-search' }}
+    {{#panelTitle}}
+      <h3>
+        <i class="fa fa-user-plus"></i>
+        Invite new User
+      </h3>
+    {{/panelTitle}}
+    {{#panelContent}}
+      {{#autoForm schema="InviteSchema" id="insertUsersForm" type="method" meteormethod="inviteUser" class="form-horizontal" }}
+        {{>afQuickField name="email" label-class="col-sm-3" input-col-class="col-sm-9"}} 
+        {{>afQuickField name="roles" label-class="col-sm-3" input-col-class="col-sm-9"}} 
+        <div class="row">
+          <div class="col col-xs-12">
+            <button type="submit" class="btn btn-primary">
+              Invite User
+            </button>
+          </div>
+        </div>
+      {{/autoForm}}
+    {{/panelContent}}
+  {{/panelContainer}}
 </template>

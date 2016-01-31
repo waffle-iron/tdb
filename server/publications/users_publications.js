@@ -25,8 +25,8 @@ Meteor.publish('singleUser', function(userId) {
   return Meteor.users.find({_id: userId});
 });
 
-/*
+
 Meteor.publish(null, function() {
   return Meteor.users.find({}, {fields: {roles: 1, status: 1, emails: 1}});
 });
-*/
+

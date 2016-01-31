@@ -1,6 +1,6 @@
 Template.manageOrgTechnologies.helpers({
   technologies() {
-    let results =  SearchSouce.globalSearch.getData({
+    let results =  SearchSources.globalSearch.getData({
       transform(matchText, regExp) {
         return matchText.replace(regExp, '<b>$&</b>');
       },

@@ -9,5 +9,11 @@ Template.log.helpers({
     return {
       userId: 'cqd2odEAQm6xhHkjQs'
     };
+  },
+  techSelector() {
+    return {
+      collection: 'technologies',
+      createdAt: {$lt: new Date(2017, 0, 1)}
+    }
   }
 });

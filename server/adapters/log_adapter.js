@@ -19,26 +19,22 @@ LogAdapter = class LogAdapter {
     return this.collection._name;
   }
 
+  /*
   getUserIdentifier(userId) {
     console.log(userId);
     if (userId) {
       let user = Meteor.users.findOne({
         _id: userId
-      }, {
-        fields: {
-          username: 1
-        }
       });
-      if (user) {
-        return user.username;
-      }
+      console.log(user);
+      return user && user.identification(['username', 'fullName', 'email']);
     }
     return false;
   }
+  */
 
   logOperation(operation, description, userId, doc) {
     let collection = this.collection._name;
-    let username = this.getUserIdentifier(userId);
     let docName = this.getDocIdentifier(doc);
     let obj = {
       collection: collection,

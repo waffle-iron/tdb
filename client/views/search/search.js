@@ -14,5 +14,7 @@ Template.search.helpers({
         types: entityFilter
       };
     };
-  }
+  },
 });
+
+
