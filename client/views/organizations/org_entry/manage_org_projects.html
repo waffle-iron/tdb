@@ -13,43 +13,45 @@
         </div>
         <div class="modal-body">
           {{> searchSource source=SearchSources.globalSearch options=getOptions}}
-          <div class="row">
-            <div class="col sm-12" style='padding:10px'>
-              <table class="table">
+          {{#perfectScrollbar}}
+            <table class="table">
+              <tbody>
+                {{#each projects}}
+                  {{> manageOrgProjectsItem}}
+                {{/each}}
+              </tbody>
+            </table>         
+          {{/perfectScrollbar}} 
+          <!--
+          <table class="table">
+            <tbody>
+              {{#each projects}}
                 <tr>
-                  <th width="20%">Name</th>
-                  <th width="60%">Description</th>
-                  <th width="20%"></th>
+                  <td>{{{name}}}</td>
+                  <td>
+                    {{#each _highlight.description}}
+                      {{{this}}}
+                    {{/each}}
+                  </td>
+                  <td>
+                    {{#if inProject}}
+                      <button class="btn btn-primary btn-xs">
+                        <i class='fa fa-check'></i>
+                      </button>
+                      <button class="btn btn-danger remove-project btn-xs">
+                        <i class='fa fa-trash'></i>
+                      </button>
+                    {{else}}
+                      <button class="btn btn-default add-project btn-xs">
+                        <i class='fa fa-check'></i>
+                      </button>
+                    {{/if}}
+                  </td>
                 </tr>
-                <tbody>
-                  {{#each projects}}
-                    <tr>
-                      <td>{{{name}}}</td>
-                      <td>
-                        {{#each _highlight.description}}
-                          {{{this}}}
-                        {{/each}}
-                      </td>
-                      <td>
-                        {{#if inProject}}
-                          <button class="btn btn-primary btn-xs">
-                            <i class='fa fa-check'></i>
-                          </button>
-                          <button class="btn btn-danger remove-project btn-xs">
-                            <i class='fa fa-trash'></i>
-                          </button>
-                        {{else}}
-                          <button class="btn btn-default add-project btn-xs">
-                            <i class='fa fa-check'></i>
-                          </button>
-                        {{/if}}
-                      </td>
-                    </tr>
-                  {{/each}}
-                </tbody>
-              </table>
-            </div>
-          </div>
+              {{/each}}
+            </tbody>
+          </table>
+          -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
