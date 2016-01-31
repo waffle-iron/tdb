@@ -24,9 +24,10 @@ CollectionBehaviours.define('river', function(options) {
     });
   });
 
-  collection.after.remove((userId, doc) => {
+  collection.after.remove(function(userId, doc) {
+    let transformedDoc = this.transform();
     _.each(adapters, function(adapter) {
-      adapter.removeDoc(userId, doc);
+      adapter.removeDoc(userId, transformedDoc);
     });
   });
 });
@@ -109,6 +110,9 @@ Meteor.users.attachBehaviour('river', {
       let finalDoc = _.clone(doc);
 
       let schema = new SimpleSchema({
+        _id: {
+          type: String
+        },
         'profile.fullName': {
           type: String
         },
@@ -118,19 +122,25 @@ Meteor.users.attachBehaviour('river', {
         emails: {
           type: [Object],
           blackbox: true
-        },
+        }
       });
 
       schema.clean(finalDoc);
+      
+      // get user's fullName
       if (finalDoc.profile && finalDoc.profile.fullName) {
         finalDoc.fullName = finalDoc.profile.fullName;
       }
+      delete finalDoc.profile;
 
+      // get user's Email
       finalDoc.emails = finalDoc.emails.length && finalDoc.emails.map(function(email) {
         return email.address;
       });
 
-      delete finalDoc.profile;
+      //  get user's role
+      finalDoc.role = Roles.getRolesForUser(finalDoc._id)[0];
+      
       return finalDoc;
     }),
     new LogAdapter(Logs, Meteor.users, function(doc) {
