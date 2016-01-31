@@ -3,6 +3,8 @@
 A fresh start. Reboot on 11.23.2015.
 
 ## Searching with elastic search
+**Attention**: TechDB currently supports ElasticSearch 1.7
+
 We must attach a **river behaviour** to the collection we want to search with ElasticSearch, so it can river all the incoming operations to our ElasticSearch server
 
 ```
