@@ -1,16 +1,16 @@
 <template name="mainDashboard">
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-lg-3">
-      {{> dashboardStat icon=Icons.collections.technologies title='Technologies' value=technologiesCount}}
+      {{> dashboardStat icon=Icons.collections.technologies title='Technologies' value=technologiesCount link="technologies.index"}}
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
-      {{> dashboardStat icon=Icons.collections.projects title='Projects' value=projectsCount}}
+      {{> dashboardStat icon=Icons.collections.projects title='Projects' value=projectsCount link="projects.index"}}
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
-      {{> dashboardStat icon=Icons.collections.organizations title='Organizations' value=organizationsCount}}
+      {{> dashboardStat icon=Icons.collections.organizations title='Organizations' value=organizationsCount link="organizations.index"}}
     </div>
     <div class="col-xs-12 col-sm-6 col-lg-3">
-      {{> dashboardStat icon=Icons.collections.attachments title='Attachments' value=attachmentsCount}}
+      {{> dashboardStat icon=Icons.collections.attachments title='Attachments' value=attachmentsCount link="attachments.index"}}
     </div>
   </div>
   <div class="row">

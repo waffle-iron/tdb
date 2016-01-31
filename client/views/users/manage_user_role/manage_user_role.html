@@ -12,18 +12,20 @@
         </div>
         <div class="modal-body">
           {{> searchSource source=SearchSources.userSearch options=getOptions}}
-          <table class="table table-striped">
-            <tbody>
-              {{#each users}}
-                {{>manageUserRoleItem
+          {{#perfectScrollbar}}
+            <table class="table">
+              <tbody>
+                {{#each users}}
+                  {{>manageUserRoleItem 
                   username=username
-                  emails=emails
+                  emails=emails 
                   fullName=fullName
-                  _id=_id
+                  _id=_id 
                   role=getRolesForUser}}
-              {{/each}}
-            </tbody>
-          </table>
+                {{/each}}
+              </tbody>
+            </table>
+          {{/perfectScrollbar}}
         </div>
       </div>
     </div>

@@ -31,11 +31,13 @@
   {{/panelContainer}}
 </template>
 <template name="scrollbarList">
-  <div class="scrollbar-recent-updates">
+  <!--<div class="scrollbar-recent-updates">-->
+  {{#perfectScrollbar}}
     <ul class="list-group">
       {{#each logs}}
         {{> recentUpdatesItem}}
       {{/each}}
     </ul>
-  </div>
+    {{/perfectScrollbar}}
+    <!--</div>-->
 </template>
