@@ -306,13 +306,14 @@ Template.registerHelper('SearchSources', () => SearchSources);
 Template.registerHelper('Schemas', () => Schemas);
 Template.registerHelper('Icons', () => Icons);
 Template.registerHelper('getCountryName', (code) => {
-  return Countries[code.toLowerCase()] || 'Unknown';
+
+  return code && Countries[code.toLowerCase()] || 'Unknown';
 });
 Template.registerHelper('getCountryFlag', (code) => {
   return `<span class="flag-icon flag-icon-${code}"></span>`;
 });
 Template.registerHelper('getGenderIcon', (gender) => {
-  let icon = Icons.gender[gender.toLowerCase()] || Icons.gender.default;
+  let icon = gender && Icons.gender[gender.toLowerCase()] || Icons.gender.default;
   return `<i class="${icon}""></i>`;
 });
 

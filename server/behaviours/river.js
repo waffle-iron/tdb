@@ -140,7 +140,6 @@ Meteor.users.attachBehaviour('river', {
 
       //  get user's role
       finalDoc.role = Roles.getRolesForUser(finalDoc._id)[0];
-      
       return finalDoc;
     }),
     new LogAdapter(Logs, Meteor.users, function(doc) {

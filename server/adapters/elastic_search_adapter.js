@@ -32,6 +32,7 @@ ElasticSearchAdapter = class ElasticSearchAdapter { // implements riverOperation
     } catch (e) {
       console.log('ElasticSearchAdapter error:');
       console.log(e.toString());
+      console.log(e);
     }
   }
 
@@ -45,6 +46,7 @@ ElasticSearchAdapter = class ElasticSearchAdapter { // implements riverOperation
     } catch (e) {
       console.log('ElasticSearchAdapter error:');
       console.log(e.toString());
+      console.log(e);
     }
 
   }
@@ -64,6 +66,7 @@ ElasticSearchAdapter = class ElasticSearchAdapter { // implements riverOperation
     } catch (e) {
       console.log('ElasticSearchAdapter error:');
       console.log(e.toString());
+      console.log(e);
     }
   }
 };

@@ -1,43 +1,40 @@
-.manage-user-groups {
-  .modal-body {
-    padding: 20px 30px;
-  }
-}
+.manage-user-role {
 
-.manage-user-item {
-  margin: 15px 0;
-  padding: 0px 15px;
-
-  .row {
-    .flex;
-    .y-center-flex;
+  .search-source {
+    margin-bottom: 15px;
   }
 
-  .img-circle {
-    width: @img-circle-manage-user-groups;
-    height: @img-circle-manage-user-groups;
-  }
+  .manage-user-role-item {
 
-  .img-column {
-    .inline-flex;
-    .x-center-flex;
-  }
+    /*this will select only the <td>'s of the first .manage-user-role-item*/
+    &:first-of-type {
+      td {
+        border-top: none;
+      }
+    }
 
-  .user-column {
-    .inline-flex;
-    .x-center-flex;
-    font-size: 12px;
-  }
+    td {
+      vertical-align: middle;
+    }
 
-  .buttons-column { 
-    .inline-flex;
-    .x-right-flex;
-  }
+    /* td:first-child {width: @img-size-manage-user-role-item;} Possible configuration if want to set more space for username*/ 
 
-  button.btn {
-    font-size: 11px;
-    border-radius: 20px;
-    margin-left: 5px;
+    /*This is assuming that the 2nd td is the username column*/
+    td:nth-child(2) {
+      text-align: center;
+    }
+
+    /*This is assuming that the the last td is the role buttons*/
+    td:last-child {
+      text-align: right;
+    }
+
+    img {
+      width: @img-size-manage-user-role-item;
+      height: @img-size-manage-user-role-item;
+    }
   }
 
 }
+
+
