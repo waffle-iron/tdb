@@ -247,25 +247,21 @@ Countries = {
 };
 
 ColorMap = {
-  roles: {
-    admin: 'danger',
-    viewer: 'warning',
-    editor: 'info'
-  },
   org: {
     type: {
       academic: 'info',
       'non-profit': 'success',
       governamental: 'danger',
       private: 'warning',
-      default: 'default'
+      default: 'primary'
     }
   },
   users: {
     role: {
       admin: 'info',
       god: 'danger',
-      user: 'primary',
+      viewer: 'primary',
+      editor: 'warning',
       default: 'default'
     }
   },
@@ -279,6 +275,7 @@ ColorMap = {
 
 Icons = {
   roles: {
+    god: 'fa fa-star',
     admin: 'fa fa-wrench',
     viewer: 'fa fa-eye',
     editor: 'fa fa-pencil-square-o'

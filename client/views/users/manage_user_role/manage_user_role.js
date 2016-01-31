@@ -6,8 +6,6 @@ Template.manageUserRole.helpers({
       },
       sort: {_score: -1}
     });
-    console.log(result);
-
     return result;
   },
   getOptions() {
@@ -16,8 +14,6 @@ Template.manageUserRole.helpers({
     };
   },
   getRolesForUser() {
-    console.log(this._id);
-    console.log(Roles.getRolesForUser(this._id));
     return Roles.getRolesForUser(this._id)[0];
   }
 });

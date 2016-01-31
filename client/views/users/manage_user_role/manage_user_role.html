@@ -7,6 +7,7 @@
             <span aria-hidden="true">&times;</span>
             <span class="sr-only">Close</span>
           </button>
+          <i class="{{Icons.collections.users}} modal-icon"></i>
           <h4 class="modal-title">Manage User Groups</h4>
         </div>
         <div class="modal-body">
@@ -14,10 +15,12 @@
           <table class="table table-striped">
             <tbody>
               {{#each users}}
-                {{>manageUserRoleItem 
+                {{>manageUserRoleItem
                   username=username
-                  role=getRolesForUser
-                  }}
+                  emails=emails
+                  fullName=fullName
+                  _id=_id
+                  role=getRolesForUser}}
               {{/each}}
             </tbody>
           </table>
