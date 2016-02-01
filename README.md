@@ -84,7 +84,7 @@ Example, filter all updates from a specific user:
 
 **template.html**
 ```html
-<template name="userUpdates>
+<template name="userUpdates">
 {{> recentUpdates counterId='user' selector=userSelector initialCount=20}}
 </template>
 ```
@@ -133,11 +133,11 @@ Template.mySearch.helpers({
 Best practices:
 define your SearchSource's on a global namespace object called SearchSources
 Then retrieve your SearchSource intance with 
-```
+```javascript
 <template name="mySearch">
   {{> searchSource source=SearchSources.globalSearch options=getOptions}}
 </template>
-```
+```javascript
 This works because there is a global template helper that returns our namespace:
 ```
 Template.registerHelper('SearchSources', () => SearchSources);
