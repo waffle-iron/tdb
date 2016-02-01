@@ -13,6 +13,9 @@ Template.organizationsDashboard.helpers({
   organizations() {
       return SearchSources.globalSearch.getTransformedData();
     },
+    getLink() {
+      return FlowRouter.route('organizations.view', {id: _id});
+    },
     getOptions() {
       return {
         types: ['organizations']
@@ -30,10 +33,9 @@ Template.organizationsDashboard.helpers({
     },
     onEdit() {
       return function(data) {
-        let org = Organizations.findOne(data._id);
-        console.log(org);
+        //let org = Organizations.findOne(data._id);
         Modal.show('orgEdit', {
-          org: org
+          orgId: data._id
         });
 
         console.log('edit', data);

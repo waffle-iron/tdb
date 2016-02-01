@@ -9,3 +9,13 @@ AutoForm.hooks({
     },
   }
 });
+
+Template.orgEdit.onCreated(function() {
+  this.subscribe('organizations.single', this.data.orgId);
+});
+
+Template.orgEdit.helpers({
+  org() {
+    return Organizations.findOne(Template.instance().data.orgId);
+  }
+});
