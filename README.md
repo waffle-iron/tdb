@@ -58,7 +58,7 @@ class LogAdapter
 constructor:
 @logCollection {Collection} the collection where we will store our logs
 @collection {Collection} the collection to be tracked
-@getDocIdentifier {function} a function to extract the document's identifier
+@getDocIdentifier {function} a function to extract the document\'s identifier
 @config {object} a config object
 ```
 we can pass on the config Object the array trackedFields, only fields found on this array will be tracked. If we don't pass this key on the config Object, all fields on the collection will be tracked
