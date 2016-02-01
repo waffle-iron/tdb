@@ -8,15 +8,6 @@ Template.manageOrgTechnologies.helpers({
     });
     return results;
   },
-  inProject() {
-    let organizationId = Template.instance().data.organizationId;
-    let inProject = Organizations.findOne({
-      _id: organizationId,
-      technologiesId: this._id
-    });
-
-    return inProject;
-  },
   getOptions() {
     return {
       types: ['technologies']
@@ -24,11 +15,3 @@ Template.manageOrgTechnologies.helpers({
   }
 });
 
-Template.manageOrgTechnologies.events({
-  'click .add-technology': function(e, t) {
-    Meteor.call('organizations/addTechnology', t.data.organizationId, this._id);
-  },
-  'click .remove-technology': function(e, t) {
-    Meteor.call('organizations/removeTechnology', t.data.organizationId, this._id);
-  }
-});

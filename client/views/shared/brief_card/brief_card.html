@@ -10,6 +10,14 @@
     {{#panelContent}}
       <div class="title-tools">
         <h3>{{{title}}}</h3>
+        {{#panelTools}}
+          <a href="#" class="edit">
+            <i class="fa fa-pencil"></i>
+          </a>
+          <a href="#" class="delete">
+            <i class="fa fa-trash"></i>
+          </a>
+        {{/panelTools}}        
       </div>
       <h5>{{{subtitle}}}</h5>
       <p>{{{description}}}</p>

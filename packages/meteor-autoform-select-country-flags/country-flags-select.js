@@ -35,7 +35,6 @@ Template.countryFlags.helpers({
     if (item.selected) {
       atts.selected = '';
     }
-    console.log(atts);
     return atts;
   },  
   atts: function () {    

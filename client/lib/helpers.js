@@ -345,13 +345,13 @@ function capitalizeFirstLetter(string) {
 
 Template.registerHelper('formatOrgType', function(orgType, makeBadge) {
   let text = capitalizeFirstLetter(orgType);
-  let color = ColorMap.org.type[orgType.toLowerCase()] || ColorMap.org.type.default;
+  let color = orgType && ColorMap.org.type[orgType.toLowerCase()] || ColorMap.org.type.default;
   return makeBadge ? `<span class="badge badge-${color}">${text}</span>` : text;
 });
 
 Template.registerHelper('formatRole', function(role, makeBadge) {
   let text = capitalizeFirstLetter(role);
-  let color = ColorMap.users.role[role.toLowerCase()] || ColorMap.users.role.default;
+  let color = role && ColorMap.users.role[role.toLowerCase()] || ColorMap.users.role.default;
   return makeBadge ? `<span class="badge badge-${color}">${text}</span>` : text;
 });
 

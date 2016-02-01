@@ -1,5 +1,5 @@
 <template name="manageUserRole">
-  <div class="modal inmodal manage-user-role">
+  <div class="modal inmodal manage-modal">
     <div class="modal-dialog">
       <div class="modal-content animated fadeIn">
         <div class="modal-header">
@@ -13,7 +13,7 @@
         <div class="modal-body">
           {{> searchSource source=SearchSources.userSearch options=getOptions}}
           {{#perfectScrollbar}}
-            <table class="table">
+            <table class="table manage-table">
               <tbody>
                 {{#each users}}
                   {{>manageUserRoleItem 

@@ -12,9 +12,9 @@ Template.manageOrgProjectsItem.helpers({
 
 Template.manageOrgProjectsItem.events({
   'click .add-project': function(e, t) {
-    Meteor.call('organizations/addProject', t.data.organizationId, this._id);
+    Meteor.call('Organizations.methods.addProject', t.data.organizationId, this._id);
   },
   'click .remove-project': function(e, t) {
-    Meteor.call('organizations/removeProject', t.data.organizationId, this._id);
+    Meteor.call('Organizations.methods.removeProject', t.data.organizationId, this._id);
   }
 });

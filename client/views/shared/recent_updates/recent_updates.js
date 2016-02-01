@@ -29,12 +29,14 @@ Template.recentUpdates.helpers({
 });
 
 Template.scrollbarList.onRendered(function() {
+  /*
   this.$('.scrollbar-recent-updates').mCustomScrollbar({
     axis: 'y',
     advanced: {
       updateOnContentResize: true
     }
   });
+*/
 });
 
 

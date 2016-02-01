@@ -1,5 +1,5 @@
 <template name="manageOrgTechnologies">
-  <div class="modal inmodal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal inmodal manage-modal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content animated fadeIn">
         <div class="modal-header">
@@ -19,36 +19,13 @@
           </div>
           <div class="row">
             <div class="col sm-12" style='padding:10px'>
-              <table class="table">
-                <tr>
-                  <th width="20%">Name</th>
-                  <th width="60%">Description</th>
-                  <th width="20%"></th>
-                </tr>
+              <table class="table manage-table">
                 <tbody>
                   {{#each technologies}}
-                    <tr>
-                      <td>{{{name}}}</td>
-                      <td>
-                        {{#each _highlight.description}}
-                          {{{this}}}
-                        {{/each}}
-                      </td>
-                      <td>
-                        {{#if inProject}}
-                          <button class="btn btn-primary btn-xs">
-                            <i class='fa fa-check'></i>
-                          </button>
-                          <button class="btn btn-danger remove-technology btn-xs">
-                            <i class='fa fa-trash'></i>
-                          </button>                          
-                        {{else}}
-                          <button class="btn btn-default add-technology btn-xs">
-                            <i class='fa fa-check'></i>
-                          </button>
-                        {{/if}}
-                      </td>
-                    </tr>
+                    {{> manageOrgTechnologiesItem
+                      organizationId=../organizationId
+                      _id=_id
+                      name=name}}
                   {{/each}}
                 </tbody>
               </table>

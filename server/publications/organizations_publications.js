@@ -17,9 +17,29 @@ Meteor.publishComposite('tabularOrganizationsList', function(tableName, ids, fie
   };
 });
 
-Meteor.publish('organizations.single', function(organizationId) {
+Meteor.publishComposite('organizations.single', function(organizationId) {
   check(organizationId, String);
-  return Organizations.find({
-    _id: organizationId
-  });
+  this.unblock();
+  return {
+    find() {
+      this.unblock();
+      return Organizations.find({_id: organizationId});
+    },
+    children: [
+      {
+        find(org) {
+          return Projects.find({
+            _id: {$in: org.projectsId}
+          });
+        }
+      },
+      {
+        find(org) {
+          return Technologies.find({
+            _id: {$in: org.technologiesId}
+          });
+        }
+      }
+    ]
+  };
 });
