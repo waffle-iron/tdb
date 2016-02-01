@@ -7,7 +7,7 @@ A fresh start. Reboot on 11.23.2015.
 
 We must attach a **river behaviour** to the collection we want to search with ElasticSearch, so it can river all the incoming operations to our ElasticSearch server
 
-```
+```javascript
 Organizations.attachBehaviour('river', {
   adapters: [
     new ElasticSearchAdapter(esClient, 'techdb', 'organizations', (doc) => {
@@ -25,7 +25,7 @@ Organizations.attachBehaviour('river', {
 });
 ```
 
-```
+```javascript
 class ElasticSearchAdapter
 constructor:
 @client {elasticSearch.Client} a client instance (from elasticsearch npm package)
@@ -41,7 +41,7 @@ constructor:
 ## Log operations
 We must attach a **river behaviour** to the collections we want to track updates, passing the LogAdapter as an adapter:
 
-```
+```javascript
 Organizations.attachBehaviour('river', {
   adapters: [
     new LogAdapter(Logs, Organizations, function(doc) {
@@ -53,7 +53,7 @@ Organizations.attachBehaviour('river', {
 });
 ```
 
-```
+```javascript
 class LogAdapter
 constructor:
 @logCollection {Collection} the collection where we will store our logs
@@ -71,7 +71,8 @@ We must provide a way to specify a custom text for each operation
 ### Recent Updates
 - Will draw a box with a list of recent updateds inside a scrollable region and buttons to load more or load less results.
 - The updates will arrive in real time as they are created on our server
-```
+
+```javascript
 {{> recentUpdates}}
 @params:
 counterId {String} a unique id to be used on the reactive counter plublication
@@ -82,13 +83,13 @@ countIncrement {Integer} (optional, defaults to 5) number of new updates loaded 
 Example, filter all updates from a specific user:
 
 **template.html**
-```
+```html
 <template name="userUpdates>
 {{> recentUpdates counterId='user' selector=userSelector initialCount=20}}
 </template>
 ```
 **template.js**
-```
+```javascript
 Template.userUpdates.helpers({
   userSelector() {
     return {
@@ -101,7 +102,7 @@ Template.userUpdates.helpers({
 
 - Will draw a search input, with an icon indicating status (loaded, loading or error), will print some search metadata (time to execute the query on elasticsearch and total number of results)
 - Will bring new results as you type, with an input throttle delay
-```
+```javascript
 {{> searchSource}}
 Params:
 @source: {SearchSource} a SearchSource instance
@@ -113,13 +114,13 @@ pre defined search sources:
 
 Example: search with globalSearch but only get results from technologies or organizations
 **template.html**
-```
+```javascript
 <template name="mySearch">
   {{> searchSource source=globalSource options=getOptions}}
 </template>
 ```
 **template.js**
-```
+```javascript
 Template.mySearch.helpers({
   globalSource() {
     return globalSearch;
