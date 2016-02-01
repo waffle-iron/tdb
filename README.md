@@ -137,8 +137,8 @@ Then retrieve your SearchSource intance with
 <template name="mySearch">
   {{> searchSource source=SearchSources.globalSearch options=getOptions}}
 </template>
-```javascript
-This works because there is a global template helper that returns our namespace:
 ```
+This works because there is a global template helper that returns our namespace:
+```javascript
 Template.registerHelper('SearchSources', () => SearchSources);
 ```
