@@ -1,4 +1,4 @@
-Template.orgEntry.helpers({
+Template.organizationsEntry.helpers({
   org: function() {
     let org = Organizations.findOne({
       _id: FlowRouter.getParam('id')
@@ -8,7 +8,7 @@ Template.orgEntry.helpers({
 });
 
 
-Template.orgEntry.onCreated(function() {
+Template.organizationsEntry.onCreated(function() {
   this.autorun(() => {
     let orgId = FlowRouter.getParam('id');
     this.subscribe('organizations.single', orgId);

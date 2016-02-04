@@ -4,21 +4,21 @@ Template.menu.helpers({
       {
         regex: '^dashboard',
         name: 'Dashboard',
-        linkTo: 'mainDashboard.index',
+        linkTo: 'mainDashboard',
         icon: 'fa fa-dashboard',
         roles: ['god', 'admin'],
       },
       {
         regex: '^log',
         name: 'Log',
-        linkTo: 'log.index',
+        linkTo: 'log',
         icon: 'fa fa-database',
         roles: ['god', 'admin'],
       },
       {
         regex: '^search',
         name: 'Search',
-        linkTo: 'search.index',
+        linkTo: 'search',
         icon: 'fa fa-search',
         roles: ['god', 'admin'],
       },
@@ -29,14 +29,14 @@ Template.menu.helpers({
         roles: ['god', 'admin'],
         submenu: [
           {
-            name: 'Manage',
-            linkTo: 'users.index',
+            name: 'Dashboard',
+            linkTo: 'usersDashboard',
             roles: ['god', 'admin']
           },
           {
             roles: ['god', 'admin'],
-            linkTo: 'users.add',
-            name: 'New'
+            linkTo: 'usersInvite',
+            name: 'Invite'
           }
         ]
       },
@@ -48,12 +48,12 @@ Template.menu.helpers({
         submenu: [
           {
             roles: ['god', 'admin'],
-            linkTo: 'technologies.index',
-            name: 'Manage'
+            linkTo: 'technologiesDashboard',
+            name: 'Dashboard'
           },
           {
             roles: ['god', 'admin'],
-            linkTo: 'technologies.add',
+            linkTo: 'technologiesAdd',
             name: 'New'
           }
         ]
@@ -66,12 +66,12 @@ Template.menu.helpers({
         submenu: [
           {
             roles: ['god', 'admin'],
-            linkTo: 'projects.index',
-            name: 'Manage'
+            linkTo: 'projectsDashboard',
+            name: 'Dashboard'
           },
           {
             roles: ['god', 'admin'],
-            linkTo: 'projects.add',
+            linkTo: 'projectsAdd',
             name: 'New'
           }
         ]
@@ -85,12 +85,12 @@ Template.menu.helpers({
         submenu: [
           {
             roles: ['god', 'admin'],
-            linkTo: 'organizations.dashboard',
+            linkTo: 'organizationsDashboard',
             name: 'Dashboard',
           },
           {
             roles: ['god', 'admin'],
-            linkTo: 'organizations.add',
+            linkTo: 'organizationsAdd',
             name: 'New'
           }
         ]

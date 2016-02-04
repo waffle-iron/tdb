@@ -5,7 +5,6 @@ Template.orgAboutBox.events({
     });
   },
   'click #org-edit': function() {
-    console.log('aqui!');
     Modal.show('orgEdit', {
       orgId: this._id
     });

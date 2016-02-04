@@ -14,7 +14,7 @@ Template.organizationsDashboard.helpers({
       return SearchSources.globalSearch.getTransformedData();
     },
     getLink() {
-      return FlowRouter.route('organizations.view', {id: _id});
+      return FlowRouter.route('organizationsEntry', {id: _id});
     },
     getOptions() {
       return {
