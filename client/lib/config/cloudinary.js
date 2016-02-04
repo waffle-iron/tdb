@@ -1,1 +1,3 @@
-$.cloudinary.config({cloud_name: 'shact'});
+$.cloudinary.config({
+  cloud_name: 'shact'
+});
