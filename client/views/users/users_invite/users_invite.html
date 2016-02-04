@@ -1,4 +1,4 @@
-<template name="usersAdd">
+<template name="usersInvite">
   {{#panelContainer class='elastic-search' }}
     {{#panelTitle}}
       <h3>
@@ -7,7 +7,7 @@
       </h3>
     {{/panelTitle}}
     {{#panelContent}}
-      {{#autoForm schema="InviteSchema" id="insertUsersForm" type="method" meteormethod="inviteUser" class="form-horizontal" }}
+      {{#autoForm schema="InviteSchema" id="inviteUsersForm" type="method" meteormethod="inviteUser" class="form-horizontal" }}
         {{>afQuickField name="email" label-class="col-sm-3" input-col-class="col-sm-9"}} 
         {{>afQuickField name="roles" label-class="col-sm-3" input-col-class="col-sm-9"}} 
         <div class="row">
