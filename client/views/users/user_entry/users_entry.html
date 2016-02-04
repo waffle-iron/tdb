@@ -1,9 +1,9 @@
-<template name="usersView">
+<template name="usersEntry">
   {{#if Template.subscriptionsReady}}
     {{#with user}}
       <div class="row">
         <div class="col-md-4">
-          {{>userCard }}
+          {{> userAboutBox }}
         </div>
         <div class="col-xs-12 col-md-8">
           <div class="row">
