@@ -1,4 +1,4 @@
-Template.technologiesView.helpers({
+Template.technologiesEntry.helpers({
   technologiesCardData() {
     let technology = Technologies.findOne({_id: FlowRouter.getParam('id')});
 
