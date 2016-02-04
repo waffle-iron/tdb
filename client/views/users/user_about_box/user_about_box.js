@@ -1,12 +1,10 @@
-Template.userCard.helpers({
+Template.userAboutBox.helpers({
   
 });
 
-
-Template.userCard.events({
+Template.userAboutBox.events({
   'click #manage-user-role': function(e) {
     e.preventDefault();
-    console.log('ok');
     Modal.show('manageUserRole');
   },
   'click #edit-info': function(e) {
