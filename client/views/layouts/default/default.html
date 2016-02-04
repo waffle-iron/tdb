@@ -1,31 +1,25 @@
 <template name="defaultLayout">
-    <!-- Wrapper-->
-    <div id="wrapper">
-
-        <!-- Navigation -->
-        {{> navigation }}
-
-        <!-- Page wraper -->
-        <div id="page-wrapper" class="gray-bg">
-
-            <!-- Page wrapper -->
-            {{> topNavbar }}
-
-            {{> pageHeading title=title }}
-
-            <!-- Main view  -->
-            <div class="wrapper wrapper-content">
-                {{> Template.dynamic template=main}}
-            </div>
-
-            <!-- Footer
+  <!-- Wrapper-->
+  <div id="wrapper">
+    {{#if Template.subscriptionsReady}}
+      <!-- Navigation -->
+      {{> navigation }}
+      <!-- Page wraper -->
+      <div id="page-wrapper" class="gray-bg">
+        <!-- Page wrapper -->
+        {{> topNavbar }} {{> pageHeading title=title }}
+        <!-- Main view  -->
+        <div class="wrapper wrapper-content">
+          {{> Template.dynamic template=main}}
+        </div>
+        <!-- Footer
             {{> footer }}
              -->
-
-        </div>
-        <!-- End page wrapper-->
-
-    </div>
-    <!-- End wrapper-->
-
+      </div>
+      <!-- End page wrapper-->
+    {{else}}
+        {{> spinner}}
+    {{/if}}
+  </div>
+  <!-- End wrapper-->
 </template>

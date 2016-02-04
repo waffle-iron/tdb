@@ -13,7 +13,13 @@ Meteor.publishComposite('tabular_UsersList', function(tableName, ids, fields) {
         return false;
       }
 
-      return Meteor.users.find({_id: {$in: ids}}, {fields: fields});
+      return Meteor.users.find({
+        _id: {
+          $in: ids
+        }
+      }, {
+        fields: fields
+      });
     },
   };
 });
@@ -22,11 +28,45 @@ Meteor.publishComposite('tabular_UsersList', function(tableName, ids, fields) {
 Meteor.publish('singleUser', function(userId) {
   check(userId, String);
 
-  return Meteor.users.find({_id: userId});
+  return Meteor.users.find({
+    _id: userId
+  });
 });
 
 
-Meteor.publish(null, function() {
-  return Meteor.users.find({}, {fields: {roles: 1, status: 1, emails: 1}});
+Meteor.publish('users.extraData', function() {
+  return Meteor.users.find({
+    _id: this.userId
+  }, {
+    fields: {
+      roles: 1,
+      status: 1,
+      emails: 1
+    }
+  });
 });
 
+
+Meteor.publishComposite('users.single', function(userId) {
+  check(userId, String);
+  this.unblock();
+  return {
+    find() {
+        this.unblock();
+        return Meteor.users.find({
+          _id: userId
+        });
+      },
+      children: [
+        {
+          find(user) {
+            if (user.profile && user.profile.imageId) {
+              return Images.find({
+                _id: user.profile.imageId
+              });
+            }
+          }
+      }
+    ]
+  };
+});

@@ -1,7 +1,4 @@
-Template.userAboutBox.helpers({
-  
-});
-
+const IMAGE_ASPECT_RATIO = 1;
 Template.userAboutBox.events({
   'click #manage-user-role': function(e) {
     e.preventDefault();
@@ -23,6 +20,14 @@ Template.userAboutBox.events({
     e.preventDefault();
     Modal.show('editBio', {
       user: this
+    });
+  },
+  'click #change-profile-image': function() {
+    Modal.show('uploadFile', {
+      onUpload(file) {
+        Meteor.call('users.setUserImage', FlowRouter.getParam('id'), file._id);
+      },
+      aspectRatio: IMAGE_ASPECT_RATIO
     });
   }
 });

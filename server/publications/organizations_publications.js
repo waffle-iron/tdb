@@ -22,23 +22,38 @@ Meteor.publishComposite('organizations.single', function(organizationId) {
   this.unblock();
   return {
     find() {
-      this.unblock();
-      return Organizations.find({_id: organizationId});
-    },
-    children: [
-      {
-        find(org) {
-          return Projects.find({
-            _id: {$in: org.projectsId}
-          });
-        }
+        this.unblock();
+        return Organizations.find({
+          _id: organizationId
+        });
       },
-      {
-        find(org) {
-          return Technologies.find({
-            _id: {$in: org.technologiesId}
-          });
-        }
+      children: [
+        {
+          find(org) {
+            return Projects.find({
+              _id: {
+                $in: org.projectsId
+              }
+            });
+          }
+      },
+        {
+          find(org) {
+            return Technologies.find({
+              _id: {
+                $in: org.technologiesId
+              }
+            });
+          }
+      },
+        {
+          find(org) {
+            if (org.logo) {
+              return Images.find({
+                _id: org.logo
+              });
+            }
+          }
       }
     ]
   };

@@ -96,6 +96,7 @@ isotope:isotope@2.1.0_1
 jaredmartin:future@0.0.3
 jeremy:selectize@0.12.1_4
 johannesma:meteor-flexslider@0.0.1
+jonblum:jquery-cropper@2.2.5
 jquery@1.11.4
 jss:flag-icon@0.7.3
 jss:jstree@3.1.3

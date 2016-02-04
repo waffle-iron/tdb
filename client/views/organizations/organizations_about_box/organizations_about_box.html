@@ -2,8 +2,7 @@
   {{#panelContainer class='float-e-margins org-card' }}
     {{#panelTitle}}
       <h3>
-        <i class="{{Icons.collections.organizations}}"></i>
-        {{name}}
+        <i class="{{Icons.collections.organizations}}"></i> {{name}}
       </h3>
       <div class="ibox-tools">
         <a href="#" id="org-edit">
@@ -12,7 +11,11 @@
       </div>
     {{/panelTitle}}
     {{#panelContent}}
-      <img src="http://www.tvredepetropolis.com.br/portal/wp-content/uploads/Microsoft-Logo-20121.jpg" class="img-responsive" alt="organization image">
+      {{#with logoImage}}
+        <img src="{{url store='aboutBoxes'}}" class="img-responsive change-logo-image" alt="organization-img">
+        {{else}}
+          <img src="https://placehold.it/400x400" class="img-responsive change-logo-image" alt="organization-img">
+      {{/with}}
     {{/panelContent}}
     {{#panelContent}}
       <table class="table">
@@ -25,7 +28,6 @@
           <td>{{{getCountryFlag country}}} {{getCountryName country}}</td>
         </tr>
         <tr>
-        
           <td>Type</td>
           <td>{{{formatOrgType type true}}}</td>
         </tr>
@@ -33,13 +35,13 @@
           <td>People</td>
           <td>
             {{#each keyPeople}}
-            <a href="#">
-              <img src="{{image}}" class="img-circle" alt="bill-gates">
-            </a>
+              <a href="#">
+                <img src="{{image}}" class="img-circle" alt="bill-gates">
+              </a>
             {{/each}}
-              <a href="#" class="btn add-people" id="add-people">
-                <i class="fa fa-plus"></i>
-              </a>            
+            <a href="#" class="btn add-people" id="add-people">
+              <i class="fa fa-plus"></i>
+            </a>
           </td>
         </tr>
       </table>

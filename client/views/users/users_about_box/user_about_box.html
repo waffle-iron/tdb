@@ -2,8 +2,7 @@
   {{#panelContainer class='float-e-margins user-card' }}
     {{#panelTitle}}
       <h1>
-        <i class="{{Icons.misc.user}}"></i>
-        {{profile.fullName}}
+        <i class="{{Icons.misc.user}}"></i> {{profile.fullName}}
       </h1>
       <div class='user-role' id='manage-user-role'>
         {{{formatRole role 'true'}}}
@@ -12,7 +11,7 @@
     {{#panelContent panelClass='no-padding' }}
       <div class="profile-photo">
         {{#with profileImage}}
-          <img src="{{url}}" class="img-responsive profile-photo-image" alt="profile-img">
+          <img src="{{url store='aboutBoxes'}}" class="img-responsive profile-photo-image" alt="profile-img">
           {{else}}
             <img src="https://placehold.it/400x400" class="img-responsive profile-photo-image" alt="profile-img">
         {{/with}}
@@ -91,7 +90,7 @@
               <i class="fa fa-skype"></i>
               <p>{{skype}}</p>
             </li>
-          {{/if}}          
+          {{/if}}
           {{#if phone}}
             <li>
               <i class="fa fa-phone"></i>
@@ -130,7 +129,6 @@
     {{/panelContent}}
   {{/panelContainer}}
 </template>
-
 <template name="s">
   {{#if th}}
     {{text}}

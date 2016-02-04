@@ -1,10 +1,20 @@
+Template.defaultLayout.onCreated(function() {
+  this.subscribe('users.extraData');
+});
+
 Template.defaultLayout.onRendered(function() {
   // Minimalize menu when screen is less than 768px
+  if ($(window).width() < 769) {
+    $('body').addClass('body-small');
+  } else {
+    $('body').removeClass('body-small');
+  }
+
   $(window).bind('resize load', function() {
     if ($(this).width() < 769) {
-      $('body').addClass('body-small')
+      $('body').addClass('body-small');
     } else {
-      $('body').removeClass('body-small')
+      $('body').removeClass('body-small');
     }
   });
 
@@ -32,7 +42,7 @@ Template.defaultLayout.onRendered(function() {
   // SKIN OPTIONS
   // Uncomment this if you want to have different skin option:
   // Available skin: (skin-1 or skin-3, skin-2 deprecated)
- // $('body').addClass('skin-1');
+  // $('body').addClass('skin-1');
 
   // FIXED-SIDEBAR
   // Uncomment this if you want to have fixed left navigation
@@ -52,4 +62,3 @@ Template.defaultLayout.helpers({
     return FlowRouter.current().route.options.title;
   }
 });
-

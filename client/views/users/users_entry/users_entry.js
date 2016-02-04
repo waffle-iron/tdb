@@ -13,15 +13,9 @@ Template.usersEntry.helpers({
   }
 });
 
-Template.usersEntry.events({
-  'click #change-profile-image': function() {
-    Modal.show('usersChangeImage');
-  },
-});
-
 Template.usersEntry.onCreated(function() {
   this.autorun(() => {
     let userId = FlowRouter.getParam('id');
-    this.subscribe('singleUser', userId);
+    this.subscribe('users.single', userId);
   });
 });
