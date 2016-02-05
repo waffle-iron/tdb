@@ -1,13 +1,17 @@
-<template name="projectsWorking">
-  {{#panelContainer class='float-e-margins'}}
+<template name="userProjects">
+  {{#panelContainer class='float-e-margins' }}
     {{#panelTitle}}
       <h1>
         <i class="{{Icons.collections.projects}}"></i>
         Projects Working
       </h1>
+      {{#panelTools}}
+        <a href="#" id='manage-user-projects'>
+          <i class="fa fa-plus"></i>
+        </a>
+      {{/panelTools}}
     {{/panelTitle}}
     {{#panelContent}}
-
     {{/panelContent}}
   {{/panelContainer}}
 </template>

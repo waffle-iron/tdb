@@ -1,1 +1,5 @@
- ☐ teste
+Minor Fixes:
+ ☐ After create project, redirect to existing route. (current is project.index)
+ ☐ After invite user, redirect to existing route. (current is users.index)
+ ☐ Cant click on project when searching (/search route)
+ ☐ Seed roles (admin, viewer editor)

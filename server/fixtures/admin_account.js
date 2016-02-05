@@ -6,6 +6,6 @@ Meteor.startup(function() {
       email: 'admin@admin.com',
       password: 'q1w2e3'
     });
-    Roles.addUsersToRoles(userId, 'god', Roles.GLOBAL_GROUP);
+    Roles.addUsersToRoles(userId, 'admin', Roles.GLOBAL_GROUP);
   }
 });
