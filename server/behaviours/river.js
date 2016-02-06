@@ -52,6 +52,30 @@ Organizations.attachBehaviour('river', {
   ]
 });
 
+
+Attachments.attachBehaviour('river', {
+  adapters: [
+    new ElasticSearchAdapter(esClient, 'techdb', 'attachments', (doc) => {
+      let finalDoc = _.clone(doc);
+
+      let schema = new SimpleSchema({
+        name: {
+          type: String
+        },
+        description: {
+          type: String
+        }
+      });
+
+      schema.clean(finalDoc);
+      return finalDoc;
+    }),
+    new LogAdapter(Logs, Attachments, function(doc) {
+      return doc.name;
+    })
+  ]
+});
+
 Projects.attachBehaviour('river', {
   adapters: [
     new ElasticSearchAdapter(esClient, 'techdb', 'projects', (doc) => {
