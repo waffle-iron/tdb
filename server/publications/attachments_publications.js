@@ -6,7 +6,24 @@ Meteor.publishComposite('tabularAttachmentsList', function(tableName, ids, field
   return {
     find() {
       this.unblock();
-      return Attachments.find({_id: {$in: ids}}, {fields: fields});
+      return Attachments.find({
+        _id: {
+          $in: ids
+        }
+      }, {
+        fields: fields
+      });
     },
+  };
+});
+
+Meteor.publishComposite('attachments.single', function(attachmentId) {
+  check(attachmentId, String);
+  return {
+    find() {
+      return Attachments.find({
+        _id: attachmentId
+      });
+    }
   };
 });

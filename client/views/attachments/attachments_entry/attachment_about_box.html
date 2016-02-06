@@ -1,0 +1,33 @@
+<template name="attachmentAboutBox">
+  {{#panelContainer class='float-e-margins org-card' }}
+    {{#panelTitle}}
+      <h3>
+        <i class="{{Icons.collections.attachments}}"></i> {{name}}
+      </h3>
+      <div class="ibox-tools">
+        <a href="#" id="attachment-edit">
+          <i class="fa fa-pencil"></i>
+        </a>
+      </div>
+    {{/panelTitle}}
+    {{#panelContent}}
+      <img src="https://placehold.it/400x400" class="img-responsive change-logo-image" alt="organization-img">
+    {{/panelContent}}
+    {{#panelContent}}
+      <table class="table">
+        <tr>
+          <td>Description</td>
+          <td>{{description}}</td>
+        </tr>
+        <tr>
+          <td>Upload Date</td>
+          
+        </tr>
+        <tr>
+          <td>Created By</td>
+        </tr>
+        
+      </table>
+    {{/panelContent}}
+  {{/panelContainer}}
+</template>
