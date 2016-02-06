@@ -21,13 +21,29 @@
         </tr>
         <tr>
           <td>Upload Date</td>
-          
+          <td>{{moFormat createdAt 'DD/MM/YYYY'}}</td>
         </tr>
         <tr>
           <td>Created By</td>
+          <td> {{user._id}} </td>
         </tr>
-        
       </table>
+    {{/panelContent}}
+    {{#panelContent}}
+      <div class="related-links">
+        <h5><i class="{{Icons.collections.projects}}"></i> Related Projects </h5>
+        <p><a href="">@drone</a>, <a href="">@drone</a>, <a href="">@drone</a></p>
+      </div>
+      <hr />
+      <div class="related-links">
+        <h5><i class="{{Icons.collections.technologies}}"></i> Related Technologies </h5>
+        <p><a href="">@drone</a>, <a href="">@drone</a>, <a href="">@drone</a></p>
+      </div>
+        <hr />
+      <div class="related-links">
+        <h5><i class="{{Icons.collections.organizations}}"></i> Related Organizations </h5>
+        <p><a href="">@drone</a>, <a href="">@drone</a>, <a href="">@drone</a></p>
+      </div>
     {{/panelContent}}
   {{/panelContainer}}
 </template>

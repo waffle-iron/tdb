@@ -29,36 +29,35 @@ Meteor.publishComposite('attachments.single', function(attachmentId) {
 
   let childOptions = {
     fields: {
-      name: true  
+      name: true
     }
   };
 
   return {
-    find() {
+    find: function() {
       this.unblock();
       return Attachments.find({
         _id: attachmentId
       });
     },
     children: [{
-        find(attachment) {
-          return Meteor.users.find({
-            _id: attachment.createdBy
-          });
-        }
-      }, {
-        find(attachment) {
-          return Projects.find(childQuery, childOptions)
-        }
-      }, {
-        find(attachment) {
-          return Technologies.find(childQuery, childOptions)
-        },
-      }, {
-        find(attachment) {
-          return Organizations.find(childQuery, childOptions);
-        }
+      find: function(attachment) {
+        return Meteor.users.find({
+          _id: attachment.createdBy
+        });
       }
-    ]
+    }, {
+      find: function(attachment) {
+        return Projects.find(childQuery, childOptions)
+      }
+    }, {
+      find: function(attachment) {
+        return Technologies.find(childQuery, childOptions)
+      },
+    }, {
+      find: function(attachment) {
+        return Organizations.find(childQuery, childOptions);
+      }
+    }]
   }
 });
