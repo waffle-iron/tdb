@@ -1,15 +1,35 @@
 <template name="attachmentsAdd">
   {{#panel title="Insert Attachment" }}
-
-  	<input type="text" name="url" class="col-sm-12">
-
-
-
-    {{#autoForm id="insertAttachmentForm" collection="Attachments" type="method" meteormethod="Attachments.methods.add" class="form-horizontal" }}
-      {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-      {{> afQuickField name="description" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-      {{> afQuickField name="content" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-      {{> submit texto="Create" buttonClass="col-sm-9" offsetClass="col-sm-offset-2"}}
-    {{/autoForm}}
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="search-metadata">
+          <div class="input-group">
+            <span class="input-group-addon">
+        <i class='fa fa-search'></i>
+        <!-- {{#if searchStatus.loaded}}
+          <i class='fa fa-search'></i>
+        {{/if}} -->
+        <!-- {{#if searchStatus.loading}}
+          <i class='fa fa-spinner fa-spin'></i>
+        {{/if}} -->
+        <!-- {{#if searchStatus.error}}
+          <i class='fa fa-bug' style='color: red;'></i>
+        {{/if}} -->
+      </span>
+            <input class="form-control" placeholder="Url for get attachment metadata...." type="text" id="attachment-url">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        {{#autoForm id="insertAttachmentForm" collection="Attachments" type="method" meteormethod="Attachments.methods.add" class="form-horizontal" }}
+          {{> afQuickField name="title" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+          {{> afQuickField name="imageUrl" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+          {{> afQuickField name="description" label-class="col-sm-2" input-col-class="col-sm-9"}}
+          {{> submit texto="Create" buttonClass="col-sm-9" offsetClass="col-sm-offset-2"}}
+        {{/autoForm}}
+      </div>
+    </div>
   {{/panel}}
 </template>
