@@ -7,4 +7,9 @@ Template.attachmentsDashboard.helpers({
   attachments: function() {
     return SearchSources.globalSearch.getTransformedData();
   },
+  attachmentSelector: function() {
+    return {
+      collection: 'attachments'
+    };
+  },
 })
