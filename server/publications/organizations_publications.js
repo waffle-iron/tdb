@@ -30,7 +30,7 @@ Meteor.publishComposite('organizations.single', function(organizationId) {
       children: [
         {
           find(org) {
-            return Projects.find({
+            return org.projectsId && Projects.find({
               _id: {
                 $in: org.projectsId
               }
@@ -39,7 +39,7 @@ Meteor.publishComposite('organizations.single', function(organizationId) {
       },
         {
           find(org) {
-            return Technologies.find({
+            return org.technologiesId && Technologies.find({
               _id: {
                 $in: org.technologiesId
               }

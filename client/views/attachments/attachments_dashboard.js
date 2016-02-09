@@ -1,7 +1,7 @@
-Template.attachments.events({
+Template.attachmentsDashboard.events({
   'click tbody > tr': function(event) {
     handleTableClick(event, (rowData) => {
-      FlowRouter.go('attachments.view', {id: rowData._id});
+      FlowRouter.go('attachmentsEntry', {id: rowData._id});
     });
   }
 });
