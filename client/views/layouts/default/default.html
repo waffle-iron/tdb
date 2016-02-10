@@ -2,24 +2,28 @@
   <!-- Wrapper-->
   <div id="wrapper">
     {{#if Template.subscriptionsReady}}
-      <!-- Navigation -->
-      {{> navigation }}
-      <!-- Page wraper -->
-      <div id="page-wrapper" class="gray-bg">
-        <!-- Page wrapper -->
-        {{> topNavbar }} {{> pageHeading title=title }}
-        <!-- Main view  -->
-        <div class="wrapper wrapper-content">
-          {{> Template.dynamic template=main}}
-        </div>
-        <!-- Footer
-            {{> footer }}
-             -->
-      </div>
-      <!-- End page wrapper-->
+      {{> loadedContent}}
     {{else}}
-        {{> spinner color='#fff'}}
+      {{> spinner color='#fff'}}
     {{/if}}
   </div>
   <!-- End wrapper-->
+</template>
+
+<template name="loadedContent">
+  <!-- Navigation -->
+  {{> navigation }}
+  <!-- Page wraper -->
+  <div id="page-wrapper" class="gray-bg">
+    <!-- Page wrapper -->
+    {{> topNavbar }} {{> pageHeading title=title }}
+    <!-- Main view  -->
+    <div class="wrapper wrapper-content">
+      {{> Template.dynamic template=main}}
+    </div>
+    <!-- Footer
+            {{> footer }}
+             -->
+  </div>
+  <!-- End page wrapper-->
 </template>
