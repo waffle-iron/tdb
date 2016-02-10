@@ -4,11 +4,11 @@ Meteor.methods({
   getMetadataFromUrl: function(url) {
     check(url, String);
 
-    function fetch(url, callback) {
-      let client = new MetaInspector(url, {
+    function fetch(remoteUrl, callback) {
+      let client = new MetaInspector(remoteUrl, {
         timeout: 5000
       });
-
+      
       client.on("fetch", function() {
         callback(null, {
           title: client.title,
@@ -18,15 +18,19 @@ Meteor.methods({
         });
       });
 
-      client.on("error", function(err) {
-        callback(err)
+      client.on('error', function(err) {
+        callback(err);
       });
 
       client.fetch();
     }
 
-    let syncFetch = Async.wrap(fetch);
-    return syncFetch(url)
-
+    try {
+      let syncFetch = Async.wrap(fetch);
+      return syncFetch(url);
+    } catch (e) {
+      console.log(e);
+      throw new Meteor.Error(e.code);
+    }
   }
-})
+});

@@ -11,7 +11,7 @@ Template.attachmentsAdd.helpers({
       template.attachment.set({
         name: res.title,
         description: res.description,
-        thumbnailUrl: res.image,
+        imageUrl: res.image,
         url: res.url
       });
     }
