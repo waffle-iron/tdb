@@ -1,4 +1,5 @@
 /* Only demo */
+
 @media (max-width: 1000px) {
   .welcome-message {
     display: none;
@@ -25,16 +26,14 @@
   margin: 5px;
 }
 
-.logo-login{
-  width:300px;
-  height:auto;
+.logo-login {
+  width: 300px;
+  height: auto;
 }
 
-.middle-box{
-  padding-top:120px;
+.middle-box {
+  padding-top: 120px;
 }
-
-
 
 .mini-navbar .nav-second-level {
   //background: red;
@@ -44,32 +43,56 @@
   //color: @text-color;
 }
 
-.modal-body { 
-  overflow: visible !important; 
+.modal-body {
+  overflow: visible !important;
 }
 
 
 /*Making this global, since it will be used in many other places*/
+
 .ibox-title {
   .flex;
   .y-center-flex;
   .x-between-flex;
-
-  h1, h2, h3, h4, h5, h6 {
-    display: inline-block; /*To align icon with heading tag inside the same line*/
-    float: left; /*To align heading tags inside ibox-title that has ibox-tools as well*/
-
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    display: inline-block;
+    /*To align icon with heading tag inside the same line*/
+    float: left;
+    /*To align heading tags inside ibox-title that has ibox-tools as well*/
     /*Just setting a default size, that way you can set heading tag by semantic meaning without changing the layout*/
     font-size: 16px;
   }
-
-  i { margin: 0 7px;}
+  i {
+    margin: 0 7px;
+  }
 }
 
 .search-bar {
   //border-radius: 70px;
 }
 
-.slide-left {
+.slide-left {}
 
+
+/*MOBILE SETTINGS*/
+.body-small {
+  .top-navbar, .page-heading {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 0px;
+  }
+  .ibox {
+    margin-bottom: 10px;
+  }
+  .wrapper-content {
+    padding: 10px 5px 15px;
+  }
+  #page-wrapper {
+    padding: 0px;
+  }
 }

@@ -28,13 +28,21 @@
   .brief-img {
     position: relative;
 
-    /*The icon in the corner of the image*/
+    .icon-brief-box {
+      .flex;
+      .x-center-flex;
+      .y-center-flex;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      padding: 10px; /*If you want more space to the block corners, add some padding*/
+      background-color: @navy;
+    }
+
     i {
-        position: absolute;
-        top: 5%;
-        left: 3%;
-        opacity: 0.6;
-        color: #fff;
+      color: #fff;
     }
   }
 }
