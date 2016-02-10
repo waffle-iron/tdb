@@ -30,12 +30,12 @@ Template.menu.helpers({
         submenu: [
           {
             name: 'Dashboard',
-            linkTo: 'usersDashboard',
+            linkTo: 'users.dashboard',
             roles: ['god', 'admin']
           },
           {
             roles: ['god', 'admin'],
-            linkTo: 'usersInvite',
+            linkTo: 'users.invite',
             name: 'Invite'
           }
         ]
@@ -66,12 +66,12 @@ Template.menu.helpers({
         submenu: [
           {
             roles: ['god', 'admin'],
-            linkTo: 'projectsDashboard',
+            linkTo: 'projects.dashboard',
             name: 'Dashboard'
           },
           {
             roles: ['god', 'admin'],
-            linkTo: 'projectsAdd',
+            linkTo: 'projects.add',
             name: 'New'
           }
         ]
