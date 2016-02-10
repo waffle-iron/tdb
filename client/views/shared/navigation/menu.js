@@ -66,12 +66,12 @@ Template.menu.helpers({
         submenu: [
           {
             roles: ['god', 'admin'],
-            linkTo: 'projectsDashboard',
+            linkTo: 'projects.dashboard',
             name: 'Dashboard'
           },
           {
             roles: ['god', 'admin'],
-            linkTo: 'projectsAdd',
+            linkTo: 'projects.add',
             name: 'New'
           }
         ]
