@@ -6,6 +6,9 @@
     return Icons.collections[this.collection] || Icons.collections.default;
   },
   userIdentification() {
-    return this.user().identification(['username', 'fullName', 'email']);
+    if (this.user()) {
+      return this.user().identification(['username', 'fullName', 'email']);
+    }
+    return 'Unknown';
   }
 });

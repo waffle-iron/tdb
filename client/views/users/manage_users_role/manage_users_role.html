@@ -11,21 +11,20 @@
           <h4 class="modal-title">Manage User Groups</h4>
         </div>
         <div class="modal-body">
-          {{> searchSource source=SearchSources.userSearch options=getOptions}}
-          {{#perfectScrollbar}}
-            <table class="table manage-table">
-              <tbody>
-                {{#each users}}
-                  {{>manageUserRoleItem 
-                  username=username
-                  emails=emails 
-                  fullName=fullName
-                  _id=_id 
-                  role=getRolesForUser}}
-                {{/each}}
-              </tbody>
-            </table>
-          {{/perfectScrollbar}}
+          {{#if Template.subscriptionsReady}}
+            {{> searchSource source=SearchSources.userSearch options=getOptions}}
+            {{#perfectScrollbar}}
+              <table class="table manage-table">
+                <tbody>
+                  {{#each users}}
+                    {{>manageUserRoleItem username=username emails=emails fullName=fullName _id=_id role=getRolesForUser}}
+                  {{/each}}
+                </tbody>
+              </table>
+            {{/perfectScrollbar}}
+          {{else}}
+            {{> spinner}}
+          {{/if}}
         </div>
       </div>
     </div>

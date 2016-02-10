@@ -23,7 +23,7 @@ Template.attachmentsActions.helpers({
 Template.attachmentsActions.events({
   'click #btn-edit': function(e) {
     e.stopPropagation();
-    FlowRouter.go('attachments.edit', {id: this._id});
+    FlowRouter.go('attachmentsEdit', {id: this._id});
   },
   'click #btn-remove': function(e) {
     e.stopPropagation();

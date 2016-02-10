@@ -108,7 +108,7 @@ Template.menu.helpers({
           },
           {
             roles: ['god', 'admin'],
-            linkTo: 'attachments.add',
+            linkTo: 'attachmentsAdd',
             name: 'New'
           }
         ]

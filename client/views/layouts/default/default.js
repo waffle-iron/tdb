@@ -4,22 +4,22 @@ Template.defaultLayout.onCreated(function() {
 
 Template.defaultLayout.onRendered(function() {
   // Minimalize menu when screen is less than 768px
-  if ($(window).width() < 769) {
-    $('body').addClass('body-small');
-  } else {
-    $('body').removeClass('body-small');
-  }
 
-  $(window).bind('resize load', function() {
-    if ($(this).width() < 769) {
+  function fixLayout() {
+    if ($(window).width() < 769) {
       $('body').addClass('body-small');
     } else {
       $('body').removeClass('body-small');
     }
-  });
 
-  // Fix height of layout when resize, scroll and load
-  $(window).bind('load resize scroll', function() {
+    $(window).bind('resize load', function() {
+      if ($(this).width() < 769) {
+        $('body').addClass('body-small');
+      } else {
+        $('body').removeClass('body-small');
+      }
+    });
+
     if (!$('body').hasClass('body-small')) {
       let navbarHeigh = $('nav.navbar-default').height();
       let wrapperHeigh = $('#page-wrapper').height();
@@ -36,6 +36,14 @@ Template.defaultLayout.onRendered(function() {
         $('#page-wrapper').css('min-height', $(window).height() - 60 + 'px');
       }
     }
+  }
+
+  $(document).ready(function() {
+    $('#page-wrapper').css('min-height', $(window).height() + 'px');
+  });
+  // Fix height of layout when resize, scroll and load
+  $(window).bind('load resize scroll', function() {
+    fixLayout();
   });
 
 

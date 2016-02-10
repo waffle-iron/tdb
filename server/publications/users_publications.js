@@ -41,7 +41,8 @@ Meteor.publish('users.extraData', function() {
     fields: {
       roles: 1,
       status: 1,
-      emails: 1
+      emails: 1,
+      projectsId: 1
     }
   });
 });
@@ -66,7 +67,31 @@ Meteor.publishComposite('users.single', function(userId) {
               });
             }
           }
+      },
+        {
+          find(user) {
+            if (user.projectsId) {
+              return Projects.find({
+                _id: {
+                  $in: user.projectsId
+                }
+              }, {
+                fields: {
+                  name: 1
+                }
+              });
+            }
+          }
       }
     ]
   };
+});
+
+
+Meteor.publish('Users.roles', function() {
+  return Meteor.users.find({}, {
+    fields: {
+      roles: 1
+    }
+  });
 });

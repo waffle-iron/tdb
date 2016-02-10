@@ -1,6 +1,6 @@
 Template.manageUserRoleItem.helpers({
   roles() {
-    return Meteor.roles.find();
+    return Meteor.roles.find({}, {sort: {hierarchy: 1}});
   },
   btnColor() {
     if (Template.instance().data.role === this.name) {
@@ -29,9 +29,6 @@ Template.manageUserRoleItem.helpers({
 
 Template.manageUserRoleItem.events({
   'click .set-role': function() {
-    console.log(Template.instance().data);
-    console.log(Template.instance().data.role);
-    console.log(this.name);
     if (Template.instance().data.role !== this.name) {
       Meteor.call('Users.updateRoles', Template.instance().data._id, this.name, function(err, res) {
         if (err) {
@@ -42,5 +39,6 @@ Template.manageUserRoleItem.events({
     }
   }
 });
+
 
 

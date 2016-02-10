@@ -30,9 +30,8 @@ ElasticSearchAdapter = class ElasticSearchAdapter { // implements riverOperation
         body: finalDoc
       });
     } catch (e) {
-      console.log('ElasticSearchAdapter error:');
-      console.log(e.toString());
-      console.log(e);
+      console.log('ElasticSearchAdapter error at insert:');
+      console.log(JSON.stringify(e.toString(), null, 4));
     }
   }
 
@@ -44,9 +43,8 @@ ElasticSearchAdapter = class ElasticSearchAdapter { // implements riverOperation
         id: doc._id
       });
     } catch (e) {
-      console.log('ElasticSearchAdapter error:');
-      console.log(e.toString());
-      console.log(e);
+      console.log('ElasticSearchAdapter error at remove:');
+      console.log('error: %j', e.toString());
     }
 
   }
@@ -64,9 +62,10 @@ ElasticSearchAdapter = class ElasticSearchAdapter { // implements riverOperation
         }
       });
     } catch (e) {
-      console.log('ElasticSearchAdapter error:');
-      console.log(e.toString());
-      console.log(e);
+      console.log('ElasticSearchAdapter error at update:');
+      console.dir(e.message);
+      console.log(e.reason);
+      console.log(JSON.stringify(e.message, null, 4));
     }
   }
 };

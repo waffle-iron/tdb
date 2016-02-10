@@ -303,7 +303,6 @@ Template.registerHelper('SearchSources', () => SearchSources);
 Template.registerHelper('Schemas', () => Schemas);
 Template.registerHelper('Icons', () => Icons);
 Template.registerHelper('getCountryName', (code) => {
-
   return code && Countries[code.toLowerCase()] || 'Unknown';
 });
 Template.registerHelper('getCountryFlag', (code) => {
@@ -313,35 +312,6 @@ Template.registerHelper('getGenderIcon', (gender) => {
   let icon = gender && Icons.gender[gender.toLowerCase()] || Icons.gender.default;
   return `<i class="${icon}""></i>`;
 });
-
-
-formatRole = function(role, cor = false) {
-  let spanClass = texto = '';
-  switch (role) {
-    case 'god':
-      spanClass = 'badge-success';
-      texto = 'God';
-      break;
-    case 'admin':
-      spanClass = 'badge-danger';
-      texto = 'Administrator';
-      break;
-    case 'user':
-      spanClass = 'badge-primary';
-      texto = 'User';
-      break;
-    default:
-      spanClass = 'badge-primary';
-      texto = 'Unknown';
-  }
-
-  return cor ? '<span class="badge ' + spanClass + '">' + texto + '</span>' : texto;
-};
-
-function capitalizeFirstLetter(string) {
-  if (!string) return '';
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 Template.registerHelper('formatOrgType', function(orgType, makeBadge) {
   let text = capitalizeFirstLetter(orgType);
