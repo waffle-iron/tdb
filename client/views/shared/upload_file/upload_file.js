@@ -12,24 +12,29 @@ Template.uploadFile.events({
     };
   },
   'click #upload-image': function(e, tmpl) {
-    let croppedImageData = tmpl.croppedImage.cropper('getCroppedCanvas').toDataURL();
-    //let file = tmpl.currentImage.get();
-    if (!croppedImageData) return;
-    let uploadedImage = Images.insert(croppedImageData, function(err, fileObj) {
+    let imgData;
+    if (tmpl.data.crop) {
+      imgData = tmpl.croppedImage.cropper('getCroppedCanvas').toDataURL();
+    } else {
+      imgData = tmpl.currentImage.get();
+    }
+    if (!imgData) return;
+
+    let uploadedImage = Images.insert(imgData, function(err, fileObj) {
       if (err) {
         return toastr.error('Some error occurred', 'Error');
       }
-      tmpl.data.onUpload(fileObj)
-        //  Meteor.call('users.setUserImage', FlowRouter.getParam('id'), fileObj._id);
+      tmpl.data.onStartUpload(fileObj);
 
+      tmpl.subscribe('images.single', fileObj._id);
       let cursor = Images.find(fileObj._id);
       let liveQuery = cursor.observe({
         changed(newImage) {
           if (newImage.isUploaded()) {
             liveQuery.stop();
             Meteor.setTimeout(() => {
+              tmpl.data.onUpload(fileObj);
               Modal.hide();
-              return toastr.success('File uploaded!', 'Success');
             }, 1000);
           }
         }
@@ -60,16 +65,15 @@ Template.uploadFile.onCreated(function() {
 
 Template.uploadFile.helpers({
   currentImage() {
-      return Template.instance().currentImage.get();
-    },
-    uploadingImage() {
-      return Template.instance().uploadingImage.get();
-    },
-    getCropper() {
-      let tmpl = Template.instance();
-      return function(cropper) {
-        tmpl.croppedImage = cropper;
-      };
-    }
+    return Template.instance().currentImage.get();
+  },
+  uploadingImage() {
+    return Template.instance().uploadingImage.get();
+  },
+  getCropper() {
+    let tmpl = Template.instance();
+    return function(cropper) {
+      tmpl.croppedImage = cropper;
+    };
+  }
 });
-

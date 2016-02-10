@@ -5,21 +5,20 @@ const STATE_LOADING = 3;
 
 Template.attachmentsAdd.events({
     'input #attachment-url': _.throttle(function(e, t) {
-      console.log('change');
         let url = e.target.value;
 
         t.state.set(STATE_LOADING);
         Meteor.call('getMetadataFromUrl', url, function(err, res) {
             if (err) {
                 switch (err.error) {
-                  case 'ENOTFOUND':
-                    toastr.error('URL not found.');
-                  break;
-                  case 'ECONNREFUSED':
-                    toastr.error('Connection refused.');
-                  break;
-                  default:
-                    toastr.error('Error getting metadata.');
+                    case 'ENOTFOUND':
+                        toastr.error('URL not found.');
+                        break;
+                    case 'ECONNREFUSED':
+                        toastr.error('Connection refused.');
+                        break;
+                    default:
+                        toastr.error('Error getting metadata.');
                 }
                 t.state.set(STATE_ERROR);
             } else {
@@ -46,7 +45,7 @@ Template.attachmentsAdd.helpers({
             case STATE_LOADING:
                 return 'fa fa-spinner fa-spin';
             default:
-              return 'fa fa-question';
+                return 'fa fa-question';
         }
     },
     imageUrl: function() {

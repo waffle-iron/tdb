@@ -24,10 +24,13 @@ Template.userAboutBox.events({
   },
   'click #change-profile-image': function() {
     Modal.show('uploadFile', {
+      onStartUpload(file) {
+      },
       onUpload(file) {
+        toastr.success('Upload finished', 'Success');
         Meteor.call('users.setUserImage', FlowRouter.getParam('id'), file._id);
       },
-      aspectRatio: IMAGE_ASPECT_RATIO
+      crop: false
     });
   }
 });
