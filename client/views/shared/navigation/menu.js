@@ -30,12 +30,12 @@ Template.menu.helpers({
         submenu: [
           {
             name: 'Dashboard',
-            linkTo: 'usersDashboard',
+            linkTo: 'users.dashboard',
             roles: ['god', 'admin']
           },
           {
             roles: ['god', 'admin'],
-            linkTo: 'usersInvite',
+            linkTo: 'users.invite',
             name: 'Invite'
           }
         ]

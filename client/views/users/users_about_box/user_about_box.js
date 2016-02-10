@@ -24,11 +24,10 @@ Template.userAboutBox.events({
   },
   'click #change-profile-image': function() {
     Modal.show('uploadFile', {
-      onStartUpload(file) {
-      },
+      onStartUpload(file) {},
       onUpload(file) {
         toastr.success('Upload finished', 'Success');
-        Meteor.call('users.setUserImage', FlowRouter.getParam('id'), file._id);
+        Meteor.call('Users.methods.setUserImage', FlowRouter.getParam('id'), file._id);
       },
       crop: false
     });
