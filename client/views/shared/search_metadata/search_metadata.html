@@ -2,29 +2,11 @@
   <div id="search-metadata" class="search-metadata">
     <div class="input-group">
       <span class="input-group-addon">
-        {{#if done}}
-          <i class='fa fa-search'></i>
-        {{/if}}
-        {{#if loading}}
-          <i class='fa fa-spinner fa-spin'></i>
-        {{/if}}
-        {{#if error}}
-          <i class='fa fa-bug' style='color: red;'></i>
-        {{/if}}
+        <i class='fa {{statusIconClass}}'></i>
       </span>
       <input class="form-control" placeholder="Url for get attachment metadata. (Ex. http://github.com)" type="text" id="search-url">
     </div>
     <div class="metadata">
-      {{#if done}}
-        <i>change the url to fetch metadata</i>
-      {{/if}}
-      {{#if loading}}
-        <i>fetching metadata...</i>
-      {{/if}}
-      {{#if error}}
-        <i>could not get metadata from url</i>
-      {{/if}}
-      <br />
     </div>
   </div>
 </template>

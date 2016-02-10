@@ -13,7 +13,8 @@ Meteor.methods({
         callback(null, {
           title: client.title,
           description: client.description,
-          image: client.image
+          image: client.image,
+          url: client.url,
         });
       });
 

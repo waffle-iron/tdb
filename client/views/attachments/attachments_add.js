@@ -1,22 +1,35 @@
-Template.attachmentsAdd.events({
-  
+Template.attachmentsAdd.helpers({
+  attachment() {
+    return Template.instance().attachment.get();
+  },
+  onSuccess() {
+    // Needs to be initialized before the function to get
+    // template reactive context 
+    let template = Template.instance();
+
+    return function(res) {
+      template.attachment.set({
+        name: res.title,
+        description: res.description,
+        thumbnailUrl: res.image,
+        url: res.url
+      });
+    }
+  }
 });
 
-Template.attachmentsAdd.helpers({
-  attachment: function(){
-  	return Session.get('attachment')
-  },
-})
-
+Template.attachmentsAdd.onCreated(function() {
+  this.attachment = new ReactiveVar({});
+});
 
 AutoForm.hooks({
   insertAttachmentForm: {
     onSuccess() {
-        toastr.success('Attachment created successfully: ' + this.insertDoc.name, 'Success');
-        FlowRouter.go('attachmentsDashboard');
-      },
-      onError(formType, error) {
-        toastr.error(error.toString(), 'Error');
-      },
+      toastr.success('Attachment created successfully: ' + this.insertDoc.name, 'Success');
+      FlowRouter.go('attachments.dashboard');
+    },
+    onError(formType, error) {
+      toastr.error(error.toString(), 'Error');
+    },
   }
 });
