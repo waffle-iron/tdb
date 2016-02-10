@@ -5,19 +5,36 @@
   .x-between-flex;
   .y-top-flex;
   margin-top: 10px;
-  .search-source {
-    padding-right: 8px;
-  }
+
   .display-mode {
     .inline-flex;
     button {
-      margin-left: 5px;
+      margin-left: 3px;
     }
   }
 }
 
-
 .metadata {
   .flex;
   .x-right-flex;
+  font-size: 11px;
 }
+
+/*MOBILE MEDIA QUERY*/
+@media (max-width: 600px) {
+  .search-source-display-mode {
+    .flex-direction-column; /*Separating search-source and display-mode in 2 rows*/
+    .y-bottom-flex; /*Putting display-mode at the right. This is actually working with X,Y axis reversed. Flex-direction-column cause it. */
+  }
+
+  .display-mode {
+    margin-top: 7px;
+    button {
+      .inline-flex;
+      .x-center-flex;
+      width: @display-mode-button-size-mobile;
+      height: @display-mode-button-size-mobile;
+    }
+  }
+}
+

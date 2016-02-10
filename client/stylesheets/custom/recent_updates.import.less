@@ -5,16 +5,20 @@
   }  
   .list-group-item {
     .flex;
+    .y-center-flex;
+    font-size: 12px;
+
     p {
       display: inline-block;
       /*To fit at the same line with icon*/
       margin: 10px 0px 10px 10px;
       width: 100%;
-      .date {
+      word-wrap: break-word;      
+    }
+    .date {
         float: right;
         font-style: italic;
         font-size: 0.9em;
-      }
     }
     .icon-holder {
       .inline-flex;
@@ -43,5 +47,17 @@
   }
 }
 
-// pendências:
-// definir um tamanho padrão para os ícones, para alinhar com o parágrafo
+/*MOBILE MEDIA QUERY*/
+@media (max-width: 600px) {
+
+  /*In mobiles, .date will be absolute position, .list-group-item will be its position reference*/
+  .recent-updates{
+    .list-group-item {
+      .date {
+        position: absolute;
+        bottom: 5px;
+        right: 5px;
+      }
+    }
+  }
+}

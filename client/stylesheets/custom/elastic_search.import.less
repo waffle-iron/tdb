@@ -15,8 +15,10 @@
       width: @button-size-icons-row-elastic-search;
       height: @button-size-icons-row-elastic-search;
 
-      margin: 0 5px;
+      margin: 0 3px;
     }
+
+    i {font-size: 1.5em;}
   }
 
   .search-row {
@@ -39,5 +41,18 @@
       font-weight: 600px;
       flex-grow: 1;
     }   
+  }
+}
+
+
+/*MOBILE MEDIA QUERY*/
+@media (max-width: 480px) {
+
+  /*Setting less horizonal padding on the ibox-content for mobile devices*/
+  .elastic-search{
+    .ibox-content {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
   }
 }
