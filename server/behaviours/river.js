@@ -41,6 +41,9 @@ Organizations.attachBehaviour('river', {
       let schema = new SimpleSchema({
         name: {
           type: String
+        },
+        logo: {
+          type: String
         }
       });
       schema.clean(finalDoc);

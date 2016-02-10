@@ -61,6 +61,9 @@ Template.uploadFile.events({
 Template.uploadFile.onCreated(function() {
   this.currentImage = new ReactiveVar;
   this.uploadingImage = new ReactiveVar;
+
+  this.data.onStartUpload = this.data.onStartUpload || function() {};
+  this.data.onUpload = this.data.onUpload || function() {};
 });
 
 Template.uploadFile.helpers({

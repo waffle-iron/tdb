@@ -16,7 +16,8 @@ Template.orgAboutBox.events({
       onUpload(file) {
         Meteor.call('Organizations.methods.setLogo', FlowRouter.getParam('id'), file._id);
       },
-      aspectRatio: IMAGE_ASPECT_RATIO
+      crop: false
+      
     });
   }
 });
