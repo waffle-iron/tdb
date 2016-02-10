@@ -1,5 +1,5 @@
 <template name="userAboutBox">
-  {{#panelContainer class='float-e-margins user-card' }}
+  {{#panelContainer class='float-e-margins user-about-box' }}
     {{#panelTitle}}
       <h1>
         <i class="{{Icons.misc.user}}"></i> {{profile.fullName}}
@@ -11,7 +11,9 @@
     {{#panelContent panelClass='no-padding' }}
       <div class="profile-photo">
         {{#with profileImage}}
-          <img src="{{url store='aboutBoxes'}}" class="img-responsive profile-photo-image" alt="profile-img">
+          {{#if isUploaded}}
+            <img src="{{c.url S3Filename width='250' height='250' crop='fill' gravity='face'}}" class="img-responsive profile-photo-image" alt="profile-img">
+          {{/if}}
           {{else}}
             <img src="https://placehold.it/400x400" class="img-responsive profile-photo-image" alt="profile-img">
         {{/with}}

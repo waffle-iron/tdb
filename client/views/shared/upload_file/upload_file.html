@@ -3,7 +3,11 @@
     {{#modalBody}}
       <div class='user-change-image'>
         {{#if currentImage}}
-          {{> cropImage image=currentImage getCropper=getCropper aspectRatio=aspectRatio}}
+          {{#if crop}}
+            {{> cropImage image=currentImage getCropper=getCropper aspectRatio=aspectRatio}}
+          {{else}}
+            <img src="{{currentImage}}">
+          {{/if}}
         {{else}}
           Select an Image
         {{/if}}
