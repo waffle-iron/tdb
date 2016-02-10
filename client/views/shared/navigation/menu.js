@@ -103,7 +103,7 @@ Template.menu.helpers({
         submenu: [
           {
             roles: ['god', 'admin'],
-            linkTo: 'attachments.dashboard',
+            linkTo: 'attachmentsDashboard',
             name: 'Dashboard',
           },
           {
