@@ -1,9 +1,11 @@
 {
+  "public": {
+    "AWSBucket": "techdb",
+    "CloudinaryName": "envisioning"
+  },
   "AWSAccessKeyId": "AKIAJKCV7ZRN6W52GUOQ",
   "AWSSecretAccessKey": "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",
-  "AWSBucket": "techdb",
-  "CloudinaryName": "shact",
-  "CloudinaryAPIKey": "652647434859267",
-  "CloudinaryAPISecret": "j16qpah5cehMZu3TyT4G2zKDC4s",
+  "CloudinaryAPIKey": "239915733999986",
+  "CloudinaryAPISecret": "_r8Su9wMXyYtJ7Y68Ap6Cl2yw4U",
   "ES_URL": "http://localhost:9200"
 }

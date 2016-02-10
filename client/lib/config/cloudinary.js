@@ -1,3 +1,3 @@
 $.cloudinary.config({
-  cloud_name: 'shact'
+  cloud_name: Meteor.settings.public.CloudinaryName,
 });
