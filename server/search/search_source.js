@@ -110,8 +110,8 @@ SearchSource.defineSource('globalSearch', function(searchText, options = {}) {
     body: {
       query: finalQuery,
       highlight: {
-        pre_tags: ['<b>'],
-        post_tags: ['</b>'],
+        pre_tags: ['<em>'],
+        post_tags: ['</em>'],
         fields: {
           name: {},
           description: {}
@@ -241,6 +241,7 @@ SearchSource.defineSource('userSearch', function(searchText, options = {}) {
     total: search.total,
     took: search.took
   };
+
 
   return {
     data: search.results,
