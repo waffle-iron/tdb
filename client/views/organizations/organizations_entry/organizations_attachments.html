@@ -16,12 +16,18 @@
         <thead>
           <tr>
             <th>Attachment Name</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {{#each attachments}}
             <tr>
               <td>{{name}}</td>
+              <td>
+                <a href="{{url}}" target="blank" class="btn btn-default btn-xs">
+                  <i class="fa fa-external-link" alt="Redirect"></i>
+                </a>
+              </td>
             </tr>
           {{/each}}
         </tbody>
