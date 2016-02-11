@@ -22,7 +22,7 @@ Template.userAboutBox.events({
       user: this
     });
   },
-  'click #change-profile-image': function() {
+  'click .change-profile-image': function() {
     Modal.show('uploadFile', {
       onStartUpload(file) {},
       onUpload(file) {
@@ -31,5 +31,11 @@ Template.userAboutBox.events({
       },
       crop: false
     });
+  },
+  'mouseenter .update-picture-icon': function() {
+    $('.change-profile-image a').fadeIn();
+  },
+  'mouseleave .change-profile-image': function() {
+    $('.change-profile-image a').fadeOut();
   }
 });

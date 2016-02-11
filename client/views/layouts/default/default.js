@@ -31,10 +31,8 @@ Template.loadedContent.onRendered(function() {
   // Minimalize menu when screen is less than 768px
 
   function fixLayout() {
-    console.log('fix layout');
     if (!$('body').hasClass('body-small')) {
-      //$('#page-wrapper').height($(window).height());
-
+      //  $('#page-wrapper').height($(window).height());
       let navbarHeigh = $('nav.navbar-default').height();
       let wrapperHeigh = $('#page-wrapper').height();
 

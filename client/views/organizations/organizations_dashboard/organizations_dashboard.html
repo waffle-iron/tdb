@@ -26,13 +26,13 @@
                     <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 animated fadeInRight">
                       {{> briefCard 
                         _id=_id
-                        link=(pathFor 'organizationsEntry' id=_id)
-                        collection=_type 
-                        onDelete=onDelete
-                        onEdit=onEdit
-                        img=getImg
                         title=name
-                        description=getDescription}}
+                        description=getDescription
+                        img=(getCloudinaryCard cloudinaryId)
+                        collection=_type 
+                        link=(pathFor 'organizations.entry' id=_id)
+                        onDelete=onDelete
+                        onEdit=onEdit}}
                     </div>
                   {{/each}}
                 </div>

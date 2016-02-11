@@ -52,6 +52,7 @@ em {
   font-style: normal;
 }
 
+
 /*Making this global, since it will be used in many other places*/
 
 .ibox-title {
@@ -76,16 +77,11 @@ em {
   }
 }
 
-.search-bar {
-  //border-radius: 70px;
-}
-
-.slide-left {}
-
-
 /*MOBILE SETTINGS*/
+
 .body-small {
-  .top-navbar, .page-heading {
+  .top-navbar,
+  .page-heading {
     margin-left: 0px;
     margin-right: 0px;
     padding: 0px;
@@ -98,5 +94,30 @@ em {
   }
   #page-wrapper {
     padding: 0px;
+  }
+}
+
+
+/*This is the class that sets the default settings for userAboutBox and orgAboutBox */
+
+.about-box {
+  ul {
+    padding: 0;
+    margin: 0;
+    li {
+      .flex;
+      .x-between-flex;
+      .y-center-flex;
+      padding: 5px 0;
+    }
+    p {
+      display: inline-block;
+      margin: 0;
+      /*Leaving the padding/margin stuff for the <li>, since it has flex */
+      /*It only matches IF the <li>'s firts-child is a <p>*/
+      &:first-child {
+        font-weight: 600;
+      }
+    }
   }
 }
