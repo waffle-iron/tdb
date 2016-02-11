@@ -1,11 +1,3 @@
-Template.attachmentAboutBox.onRendered(function(){
-  $('.attachment-image').load(() => {
-    console.log('image loaded');
-    console.log(this.data);
-  });
-
-});
-
 Template.attachmentAboutBox.helpers({
   user() {
     return Meteor.users.findOne({
@@ -30,8 +22,8 @@ Template.attachmentAboutBox.helpers({
   relatedOrganizations() {
     return Organizations.find({
       attachmentsId: {
-        $in: [this._id]
+        $in: [Template.instance().data._id]
       }
-    })
+    });
   },
 })

@@ -29,7 +29,9 @@ Meteor.publishComposite('attachments.single', function(attachmentId) {
 
   let childOptions = {
     fields: {
-      name: true
+      _id: true,
+      name: true,
+      attachmentsId: true
     }
   };
 
