@@ -73,6 +73,9 @@ Attachments.attachBehaviour('river', {
         },
         description: {
           type: String
+        },
+        imageUrl: {
+          type: String
         }
       });
 
