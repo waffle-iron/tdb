@@ -14,7 +14,7 @@ Template.usersChangeImage.events({
       if (err) {
         return toastr.error('Some error occurred', 'Error');
       }
-      Meteor.call('users.setUserImage', FlowRouter.getParam('id'), fileObj._id);
+      Meteor.call('Users.methods.setUserImage', FlowRouter.getParam('id'), fileObj._id);
 
       let cursor = Images.find(fileObj._id);
       let liveQuery = cursor.observe({
