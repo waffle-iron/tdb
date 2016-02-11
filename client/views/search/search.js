@@ -11,16 +11,26 @@ Template.search.helpers({
     };
   },
   getLink() {
-    //  TODO
-    console.log(this);
-    return '';
-
-    return FlowRouter.route('organizationsEntry', {
-      id: this._id
-    });
-  },
-  getDescription() {
-    return this._highlight && this._highlight.description ? this._highlight.description : this.description;
+    switch (this._type) {
+      case 'organizations':
+        return FlowRouter.path('organizations.entry', {
+          id: this._id
+        });
+      case 'technologies':
+        return FlowRouter.path('technologies.entry', {
+          id: this._id
+        });
+      case 'projects':
+        return FlowRouter.path('projects.entry', {
+          id: this._id
+        });
+      case 'attachments':
+        return FlowRouter.path('attachments.entry', {
+          id: this._id
+        });
+      default:
+        return FlowRouter.path('search');
+    }
   },
   onDelete() {
     return function(data) {
@@ -29,12 +39,27 @@ Template.search.helpers({
   },
   onEdit() {
     //  TODO
+    let type = this._type;
     return function(data) {
-      Modal.show('orgEdit', {
-        orgId: data._id
-      });
+      switch (type) {
+        case 'organizations':
+          Modal.show('orgEdit', {
+            orgId: data._id
+          });
+          break;
+        case 'technologies':
+
+          break;
+        case 'projects':
+
+          break;
+        case 'attachments':
+
+          break;
+        default: 
+          console.log('Unknown');
+      }
+
     };
-  }  
+  }
 });
-
-

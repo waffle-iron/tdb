@@ -1,5 +1,5 @@
 <template name="orgAboutBox">
-  {{#panelContainer class='float-e-margins org-card' }}
+  {{#panelContainer class='float-e-margins org-about-box' }}
     {{#panelTitle}}
       <h3>
         <i class="{{Icons.collections.organizations}}"></i> {{name}}
@@ -12,9 +12,9 @@
     {{/panelTitle}}
     {{#panelContent}}
       {{#with logoImage}}
-        <img src="{{c.url cloudinaryId width='250' height='250' crop='fill'}}" class="img-responsive change-logo-image" alt="organization-img">
+        <img src="{{c.url cloudinaryId width='500' height='500' crop='fill'}}" class="img-responsive change-logo-image" alt="organization-img">
         {{else}}
-          <img src="https://placehold.it/400x400" class="img-responsive change-logo-image" alt="organization-img">
+          <img src="https://placehold.it/500x500" class="img-responsive change-logo-image" alt="organization-img">
       {{/with}}
     {{/panelContent}}
     {{#panelContent}}

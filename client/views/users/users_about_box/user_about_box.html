@@ -12,10 +12,10 @@
       <div class="profile-photo">
         {{#with profileImage}}
           {{#if isUploaded}}
-            <img src="{{c.url cloudinaryId width='250' height='250' crop='fill' gravity='face'}}" class="img-responsive profile-photo-image" alt="profile-img">
+            <img src="{{c.url cloudinaryId width='500' height='500' crop='fill' gravity='face'}}" class="img-responsive profile-photo-image" alt="profile-img">
           {{/if}}
           {{else}}
-            <img src="https://placehold.it/400x400" class="img-responsive profile-photo-image" alt="profile-img">
+            <img src="https://placehold.it/500x500" class="img-responsive profile-photo-image" alt="profile-img">
         {{/with}}
         <div class='change-profile-image'>
           <i class="fa fa-camera fa-2x update-picture-icon"></i>

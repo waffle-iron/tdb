@@ -13,11 +13,6 @@ Template.organizationsDashboard.helpers({
   organizations() {
     return SearchSources.globalSearch.getTransformedData();
   },
-  getLink() {
-    return FlowRouter.route('organizationsEntry', {
-      id: _id
-    });
-  },
   getDescription() {
     return this._highlight && this._highlight.description ? this._highlight.description : this.description;
   },
