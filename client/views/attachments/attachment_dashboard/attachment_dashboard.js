@@ -15,8 +15,8 @@ Template.attachmentsDashboard.helpers({
 
   imageUrl: function() {
     let img = $.cloudinary.image(this.imageUrl, {
-      width: 200,
-      height: 200,
+      width: 600,
+      height: 400,
       crop: 'fill',
       type: 'fetch'
     }); 
