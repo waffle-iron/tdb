@@ -12,13 +12,26 @@ Template.attachmentsDashboard.helpers({
       collection: 'attachments'
     };
   },
+
+  imageUrl: function() {
+    let img = $.cloudinary.image(this.imageUrl, {
+      width: 200,
+      height: 200,
+      crop: 'fill',
+      type: 'fetch'
+    }); 
+    return img[0].src;
+  }
+
+
 });
 
 Template.attachmentsDashboard.events({
   'click tbody > tr': function(event) {
     handleTableClick(event, (rowData) => {
-      FlowRouter.go('attachments.entry', {id: rowData._id});
+      FlowRouter.go('attachments.entry', {
+        id: rowData._id
+      });
     });
   }
 });
-
