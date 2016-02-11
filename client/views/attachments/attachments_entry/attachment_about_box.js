@@ -34,15 +34,4 @@ Template.attachmentAboutBox.helpers({
       }
     })
   },
-
-  // imageUrl() {
-  //   let img = $.cloudinary.image(this.imageUrl, {
-  //     width: 400,
-  //     height: 400,
-  //     crop: 'fill',
-  //     type: 'fetch'
-  //   });
-  //   return img[0].src;
-  // }
-
 })
