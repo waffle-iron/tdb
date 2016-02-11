@@ -30,8 +30,9 @@
                         collection=_type 
                         onDelete=onDelete
                         onEdit=onEdit
-                        img=(c.url getImg width='600' height='400' crop='fill' gravity='center')
-                        title=name}}
+                        img=getImg
+                        title=name
+                        description=getDescription}}
                     </div>
                   {{/each}}
                 </div>

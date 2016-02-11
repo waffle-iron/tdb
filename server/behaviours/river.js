@@ -47,6 +47,12 @@ Organizations.attachBehaviour('river', {
         }
       });
       schema.clean(finalDoc);
+
+      //  grab cloudinaryId and put on the ES doc
+      let img = Images.findOne({_id: doc.logo});
+      if (img) {
+        finalDoc.cloudinaryId = img.cloudinaryId();
+      }
       return finalDoc;
     }),
     new LogAdapter(Logs, Organizations, function(doc) {
