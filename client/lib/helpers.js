@@ -99,7 +99,7 @@ Countries = {
   hk: 'Hong Kong',
   hu: 'Hungary',
   is: 'Iceland',
-  in: 'India',
+  in : 'India',
   id: 'Indonesia',
   ir: 'Iran, Islamic Republic Of',
   iq: 'Iraq',
@@ -332,3 +332,15 @@ Template.registerHelper('formatReais', function(valor) {
 Template.registerHelper('capitalizeFirstLetter', (text) => {
   return capitalizeFirstLetter(text);
 });
+
+Template.registerHelper('getCloudinaryCard', (cloudinaryId) => {
+  if (cloudinaryId) {
+    return $.cloudinary.url(cloudinaryId, {
+      width: 600,
+      height: 400,
+      crop: 'fill',
+      gravity: 'center'
+    });
+  }
+  return 'http://placehold.it/600x400';
+})

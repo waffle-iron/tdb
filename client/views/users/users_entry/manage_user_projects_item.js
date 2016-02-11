@@ -12,9 +12,9 @@ Template.manageUserProjectsItem.helpers({
 
 Template.manageUserProjectsItem.events({
   'click .add-project': function(e, t) {
-    Meteor.call('users/addProject', t.data.userId, this._id);
+    Meteor.call('Users.methods.addProject', t.data.userId, this._id);
   },
   'click .remove-project': function(e, t) {
-    Meteor.call('users/removeProject', t.data.userId, this._id);
+    Meteor.call('Users.methods.removeProject', t.data.userId, this._id);
   }
 });

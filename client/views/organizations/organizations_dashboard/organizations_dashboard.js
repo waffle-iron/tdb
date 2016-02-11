@@ -21,17 +21,7 @@ Template.organizationsDashboard.helpers({
   getDescription() {
     return this._highlight && this._highlight.description ? this._highlight.description : this.description;
   },
-  getImg() {
-    if (this.cloudinaryId) {
-      return $.cloudinary.url(this.cloudinaryId, {
-        width: 600,
-        height: 400,
-        crop: 'fill',
-        gravity: 'center'
-      });
-    }
-    return 'http://placehold.it/600x400';
-  },
+
   getOptions() {
     return {
       types: ['organizations']
