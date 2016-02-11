@@ -333,6 +333,13 @@ Template.registerHelper('capitalizeFirstLetter', (text) => {
   return capitalizeFirstLetter(text);
 });
 
+Template.registerHelper('shortIt', function(stringToShorten, maxCharsAmount){
+  if(stringToShorten.length > maxCharsAmount){
+    return stringToShorten.substring(0, maxCharsAmount) + '...';
+  }
+  return stringToShorten;
+});
+
 Template.registerHelper('getCloudinaryCard', (cloudinaryId) => {
   if (cloudinaryId) {
     return $.cloudinary.url(cloudinaryId, {
