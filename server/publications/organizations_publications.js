@@ -22,39 +22,43 @@ Meteor.publishComposite('organizations.single', function(organizationId) {
   this.unblock();
   return {
     find() {
-        this.unblock();
-        return Organizations.find({
-          _id: organizationId
+      this.unblock();
+      return Organizations.find({
+        _id: organizationId
+      });
+    },
+    children: [{
+      find(org) {
+        return org.projectsId && Projects.find({
+          _id: {
+            $in: org.projectsId
+          }
         });
-      },
-      children: [
-        {
-          find(org) {
-            return org.projectsId && Projects.find({
-              _id: {
-                $in: org.projectsId
-              }
-            });
-          }
-      },
-        {
-          find(org) {
-            return org.technologiesId && Technologies.find({
-              _id: {
-                $in: org.technologiesId
-              }
-            });
-          }
-      },
-        {
-          find(org) {
-            if (org.logo) {
-              return Images.find({
-                _id: org.logo
-              });
-            }
-          }
       }
-    ]
+    }, {
+      find(org) {
+        return org.technologiesId && Technologies.find({
+          _id: {
+            $in: org.technologiesId
+          }
+        });
+      }
+    }, {
+      find(org) {
+        return org.attachmentsId && Attachments.find({
+          _id: {
+            $in: org.attachmentsId
+          }
+        });
+      }
+    }, {
+      find(org) {
+        if (org.logo) {
+          return Images.find({
+            _id: org.logo
+          });
+        }
+      }
+    }]
   };
 });
