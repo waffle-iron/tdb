@@ -142,7 +142,7 @@ Technologies.attachBehaviour('river', {
 
 Meteor.users.attachBehaviour('river', {
   adapters: [
-    new ElasticSearchAdapter(esClient, 'techdb', 'users', (doc) => {
+    new ElasticSearchAdapter(esClient, 'techdb', 'users', (doc, modifier) => {
       let finalDoc = _.clone(doc);
 
       let schema = new SimpleSchema({
@@ -161,8 +161,6 @@ Meteor.users.attachBehaviour('river', {
         }
       });
 
-      schema.clean(finalDoc);
-      
       // get user's fullName
       if (finalDoc.profile && finalDoc.profile.fullName) {
         finalDoc.fullName = finalDoc.profile.fullName;
@@ -177,6 +175,8 @@ Meteor.users.attachBehaviour('river', {
       //  get user's role
       finalDoc.role = Roles.getRolesForUser(finalDoc._id)[0];
       return finalDoc;
+    }, {
+      trackedFields: ['profile', 'emails', 'username']
     }),
     new LogAdapter(Logs, Meteor.users, function(doc) {
       return doc.identification(['username', 'email', 'fullName']);
