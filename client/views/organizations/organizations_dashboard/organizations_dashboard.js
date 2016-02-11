@@ -16,6 +16,14 @@ Template.organizationsDashboard.helpers({
     getLink() {
       return FlowRouter.route('organizationsEntry', {id: _id});
     },
+    getImg() {
+      Template.instance().subscribe('images.single', this.logo);
+      let image =  Images.findOne({_id: this.logo});
+      console.log(image);
+      if (image) {
+        return image.S3Filename();
+      }
+    },
     getOptions() {
       return {
         types: ['organizations']
