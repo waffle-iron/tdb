@@ -15,7 +15,6 @@ Template.briefCard.helpers({
     }
   },
   stateDeleted() {
-    console.log(Template.instance().state.get());
     return Template.instance().state.get() === 'deleted';
   },
   stateEdited() {

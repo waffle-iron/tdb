@@ -349,6 +349,6 @@ Template.registerHelper('getCloudinaryCard', (cloudinaryId) => {
       gravity: 'center'
     });
   }
-  return 'http://placehold.it/600x400';
+  return 'https://placehold.it/600x400';
 });
 
