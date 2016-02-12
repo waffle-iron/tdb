@@ -1,34 +1,21 @@
 <template name="manageUserProjects">
-  <div class="modal inmodal manage-modal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content animated fadeIn">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-          </button>
-          <h4 class="modal-title">User Projects Access</h4>
-          <small></small>
-        </div>
-        <div class="modal-body">
-          {{> searchSource source=SearchSources.globalSearch options=getOptions}}
-          {{#perfectScrollbar}}
-            <table class="table manage-table">
-              <tbody>
-                {{#each projects}}
-                  {{> manageUserProjectsItem
-                    userId=../userId
-                    _id=_id
-                    name=name}}
-                {{/each}}
-              </tbody>
-            </table>         
-          {{/perfectScrollbar}} 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
+  {{#manageModal icon=Icons.collections.projects title='User\' s Projects Access '}}
+    {{#if Template.subscriptionsReady}}
+      {{> searchSource source=SearchSources.globalSearch options=getOptions}}
+        {{#perfectScrollbar}}
+          <table class="table manage-table">
+            <tbody>
+              {{#each projects}}
+                {{> manageUserProjectsItem
+                  userId=../userId
+                  _id=_id
+                  name=name}}
+              {{/each}}
+            </tbody>
+          </table>         
+        {{/perfectScrollbar}} 
+    {{else}}
+      {{> spinner}}
+    {{/if}}
+  {{/manageModal}}
 </template>

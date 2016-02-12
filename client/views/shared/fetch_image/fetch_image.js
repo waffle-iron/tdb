@@ -8,4 +8,5 @@ Template.fetchImage.helpers({
     });
     return img[0].src;
   }
-})
+});
+

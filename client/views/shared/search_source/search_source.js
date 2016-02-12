@@ -22,20 +22,25 @@ Template.searchSource.events({
     let el = $(e.target);
     let searchText = el.val();
     t.searchText.set(searchText);
-  }, 200)
+  }, 200),
+  'click .refresh': function(e, t) {
+    t.makeSearch();
+  }
 });
-
 
 Template.searchSource.onCreated(function() {
   this.source = this.data.source;
   this.options = this.data.options || {};
   this.searchText = new ReactiveVar('');
+  this.makeSearch = function() {
+    let opt = typeof this.options === 'function' ? this.options() : this.options;
+    this.source.search(this.searchText.get(), opt);
+  };
 
   if (!this.source || !this.source instanceof SearchSource) {
     throw new Error('source must be instance of SearchSource');
   }
   this.autorun(() => {
-    let opt = typeof this.options === 'function' ? this.options() : this.options;
-    this.source.search(this.searchText.get(), opt);
+    this.makeSearch();
   });
 });

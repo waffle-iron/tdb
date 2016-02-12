@@ -9,21 +9,21 @@ Minor Fixes:
 
 
 Fixes:
- ☐ Remover tela de log
+ x Remover tela de log
  ☐ userDashboard
  ☐ userCard
  ☐ roles
 
   searchSource:
-   ☐ Fazer uma busca por padrao "vazio" ao renderizar  
+   x Fazer uma busca por padrao "vazio" ao renderizar  
    ☐ Implementar paginacao elasticSearch
    ☐ Implementar infinite scroll
-   ☐ Impementar botao de refresh na lupa
-   ☐ List View com placeholder
+   x Impementar botao de refresh na lupa
+   x List View com placeholder
 
   mainDashboard:
-   ☐ Nao conta as organizations no main dashboard
-   ☐ Arrumar rotas dos cards counters para projects e technologies
+   x Nao conta as organizations no main dashboard
+   x Arrumar rotas dos cards counters para projects e technologies
 
   recentUpdates: 
    ☐ Implementar links no recentUpdates
@@ -34,7 +34,7 @@ Fixes:
 
   briedCard:
    ☐ Definir tamanho e truncante do texto
-   ☐ Arrumar evento de click 
+   x Arrumar evento de click 
    ☐ Implementar delete (sweet alert)
    ☐ Implementar estados (deletado, alterado)
 
@@ -47,7 +47,7 @@ Fixes:
     ☐ manageKeyPeople
 
   manageModais:
-   ☐ refatorar para usar modal generico
+   x refatorar para usar modal generico
 
   attachment:
    ☐ botao de fetch metadata da url

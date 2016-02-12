@@ -9,13 +9,6 @@ Template.menu.helpers({
         roles: ['god', 'admin'],
       },
       {
-        regex: '^log',
-        name: 'Log',
-        linkTo: 'log',
-        icon: 'fa fa-database',
-        roles: ['god', 'admin'],
-      },
-      {
         regex: '^search',
         name: 'Search',
         linkTo: 'search',

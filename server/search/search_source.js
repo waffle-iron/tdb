@@ -108,6 +108,7 @@ SearchSource.defineSource('globalSearch', function(searchText, options = {}) {
     index: 'techdb',
     type: types.join(','), // filter types
     body: {
+      size: 50,
       query: finalQuery,
       highlight: {
         pre_tags: ['<em>'],

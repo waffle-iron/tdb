@@ -20,7 +20,7 @@ Template.briefCard.events({
       t.data.onDelete(t.data);
     }
   },
-  'click .brief-card': function(e, t) {
+  'click .link': function(e, t) {
     FlowRouter.go(t.data.link);
   }
 });
