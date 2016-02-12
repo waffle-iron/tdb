@@ -1,5 +1,15 @@
+Template.search.onCreated(function() {
+  this.changedBriefCards = [];
+});
+
 Template.search.helpers({
   results() {
+    _.each(Template.instance().changedBriefCards, (t) => {
+      if (t) {
+        t.state.set(null);
+      }
+    });
+    Template.instance().changedBriefCards = [];
     return SearchSources.globalSearch.getTransformedData();
   },
   getOptions() {
@@ -32,12 +42,19 @@ Template.search.helpers({
         return FlowRouter.path('search');
     }
   },
+  //
+  //  Delete Handler
+  //
   onDelete() {
     let type = this._type;
     let identification;
     let _id;
+    let changedBriefCards = Template.instance().changedBriefCards;
     //  TODO
     switch (type) {
+      //
+      //  Organizations
+      //
       case 'organizations':
         identification = this.name;
         _id = this._id;
@@ -49,9 +66,13 @@ Template.search.helpers({
               }
               removeSuccess();
               t.state.set('deleted');
+              changedBriefCards.push(t);
             });
           });
         };
+        //
+        //  Technologies
+        //
       case 'technologies':
         identification = this.name;
         _id = this._id;
@@ -62,9 +83,14 @@ Template.search.helpers({
                 return removeError();
               }
               removeSuccess();
+              t.state.set('deleted');
+              changedBriefCards.push(t);
             });
           });
         };
+        //
+        //  Projects
+        //
       case 'projects':
         identification = this.name;
         _id = this._id;
@@ -76,9 +102,14 @@ Template.search.helpers({
               }
               removeSuccess();
               t.state.set('deleted');
+              t.state.set('deleted');
+              changedBriefCards.push(t);
             });
           });
         };
+        //
+        //  Attachments
+        //
       case 'attachments':
         identification = this.name;
         _id = this._id;
@@ -90,6 +121,8 @@ Template.search.helpers({
               }
               removeSuccess();
               t.state.set('deleted');
+              t.state.set('deleted');
+              changedBriefCards.push(t);
             });
           });
         };
@@ -97,10 +130,16 @@ Template.search.helpers({
         console.log('Unknown');
     }
   },
+  //
+  //  Edit handler
+  //
   onEdit() {
-    //  TODO
     let type = this._type;
+    let changedBriefCards = Template.instance().changedBriefCards;
     switch (type) {
+      //
+      //  Organizations
+      //
       case 'organizations':
         identification = this.name;
         return function(data, t) {
@@ -108,9 +147,13 @@ Template.search.helpers({
             orgId: data._id,
             onSuccess: function() {
               t.state.set('updated');
+              changedBriefCards.push(t);
             }
           });
         };
+        //
+        //  Technologies
+        //
       case 'technologies':
         identification = this.name;
         return function(data, t) {
@@ -118,9 +161,13 @@ Template.search.helpers({
             techId: data._id,
             onSuccess() {
               t.state.set('updated');
+              changedBriefCards.push(t);
             }
           });
         };
+        //
+        //  Projects
+        //
       case 'projects':
         identification = this.name;
         return function(data, t) {
@@ -128,9 +175,13 @@ Template.search.helpers({
             projectId: data._id,
             onSuccess() {
               t.state.set('updated');
+              changedBriefCards.push(t);
             }
           });
         };
+        //
+        //  Attachments
+        //
       case 'attachments':
         identification = this.name;
         return function(data, t) {
@@ -138,6 +189,7 @@ Template.search.helpers({
             attachmentId: data._id,
             onSuccess() {
               t.state.set('updated');
+              changedBriefCards.push(t);
             }
           });
         };

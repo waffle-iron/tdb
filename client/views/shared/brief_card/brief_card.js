@@ -13,6 +13,13 @@ Template.briefCard.helpers({
     if (state === 'deleted') {
       return 'deleted';
     }
+  },
+  stateDeleted() {
+    console.log(Template.instance().state.get());
+    return Template.instance().state.get() === 'deleted';
+  },
+  stateEdited() {
+    return Template.instance().state.get() === 'updated';
   }
 });
 
