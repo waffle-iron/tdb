@@ -15,7 +15,6 @@ AutoForm.hooks({
 });
 
 Template.orgEdit.onCreated(function() {
-  console.log(this.data);
   this.subscribe('organizations.single', this.data.orgId);
 });
 
