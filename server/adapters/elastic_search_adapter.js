@@ -50,8 +50,8 @@ ElasticSearchAdapter = class ElasticSearchAdapter { // implements riverOperation
   }
 
   updateDoc(userId, doc, fieldNames, modifier) {
+    let id = doc._id;
     let finalDoc = this.docTransformer(doc, modifier);
-    let id = finalDoc._id;
     delete finalDoc._id;
     if (!finalDoc) return false;
 
@@ -60,7 +60,6 @@ ElasticSearchAdapter = class ElasticSearchAdapter { // implements riverOperation
         return false;
       }
     }
-
     try {
       return this.client.update({
         index: this.index,
