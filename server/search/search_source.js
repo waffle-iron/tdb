@@ -151,7 +151,7 @@ SearchSource.defineSource('userSearch', function(searchText, options = {}) {
             should: [ // Any of these conditions should match, the most, more relevant
               {
                 match: {
-                  name: {
+                  'profile.fullName': {
                     query: searchText,
                     boost: nameBoost
                   }
@@ -159,7 +159,7 @@ SearchSource.defineSource('userSearch', function(searchText, options = {}) {
               },
               {
                 prefix: {
-                  name: {
+                  'profile.fullName': {
                     value: lastWord,
                     boost: nameBoost
                   }
@@ -204,7 +204,7 @@ SearchSource.defineSource('userSearch', function(searchText, options = {}) {
       should: [
         {
           match_phrase_prefix: {
-            name: {
+            'profile.fullName': {
               query: searchText,
               boost: nameBoost,
               slop: 5

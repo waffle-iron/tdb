@@ -12,7 +12,7 @@ Template.recentUpdates.helpers({
       }
 
       let selector = Template.instance().selector;
-
+      console.log(selector);
       return Logs.find(selector, {
         sort: {
           createdAt: -1

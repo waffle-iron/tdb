@@ -333,14 +333,15 @@ Template.registerHelper('capitalizeFirstLetter', (text) => {
   return capitalizeFirstLetter(text);
 });
 
-Template.registerHelper('shortIt', function(stringToShorten, maxCharsAmount){
-  if(stringToShorten.length > maxCharsAmount){
+Template.registerHelper('shortIt', function(stringToShorten, maxCharsAmount) {
+  if (stringToShorten.length > maxCharsAmount) {
     return stringToShorten.substring(0, maxCharsAmount) + '...';
   }
   return stringToShorten;
 });
 
 Template.registerHelper('getCloudinaryCard', (cloudinaryId) => {
+
   if (cloudinaryId) {
     return $.cloudinary.url(cloudinaryId, {
       width: 600,
@@ -350,5 +351,18 @@ Template.registerHelper('getCloudinaryCard', (cloudinaryId) => {
     });
   }
   return 'https://placehold.it/600x400';
+});
+
+Template.registerHelper('getUserThumb', (cloudinaryId) => {
+  if (cloudinaryId) {
+    let s3path = 's3/' + cloudinaryId + '-image';
+    return $.cloudinary.url(s3path, {
+      width: 150,
+      height: 150,
+      crop: 'fill',
+      gravity: 'face'
+    });
+  }
+  return 'https://placehold.it/150x150';
 });
 

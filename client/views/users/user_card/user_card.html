@@ -1,0 +1,27 @@
+<template name="userCard">
+  <div class="contact-box">
+    <a href="profile.html">
+      <div class="col-sm-4">
+        <div class="text-center">
+          <img alt="image" class="img-circle m-t-xs img-responsive" src="{{img}}">
+          <div class="m-t-xs font-bold">
+            <p>@{{username}}</p>
+            {{{formatRole role true}}}
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <h3><strong>{{fullName}}</strong></h3>
+        <h4>{{affiliation}}</h4>
+        <address>
+          <p> {{{getCountryFlag country}}} {{getCountryName country}}</p>
+          <p><i class='fa fa-envelope'></i> {{email}}</p>
+          <p><i class="fa fa-map-marker"></i> {{address}}</p>  
+          <p><i class='fa fa-phone'></i> {{phone}}</p>
+          <p><i class='fa fa-mobile'></i> {{mobile}}</p>
+        </address>
+      </div>
+      <div class="clearfix"></div>
+    </a>
+  </div>
+</template>

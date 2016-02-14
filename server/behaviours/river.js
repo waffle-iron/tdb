@@ -152,6 +152,24 @@ Meteor.users.attachBehaviour('river', {
         'profile.fullName': {
           type: String
         },
+        'profile.country': {
+          type: String
+        },
+        'profile.address': {
+          type: String
+        },
+        'profile.imageId': {
+          type: String
+        },
+        'profile.affiliation': {
+          type: String
+        },
+        'profile.contactInfo.mobile': {
+          type: String
+        },
+        'profile.contactInfo.phone': {
+          type: String
+        },
         username: {
           type: [Schemas.Description]
         },
@@ -161,11 +179,8 @@ Meteor.users.attachBehaviour('river', {
         }
       });
 
-      // get user's fullName
-      if (finalDoc.profile && finalDoc.profile.fullName) {
-        finalDoc.fullName = finalDoc.profile.fullName;
-      }
-      delete finalDoc.profile;
+
+      schema.clean(finalDoc);
 
       // get user's Email
       finalDoc.emails = finalDoc.emails.length && finalDoc.emails.map(function(email) {
