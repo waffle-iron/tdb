@@ -33,6 +33,7 @@ CollectionBehaviours.define('river', function(options) {
 });
 
 
+/*
 Organizations.attachBehaviour('river', {
   adapters: [
     new ElasticSearchAdapter(esClient, 'techdb', 'organizations', (doc) => {
@@ -60,7 +61,7 @@ Organizations.attachBehaviour('river', {
     })
   ]
 });
-
+*/
 
 Attachments.attachBehaviour('river', {
   adapters: [

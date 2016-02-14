@@ -11,6 +11,7 @@ let asyncEsClient = new elasticsearch.Client({
 //  wraps elasticsearch from npm on sync methods
 esClient = Async.wrap(asyncEsClient, ['index', 'search', 'update', 'delete']);
 
+Organizations.riverable(esClient, 'techdb', 'organizations');
 
 /**
  * ElasticSearchEngine
