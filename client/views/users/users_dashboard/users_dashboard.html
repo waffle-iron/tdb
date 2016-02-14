@@ -20,16 +20,17 @@
                     <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 animated fadeInRight">
                       {{> userCard 
                         _id=_id
-                        email=emails.[0]
+                        email=emails.[0].address
                         username=username
                         img=(getUserThumb profile.imageId)
                         fullName=profile.fullName
                         affiliation=profile.affiliation
                         address=profile.address
-                        role=role
+                        role=roles.[0]
                         country=profile.country
                         phone=profile.contactInfo.phone
                         mobile=profile.contactInfo.mobile
+                        link=getLink
                         }}
                     </div>
                   {{/each}}

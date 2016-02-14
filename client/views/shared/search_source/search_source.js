@@ -5,7 +5,7 @@ const SEARCH_OPTIONS = {
   localSearch: false
 };
 SearchSources.globalSearch = new SearchSource('globalSearch', ['name', 'description'], SEARCH_OPTIONS);
-SearchSources.userSearch = new SearchSource('userSearch', ['profile.fullName', 'username', 'emails'], SEARCH_OPTIONS);
+SearchSources.userSearch = new SearchSource('userSearch', ['profile.fullName', 'username', 'emails.address'], SEARCH_OPTIONS);
 
 Template.searchSource.helpers({
   metadata() {

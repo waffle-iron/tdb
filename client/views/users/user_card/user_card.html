@@ -1,24 +1,42 @@
 <template name="userCard">
   <div class="contact-box">
-    <a href="profile.html">
+    <a href="{{link}}">
       <div class="col-sm-4">
         <div class="text-center">
-          <img alt="image" class="img-circle m-t-xs img-responsive" src="{{img}}">
+          <img alt="image" class="img-circle m-t-xs img-responsive link" src="{{img}}">
           <div class="m-t-xs font-bold">
-            <p>@{{username}}</p>
-            {{{formatRole role true}}}
+            {{#if username}}
+              <p>@{{username}}</p>
+            {{/if}}
+            {{#if role}}
+              {{{formatRole role true}}}
+            {{/if}}
           </div>
         </div>
       </div>
       <div class="col-sm-8">
-        <h3><strong>{{fullName}}</strong></h3>
-        <h4>{{affiliation}}</h4>
+        {{#if fullName}}
+          <h3><strong>{{fullName}}</strong></h3>
+        {{/if}}
+        {{#if affiliation}}
+          <h4>{{affiliation}}</h4>
+        {{/if}}
         <address>
-          <p> {{{getCountryFlag country}}} {{getCountryName country}}</p>
+          {{#if country}}
+            <p> {{{getCountryFlag country}}} {{getCountryName country}}</p>
+          {{/if}}
+          {{#if email}}
           <p><i class='fa fa-envelope'></i> {{email}}</p>
+          {{/if}}
+          {{#if address}}
           <p><i class="fa fa-map-marker"></i> {{address}}</p>  
+          {{/if}}
+          {{#if phone}}
           <p><i class='fa fa-phone'></i> {{phone}}</p>
+          {{/if}}
+          {{#if mobile}}
           <p><i class='fa fa-mobile'></i> {{mobile}}</p>
+          {{/if}}
         </address>
       </div>
       <div class="clearfix"></div>

@@ -3,8 +3,6 @@ const DEFAULT_DESCRIPTION_BOOST = 1;
 const DEFAULT_NAME_FUZZINESS = 2;
 const DEFAULT_DESCRIPTION_FUZZINESS = 1;
 
-esEngine = new ElasticSearchEngine(esClient);
-
 
 /**
  * SearchSouce globalSearch
@@ -104,7 +102,7 @@ SearchSource.defineSource('globalSearch', function(searchText, options = {}) {
     }
   };
 
-  let search = esEngine.search({
+  let search = esClient.prettySearch({
     index: 'techdb',
     type: types.join(','), // filter types
     body: {
@@ -183,7 +181,7 @@ SearchSource.defineSource('userSearch', function(searchText, options = {}) {
               },
               {
                 match: {
-                  emails: {
+                  'emails.address': {
                     query: searchText,
                     boost: emailBoost
                   }
@@ -191,7 +189,7 @@ SearchSource.defineSource('userSearch', function(searchText, options = {}) {
               },
               {
                 prefix: {
-                  emails: {
+                  'emails.address': {
                     value: lastWord,
                     boost: emailBoost
                   }
@@ -222,7 +220,7 @@ SearchSource.defineSource('userSearch', function(searchText, options = {}) {
     }
   };
 
-  let search = esEngine.search({
+  let search = esClient.prettySearch({
     index: 'techdb',
     type: 'users',
     body: {

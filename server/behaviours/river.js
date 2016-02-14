@@ -3,6 +3,7 @@
  * simply hooks all mongo operations and drives them to an adapter
  *
  */
+ /*
 CollectionBehaviours.define('river', function(options) {
   let collection = this.collection;
   let defaultOptions = _.defaults(options, this.options, defaultOptions);
@@ -31,7 +32,7 @@ CollectionBehaviours.define('river', function(options) {
     });
   });
 });
-
+*/
 
 /*
 Organizations.attachBehaviour('river', {
@@ -63,6 +64,7 @@ Organizations.attachBehaviour('river', {
 });
 */
 
+/*
 Attachments.attachBehaviour('river', {
   adapters: [
     new ElasticSearchAdapter(esClient, 'techdb', 'attachments', (doc) => {
@@ -201,3 +203,4 @@ Meteor.users.attachBehaviour('river', {
     })
   ]
 });
+*/

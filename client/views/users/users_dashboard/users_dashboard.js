@@ -1,6 +1,5 @@
 Template.usersDashboard.helpers({
   users() {
-    console.log(SearchSources.userSearch.getData());
     return SearchSources.userSearch.getData();
   },
   userRecentUpdatesSelector() {
@@ -8,4 +7,9 @@ Template.usersDashboard.helpers({
       collection: 'users'
     };
   },
+  getLink() {
+    return FlowRouter.path('users.entry', {
+      id: this._id
+    });
+  }
 });
