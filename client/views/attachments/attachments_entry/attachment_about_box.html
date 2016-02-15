@@ -1,5 +1,5 @@
 <template name="attachmentAboutBox">
-  {{#panelContainer class='float-e-margins org-card' }}
+  {{#panelContainer class='float-e-margins attachment-card' }}
     {{#panelTitle}}
       <h3>
         <i class="{{Icons.collections.attachments}}"></i> {{name}}
@@ -11,20 +11,24 @@
       </div>
     {{/panelTitle}}
     {{#panelContent}}
-      <img src="https://placehold.it/400x400" class="img-responsive change-logo-image" alt="organization-img">
+      {{> fetchImage src=imageUrl width=400 height=400 class="img-responsive attachment-image"}}
+    {{/panelContent}}
+    {{#panelContent}}
+      <div class="description">
+        <header>
+          <h4>Description</h4>
+          <p>{{description}}</p>
+        </header>
+      </div>
     {{/panelContent}}
     {{#panelContent}}
       <table class="table">
         <tr>
-          <td>Description</td>
-          <td>{{description}}</td>
-        </tr>
-        <tr>
-          <td>Upload Date</td>
+          <td><b>Upload Date</b></td>
           <td>{{moFormat createdAt 'DD/MM/YYYY'}}</td>
         </tr>
         <tr>
-          <td>Created By</td>
+          <td><b>Created By</b></td>
           <td> {{user._id}} </td>
         </tr>
       </table>
@@ -32,17 +36,31 @@
     {{#panelContent}}
       <div class="related-links">
         <h5><i class="{{Icons.collections.projects}}"></i> Related Projects </h5>
-        <p><a href="">@drone</a>, <a href="">@drone</a>, <a href="">@drone</a></p>
+        {{#each relatedProjects}}2
+          <a href="{{pathFor 'projects.entry' id=_id}}">{{name}}</a>
+          {{else}}
+            No related projects
+        {{/each}}
       </div>
       <hr />
       <div class="related-links">
-        <h5><i class="{{Icons.collections.technologies}}"></i> Related Technologies </h5>
-        <p><a href="">@drone</a>, <a href="">@drone</a>, <a href="">@drone</a></p>
+        <h5><i class="{{Icons.collections.technologies}}"></i> Related </h5>
+        {{#each relatedTechnologies}} 
+          <a href="{{pathFor 'technologies.entry' id=_id}}">{{name}}</a>
+          {{else}}
+            No related technologies
+        {{/each}}
+        
       </div>
-        <hr />
+      <hr />
       <div class="related-links">
         <h5><i class="{{Icons.collections.organizations}}"></i> Related Organizations </h5>
-        <p><a href="">@drone</a>, <a href="">@drone</a>, <a href="">@drone</a></p>
+        {{#each relatedOrganizations}}
+          <a href="{{pathFor 'organizations.entry' id=_id}}">{{name}} &nbsp;</a>
+          {{else}}
+            No related organizations
+        {{/each}}
+        
       </div>
     {{/panelContent}}
   {{/panelContainer}}

@@ -3,3 +3,54 @@ Minor Fixes:
  ☐ After invite user, redirect to existing route. (current is users.index)
  ☐ Cant click on project when searching (/search route)
  ☐ Seed roles (admin, viewer editor)
+
+
+
+
+
+Fixes:
+ x Remover tela de log
+ ☐ userDashboard
+ ☐ userCard
+ ☐ roles
+
+  searchSource:
+   x Fazer uma busca por padrao "vazio" ao renderizar  
+   ☐ Implementar paginacao elasticSearch
+   ☐ Implementar infinite scroll
+   x Impementar botao de refresh na lupa
+   x List View com placeholder
+
+  mainDashboard:
+   x Nao conta as organizations no main dashboard
+   x Arrumar rotas dos cards counters para projects e technologies
+
+  recentUpdates: 
+   ☐ Implementar links no recentUpdates
+   ☐ Label de operacao em recentUpdates com cores bem definidas
+ 
+  scrollBar:
+   ☐ Implementar refresh quando muda o conteudo
+
+  briedCard:
+   ☐ Definir tamanho e truncante do texto
+   x Arrumar evento de click 
+   ☐ Implementar delete (sweet alert)
+   ☐ Implementar estados (deletado, alterado)
+
+  editModais:
+    ☐ attachment
+    ☐ technology
+    ☐ projects
+
+  organization:
+    ☐ manageKeyPeople
+
+  manageModais:
+   x refatorar para usar modal generico
+
+  attachment:
+   ☐ botao de fetch metadata da url
+
+
+

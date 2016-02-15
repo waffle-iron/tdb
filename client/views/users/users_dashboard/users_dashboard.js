@@ -1,7 +1,15 @@
-Template.usersDashboard.events({
-  'click tbody > tr': function(event) {
-    handleTableClick(event, (rowData) => {
-      FlowRouter.go('users.entry', {id: rowData._id});
+Template.usersDashboard.helpers({
+  users() {
+    return SearchSources.userSearch.getData();
+  },
+  userRecentUpdatesSelector() {
+    return {
+      collection: 'users'
+    };
+  },
+  getLink() {
+    return FlowRouter.path('users.entry', {
+      id: this._id
     });
   }
 });

@@ -1,32 +1,24 @@
 <template name="manageUserRole">
-  <div class="modal inmodal manage-modal">
-    <div class="modal-dialog">
-      <div class="modal-content animated fadeIn">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span>
-            <span class="sr-only">Close</span>
-          </button>
-          <i class="{{Icons.collections.users}} modal-icon"></i>
-          <h4 class="modal-title">Manage User Groups</h4>
-        </div>
-        <div class="modal-body">
-          {{#if Template.subscriptionsReady}}
-            {{> searchSource source=SearchSources.userSearch options=getOptions}}
-            {{#perfectScrollbar}}
-              <table class="table manage-table">
-                <tbody>
-                  {{#each users}}
-                    {{>manageUserRoleItem username=username emails=emails fullName=fullName _id=_id role=getRolesForUser}}
-                  {{/each}}
-                </tbody>
-              </table>
-            {{/perfectScrollbar}}
-          {{else}}
-            {{> spinner}}
-          {{/if}}
-        </div>
-      </div>
-    </div>
-  </div>
+  {{#manageModal icon=Icons.collections.users title='Manage User Groups' }}
+    {{#if Template.subscriptionsReady}}
+      {{> searchSource source=SearchSources.userSearch options=getOptions}}
+      {{#perfectScrollbar}}
+        <table class="table manage-table">
+          <tbody>
+            {{#each users}}
+              {{>manageUserRoleItem 
+                _id=_id
+                username=username 
+                emails=emails 
+                fullName=profile.fullName 
+                img=(getUserThumb profile.imageId)
+                role=getRolesForUser}}
+            {{/each}}
+          </tbody>
+        </table>
+      {{/perfectScrollbar}}
+    {{else}}
+      {{> spinner}}
+    {{/if}}
+  {{/manageModal}}
 </template>

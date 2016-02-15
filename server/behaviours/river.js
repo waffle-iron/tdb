@@ -3,6 +3,7 @@
  * simply hooks all mongo operations and drives them to an adapter
  *
  */
+ /*
 CollectionBehaviours.define('river', function(options) {
   let collection = this.collection;
   let defaultOptions = _.defaults(options, this.options, defaultOptions);
@@ -31,8 +32,9 @@ CollectionBehaviours.define('river', function(options) {
     });
   });
 });
+*/
 
-
+/*
 Organizations.attachBehaviour('river', {
   adapters: [
     new ElasticSearchAdapter(esClient, 'techdb', 'organizations', (doc) => {
@@ -60,8 +62,9 @@ Organizations.attachBehaviour('river', {
     })
   ]
 });
+*/
 
-
+/*
 Attachments.attachBehaviour('river', {
   adapters: [
     new ElasticSearchAdapter(esClient, 'techdb', 'attachments', (doc) => {
@@ -142,7 +145,7 @@ Technologies.attachBehaviour('river', {
 
 Meteor.users.attachBehaviour('river', {
   adapters: [
-    new ElasticSearchAdapter(esClient, 'techdb', 'users', (doc) => {
+    new ElasticSearchAdapter(esClient, 'techdb', 'users', (doc, modifier) => {
       let finalDoc = _.clone(doc);
 
       let schema = new SimpleSchema({
@@ -150,6 +153,24 @@ Meteor.users.attachBehaviour('river', {
           type: String
         },
         'profile.fullName': {
+          type: String
+        },
+        'profile.country': {
+          type: String
+        },
+        'profile.address': {
+          type: String
+        },
+        'profile.imageId': {
+          type: String
+        },
+        'profile.affiliation': {
+          type: String
+        },
+        'profile.contactInfo.mobile': {
+          type: String
+        },
+        'profile.contactInfo.phone': {
           type: String
         },
         username: {
@@ -161,13 +182,8 @@ Meteor.users.attachBehaviour('river', {
         }
       });
 
+
       schema.clean(finalDoc);
-      
-      // get user's fullName
-      if (finalDoc.profile && finalDoc.profile.fullName) {
-        finalDoc.fullName = finalDoc.profile.fullName;
-      }
-      delete finalDoc.profile;
 
       // get user's Email
       finalDoc.emails = finalDoc.emails.length && finalDoc.emails.map(function(email) {
@@ -177,6 +193,8 @@ Meteor.users.attachBehaviour('river', {
       //  get user's role
       finalDoc.role = Roles.getRolesForUser(finalDoc._id)[0];
       return finalDoc;
+    }, {
+      trackedFields: ['profile', 'emails', 'username']
     }),
     new LogAdapter(Logs, Meteor.users, function(doc) {
       return doc.identification(['username', 'email', 'fullName']);
@@ -185,3 +203,4 @@ Meteor.users.attachBehaviour('river', {
     })
   ]
 });
+*/

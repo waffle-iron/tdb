@@ -113,7 +113,6 @@ zimme:collection-behaviours
 meteorhacks:search-source
 copleykj:tagstripper
 tmeasday:publish-counts
-aldeed:delete-button
 aldeed:template-extension
 benmgreene:moment-range
 dangrossman:bootstrap-daterangepicker
@@ -123,4 +122,4 @@ newnectar:meteor-autoform-select-country-flags
 cfs:graphicsmagick
 jonblum:jquery-cropper
 meteorhacks:async
-force-ssl
+rafa93br:delete-button

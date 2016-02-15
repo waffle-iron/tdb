@@ -11,12 +11,18 @@
 
     {{#panelContent}}
       <div class="title-tools">
-        <h3>{{{title}}}</h3>
+        <h3 class='link'>{{shortIt title 50}}</h3>
+        {{#if stateEdited}}
+          <span class='label label-warning'><i class='fa fa-pencil'></i> Edited</span>
+        {{/if}}
+        {{#if stateDeleted}}
+          <span class='label label-danger'><i class='fa fa-trash'></i> Deleted</span>
+        {{/if}}        
         {{#panelTools}}
           <a href="#" class="edit">
             <i class="fa fa-pencil"></i>
           </a>
-          <a href="#" class="delete">
+          <a href="#" class="delete">      
             <i class="fa fa-trash"></i>
           </a>
         {{/panelTools}}        

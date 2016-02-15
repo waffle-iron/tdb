@@ -6,7 +6,7 @@
         Attachments
       </h1>
       {{#panelTools}}
-        <a href="#">
+        <a href="#" id="manage-org-attachments">
           <i class="fa fa-plus"></i>
         </a>
       {{/panelTools}}
@@ -16,12 +16,21 @@
         <thead>
           <tr>
             <th>Attachment Name</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {{#each attachments}}
             <tr>
               <td>{{name}}</td>
+              <td>
+               <a href="{{pathFor 'attachments.entry' id=_id}}" class="btn btn-success btn-xs">
+                  <i class="fa fa-eye" alt="Entry"></i>
+                </a>
+                <a href="{{url}}" target="blank" class="btn btn-default btn-xs">
+                  <i class="fa fa-external-link" alt="Redirect"></i>
+                </a>
+              </td>
             </tr>
           {{/each}}
         </tbody>

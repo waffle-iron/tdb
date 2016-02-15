@@ -1,29 +1,29 @@
 Template.attachmentAboutBox.helpers({
-  user: function() {
+  user() {
     return Meteor.users.findOne({
       _id: this.createdBy
     })
   },
 
-  relatedProjects: function() {
+  relatedProjects() {
     return Projects.find({
       attachmentsId: {
         $in: [this._id]
       }
     })
   },
-  relatedTechnologies: function() {
+  relatedTechnologies() {
     return Technologies.find({
       attachmentsId: {
         $in: [this._id]
       }
     })
   },
-  relatedOrganizations: function() {
+  relatedOrganizations() {
     return Organizations.find({
       attachmentsId: {
-        $in: [this._id]
+        $in: [Template.instance().data._id]
       }
-    })
+    });
   },
 })

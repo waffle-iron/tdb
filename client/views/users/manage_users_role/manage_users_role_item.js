@@ -16,7 +16,7 @@ Template.manageUserRoleItem.helpers({
       return this.username;
     }
     if (this.emails && this.emails.length) {
-      return this.emails[0];
+      return this.emails[0].address;
     }
     if (this.fullName) {
       return this.fullName;

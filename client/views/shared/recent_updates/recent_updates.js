@@ -12,7 +12,6 @@ Template.recentUpdates.helpers({
       }
 
       let selector = Template.instance().selector;
-
       return Logs.find(selector, {
         sort: {
           createdAt: -1

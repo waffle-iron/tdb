@@ -1,12 +1,12 @@
-<template name="manageOrgProjects">
-  {{#manageModal icon=Icons.collections.projects title='Manage Organization\'s Projects'}}
+<template name="manageOrgAttachments">
+  {{#manageModal icon=Icons.collections.attachments title='Manage Organization\' s Attachments'}}
     {{#if Template.subscriptionsReady}}
       {{> searchSource source=SearchSources.globalSearch options=getOptions}}
         {{#perfectScrollbar}}
           <table class="table manage-table">
             <tbody>
-              {{#each projects}}
-                {{> manageOrgProjectsItem
+              {{#each attachments}}
+                {{> manageOrgAttachmentsItem
                   organizationId=../organizationId
                   _id=_id
                   name=name}}

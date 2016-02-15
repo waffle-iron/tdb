@@ -19,20 +19,6 @@ LogAdapter = class LogAdapter {
     return this.collection._name;
   }
 
-  /*
-  getUserIdentifier(userId) {
-    console.log(userId);
-    if (userId) {
-      let user = Meteor.users.findOne({
-        _id: userId
-      });
-      console.log(user);
-      return user && user.identification(['username', 'fullName', 'email']);
-    }
-    return false;
-  }
-  */
-
   logOperation(operation, description, userId, doc) {
     let collection = this.collection._name;
     let docName = this.getDocIdentifier(doc);
@@ -64,6 +50,7 @@ LogAdapter = class LogAdapter {
     if (this.config.trackedFields) {
       if (!_.intersection(fieldNames, this.config.trackedFields).length) return false;
     }
+    
     this.logOperation(OPERATION_UPDATE, DEFAULT_UPDATE_DESCRIPTION, userId, doc);
 
     /*

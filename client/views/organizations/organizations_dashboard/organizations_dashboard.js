@@ -1,7 +1,7 @@
 SearchSource.prototype.getTransformedData = function() {
   return this.getData({
     transform(matchText, regExp) {
-      return matchText.replace(regExp, '<em>$&</em>');
+      return matchText.replace(regExp, '$&');
     },
     sort: {
       _score: -1
