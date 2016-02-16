@@ -25,7 +25,7 @@ SearchSource.defineSource('globalSearch', function(searchText, options = {}) {
   let descriptionFuzziness = options.descriptionFuzziness || DEFAULT_DESCRIPTION_FUZZINESS;
   let types = options.types || [];
 
-
+  searchText = searchText.toLowerCase();
   let words = searchText.trim().split(' ');
   let lastWord = words[words.length - 1] || '';
 
@@ -137,7 +137,8 @@ SearchSource.defineSource('userSearch', function(searchText, options = {}) {
   let nameBoost = options.nameBoost || DEFAULT_USER_NAME_BOOST;
   let usernameBoost = options.usernameBoost || DEFAULT_DESCRIPTION_BOOST;
   let emailBoost = options.emailBoost || DEFAULT_EMAIL_BOOST;
-
+  
+  searchText = searchText.toLowerCase();
   let words = searchText.trim().split(' ');
   let lastWord = words[words.length - 1] || '';
 

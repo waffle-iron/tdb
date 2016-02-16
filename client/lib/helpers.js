@@ -334,6 +334,7 @@ Template.registerHelper('capitalizeFirstLetter', (text) => {
 });
 
 Template.registerHelper('shortIt', function(stringToShorten, maxCharsAmount) {
+  //stringToShorten = TagStripper.strip(stringToShorten);
   if (stringToShorten.length > maxCharsAmount) {
     return stringToShorten.substring(0, maxCharsAmount) + '...';
   }
@@ -343,7 +344,8 @@ Template.registerHelper('shortIt', function(stringToShorten, maxCharsAmount) {
 Template.registerHelper('getCloudinaryCard', (cloudinaryId) => {
 
   if (cloudinaryId) {
-    return $.cloudinary.url(cloudinaryId, {
+    let s3path = 's3/' + cloudinaryId + '-image';
+    return $.cloudinary.url(s3path, {
       width: 600,
       height: 400,
       crop: 'fill',

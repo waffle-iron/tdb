@@ -6,7 +6,7 @@
           <img alt="image" class="img-circle m-t-xs img-responsive link" src="{{img}}">
           <div class="m-t-xs font-bold">
             {{#if username}}
-              <p>@{{username}}</p>
+              <p>@{{{username}}}</p>
             {{/if}}
             {{#if role}}
               {{{formatRole role true}}}
@@ -16,7 +16,7 @@
       </div>
       <div class="col-sm-8">
         {{#if fullName}}
-          <h3><strong>{{fullName}}</strong></h3>
+          <h3><strong>{{{fullName}}}</strong></h3>
         {{/if}}
         {{#if affiliation}}
           <h4>{{affiliation}}</h4>

@@ -1,6 +1,7 @@
 Template.usersDashboard.helpers({
   users() {
-    return SearchSources.userSearch.getData();
+    let results = SearchSources.userSearch.getTransformedData();
+    return results;
   },
   userRecentUpdatesSelector() {
     return {
@@ -11,5 +12,8 @@ Template.usersDashboard.helpers({
     return FlowRouter.path('users.entry', {
       id: this._id
     });
+  },
+  fullName() {
+    return this['profile.fullName'];
   }
 });

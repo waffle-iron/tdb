@@ -4,8 +4,29 @@ const SEARCH_OPTIONS = {
   keepHistory: false,
   localSearch: false
 };
-SearchSources.globalSearch = new SearchSource('globalSearch', ['name', 'description'], SEARCH_OPTIONS);
-SearchSources.userSearch = new SearchSource('userSearch', ['profile.fullName', 'username', 'emails.address'], SEARCH_OPTIONS);
+SearchSources.globalSearch = new SearchSource('globalSearch',
+  ['name', 'description'],
+  SEARCH_OPTIONS);
+
+SearchSources.userSearch = new SearchSource('userSearch',
+  ['profile.fullName', 'username'],
+  SEARCH_OPTIONS);
+SearchSource.prototype.getTransformedData = function() {
+  return this.getData({
+    transform(matchText, regExp) {
+      console.log(matchText);
+      matchText = String(matchText);
+
+      if (matchText.replace) {
+        return matchText.replace(regExp, '<em>$&</em>');
+      }
+      return matchText;
+    },
+    sort: {
+      _score: -1
+    }
+  });
+};
 
 Template.searchSource.helpers({
   metadata() {
@@ -43,4 +64,8 @@ Template.searchSource.onCreated(function() {
   this.autorun(() => {
     this.makeSearch();
   });
+
+  Meteor.setTimeout(() => {
+    this.makeSearch();
+  }, 1000);
 });

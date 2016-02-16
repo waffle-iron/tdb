@@ -11,7 +11,7 @@ Minor Fixes:
 Fixes:
  x Remover tela de log
  ☐ userDashboard
- ☐ userCard
+ x userCard
  ☐ roles
 
   searchSource:
@@ -35,8 +35,8 @@ Fixes:
   briedCard:
    ☐ Definir tamanho e truncante do texto
    x Arrumar evento de click 
-   ☐ Implementar delete (sweet alert)
-   ☐ Implementar estados (deletado, alterado)
+   x Implementar delete (sweet alert)
+   x Implementar estados (deletado, alterado)
 
   editModais:
     ☐ attachment

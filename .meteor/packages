@@ -110,7 +110,6 @@ easysearch:core
 insecure
 jaredmartin:future
 zimme:collection-behaviours
-meteorhacks:search-source
 copleykj:tagstripper
 tmeasday:publish-counts
 aldeed:template-extension
@@ -123,3 +122,4 @@ cfs:graphicsmagick
 jonblum:jquery-cropper
 meteorhacks:async
 rafa93br:delete-button
+meteorhacks:search-source

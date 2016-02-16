@@ -10,7 +10,8 @@ Template.search.helpers({
       }
     });
     Template.instance().changedBriefCards = [];
-    return SearchSources.globalSearch.getTransformedData();
+    let results = SearchSources.globalSearch.getTransformedData();
+    return results;
   },
   getOptions() {
     return function() {
