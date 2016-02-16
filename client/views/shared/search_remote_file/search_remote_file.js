@@ -14,7 +14,7 @@ Template.searchRemoteFile.events({
       Meteor.call('uploadFileFromUrl', url, function(error, fileObj) {
         if (error) return t.data.onUploadError(error);
 
-        return t.data.onUploadSuccess(null, fileObj);
+        return t.data.onUploadSuccess(fileObj);
       });
     });
   }

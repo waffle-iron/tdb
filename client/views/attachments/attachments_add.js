@@ -40,7 +40,7 @@ Template.attachmentsAdd.helpers({
   },
   onUploadSuccess(){
     let template = Template.instance();
-    return function(err, fileObj){
+    return function(fileObj){
       toastr.success(`The file ${fileObj.name} was downloaded and attached to this document.`);
 
       template.attachment.set({
