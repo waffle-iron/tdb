@@ -19,10 +19,13 @@
             </div>
             <div class="col-xs-6">
               <div class="preview">
-                  <h5>Image Preview</h5>
-                 {{> fetchImage width=400 heighr=400 src=attachment.imageUrl}}
+                <h5>Image Preview</h5>
+                {{#if attachment.imageUrl}}
+                  {{> fetchImage width=400 height=200 src=attachment.imageUrl class="img-responsive"}}
+                {{else}}
+                  <img src="http://placehold.it/400x200" class="img-responsive" alt="">
+                {{/if}}
               </div>
-             
             </div>
           </div>
         </div>

@@ -1,3 +1,11 @@
+Template.attachmentsAdd.events({
+  'input input[name="imageUrl"]': function(e, t){
+    let attachment = t.attachment.get();
+    attachment.imageUrl = e.target.value;
+    t.attachment.set(attachment);
+  }
+})
+
 Template.attachmentsAdd.helpers({
   attachment() {
     return Template.instance().attachment.get();
