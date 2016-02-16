@@ -11,8 +11,8 @@ const FETCH_ERRORS = {
 }
 
 Template.searchMetadata.events({
-  'input #search-url': _.throttle(function(e, t) {
-    let url = e.target.value;
+  'click .btn-fetch': _.throttle(function(e, t) {
+    let url = $('#search-url').val();
 
     t.status.set(SEARCH_STATUS.LOADING);
     Meteor.call('getMetadataFromUrl', url, function(err, res) {
