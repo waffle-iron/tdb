@@ -1,5 +1,7 @@
 Template.attachmentsAdd.events({
-  
+  'click .nav-tabs li': function(e, t){
+  	Template.instance().attachment.set({});
+  }
 });
 
 Template.attachmentsAdd.helpers({

@@ -1,9 +1,4 @@
-const SEARCH_STATUS = {
-  NONE: 'NONE',
-  LOADING: 'LOADING',
-  ERROR: 'ERROR',
-  SUCCESS: 'SUCCESS'
-}
+
 
 const FETCH_ERRORS = {
   NOT_FOUND: 'ENOTFOUND',
@@ -15,8 +10,10 @@ Template.searchMetadata.events({
     let url = $('#search-url').val();
 
     t.status.set(SEARCH_STATUS.LOADING);
+    $(e.target).button('loading');
     Meteor.call('getMetadataFromUrl', url, function(err, res) {
       if (err) {
+        $(e.target).button('reset');
         t.status.set(SEARCH_STATUS.ERROR);
         switch (err.error) {
           case FETCH_ERRORS.NOT_FOUND:
@@ -29,8 +26,10 @@ Template.searchMetadata.events({
             toastr.error('Error getting metadata.');
         }
       } else {
+        $(e.target).button('reset');
         t.status.set(SEARCH_STATUS.SUCCESS);
         t.data.onSuccess(res);
+
       }
     });
   }, 250)
