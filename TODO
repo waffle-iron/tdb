@@ -11,15 +11,15 @@ Minor Fixes:
 Fixes:
  x Remover tela de log
  ☐ userDashboard
- x userCard
+ ✔ userCard @done (16-02-17 01:24)
  ☐ roles
 
   searchSource:
-   x Fazer uma busca por padrao "vazio" ao renderizar  
+   ✔ Fazer uma busca por padrao "vazio" ao renderizar @done (16-02-17 01:24)
    ☐ Implementar paginacao elasticSearch
    ☐ Implementar infinite scroll
-   x Impementar botao de refresh na lupa
-   x List View com placeholder
+   ✔ Impementar botao de refresh na lupa @done (16-02-17 01:24)
+   ✔ List View com placeholder @done (16-02-17 01:24)
 
   mainDashboard:
    x Nao conta as organizations no main dashboard
@@ -34,9 +34,9 @@ Fixes:
 
   briedCard:
    ☐ Definir tamanho e truncante do texto
-   x Arrumar evento de click 
-   x Implementar delete (sweet alert)
-   x Implementar estados (deletado, alterado)
+   ✔ Arrumar evento de click @done (16-02-17 01:24)
+   ✔ Implementar delete (sweet alert) @done (16-02-17 01:24)
+   ✔ Implementar estados (deletado, alterado) @done (16-02-17 01:24)
 
   editModais:
     ☐ attachment
@@ -47,10 +47,10 @@ Fixes:
     ☐ manageKeyPeople
 
   manageModais:
-   x refatorar para usar modal generico
+   ✔ refatorar para usar modal generico @done (16-02-17 01:24)
 
   attachment:
-   ☐ botao de fetch metadata da url
+   ✔ botao de fetch metadata da url @done (16-02-17 01:24)
 
 
 
