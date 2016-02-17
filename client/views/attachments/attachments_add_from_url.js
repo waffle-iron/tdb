@@ -15,6 +15,7 @@ Template.attachmentsAddFromUrl.helpers({
   },
 
   onDownloadError() {
+    let template = Template.instance();
     return function(err) {
       console.error('DownloadError:', err);
       template.searchRemoteFileStatus.set(SEARCH_STATUS.ERROR);  
@@ -27,6 +28,7 @@ Template.attachmentsAddFromUrl.helpers({
     }
   },
   onUploadError() {
+    let template = Template.instance();
     return function(err) {
       console.error('UploadError', err);
       template.searchRemoteFileStatus.set(SEARCH_STATUS.ERROR);  

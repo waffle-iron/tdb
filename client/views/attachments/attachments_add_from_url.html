@@ -12,22 +12,20 @@
           <h3>File Preview</h3>
         </div>
         <div class="panel-body">
-        	{{#if isLoading}}
-        		<div class="sk-spinner sk-spinner-wave">
-                                    <div class="sk-rect1"></div>
-                                    <div class="sk-rect2"></div>
-                                    <div class="sk-rect3"></div>
-                                    <div class="sk-rect4"></div>
-                                    <div class="sk-rect5"></div>
-                                </div>
-        	{{/if}}
-          {{#if attachment}}
-            <h5>Name</h5>
-            <p>{{attachment.name}}</p>
-            <h5>Type</h5>
-            <p>{{attachment.type}}</p>
+          {{#if isLoading}}
+            {{> spinnerWave}}
           {{else}}
-            <p>No file downloaded yet.</p>
+            {{#with attachment}}
+              <h5>Name</h5>
+              <p>{{attachment.name}}</p>
+              <h5>Type</h5>
+              <p>{{attachment.type}}</p>
+          {{else}}
+            <div class="empty-message">
+              <i class='fa fa-file-o'></i>
+              <h3> No file downloaded yet</h3>
+            </div>
+            {{/with}}
           {{/if}}
         </div>
       </div>
