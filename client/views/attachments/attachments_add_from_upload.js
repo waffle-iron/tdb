@@ -2,12 +2,11 @@ Template.attachmentsAddFromUpload.events({
 
 });
 
-Template.attachmentsAddFromUpload.onCreated(function() {
-  this.file = new ReactiveVar;
-  this.attachment = new ReactiveVar;
-})
 
 Template.attachmentsAddFromUpload.helpers({
+  attachmentUpload() {
+  	return Template.instance().attachment.get();
+  },
   onUploadSuccess() {
     let template = Template.instance();
     return function(fileObj) {
@@ -21,4 +20,8 @@ Template.attachmentsAddFromUpload.helpers({
   }
 });
 
+Template.attachmentsAddFromUpload.onCreated(function() {
+  this.file = new ReactiveVar;
+  this.attachment = new ReactiveVar;
+})
 
