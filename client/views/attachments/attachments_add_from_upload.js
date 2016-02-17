@@ -25,3 +25,5 @@ Template.attachmentsAddFromUpload.onCreated(function() {
   this.attachment = new ReactiveVar;
 })
 
+
+
