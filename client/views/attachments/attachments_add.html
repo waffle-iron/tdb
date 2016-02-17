@@ -2,12 +2,12 @@
   <div class="alert alert-warning"><span class="fa fa-warning"></span> This page is under development and should no work as expected.</div>
   <div class="tabs-container">
     <ul class="nav nav-tabs">
-      <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true"> Web Reference</a></li>
-      <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">File from URL</a></li>
-      <li class=""><a data-toggle="tab" href="#tab-3" aria-expanded="false">File Upload</a></li>
+      <li class=""><a data-toggle="tab" href="#tab-1"> Web Reference</a></li>
+      <li class=""><a data-toggle="tab" href="#tab-2">File from URL</a></li>
+      <li class="active"><a data-toggle="tab" href="#tab-3">File Upload</a></li>
     </ul>
     <div class="tab-content">
-      <div id="tab-1" class="tab-pane active">
+      <div id="tab-1" class="tab-pane">
         <div class="panel-body">
 
           {{> attachmentsAddFromWebsite}}
@@ -18,9 +18,9 @@
           {{> attachmentsAddFromUrl}}
         </div>
       </div>
-      <div id="tab-3" class="tab-pane">
+      <div id="tab-3" class="tab-pane active">
         <div class="panel-body">
-        Not yet
+          {{> attachmentsAddFromUpload}}
         </div>
       </div>
     </div>

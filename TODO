@@ -51,6 +51,8 @@ Fixes:
 
   attachment:
    ✔ botao de fetch metadata da url @done (16-02-17 01:24)
+   ☐ validar url nas buscas de url
+   ☐ melhorar display de arquivo no upload for url remota
 
 
 
