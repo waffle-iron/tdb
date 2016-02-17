@@ -1,0 +1,17 @@
+<template name="smartInputFile">
+  <div id="smart-input-file">
+    <div class="input-group">
+      <input type="text" class="form-control file-path" value={{fileNameText}} readonly>
+      <span class="input-group-btn">
+        <span class="btn btn-default btn-file">
+            {{btnFileText}} <input type="file">
+        </span>
+        {{#if isFileSelected}}
+          <span class="btn btn- btn-primary btn-upload">
+            {{btnUploadText}}
+        </span>
+        {{/if}}
+      </span>
+    </div>
+  </div>
+</template>
