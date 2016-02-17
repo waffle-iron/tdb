@@ -1,5 +1,5 @@
 Template.attachmentsAddFromUrl.helpers({
-  attachment(){
+  attachmentUrl(){
   	return Template.instance().attachment.get();
   },
 
@@ -22,6 +22,10 @@ Template.attachmentsAddFromUrl.helpers({
       switch (err.error) {
         case 500:
           toastr.error('Could not read remote data from url. HEAD request is not allowed');
+          break;
+        case 503:
+          toastr.error("Website is unavaliable to receive HEAD requests. Download can't be done");
+          break;
         default:
           toastr.error('Error trying to download the file');
       }

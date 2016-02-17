@@ -1,7 +1,7 @@
 Template.searchRemoteFile.helpers({
-  dataLoadingText(){
+  dataLoadingText() {
     let status = Template.instance().status.get();
-    switch(status){
+    switch (status) {
       case SEARCH_STATUS.LOADING:
         return 'Downloading file...';
       default:
@@ -18,22 +18,20 @@ Template.searchRemoteFile.events({
   'click .btn-download': function(e, t) {
     let url = $('#search-remote-url').val();
 
-    // Make a HEAD request to discover if file can be downloaded.
-    let mockFile = new FS.File();
-
     t.data.onBegin();
     t.status.set(SEARCH_STATUS.LOADING);
-    mockFile.attachData(url, function(err) {
-      if (err){
-         t.status.set(SEARCH_STATUS.ERROR);
-         return t.data.onDownloadError(err);
+    
+    Meteor.call('attachData', url, function(err) {
+      if (err) {
+        t.status.set(SEARCH_STATUS.ERROR);
+        return t.data.onDownloadError(err);
       }
 
       Meteor.call('uploadFileFromUrl', url, function(error, fileObj) {
-        if (error){
+        if (error) {
           t.status.set(SEARCH_STATUS.ERROR);
           return t.data.onUploadError(error);
-        } 
+        }
 
         t.status.set(SEARCH_STATUS.SUCCESS);
         return t.data.onUploadSuccess(fileObj);
@@ -44,8 +42,6 @@ Template.searchRemoteFile.events({
   }
 });
 
-Template.searchRemoteFile.onCreated(function(){
+Template.searchRemoteFile.onCreated(function() {
   this.status = new ReactiveVar(SEARCH_STATUS.NONE);
 });
-
-
