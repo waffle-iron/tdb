@@ -6,11 +6,10 @@ Meteor.methods({
     function upload(url, callback) {
       console.info('Starting to download file from remote url:', url);
       Files.insert(url, function(error, fileObj) {
-        console.info('Download finished of ', fileObj.name); //TODO: Test null filenames
-        if (error) callback(error);
-        callback(null, {
+        if (error) return callback(error);
+        return callback(null, {
           _id: fileObj._id,
-          name: fileObj.original.name,
+          name: fileObj.original.name || 'undefined',
           type: fileObj.original.type,
           url: fileObj.data.source.url,
         });
