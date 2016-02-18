@@ -1,7 +1,6 @@
 Template.usersDashboard.helpers({
   users() {
     let results = SearchSources.userSearch.getTransformedData();
-    console.log(results);
     return results;
   },
   userRecentUpdatesSelector() {
