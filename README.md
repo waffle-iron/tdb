@@ -1,4 +1,4 @@
-# TechDB [![Code Climate](https://codeclimate.com/github/envisioning/techdb/badges/gpa.svg)](https://codeclimate.com/github/envisioning/techdb)
+# TechDB [![Build Status](https://travis-ci.org/envisioning/techdb.svg?branch=master)](https://travis-ci.org/envisioning/techdb) [![Code Climate](https://codeclimate.com/github/envisioning/techdb/badges/gpa.svg)](https://codeclimate.com/github/envisioning/techdb)
 
 A fresh start. Reboot on 11.23.2015.
 
