@@ -1,16 +1,16 @@
 Template.attachmentsAddFromUrl.helpers({
-  attachmentUrl(){
-  	return Template.instance().attachment.get();
+  attachmentUrl() {
+    return Template.instance().attachment.get();
   },
 
-  isLoading(){
+  isLoading() {
     return Template.instance().searchRemoteFileStatus.get() === SEARCH_STATUS.LOADING;
   },
 
-  onBegin(){
+  onBegin() {
     let template = Template.instance();
-    return function(){
-      template.searchRemoteFileStatus.set(SEARCH_STATUS.LOADING);  
+    return function() {
+      template.searchRemoteFileStatus.set(SEARCH_STATUS.LOADING);
     }
   },
 
@@ -18,7 +18,7 @@ Template.attachmentsAddFromUrl.helpers({
     let template = Template.instance();
     return function(err) {
       console.error('DownloadError:', err);
-      template.searchRemoteFileStatus.set(SEARCH_STATUS.ERROR);  
+      template.searchRemoteFileStatus.set(SEARCH_STATUS.ERROR);
       switch (err.error) {
         case 500:
           toastr.error('Could not read remote data from url. HEAD request is not allowed');
@@ -35,7 +35,7 @@ Template.attachmentsAddFromUrl.helpers({
     let template = Template.instance();
     return function(err) {
       console.error('UploadError', err);
-      template.searchRemoteFileStatus.set(SEARCH_STATUS.ERROR);  
+      template.searchRemoteFileStatus.set(SEARCH_STATUS.ERROR);
       toastr.error('Error uploading file');
     }
   },
@@ -43,7 +43,7 @@ Template.attachmentsAddFromUrl.helpers({
     let template = Template.instance();
     return function(fileObj) {
       toastr.success(`The file ${fileObj.name} was downloaded and attached to this document.`);
-      template.searchRemoteFileStatus.set(SEARCH_STATUS.SUCCESS);  
+      template.searchRemoteFileStatus.set(SEARCH_STATUS.SUCCESS);
       template.attachment.set({
         fileId: fileObj._id,
         name: fileObj.name,
@@ -54,7 +54,7 @@ Template.attachmentsAddFromUrl.helpers({
   }
 })
 
-Template.attachmentsAddFromUrl.onCreated(function(){
+Template.attachmentsAddFromUrl.onCreated(function() {
   this.attachment = new ReactiveVar;
   this.searchRemoteFileStatus = new ReactiveVar(SEARCH_STATUS.NONE);
 });
