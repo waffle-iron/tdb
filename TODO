@@ -22,8 +22,8 @@ Fixes:
    ✔ List View com placeholder @done (16-02-17 01:24)
 
   mainDashboard:
-   x Nao conta as organizations no main dashboard
-   x Arrumar rotas dos cards counters para projects e technologies
+   ✔ Nao conta as organizations no main dashboard
+   ✔ Arrumar rotas dos cards counters para projects e technologies
 
   recentUpdates: 
    ☐ Implementar links no recentUpdates

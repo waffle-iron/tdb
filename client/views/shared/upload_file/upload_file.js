@@ -27,21 +27,10 @@ Template.uploadFile.events({
       tmpl.data.onStartUpload(fileObj);
 
       tmpl.subscribe('images.single', fileObj._id);
-      let cursor = Images.find(fileObj._id);
-      let liveQuery = cursor.observe({
-        changed(newImage) {
-          if (newImage.isUploaded()) {
-            liveQuery.stop();
-            Meteor.setTimeout(() => {
-              tmpl.data.onUpload(fileObj);
-              Modal.hide();
-            }, 1000);
-          }
-        }
-      });
+      tmpl.uploadingImage.set(fileObj._id);
     });
 
-    tmpl.uploadingImage.set(uploadedImage._id);
+    
   },
   'click #take-photo': function(e, tmpl) {
     MeteorCamera.getPicture({
@@ -64,6 +53,23 @@ Template.uploadFile.onCreated(function() {
 
   this.data.onStartUpload = this.data.onStartUpload || function() {};
   this.data.onUpload = this.data.onUpload || function() {};
+
+
+  let tmpl = this;
+  this.autorun(() => {
+    let uploadingImage = this.uploadingImage.get();
+    if (uploadingImage) {
+      let cursor = Images.find({_id: uploadingImage});
+      let fetch = cursor.fetch();
+      if (fetch && fetch[0]) {
+        let file = fetch[0];
+        if (file.isUploaded()) {
+          tmpl.data.onUpload(file);
+          Modal.hide();
+        }
+      }
+    }
+  });
 });
 
 Template.uploadFile.helpers({

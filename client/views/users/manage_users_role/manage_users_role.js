@@ -1,6 +1,7 @@
 Template.manageUserRole.helpers({
   users() {
-    let result = SearchSources.userSearch.getData();
+    let result = SearchSources.userSearch.getTransformedData();
+    console.log(result);
     return result;
   },
   getOptions() {

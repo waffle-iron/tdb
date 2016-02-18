@@ -2,7 +2,7 @@
   {{#manageModal icon=Icons.collections.users title='Manage User Groups' }}
     {{#if Template.subscriptionsReady}}
       {{> searchSource source=SearchSources.userSearch options=getOptions}}
-      {{#perfectScrollbar}}
+      
         <table class="table manage-table">
           <tbody>
             {{#each users}}
@@ -16,7 +16,7 @@
             {{/each}}
           </tbody>
         </table>
-      {{/perfectScrollbar}}
+      
     {{else}}
       {{> spinner}}
     {{/if}}
