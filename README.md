@@ -1,4 +1,4 @@
-# TechDB
+# TechDB [![Code Climate](https://codeclimate.com/github/envisioning/techdb/badges/gpa.svg)](https://codeclimate.com/github/envisioning/techdb)
 
 A fresh start. Reboot on 11.23.2015.
 
