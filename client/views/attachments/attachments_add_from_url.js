@@ -11,7 +11,7 @@ Template.attachmentsAddFromUrl.helpers({
     let template = Template.instance();
     return function() {
       template.searchRemoteFileStatus.set(SEARCH_STATUS.LOADING);
-    }
+    };
   },
 
   onDownloadError() {
@@ -29,7 +29,7 @@ Template.attachmentsAddFromUrl.helpers({
         default:
           toastr.error('Error trying to download the file');
       }
-    }
+    };
   },
   onUploadError() {
     let template = Template.instance();
@@ -37,7 +37,7 @@ Template.attachmentsAddFromUrl.helpers({
       console.error('UploadError', err);
       template.searchRemoteFileStatus.set(SEARCH_STATUS.ERROR);
       toastr.error('Error uploading file');
-    }
+    };
   },
   onUploadSuccess() {
     let template = Template.instance();
@@ -50,9 +50,9 @@ Template.attachmentsAddFromUrl.helpers({
         type: fileObj.type,
         url: fileObj.url
       });
-    }
+    };
   }
-})
+});
 
 Template.attachmentsAddFromUrl.onCreated(function() {
   this.attachment = new ReactiveVar;

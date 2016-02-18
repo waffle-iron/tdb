@@ -15,15 +15,12 @@ Template.attachmentsAddFromUpload.helpers({
       	fileId: fileObj._id,
       	name: fileObj.name,
       	type: fileObj.type
-      })
-    }
+      });
+    };
   }
 });
 
 Template.attachmentsAddFromUpload.onCreated(function() {
   this.file = new ReactiveVar;
   this.attachment = new ReactiveVar;
-})
-
-
-
+});
