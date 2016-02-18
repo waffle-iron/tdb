@@ -5,7 +5,8 @@ A fresh start. Reboot on 11.23.2015.
 ## Searching with elastic search
 **Attention**: TechDB currently supports ElasticSearch 1.7
 
-Simply use ```esDriver: true``` on your SimpleSchema keys that you want to river to ElasticSearch
+Simply use ```esDriver: true``` on your SimpleSchema keys that you want to river to ElasticSearch.
+
 Only updates on those fields will trigger the river.
 
 ```javascript
@@ -66,7 +67,7 @@ Schemas.Organization = new SimpleSchema({
   },
   ...
 ```
-Then tell Mongo.Collection to use esDriver, passing the **collection** where you want to store the Logs and a function that returns who should the doc be identified. Attaching this to the Collection makes it log Insert, Deletes and Updates on fields with ```logDriver: true```
+Then tell Mongo.Collection to use esDriver, passing the **collection** where you want to store the Logs and a function that returns how should the doc be identified. Attaching this to the Collection makes it log Inserts, Deletes and Updates on fields with ```logDriver: true```
 ```javascript
 Meteor.users.logDriver(Logs, (doc, hook) => {
   let tDoc = hook.transform();
