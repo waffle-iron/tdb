@@ -11,8 +11,11 @@
     {{#panelContent panelClass='no-padding' }}
       <div class="profile-photo">
         {{#with profileImage}}
-          {{#if isUploaded}}
-            <img src="{{c.url cloudinaryId width='500' height='500' crop='fill' gravity='face'}}" class="img-responsive profile-photo-image" alt="profile-img">
+          {{#if $and isUploaded (S3Url 'images')}}
+            {{> safeImg url=(c.url (S3Url 'images') type='fetch' width='250' height='250' crop='fill' gravity='face') 
+              class="img-responsive profile-photo-image"
+              width='250'
+              height='250'}}
           {{/if}}
           {{else}}
             <img src="https://placehold.it/500x500" class="img-responsive profile-photo-image" alt="profile-img">

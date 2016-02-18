@@ -9,12 +9,11 @@ SearchSources.globalSearch = new SearchSource('globalSearch',
   SEARCH_OPTIONS);
 
 SearchSources.userSearch = new SearchSource('userSearch',
-  ['profile.fullName', 'username'],
+  ['profile.fullName', 'username', 'emails.address'],
   SEARCH_OPTIONS);
 SearchSource.prototype.getTransformedData = function() {
   return this.getData({
     transform(matchText, regExp) {
-      console.log(matchText);
       matchText = String(matchText);
 
       if (matchText.replace) {

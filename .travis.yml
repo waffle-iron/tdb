@@ -1,0 +1,18 @@
+sudo: required
+language: node_js
+node_js:
+  - "stable"
+
+before_install:
+  - "curl https://install.meteor.com | /bin/sh"
+
+install: true
+
+script:
+  - meteor build ./code
+
+deploy:
+  provider: modulus
+  api_key: "b0aa5561-87e4-4c19-9625-2cb17197d4d9"
+  project_name: "TDB"
+  on: master
