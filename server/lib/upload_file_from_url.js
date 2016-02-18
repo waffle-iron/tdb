@@ -19,5 +19,18 @@ Meteor.methods({
     // Async to get file metadata.
     let uploadFileFromUrlSync = Async.wrap(upload);
     return uploadFileFromUrlSync(url);
+  },
+  attachData: function(url) {
+    check(url, String);
+
+    function attach(url, callback) {
+      let mockFile = new FS.File();
+      mockFile.attachData(url, function(err) {
+        return callback(err);
+      });
+    }
+
+    let attachAsync = Async.wrap(attach);
+    return attachAsync(url);
   }
 });

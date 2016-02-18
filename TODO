@@ -51,6 +51,14 @@ Fixes:
 
   attachment:
    ✔ botao de fetch metadata da url @done (16-02-17 01:24)
+   ☐ validar url nas buscas de url
+   ✔ melhorar display de arquivo no upload for url remota @done (16-02-17 20:34)
+   ☐ melhorar nome dos metodos no servidor uploadFileFromUrl e attachData
+   ☐ melhorar visualizacao de nome do arquivo muito grande no filePreview
+   ☐ fazer a parte de display de imagem no filePreview
+   ☐ permitir upload de outros arquivos alem de pdf
+   ☐ adicionar progressbar
+   ☐ adicionar validacoes no schema   
 
 
 
