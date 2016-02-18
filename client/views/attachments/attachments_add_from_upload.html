@@ -11,6 +11,11 @@
           <h3>File Preview</h3>
         </div>
         <div class="panel-body">
+          {{#if Template.subscriptionsReady}}
+            {{#with FS.GetFile "Files" fileObjFromUpload._id}}
+              {{> FS.UploadProgressBar bootstrap=true}}
+            {{/with}}
+          {{/if}}
           {{#if isUploading}}
             {{> spinnerWave}}
           {{else}}
@@ -21,4 +26,3 @@
     </div>
   </div>
 </template>
-

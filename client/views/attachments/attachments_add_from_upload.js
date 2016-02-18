@@ -8,14 +8,19 @@ Template.attachmentsAddFromUpload.helpers({
     return Template.instance().attachment.get();
   },
   fileObjFromUpload() {
-    return Template.instance().fileObj.get();
+    let fileFromUpload = Template.instance().fileObj.get();
+    if (fileFromUpload) {
+      return Files.findOne({ _id: fileFromUpload._id });
+    }
+    return fileFromUpload;
   },
   isUploading() {
     return Template.instance().isUploading.get();
   },
   onUploadBegin() {
     let t = Template.instance();
-    return function() {
+    return function(fileObj) {
+      t.fileObj.set(fileObj);
       t.isUploading.set(true);
     };
   },
@@ -39,4 +44,11 @@ Template.attachmentsAddFromUpload.onCreated(function() {
   this.fileObj = new ReactiveVar;
   this.attachment = new ReactiveVar;
   this.isUploading = new ReactiveVar(false);
+
+  this.autorun(() => {
+    let fileObj = this.fileObj.get();
+    if (fileObj) {
+      this.subscribe('files.single', fileObj._id);
+    }
+  });
 });
