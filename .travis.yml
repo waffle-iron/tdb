@@ -6,5 +6,7 @@ node_js:
 before_install:
   - "curl https://install.meteor.com | /bin/sh"
 
-install:
-  - "meteor update"
+install: true
+
+script:
+  - meteor build ./code
