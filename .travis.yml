@@ -1,13 +1,8 @@
 sudo: required
 language: node_js
 node_js:
-  - "5.6"
+  - "0.12"
 
 before_install:
   - "curl -L http://git.io/ejPSng | /bin/sh"
 
-deploy:
-  provider: modulus
-  api_key: "b0aa5561-87e4-4c19-9625-2cb17197d4d9"
-  project_name: "techdb"
-  on: master
