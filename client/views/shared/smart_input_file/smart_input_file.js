@@ -77,9 +77,9 @@ Template.smartInputFile.onCreated(function() {
     this.data.onFileSelected && this.data.onFileSelected(file);
   };
 
-  this.onUploadBegin = (file) => {
+  this.onUploadBegin = (fileObj) => {
     this.btnUploadText.set('Uploading file...');
-    this.data.onUploadBegin && this.data.onUploadBegin(file);
+    this.data.onUploadBegin && this.data.onUploadBegin(fileObj);
   };
 
   this.onUploadError = (err) => {
