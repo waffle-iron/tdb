@@ -365,6 +365,6 @@ Template.registerHelper('getUserThumb', (cloudinaryId) => {
       gravity: 'face'
     });
   }
-  return 'https://placehold.it/150x150';
+  return '/img/unknown-user.png';
 });
 

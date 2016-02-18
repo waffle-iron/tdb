@@ -28,9 +28,15 @@ Template.uploadFile.events({
 
       tmpl.subscribe('images.single', fileObj._id);
       tmpl.uploadingImage.set(fileObj._id);
-    });
 
-    
+      tmpl.autorun(() => {
+        let f = Images.findOne(fileObj._id);
+        if (f && f.hasStored('images')) {
+          tmpl.data.onUpload(f);
+          Modal.hide();
+        }
+      });
+    });
   },
   'click #take-photo': function(e, tmpl) {
     MeteorCamera.getPicture({
@@ -56,6 +62,7 @@ Template.uploadFile.onCreated(function() {
 
 
   let tmpl = this;
+  /*
   this.autorun(() => {
     let uploadingImage = this.uploadingImage.get();
     if (uploadingImage) {
@@ -70,6 +77,7 @@ Template.uploadFile.onCreated(function() {
       }
     }
   });
+  */
 });
 
 Template.uploadFile.helpers({

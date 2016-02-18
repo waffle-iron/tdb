@@ -3,7 +3,8 @@
     <a href="{{link}}">
       <div class="col-sm-4">
         <div class="text-center">
-          <img alt="image" class="img-circle m-t-xs img-responsive link" src="{{img}}">
+          {{> safeImg url=img 
+            class="img-circle m-t-xs img-responsive link"}}
           <div class="m-t-xs font-bold">
             {{#if username}}
               <p>@{{{username}}}</p>
