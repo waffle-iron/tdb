@@ -5,33 +5,36 @@ A fresh start. Reboot on 11.23.2015.
 ## Searching with elastic search
 **Attention**: TechDB currently supports ElasticSearch 1.7
 
-We must attach a **river behaviour** to the collection we want to search with ElasticSearch, so it can river all the incoming operations to our ElasticSearch server
+Simply use ```esDriver: true``` on your SimpleSchema keys that you want to river to ElasticSearch
+Only updates on those fields will trigger the river.
 
 ```javascript
-Organizations.attachBehaviour('river', {
-  adapters: [
-    new ElasticSearchAdapter(esClient, 'techdb', 'organizations', (doc) => {
-      let finalDoc = _.clone(doc);
-
-      let schema = new SimpleSchema({
-        name: {
-          type: String
-        }
-      });
-      schema.clean(finalDoc);
-      return finalDoc;
-    })
-  ]
+Schemas.Organization = new SimpleSchema({
+  name: {
+    type: String,
+    logDriver: true
+  },
+  foundingYear: {
+    type: Number,
+    logDriver: true
+  },
+  country: {
+    type: String,
+    esDriver: true,
+    autoform: {
+      type: 'countryFlags'
+    }
+  },
+...
+```
+Then tell Mongo.Collection to use esDriver, passing an elasticsearch client instance, the **index** and the **type**. You can optionally pass a function to transform the doc before sending it to elasticsearch. In this function you can access the cleanedDoc (filtered doc excluding fields that does not have esDriver: true, the original doc and a reference to the hook function who called this action) (*should only exist on server since client does not know about elastic search*)
+```javascript
+Meteor.isServer && Organizations.esDriver(esClient, 'techdb', 'organizations', (cleanedDoc, doc, hook) => {
+ // return doc
 });
 ```
-
 ```javascript
-class ElasticSearchAdapter
-constructor:
-@client {elasticSearch.Client} a client instance (from elasticsearch npm package)
-@index {String} ElasticSearch index
-@type {String} ElasticSearch type
-@docTransformer {function} a function that takes the original doc and transforms it before rivering to ElasticSearch
+
 ```
 *Notes:*
 - we must wrap the elasticSearch.Client method's with Async.wrap so we can call the asynchronous methods on a synchronous way
@@ -39,29 +42,39 @@ constructor:
 
 
 ## Log operations
-We must attach a **river behaviour** to the collections we want to track updates, passing the LogAdapter as an adapter:
 
+Simply use ```logDriver: true``` on your SimpleSchema keys that you want to watch for updates
 ```javascript
-Organizations.attachBehaviour('river', {
-  adapters: [
-    new LogAdapter(Logs, Organizations, function(doc) {
-      return doc.name;
-    }, {
-      trackedFields: ['profile', 'emails', 'username']
-    })
-  ]
+Schemas.Organization = new SimpleSchema({
+  name: {
+    type: String,
+    esDriver: true,
+    logDriver: true
+  },
+  foundingYear: {
+    type: Number,
+    esDriver: true,
+    logDriver: true
+  },
+  country: {
+    type: String,
+    esDriver: true,
+    logDriver: true,
+    autoform: {
+      type: 'countryFlags'
+    }
+  },
+  ...
+```
+Then tell Mongo.Collection to use esDriver, passing the **collection** where you want to store the Logs and a function that returns who should the doc be identified. Attaching this to the Collection makes it log Insert, Deletes and Updates on fields with ```logDriver: true```
+```javascript
+Meteor.users.logDriver(Logs, (doc, hook) => {
+  let tDoc = hook.transform();
+  return tDoc.identification(['username', 'email', 'fullName']);
 });
 ```
 
-```javascript
-class LogAdapter
-constructor:
-@logCollection {Collection} the collection where we will store our logs
-@collection {Collection} the collection to be tracked
-@getDocIdentifier {function} a function to extract the documents identifier
-@config {object} a config object
-```
-we can pass on the config Object the array trackedFields, only fields found on this array will be tracked. If we don't pass this key on the config Object, all fields on the collection will be tracked
+
 **TODO**
 We must provide a way to specify a custom text for each operation
 
