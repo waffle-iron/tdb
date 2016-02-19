@@ -6,6 +6,8 @@ Meteor.methods({
     function upload(_url, callback) {
       console.info('Starting to download file from remote url:', _url);
 
+      // https://github.com/CollectionFS/Meteor-CollectionFS#storing-fsfile-references-in-your-objects
+      // Cant get file reference from the server
       try {
         Files.insert(_url, function(error, fileObj) {
           if (error) return callback(error);

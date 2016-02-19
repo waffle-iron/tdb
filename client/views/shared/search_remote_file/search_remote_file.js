@@ -1,24 +1,8 @@
-Template.searchRemoteFile.helpers({
-  dataLoadingText() {
-    let status = Template.instance().status.get();
-    switch (status) {
-      case SEARCH_STATUS.LOADING:
-        return 'Downloading file...';
-      default:
-        return 'Download file';
-    }
-  },
-  disabled() {
-    let status = Template.instance().status.get();
-    return status === SEARCH_STATUS.LOADING ? "disabled" : "";
-  }
-})
-
 Template.searchRemoteFile.events({
   'click .btn-download': function(e, t) {
     let url = $('#search-remote-url').val();
 
-    t.status.set(SEARCH_STATUS.LOADING);
+    t.onDownloadBegin();
     Meteor.call('attachData', url, function(err) {
       if (err) {
         t.status.set(SEARCH_STATUS.ERROR);
@@ -57,11 +41,17 @@ Template.searchRemoteFile.onCreated(function() {
     }
   });
 
+  this.onDownloadBegin = () => {
+    $('.btn-download').button('loading');
+    this.data.onDownloadBegin && this.data.onDownloadBegin();
+  };
+
   this.onUploadBegin = (fileId) => {
     this.data.onUploadBegin && this.data.onUploadBegin(fileId);
   };
 
   this.onUploadSuccess = (fileObj) => {
+    $('.btn-download').button('reset');
     this.data.onUploadSuccess && this.data.onUploadSuccess(fileObj);
   };
 });
