@@ -55,10 +55,11 @@ Fixes:
    ✔ melhorar display de arquivo no upload for url remota @done (16-02-17 20:34)
    ☐ melhorar nome dos metodos no servidor uploadFileFromUrl e attachData
    ☐ melhorar visualizacao de nome do arquivo muito grande no filePreview
-   ☐ fazer a parte de display de imagem no filePreview
-   ☐ permitir upload de outros arquivos alem de pdf
-   ☐ adicionar progressbar
+   ✔ fazer a parte de display de imagem no filePreview @done (16-02-18 21:21)
+   ✔ permitir upload de outros arquivos alem de pdf @done (16-02-18 21:21)
+   ✔ adicionar progressbar @done (16-02-18 21:21)
    ☐ adicionar validacoes no schema   
+   ☐ imagens nao estao indo pro s3
 
 
 
