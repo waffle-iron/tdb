@@ -10,7 +10,7 @@ Template.filePreview.helpers({
 Template.filePreview.onCreated(function() {
   this.classIconName = () => {
     let file = this.data.file || {};
-    switch (file.type) {
+    switch (file.original.type) {
       case 'application/pdf':
         return 'fa-file-pdf-o';
 
