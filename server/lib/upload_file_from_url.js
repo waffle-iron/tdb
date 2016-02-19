@@ -3,17 +3,18 @@ Meteor.methods({
   uploadFileFromUrl: function(url) {
     check(url, String);
 
-    function upload(url, callback) {
-      console.info('Starting to download file from remote url:', url);
-      Files.insert(url, function(error, fileObj) {
-        if (error) return callback(error);
-        return callback(null, {
-          _id: fileObj._id,
-          name: fileObj.original.name || 'undefined',
-          type: fileObj.original.type,
-          url: fileObj.data.source.url,
+    function upload(_url, callback) {
+      console.info('Starting to download file from remote url:', _url);
+
+      try {
+        Files.insert(_url, function(error, fileObj) {
+          if (error) return callback(error);
+
+          return callback(null, fileObj._id);
         });
-      });
+      } catch (e) {
+        return callback(e);
+      }
     }
 
     // Async to get file metadata.
@@ -23,9 +24,9 @@ Meteor.methods({
   attachData: function(url) {
     check(url, String);
 
-    function attach(url, callback) {
+    function attach(_url, callback) {
       let mockFile = new FS.File();
-      mockFile.attachData(url, function(err) {
+      mockFile.attachData(_url, function(err) {
         return callback(err);
       });
     }

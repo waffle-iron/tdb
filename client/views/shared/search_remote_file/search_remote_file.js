@@ -18,30 +18,50 @@ Template.searchRemoteFile.events({
   'click .btn-download': function(e, t) {
     let url = $('#search-remote-url').val();
 
-    t.data.onBegin();
     t.status.set(SEARCH_STATUS.LOADING);
-    
     Meteor.call('attachData', url, function(err) {
       if (err) {
         t.status.set(SEARCH_STATUS.ERROR);
-        return t.data.onDownloadError(err);
+        t.data.onDownloadError(err);
+      } else {
+        Meteor.call('uploadFileFromUrl', url, function(error, fileId) {
+          if (error) {
+            t.status.set(SEARCH_STATUS.ERROR);
+            t.data.onUploadError(error);
+          } else {
+            t.status.set(SEARCH_STATUS.SUCCESS);
+            t.fileId.set(fileId);
+            t.onUploadBegin(fileId);
+          }
+        });
       }
-
-      Meteor.call('uploadFileFromUrl', url, function(error, fileObj) {
-        if (error) {
-          t.status.set(SEARCH_STATUS.ERROR);
-          return t.data.onUploadError(error);
-        }
-
-        t.status.set(SEARCH_STATUS.SUCCESS);
-        return t.data.onUploadSuccess(fileObj);
-      });
     });
-
-
   }
 });
 
 Template.searchRemoteFile.onCreated(function() {
+  this.fileId = new ReactiveVar;
+  this.fileObj = new ReactiveVar;
   this.status = new ReactiveVar(SEARCH_STATUS.NONE);
+
+  this.autorun(() => {
+    let fileId = this.fileId.get();
+    if (fileId) {
+      this.subscribe('files.single', fileId);
+      this.fileObj.set(Files.findOne({ _id: fileId }));
+
+      let fileObj = this.fileObj.get();
+      if (fileObj && fileObj.hasStored('files')) {
+        this.onUploadSuccess(fileObj);
+      }
+    }
+  });
+
+  this.onUploadBegin = (fileId) => {
+    this.data.onUploadBegin && this.data.onUploadBegin(fileId);
+  };
+
+  this.onUploadSuccess = (fileObj) => {
+    this.data.onUploadSuccess && this.data.onUploadSuccess(fileObj);
+  };
 });
