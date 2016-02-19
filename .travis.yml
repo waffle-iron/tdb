@@ -3,6 +3,10 @@ language: node_js
 node_js:
   - "stable"
 
+addons:
+  code_climate:
+    repo_token: 1d63b91b9f6fd76ee316949330832f9ccd6d4a0a7ce167a9c7b8989b5b9dac8a
+
 before_install:
   - "curl https://install.meteor.com | /bin/sh"
 
@@ -10,6 +14,9 @@ install: true
 
 script:
   - meteor build ./code
+
+after_script:
+  - codeclimate-test-reporter < lcov.info
 
 deploy:
   provider: modulus

@@ -1,11 +1,15 @@
 <template name="filePreview">
   <div class="file-preview">
     {{#with file}}
-      <div class="empty-message">
-        <i class='fa {{classIconName}}'></i>
-        <h3> {{name}} </h3>
-        <h4> {{type}} </h4>
-      </div>
+      {{#if isImage}}
+        <img src="{{url}}" class="img-responsive" alt="preview">
+      {{else}}
+        <div class="empty-message">
+          <i class='fa {{classIconName}}'></i>
+          <h3> {{original.name}} </h3>
+          <h4> {{original.type}} </h4>
+        </div>
+      {{/if}}
       {{else}}
         <div class="empty-message">
           <i class='fa fa-file-o'></i>

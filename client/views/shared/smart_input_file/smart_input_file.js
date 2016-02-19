@@ -9,14 +9,13 @@ Template.smartInputFile.events({
   'click .btn-upload': function(e, t) {
     let file = t.file.get();
 
-    t.onUploadBegin(file);
     Files.insert(file, function(err, fileObj) {
       if (err) return t.onUploadError(err);
-      return t.onUploadSuccess({
-        _id: fileObj._id,
-        name: fileObj.original.name,
-        type: fileObj.original.type,
-      });
+
+      // fileObj is just a reference, doesn't mean
+      // that is uploaded.
+      t.fileObj.set(fileObj);
+      return t.onUploadBegin(fileObj);
     });
   }
 });
@@ -34,49 +33,63 @@ Template.smartInputFile.helpers({
   isFileSelected() {
     return Template.instance().isFileSelected();
   }
-})
+});
 
 Template.smartInputFile.onCreated(function() {
   this.state = new ReactiveVar;
-  this.file = new ReactiveVar;
+  this.file = new ReactiveVar; // File from the client
+  this.fileObj = new ReactiveVar; // File from the server
   this.btnUploadText = new ReactiveVar('Upload file');
 
+  this.autorun(() => {
+    let fileObj = this.fileObj.get();
+    if (fileObj) {
+      this.subscribe('files.single', this.fileObj.get()._id);
+
+      // The method hasStored check when the file
+      // succefully uploaded.
+      let uploadedFile = Files.findOne(fileObj._id);
+      if (uploadedFile && uploadedFile.hasStored('files')) {
+        this.onUploadSuccess(uploadedFile);
+      }
+    }
+  });
 
   // =======================================
-  // ========= Helper functions ============
+  // ============== Helpers ================
   // =======================================
   this.isFileSelected = () => {
     return this.file.get() !== undefined;
-  }
+  };
 
   this.btnFileText = () => {
     return this.isFileSelected() ? 'Change file...' : 'Browse file...';
-  }
+  };
 
   this.fileNameText = () => {
     return this.isFileSelected() ? this.file.get().name : '';
-  }
+  };
 
   // =======================================
-  // ========= Callback functions ==========
+  // ============ Callbacks ================
   // =======================================
   this.onFileSelected = (file) => {
     this.data.onFileSelected && this.data.onFileSelected(file);
-  }
+  };
 
-  this.onUploadBegin = (file) => {
+  this.onUploadBegin = (fileObj) => {
     this.btnUploadText.set('Uploading file...');
-    this.data.onUploadBegin && this.data.onUploadBegin(file);
-  }
+    this.data.onUploadBegin && this.data.onUploadBegin(fileObj);
+  };
 
   this.onUploadError = (err) => {
     console.error('onUploadError:', err);
     this.btnUploadText.set('Upload file');
     this.data.onUploadError && this.data.onUploadError(err);
-  }
+  };
 
   this.onUploadSuccess = (fileObj) => {
     this.btnUploadText.set('Upload file');
     this.data.onUploadSuccess && this.data.onUploadSuccess(fileObj);
-  }
-})
+  };
+});

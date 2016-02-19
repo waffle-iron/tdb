@@ -19,7 +19,7 @@ Template.attachmentsAddFromWebsite.helpers({
         imageUrl: res.image,
         url: res.url
       });
-    }
+    };
   }
 });
 

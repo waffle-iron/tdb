@@ -1,60 +1,55 @@
 Template.attachmentsAddFromUrl.helpers({
-  attachmentUrl() {
+  attachmentFromUrl() {
     return Template.instance().attachment.get();
   },
-
-  isLoading() {
-    return Template.instance().searchRemoteFileStatus.get() === SEARCH_STATUS.LOADING;
+  fileObjFromUrl() {
+    return Template.instance().fileObj.get();
   },
-
-  onBegin() {
-    let template = Template.instance();
-    return function() {
-      template.searchRemoteFileStatus.set(SEARCH_STATUS.LOADING);
-    }
+  isUploading() {
+    return Template.instance().isUploading.get();
   },
-
   onDownloadError() {
-    let template = Template.instance();
+    let t = Template.instance();
     return function(err) {
-      console.error('DownloadError:', err);
-      template.searchRemoteFileStatus.set(SEARCH_STATUS.ERROR);
-      switch (err.error) {
-        case 500:
-          toastr.error('Could not read remote data from url. HEAD request is not allowed');
-          break;
-        case 503:
-          toastr.error("Website is unavaliable to receive HEAD requests. Download can't be done");
-          break;
-        default:
-          toastr.error('Error trying to download the file');
-      }
-    }
+      toastr.error(t.getDownloadErrorMessage(err));
+    };
+  },
+  onUploadBegin() {
+    let t = Template.instance();
+    return function() {
+      t.isUploading.set(true);
+    };
   },
   onUploadError() {
     let template = Template.instance();
     return function(err) {
-      console.error('UploadError', err);
-      template.searchRemoteFileStatus.set(SEARCH_STATUS.ERROR);
       toastr.error('Error uploading file');
-    }
+    };
   },
   onUploadSuccess() {
-    let template = Template.instance();
+    let t = Template.instance();
     return function(fileObj) {
-      toastr.success(`The file ${fileObj.name} was downloaded and attached to this document.`);
-      template.searchRemoteFileStatus.set(SEARCH_STATUS.SUCCESS);
-      template.attachment.set({
-        fileId: fileObj._id,
-        name: fileObj.name,
-        type: fileObj.type,
-        url: fileObj.url
-      });
-    }
+      t.fileObj.set(fileObj);
+      t.isUploading.set(false);
+      toastr.success(`The file ${fileObj.original.name} was downloaded and attached to this document.`);
+    };
   }
-})
+});
 
 Template.attachmentsAddFromUrl.onCreated(function() {
+  this.fileId = new ReactiveVar;
+  this.fileObj = new ReactiveVar;
   this.attachment = new ReactiveVar;
-  this.searchRemoteFileStatus = new ReactiveVar(SEARCH_STATUS.NONE);
+  this.isUploading = new ReactiveVar(false);
+
+  this.getDownloadErrorMessage = (err) => {
+    switch (err.error) {
+      case 500:
+        return 'Could not read remote data from url. HEAD request is not allowed';
+      case 503:
+        return "Website is unavaliable to receive HEAD requests. Download can't be done";
+      default:
+        return 'Error trying to download the file';
+    }
+  }
 });
