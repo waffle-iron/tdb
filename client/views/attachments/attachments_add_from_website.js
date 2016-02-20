@@ -24,5 +24,5 @@ Template.attachmentsAddFromWebsite.helpers({
 });
 
 Template.attachmentsAddFromWebsite.onCreated(function() {
-  this.attachment = new ReactiveVar;
+  this.attachment = new ReactiveVar({});
 });

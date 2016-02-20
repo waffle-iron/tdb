@@ -95,3 +95,14 @@ Meteor.publish('Users.roles', function() {
     }
   });
 });
+
+Meteor.publish('user.status', function(userId) {
+  check(userId, String);
+  return Meteor.users.find({
+    _id: userId
+  }, {
+    fields: {
+      status: 1
+    }
+  });
+});
