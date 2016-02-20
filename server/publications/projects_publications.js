@@ -10,3 +10,17 @@ Meteor.publishComposite('tabularProjectsList', function(tableName, ids, fields) 
     },
   };
 });
+
+
+Meteor.publishComposite('projects.single', function(projectId) {
+  check(projectId, String);
+  this.unblock();
+  return {
+    find() {
+      this.unblock();
+      return Projects.find({
+        _id: projectId
+      });
+    }
+  };
+});

@@ -27,7 +27,6 @@ Template.projectsBriefCard.helpers({
         projectId: data._id,
         onSuccess() {
           t.state.set('updated');
-          changedBriefCards.push(t);
         }
       });
     };

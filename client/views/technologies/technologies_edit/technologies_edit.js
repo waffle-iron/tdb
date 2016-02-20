@@ -1,19 +1,22 @@
-Template.technologiesEdit.helpers({
-  technology: function() {
-    return Technologie.findOne({
-      _id: FlowRouter.getParam('id')
-    });
-  }
-});
-
 AutoForm.hooks({
   updateTechnologiesForm: {
     onSuccess() {
-        toastr.success('Technology edited successfully: ' + this.currentDoc.nome, 'Sucess');
-        FlowRouter.go('technologies.index');
-      },
-      onError(formType, error) {
-        toastr.error(error.toString, 'Error');
-      },
+      toastr.success('Technology updated successfully', 'Success');
+      this.template.parent().data.onSuccess();
+      Modal.hide();
+    },
+    onError(formType, error) {
+      toastr.error(error.toString(), 'Error');
+    },
+  }
+});
+
+Template.technologiesEdit.onCreated(function() {
+  this.subscribe('technologies.single', this.data.techId);
+});
+
+Template.technologiesEdit.helpers({
+  tech() {
+    return Technologies.findOne(Template.instance().data.techId);
   }
 });

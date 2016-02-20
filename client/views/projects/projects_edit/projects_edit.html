@@ -1,22 +1,20 @@
-<template name="technologiesEdit">
+<template name="projectsEdit">
   {{#modal}}
     {{#modalHeader}}
-      {{> modalHeaderContent title="Edit Organization" icon="fa fa-edit" subtitle="You must save changes before closing."}}
+      {{> modalHeaderContent title="Edit Project" icon="fa fa-edit" subtitle="You must save changes before closing."}}
     {{/modalHeader}}
     {{#if Template.subscriptionsReady}}
       {{#autoForm
-        collection="Technologies"
-        id="updateTechnologiesForm" 
+        collection="Projects"
+        id="updateProjectsForm" 
         type="method-update" 
-        doc=tech
+        doc=project
         singleMethodArgument=true
-        meteormethod="Technologies.methods.update" 
+        meteormethod="Projects.methods.update" 
         class="form-horizontal"}}
         {{#modalBody}}
             {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-            {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-            {{> afQuickField name="status" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-            {{> afQuickField name="tags" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+            {{> afQuickField name="description" label-class="col-sm-2" input-col-class="col-sm-9"}} 
         {{/modalBody}}
         {{#modalFooter}}
             <button type="button" class="btn btn-white" data-dismiss="modal">Close</button>
