@@ -1,7 +1,8 @@
 {
   "public": {
     "AWSBucket": "envisioning",
-    "CloudinaryName": "envisioning"
+    "CloudinaryName": "envisioning",
+    "Cloudinarys3MappingFolder": "s3-envisioning"
   },
   "AWS": {
     "S3": {
@@ -12,7 +13,9 @@
       "secretAccessKey": "JYDC0rckGtOJs8Bzp0Z7uV2DIQHyi2rYNKlmSmUj"
     }
   },
-  "CloudinaryAPIKey": "239915733999986",
-  "CloudinaryAPISecret": "_r8Su9wMXyYtJ7Y68Ap6Cl2yw4U",
+  "Cloudinary": {
+    "accessKeyId": "239915733999986",
+    "secretAccessKey": "_r8Su9wMXyYtJ7Y68Ap6Cl2yw4U"
+  },
   "ES_URL": "http://localhost:9200"
 }

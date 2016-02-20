@@ -1,0 +1,10 @@
+<template name="orgBriefCard">
+ {{> briefCard 
+  _id=_id
+  title=name
+  img=(getCloudinaryCard (s3path logo))
+  collection='organizations' 
+  link=getLink
+  onDelete=onDelete
+  onEdit=onEdit}}
+</template>

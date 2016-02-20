@@ -334,31 +334,32 @@ Template.registerHelper('capitalizeFirstLetter', (text) => {
 });
 
 Template.registerHelper('shortIt', function(stringToShorten, maxCharsAmount) {
-  //stringToShorten = TagStripper.strip(stringToShorten);
   if (stringToShorten.length > maxCharsAmount) {
     return stringToShorten.substring(0, maxCharsAmount) + '...';
   }
   return stringToShorten;
 });
 
-Template.registerHelper('getCloudinaryCard', (cloudinaryId) => {
-
+Template.registerHelper('getCloudinaryCard', (cloudinaryId, options = {}) => {
   if (cloudinaryId) {
-    let s3path = 's3/' + cloudinaryId + '-image';
-    return $.cloudinary.url(s3path, {
+    let baseOptions = {
       width: 600,
       height: 400,
       crop: 'fill',
       gravity: 'center'
-    });
+    };
+    let finalOptions = {
+      ...baseOptions,
+      ...options
+    };
+    return $.cloudinary.url(cloudinaryId, finalOptions);
   }
   return 'https://placehold.it/600x400';
 });
 
 Template.registerHelper('getUserThumb', (cloudinaryId) => {
   if (cloudinaryId) {
-    let s3path = 's3/' + cloudinaryId + '-image';
-    return $.cloudinary.url(s3path, {
+    return $.cloudinary.url(cloudinaryId, {
       width: 150,
       height: 150,
       crop: 'fill',
@@ -368,3 +369,6 @@ Template.registerHelper('getUserThumb', (cloudinaryId) => {
   return '/img/unknown-user.png';
 });
 
+Template.registerHelper('s3path', (cloudinaryId) => {
+  return buildS3mappingFolder(cloudinaryId, 'image');
+});

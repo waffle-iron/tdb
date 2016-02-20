@@ -148,7 +148,7 @@
     "new-cap": [2, {                 // http://eslint.org/docs/rules/new-cap
       "newIsCap": true,
         "capIsNewExceptions": [
-            "Match", "Any", "Object", "ObjectIncluding", "OneOf", "Optional", "Where", "DataTable", "ES"
+            "Match", "Any", "Object", "ObjectIncluding", "OneOf", "Optional", "Where", "DataTable", "ES", "FS", "Cloudinary"
         ]      
     }],
     "no-multiple-empty-lines": [2, { // http://eslint.org/docs/rules/no-multiple-empty-lines
@@ -168,7 +168,7 @@
       "before": false,
       "after": true
     }],
-    "keyword-spacing": 2,       // http://eslint.org/docs/rules/keyword-spacing
+    //"keyword-spacing": 2,       // http://eslint.org/docs/rules/keyword-spacing
     "space-before-blocks": 2,        // http://eslint.org/docs/rules/space-before-blocks
     "space-before-function-paren": [2, "never"], // http://eslint.org/docs/rules/space-before-function-paren
     "space-infix-ops": 2,            // http://eslint.org/docs/rules/space-infix-ops

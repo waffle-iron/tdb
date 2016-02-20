@@ -1,0 +1,10 @@
+<template name="techBriefCard">
+ {{> briefCard 
+  _id=_id
+  title=name
+  img=(getCloudinaryCard logo)
+  collection='technologies' 
+  link=getLink
+  onDelete=onDelete
+  onEdit=onEdit}}
+</template>
