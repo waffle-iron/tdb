@@ -5,9 +5,6 @@
         <div class="text-center">
           {{> safeImg url=img class="img-circle m-t-xs img-responsive link"}}
           <div class="m-t-xs font-bold">
-            {{#if affiliation}}
-              <h4>{{affiliation}}</h4>
-            {{/if}}
             {{#if username}}
               {{{username}}}
             {{/if}}
@@ -18,9 +15,23 @@
         </div>
       </div>
       <div class="col-sm-8">
-        {{#if fullName}}
-          <h3><strong>{{{fullName}}}</strong></h3>
-        {{/if}}
+        <h3>
+          {{#if Template.subscriptionsReady}}
+            {{#with user.status}}
+              {{#if online}}
+                <i class='fa fa-circle' style='color:green;'></i>
+              {{else}}
+                <i class='fa fa-circle' style='color:red;'></i>
+              {{/if}}
+            {{/with}}
+          {{/if}}
+          {{#if fullName}}
+            <strong>{{{fullName}}}</strong>
+          {{/if}}
+        </h3>
+        {{#if affiliation}}
+          <h4>{{affiliation}}</h4>
+        {{/if}}        
         <address>
           {{#if country}}
             <p> {{{getCountryFlag country}}} {{getCountryName country}}</p>
@@ -35,22 +46,18 @@
             <p><i class='fa fa-phone'></i> {{phone}}</p>
           {{/if}}
           {{#if mobile}}
-            <p><i class='fa fa-mobile'></i> {{mobile}}</p>
+            <i class='fa fa-mobile'></i> {{mobile}}
           {{/if}}
           {{#if Template.subscriptionsReady}}
             {{#with user.status}}
-              <p>
-                {{#if online}}
-                  <i class='fa fa-circle' style='color:green;'></i> Online
-                {{else}}
-                  <i class='fa fa-circle' style='color:red;'></i> Offline
-                {{/if}}
-              </p>
               {{#with lastLogin}}
-                <p>Last login: {{moFormat date 'YYYY-MM-DD HH:mm:ss'}}</p>
-                <p>{{ipAddr}}</p>
-          {{else}}
-            <p><i>Never logged in</i></p>
+                <p>
+                  <b>Last login:</b> {{moFormat date 'DD MMM YYYY HH:mm:ss'}} <i>({{ipAddr}})</i>
+                </p>
+                {{else}}
+                <p>
+                  <i>Never logged in</i>
+                </p>
               {{/with}}
             {{/with}}
           {{/if}}
