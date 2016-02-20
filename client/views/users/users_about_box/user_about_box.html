@@ -12,7 +12,7 @@
       <div class="profile-photo">
         {{#with profileImage}}
           {{#if $and isUploaded (S3Url 'images')}}
-            {{> safeImg url=(c.url (S3Url 'images') type='fetch' width='250' height='250' crop='fill' gravity='face') 
+            {{> safeImg url=(c.url cloudinaryId width='250' height='250' crop='fill' gravity='face') 
               class="img-responsive profile-photo-image"
               width='250'
               height='250'}}

@@ -22,7 +22,7 @@
                         _id=_id
                         email=emails.[0].address
                         username=username
-                        img=(getUserThumb profile.imageId)
+                        img=(getUserThumb (s3path profile.imageId))
                         fullName=fullName
                         affiliation=profile.affiliation
                         address=profile.address
