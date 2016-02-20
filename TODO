@@ -9,8 +9,8 @@ Minor Fixes:
 
 
 Fixes:
- x Remover tela de log
- ☐ userDashboard
+ ✔ Remover tela de log
+ ✔ userDashboard
  ✔ userCard @done (16-02-17 01:24)
  ☐ roles
 
@@ -33,7 +33,7 @@ Fixes:
    ☐ Implementar refresh quando muda o conteudo
 
   briedCard:
-   ☐ Definir tamanho e truncante do texto
+   ✔ Definir tamanho e truncante do texto
    ✔ Arrumar evento de click @done (16-02-17 01:24)
    ✔ Implementar delete (sweet alert) @done (16-02-17 01:24)
    ✔ Implementar estados (deletado, alterado) @done (16-02-17 01:24)
@@ -59,7 +59,7 @@ Fixes:
    ✔ permitir upload de outros arquivos alem de pdf @done (16-02-18 21:21)
    ✔ adicionar progressbar @done (16-02-18 21:21)
    ☐ adicionar validacoes no schema   
-   ☐ imagens nao estao indo pro s3
+   ✔ imagens nao estao indo pro s3
 
 
 

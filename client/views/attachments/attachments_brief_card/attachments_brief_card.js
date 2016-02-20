@@ -32,7 +32,6 @@ Template.attachmentsBriefCard.helpers({
         attachmentId: data._id,
         onSuccess() {
           t.state.set('updated');
-          changedBriefCards.push(t);
         }
       });
     };

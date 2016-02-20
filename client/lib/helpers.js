@@ -369,6 +369,19 @@ Template.registerHelper('getUserThumb', (cloudinaryId) => {
   return '/img/unknown-user.png';
 });
 
+Template.registerHelper('getCloudinaryFetchImage', (url) => {
+  if (url) {
+    return $.cloudinary.url(url, {
+      width: 400,
+      height: 400,
+      crop: 'fill',
+      gravity: 'center',
+      type: 'fetch'
+    });
+  }
+  return 'https://placehold.it/400x400';
+});
+
 Template.registerHelper('s3path', (cloudinaryId) => {
   return buildS3mappingFolder(cloudinaryId, 'image');
 });

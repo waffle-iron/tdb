@@ -50,16 +50,16 @@ Meteor.publishComposite('attachments.single', function(attachmentId) {
       }
     }, {
       find: function(attachment) {
-        return Projects.find(childQuery, childOptions)
+        return Projects.find(childQuery, childOptions);
       }
     }, {
       find: function(attachment) {
-        return Technologies.find(childQuery, childOptions)
+        return Technologies.find(childQuery, childOptions);
       },
     }, {
       find: function(attachment) {
         return Organizations.find(childQuery, childOptions);
       }
     }]
-  }
+  };
 });
