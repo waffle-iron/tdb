@@ -17,6 +17,7 @@ Template.attachmentsAddFromUpload.helpers({
     let t = Template.instance();
     return function(fileObj) {
       t.fileObj.set(fileObj);
+      t.attachment.set(undefined);
       t.isUploading.set(true);
     };
   },
@@ -32,7 +33,7 @@ Template.attachmentsAddFromUpload.helpers({
         file: {
           _id: fileObj._id,
           type: fileObj.original.type,
-          url: fileObj.S3Url('files'),
+          s3Url: fileObj.S3Url('files'),
         }
       });
     };
@@ -40,7 +41,6 @@ Template.attachmentsAddFromUpload.helpers({
 });
 
 Template.attachmentsAddFromUpload.onCreated(function() {
-  this.file = new ReactiveVar;
   this.fileObj = new ReactiveVar;
   this.attachment = new ReactiveVar;
   this.isUploading = new ReactiveVar(false);
