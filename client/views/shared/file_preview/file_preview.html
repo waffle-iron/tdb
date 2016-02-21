@@ -1,14 +1,18 @@
-<template name="filePreview">
-  <div class="file-preview">
-    {{#with file}}
-      {{#if isImage}}
-        {{> safeImg url=(getCloudinaryFetchImage s3Url) class='img-responsive margin-auto' width='400' height='400'}}
+<template name="attachmentPreview">
+  <div class="attachment-preview">
+    {{#with this}}
+      {{#if isFromWeb}}
+        {{> safeImg url=(getCloudinaryFetchImage web.thumbnailUrl) class='img-responsive margin-auto' width='400' height='400'}}
       {{else}}
-        <div class="empty-message">
-          <i class='fa {{classIconName}}'></i>
-          <h3> {{original.name}} </h3>
-          <h4> {{original.type}} </h4>
-        </div>
+        {{#if isImage}}
+          {{> safeImg url=(getCloudinaryFetchImage file.s3Url) class='img-responsive margin-auto' width='400' height='400'}}
+        {{else}}
+          <div class="empty-message">
+            <i class='fa {{classIconName}}'></i>
+            <h3> {{name}} </h3>
+            <h4> {{file.type}} </h4>
+          </div>
+        {{/if}}
       {{/if}}
       {{else}}
         <div class="empty-message">

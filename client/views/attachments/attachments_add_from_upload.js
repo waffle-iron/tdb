@@ -40,6 +40,7 @@ Template.attachmentsAddFromUpload.helpers({
       t.fileObj.set(fileObj);
       t.attachment.set({
         name: fileObj.original.name,
+        from: 'upload',
         file: {
           _id: fileObj._id,
           type: fileObj.original.type,

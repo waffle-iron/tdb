@@ -1,10 +1,10 @@
 <template name="attachmentsBriefCard">
- {{> briefCard 
-  _id=_id
-  title=name
-  img=(getCloudinaryCard thumbnailUrl options)
-  collection='attachments' 
-  link=(pathFor 'attachments.entry' id=_id)
-  onDelete=onDelete
-  onEdit=onEdit}}
+  {{> briefCard 
+  	_id=_id 
+  	title=name 
+  	collection='attachments' 
+  	link=(pathFor 'attachments.entry' id=_id) 
+  	onDelete=onDelete onEdit=onEdit
+  	template='attachmentPreview' 
+  	data=this }}
 </template>

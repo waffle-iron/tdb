@@ -1,19 +1,21 @@
-Template.filePreview.helpers({
-  file() {
-    return Template.instance().data.file;
+Template.attachmentPreview.helpers({
+  attachment() {
+    return Template.instance().data;
   },
   classIconName() {
     return Template.instance().classIconName();
   },
-  s3Url() {
-    return Template.instance().data.file.S3Url('files');
+  isImage() {
+    return Template.instance().data.file.type.indexOf('image') === 0;
+  },
+  isFromWeb() {
+    return Template.instance().data.from === 'web';
   }
 });
 
-Template.filePreview.onCreated(function() {
+Template.attachmentPreview.onCreated(function() {
   this.classIconName = () => {
-    let file = this.data.file || {};
-    switch (file.original.type) {
+    switch (this.data.file.type) {
       case 'application/pdf':
         return 'fa-file-pdf-o';
 
