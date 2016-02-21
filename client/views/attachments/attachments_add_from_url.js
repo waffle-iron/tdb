@@ -1,3 +1,19 @@
+AutoForm.hooks({
+  insertAttachmentFromUrlForm: {
+    formToDoc(doc) {
+      doc.from = 'url';
+      return doc;
+    },
+    onSuccess() {
+      toastr.success('Attachment created successfully: ' + this.insertDoc.name, 'Success');
+      FlowRouter.go('attachments.dashboard');
+    },
+    onError(formType, error) {
+      toastr.error(error.toString(), 'Error');
+    },
+  }
+});
+
 Template.attachmentsAddFromUrl.helpers({
   attachmentFromUrl() {
     return Template.instance().attachment.get();
@@ -42,7 +58,6 @@ Template.attachmentsAddFromUrl.helpers({
       t.isDownloading.toggle();
       t.attachment.set({
         name: fileObj.original.name,
-        from: 'remote_url',
         file: {
           _id: fileObj._id,
           type: fileObj.original.type,

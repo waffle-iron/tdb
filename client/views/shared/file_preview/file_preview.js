@@ -4,6 +4,9 @@ Template.filePreview.helpers({
   },
   classIconName() {
     return Template.instance().classIconName();
+  },
+  s3Url() {
+    return Template.instance().data.file.S3Url('files');
   }
 });
 

@@ -2,7 +2,7 @@
   <div class="file-preview">
     {{#with file}}
       {{#if isImage}}
-        <img src="{{url}}" class="img-responsive" alt="preview">
+        {{> safeImg url=(getCloudinaryFetchImage s3Url) class='img-responsive margin-auto' width='400' height='400'}}
       {{else}}
         <div class="empty-message">
           <i class='fa {{classIconName}}'></i>

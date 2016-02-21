@@ -10,7 +10,8 @@
       "bucket": "envisioning",
       "folder": "tdb",
       "accessKeyId": "AKIAJLKFY5DZO6CZHA3Q",
-      "secretAccessKey": "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"
+      "secretAccessKey": "JYDC0rckGtOJs8Bzp0Z7uV2DIQHyi2rYNKlmSmUj",
+      "ACL": "public-read"
     }
   },
   "Cloudinary": {

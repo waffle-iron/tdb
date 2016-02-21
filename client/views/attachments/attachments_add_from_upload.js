@@ -1,7 +1,18 @@
-Template.attachmentsAddFromUpload.events({
-
+AutoForm.hooks({
+  insertAttachmentFromUploadForm: {
+    formToDoc(doc) {
+      doc.from = 'upload';
+      return doc;
+    },
+    onSuccess() {
+      toastr.success('Attachment created successfully: ' + this.insertDoc.name, 'Success');
+      FlowRouter.go('attachments.dashboard');
+    },
+    onError(formType, error) {
+      toastr.error(error.toString(), 'Error');
+    },
+  }
 });
-
 
 Template.attachmentsAddFromUpload.helpers({
   attachmentUpload() {
@@ -29,7 +40,6 @@ Template.attachmentsAddFromUpload.helpers({
       t.fileObj.set(fileObj);
       t.attachment.set({
         name: fileObj.original.name,
-        from: 'upload',
         file: {
           _id: fileObj._id,
           type: fileObj.original.type,

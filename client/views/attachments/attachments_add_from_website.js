@@ -1,3 +1,20 @@
+AutoForm.hooks({
+  insertAttachmentFromWebForm: {
+    formToDoc(doc) {
+      doc.from = 'web';
+      return doc;
+    },
+    onSuccess() {
+      toastr.success('Attachment created successfully: ' + this.insertDoc.name, 'Success');
+      FlowRouter.go('attachments.dashboard');
+    },
+    onError(formType, error) {
+      toastr.error(error.toString(), 'Error');
+    },
+  }
+});
+
+
 Template.attachmentsAddFromWebsite.events({
   'input input[name="imageUrl"]': function(e, t) {
     let attachment = t.attachment.get();
@@ -7,7 +24,7 @@ Template.attachmentsAddFromWebsite.events({
 });
 
 Template.attachmentsAddFromWebsite.helpers({
-  attachment() {
+  attachmentFromWeb() {
     return Template.instance().attachment.get();
   },
   onFetchMetadataSuccess() {
@@ -16,8 +33,10 @@ Template.attachmentsAddFromWebsite.helpers({
       template.attachment.set({
         name: res.title,
         description: res.description,
-        imageUrl: res.image,
-        url: res.url
+        web: {
+          sourceUrl: res.url,
+          thumbnailUrl: res.image,
+        }
       });
     };
   }
