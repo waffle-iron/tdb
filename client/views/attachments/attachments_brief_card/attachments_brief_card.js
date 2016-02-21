@@ -4,6 +4,15 @@ Template.attachmentsBriefCard.helpers({
       type: 'fetch'
     };
   },
+  thumbnailUrl() {
+    // Just working for images right now
+    switch (this.from) {
+      case 'web':
+        return this.web.thumbnailUrl;
+      default:
+        return this.file.s3Url;
+    }
+  },
   //
   //  Delete Handler
   //
@@ -37,4 +46,3 @@ Template.attachmentsBriefCard.helpers({
     };
   }
 });
-

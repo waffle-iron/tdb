@@ -2,7 +2,7 @@
  {{> briefCard 
   _id=_id
   title=name
-  img=(getCloudinaryCard imageUrl options)
+  img=(getCloudinaryCard thumbnailUrl options)
   collection='attachments' 
   link=(pathFor 'attachments.entry' id=_id)
   onDelete=onDelete
