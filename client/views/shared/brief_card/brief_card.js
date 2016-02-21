@@ -19,7 +19,7 @@ Template.briefCard.helpers({
   },
   stateEdited() {
     return Template.instance().state.get() === 'updated';
-  }
+  },
 });
 
 Template.briefCard.onCreated(function() {
