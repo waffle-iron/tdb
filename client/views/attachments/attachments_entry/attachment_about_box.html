@@ -29,7 +29,7 @@
         </tr>
         <tr>
           <td><b>Created By</b></td>
-          <td> {{user._id}} </td>
+          <td> {{> safeImg url=(getUserThumb (s3path user.profile.imageId)) class="img-circle m-t-xs link"}} </td>
         </tr>
       </table>
     {{/panelContent}}
