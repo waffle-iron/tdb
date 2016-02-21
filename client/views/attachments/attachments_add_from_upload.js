@@ -27,9 +27,13 @@ Template.attachmentsAddFromUpload.helpers({
       t.isUploading.set(false);
       t.fileObj.set(fileObj);
       t.attachment.set({
-        fileId: fileObj._id,
         name: fileObj.original.name,
-        type: fileObj.original.type
+        from: 'upload',
+        file: {
+          _id: fileObj._id,
+          type: fileObj.original.type,
+          url: fileObj.S3Url('files'),
+        }
       });
     };
   }

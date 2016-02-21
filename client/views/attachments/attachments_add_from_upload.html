@@ -2,10 +2,15 @@
   <div class="row">
     <div class="col-xs-8">
       {{> smartInputFile onUploadBegin=onUploadBegin onUploadSuccess=onUploadSuccess}}
-      {{#autoForm id="insertAttachmentFormUpload" doc=attachmentUpload collection="Attachments" type="method" meteormethod="Attachments.methods.add" class="form-horizontal" }}
+      {{#autoForm id="insertAttachmentForm" doc=attachmentUpload collection="Attachments" type="method" meteormethod="Attachments.methods.add" class="form-horizontal" }}
         {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-10"}}
         {{> afQuickField name="description" label-class="col-sm-2" input-col-class="col-sm-10"}} 
-        {{> afQuickField name="url" type='hidden'}} 
+         
+        <!-- TODO como melhorar isso? -->
+        {{> afQuickField name="from" type='hidden'}} 
+        {{> afQuickField name="file._id" type='hidden'}}
+        {{> afQuickField name="file.type" type='hidden'}}
+        {{> afQuickField name="file.url" type='hidden'}}
         {{> submit texto="Create" buttonClass="col-sm-10" offsetClass="col-sm-offset-2"}} 
         {{/autoForm}}
     </div>
