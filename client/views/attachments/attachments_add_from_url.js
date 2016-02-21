@@ -28,6 +28,12 @@ Template.attachmentsAddFromUrl.helpers({
       t.isDownloading.toggle();
     };
   },
+  onUploadBegin() {
+    let t = Template.instance();
+    return function(fileId, sourceUrl) {
+      t.sourceUrl.set(sourceUrl);
+    };
+  },
   onUploadSuccess() {
     let t = Template.instance();
     return function(fileObj) {
@@ -35,17 +41,22 @@ Template.attachmentsAddFromUrl.helpers({
       t.fileObj.set(fileObj);
       t.isDownloading.toggle();
       t.attachment.set({
-        fileId: fileObj._id,
-        type: fileObj.original.type,
-        name: fileObj.original.name
+        name: fileObj.original.name,
+        from: 'remote_url',
+        file: {
+          _id: fileObj._id,
+          type: fileObj.original.type,
+          s3Url: fileObj.S3Url('files'),
+          sourceUrl: t.sourceUrl.get()
+        }
       });
     };
   }
 });
 
 Template.attachmentsAddFromUrl.onCreated(function() {
-  this.fileId = new ReactiveVar;
   this.fileObj = new ReactiveVar;
+  this.sourceUrl = new ReactiveVar;
   this.attachment = new ReactiveVar;
   this.isDownloading = new ReactiveVar(false);
 
