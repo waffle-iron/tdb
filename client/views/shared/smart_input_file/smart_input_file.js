@@ -24,9 +24,6 @@ Template.smartInputFile.helpers({
   btnFileText() {
     return Template.instance().btnFileText();
   },
-  btnUploadText() {
-    return Template.instance().btnUploadText.get();
-  },
   fileNameText() {
     return Template.instance().fileNameText();
   },
@@ -39,7 +36,6 @@ Template.smartInputFile.onCreated(function() {
   this.state = new ReactiveVar;
   this.file = new ReactiveVar; // File from the client
   this.fileObj = new ReactiveVar; // File from the server
-  this.btnUploadText = new ReactiveVar('Upload file');
 
   this.autorun(() => {
     let fileObj = this.fileObj.get();
@@ -78,18 +74,17 @@ Template.smartInputFile.onCreated(function() {
   };
 
   this.onUploadBegin = (fileObj) => {
-    this.btnUploadText.set('Uploading file...');
+    $('.btn-upload').button('loading');
     this.data.onUploadBegin && this.data.onUploadBegin(fileObj);
   };
 
   this.onUploadError = (err) => {
-    console.error('onUploadError:', err);
-    this.btnUploadText.set('Upload file');
+    $('.btn-upload').button('reset');
     this.data.onUploadError && this.data.onUploadError(err);
   };
 
   this.onUploadSuccess = (fileObj) => {
-    this.btnUploadText.set('Upload file');
+    $('.btn-upload').button('reset');
     this.data.onUploadSuccess && this.data.onUploadSuccess(fileObj);
   };
 });

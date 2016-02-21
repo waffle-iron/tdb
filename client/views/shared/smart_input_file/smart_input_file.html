@@ -7,9 +7,9 @@
             {{btnFileText}} <input type="file">
         </span>
         {{#if isFileSelected}}
-          <span class="btn btn- btn-primary btn-upload">
-            {{btnUploadText}}
-        </span>
+          <button class="btn btn-primary btn-upload" data-loading-text="Uploading file...">
+           Upload file
+        </button>
         {{/if}}
       </span>
     </div>
