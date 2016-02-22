@@ -5,7 +5,7 @@ Template.attachmentsBriefCard.helpers({
     };
   },
   isFromWeb() {
-    return this.data.from === 'web';
+    return this.from === 'web';
   },
   classIconName() {
     console.log(this);

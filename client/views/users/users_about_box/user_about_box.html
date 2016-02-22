@@ -11,8 +11,8 @@
     {{#panelContent panelClass='no-padding' }}
       <div class="profile-photo">
         {{#with profileImage}}
-          {{#if $and isUploaded (S3Url 'images')}}
-            {{> safeImg url=(c.url cloudinaryId width='250' height='250' crop='fill' gravity='face') 
+          {{#if $and isUploaded (hasStored 'images')}}
+            {{> safeImg url=(c.url (cloudinaryId 'images') width='250' height='250' crop='fill' gravity='face') 
               class="img-responsive profile-photo-image"
               width='250'
               height='250'}}

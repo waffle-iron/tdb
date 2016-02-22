@@ -382,6 +382,10 @@ Template.registerHelper('getCloudinaryFetchImage', (url) => {
   return 'https://placehold.it/400x400';
 });
 
-Template.registerHelper('s3path', (cloudinaryId) => {
-  return buildS3mappingFolder(cloudinaryId, 'image');
+Template.registerHelper('s3pathImages', (cloudinaryId) => {
+  return buildS3mappingFolder(cloudinaryId, 'images');
+});
+
+Template.registerHelper('s3pathFiles', (cloudinaryId) => {
+  return buildS3mappingFolder(cloudinaryId, 'files');
 });
