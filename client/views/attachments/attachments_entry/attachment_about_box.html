@@ -17,7 +17,13 @@
       <div class="description">
         <header>
           <h4>Description</h4>
-          <p>{{description}}</p>
+          <p>
+            {{#if description}}
+              {{description}}
+            {{else}}
+              No description
+            {{/if}}
+         </p>
         </header>
       </div>
     {{/panelContent}}
@@ -45,12 +51,11 @@
       <hr />
       <div class="related-links">
         <h5><i class="{{Icons.collections.technologies}}"></i> Related </h5>
-        {{#each relatedTechnologies}} 
+        {{#each relatedTechnologies}}
           <a href="{{pathFor 'technologies.entry' id=_id}}">{{name}}</a>
           {{else}}
             No related technologies
         {{/each}}
-        
       </div>
       <hr />
       <div class="related-links">
@@ -60,7 +65,6 @@
           {{else}}
             No related organizations
         {{/each}}
-        
       </div>
     {{/panelContent}}
   {{/panelContainer}}
