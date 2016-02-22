@@ -7,7 +7,7 @@ Files = new FS.Collection('files', {
     folder: process.env.AWS_S3_FOLDER,
     ACL: 'public-read',
     fileKeyMaker(fileObj) {
-      let store = fileObj && fileObj._getInfo('images');
+      let store = fileObj && fileObj._getInfo('files');
       if (store && store.key) return store.key;
       return fileObj.collectionName + '/' + fileObj._id;
     }
