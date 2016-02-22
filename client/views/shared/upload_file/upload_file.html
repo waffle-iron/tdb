@@ -22,7 +22,7 @@
           <i class="fa fa-camera"></i>
         </button>
         {{#if Template.subscriptionsReady}}
-          {{#with FS.GetFile "Images" uploadingImage}}
+          {{#with FS.GetFile "images" uploadingImage}}
             {{> FS.UploadProgressBar bootstrap=true}}
           {{/with}}
         {{else}}
