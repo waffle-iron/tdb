@@ -1,10 +1,11 @@
 <template name="projectsBriefCard">
- {{> briefCard 
+ {{#briefCard 
   _id=_id
   title=name
-  img=(getCloudinaryCard imageUrl options)
-  collection='attachments' 
-  link=(pathFor 'attachments.entry' id=_id)
+  collection='projects' 
+  link=(pathFor 'projects.entry' id=_id)
   onDelete=onDelete
   onEdit=onEdit}}
+  {{> safeImg url=(getCloudinaryCard (s3path logo)) class='img-responsive margin-auto'}}
+{{/briefCard}}
 </template>

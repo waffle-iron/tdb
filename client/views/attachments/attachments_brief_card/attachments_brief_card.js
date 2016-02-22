@@ -1,8 +1,26 @@
 Template.attachmentsBriefCard.helpers({
-  options() {
+  fetchOptions() {
     return {
       type: 'fetch'
     };
+  },
+  classIconName() {
+    console.log(this);
+    switch (this.file.type) {
+      case 'application/pdf':
+        return 'fa fa-file-pdf-o';
+
+      case 'image/jpg':
+      case 'image/png':
+      case 'image/jpeg':
+        return 'fa fa-file-image-o';
+
+      default:
+        return 'fa fa-file-o';
+    }
+  },
+  isImage() {
+    return this.file.type.indexOf('image') === 0;
   },
   onDelete() {
     let identification = this.name;

@@ -1,10 +1,28 @@
 <template name="attachmentsBriefCard">
-  {{> briefCard 
+  {{#briefCard 
   	_id=_id 
   	title=name 
   	collection='attachments' 
   	link=(pathFor 'attachments.entry' id=_id) 
-  	onDelete=onDelete onEdit=onEdit
-  	template='attachmentPreview' 
-  	data=this }}
+  	onDelete=onDelete onEdit=onEdit}}
+    <!-- Attachment is an Url, so we need to fetch web.thumbnailUrl from the web-->
+    {{#if $eq from 'web'}}
+      {{> safeImg url=(getCloudinaryCard web.thumbnailUrl fetchOptions) class='img-responsive margin-auto'}}
+    {{/if}}
+    <!-- Attachment is from Url or from Upload. TechDB saved a copy to our S3 -->
+    {{#if $or ($eq from 'url') ($eq from 'upload')}}
+        <!-- file is image, we can display it as an image -->
+        {{#if isImage}}
+          {{> safeImg url=(getCloudinaryCard (s3path file._id)) class='img-responsive margin-auto' width='600' height='400'}}
+        {{else}}
+        <!-- file is not an image, we will display an icon representing it -->
+          <div class="empty-message">
+            <i class='{{classIconName}}'></i>
+            <h3> {{name}} </h3>
+            <h4> {{file.type}} </h4>
+          </div>
+        {{/if}}
+    {{/if}}
+    
+  {{/briefCard}}
 </template>

@@ -5,11 +5,14 @@
         <div class="icon-brief-box">
           <i class="{{icon}} fa-2x"></i>
         </div>
+        {{> UI.contentBlock}}
+        <!--
         {{#if template}}
           {{> Template.dynamic template=template data=data}}
-          {{else}}
-            {{> safeImg url=(getCloudinaryFetchImage img) class='img-responsive margin-auto' width='400' height='400'}}
+        {{else}}
+          {{> safeImg url=img class='img-responsive margin-auto'}}
         {{/if}}
+        -->
       </div>
     {{/panelContent}}
     {{#panelContent}}

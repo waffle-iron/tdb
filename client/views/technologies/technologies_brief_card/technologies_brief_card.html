@@ -1,5 +1,5 @@
 <template name="techBriefCard">
- {{> briefCard 
+ {{#briefCard 
   _id=_id
   title=name
   img=(getCloudinaryCard logo)
@@ -7,4 +7,6 @@
   link=getLink
   onDelete=onDelete
   onEdit=onEdit}}
+  {{> safeImg url=(getCloudinaryCard (s3path logo)) class='img-responsive margin-auto'}}
+{{/briefCard}}
 </template>

@@ -2,10 +2,10 @@
   <div class="attachment-preview">
     {{#with this}}
       {{#if isFromWeb}}
-        {{> safeImg url=(getCloudinaryFetchImage web.thumbnailUrl) class='img-responsive margin-auto' width='400' height='400'}}
+        {{> safeImg url=(getCloudinaryFetchImage web.thumbnailUrl) class='img-responsive margin-auto' width='600' height='400'}}
       {{else}}
         {{#if isImage}}
-          {{> safeImg url=(getCloudinaryFetchImage file.s3Url) class='img-responsive margin-auto' width='400' height='400'}}
+          {{> safeImg url=(getCloudinaryFetchImage file.s3Url) class='img-responsive margin-auto' width='600' height='400'}}
         {{else}}
           <div class="empty-message">
             <i class='fa {{classIconName}}'></i>
