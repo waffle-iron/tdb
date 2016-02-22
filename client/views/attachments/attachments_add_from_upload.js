@@ -9,7 +9,6 @@ AutoForm.hooks({
       FlowRouter.go('attachments.dashboard');
     },
     onError(formType, error) {
-      console.log(error);
       toastr.error(error.toString(), 'Error');
     },
   }
@@ -45,7 +44,6 @@ Template.attachmentsAddFromUpload.helpers({
         file: {
           _id: fileObj._id,
           type: fileObj.original.type,
-          s3Url: 'debug',
         }
       });
     };

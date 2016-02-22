@@ -5,7 +5,7 @@
         {{> safeImg url=(getCloudinaryFetchImage web.thumbnailUrl) class='img-responsive margin-auto' width='600' height='400'}}
       {{else}}
         {{#if isImage}}
-          {{> safeImg url=(getCloudinaryFetchImage file.s3Url) class='img-responsive margin-auto' width='600' height='400'}}
+          {{> safeImg url=(getCloudinaryCard (s3pathFiles file._id)) class='img-responsive margin-auto' width='600' height='400'}}
         {{else}}
           <div class="empty-message">
             <i class='fa {{classIconName}}'></i>
