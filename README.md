@@ -16,8 +16,8 @@ Create a `.env` file on the project root with the following variables. To add th
 | AWS_S3_REGION                | Used for file uploads - http://aws.amazon.com                                      |
 | CLOUDINARY_ACCESS_KEY_ID     | Used for transform images - http://cloudinary.com                                  |
 | CLOUDINARY_SECRET_ACCESS_KEY | Used for transform images - http://cloudinary.com                                  |
-| MAIL_URL                     | Used for sending emails - https://mailgun.com                                      |
-
+| MAIL_URL                     | SMTP for sending emails - https://mailgun.com                                      |
+| ELASTICSEARCH_URL            | ElasticSearch server - http://searchly.com                                         |
 
 
 ## Searching with elastic search

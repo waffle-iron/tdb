@@ -9,6 +9,5 @@
       ".ai", 
       ".eps"
     ]
-  },
-  "ES_URL": "http://localhost:9200"
+  }
 }
