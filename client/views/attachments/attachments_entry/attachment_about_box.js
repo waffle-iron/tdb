@@ -2,7 +2,7 @@ Template.attachmentAboutBox.helpers({
   user() {
     return Meteor.users.findOne({
       _id: this.createdBy
-    })
+    });
   },
 
   relatedProjects() {
@@ -10,14 +10,14 @@ Template.attachmentAboutBox.helpers({
       attachmentsId: {
         $in: [this._id]
       }
-    })
+    });
   },
   relatedTechnologies() {
     return Technologies.find({
       attachmentsId: {
         $in: [this._id]
       }
-    })
+    });
   },
   relatedOrganizations() {
     return Organizations.find({
@@ -26,4 +26,4 @@ Template.attachmentAboutBox.helpers({
       }
     });
   },
-})
+});
