@@ -5,14 +5,14 @@
   	collection='attachments' 
   	link=(pathFor 'attachments.entry' id=_id) 
   	onDelete=onDelete onEdit=onEdit}}
-    <!-- Attachment is an Url, so we need to fetch web.thumbnailUrl from the web-->
     {{#if isFromWeb}}
+      <!-- Attachment is from WEB, so we need to fetch web.thumbnailUrl from the web-->
       {{> safeImg url=(getCloudinaryCard web.thumbnailUrl fetchOptions) class='img-responsive margin-auto'}}
     {{else}}
-      <!-- Attachment is from Url or from Upload. TechDB saved a copy to our S3 -->    
+      <!-- Attachment is from URL or from UPLOAD. TechDB saved a copy to our S3 on both cases-->    
       {{#if isImage}}
         <!-- file is image, we can display it as an image -->
-        <!-- NOT WORKING BECAUSE IT IS LOOKING FOR IMAGES ON COLLECITONFS IMAGES -->
+        <!-- NOT WORKING BECAUSE IT IS LOOKING FOR IMAGES ON COLLECTION_FS IMAGES -->
         {{> safeImg url=(getCloudinaryCard (s3path file._id)) class='img-responsive margin-auto' width='600' height='400'}}
       {{else}}
         <!-- file is not an image, we will display an icon representing it -->

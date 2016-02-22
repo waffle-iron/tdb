@@ -1,7 +1,7 @@
 {
   "public": {
     "CloudinaryName": "envisioning",
-    "Cloudinarys3MappingFolder": "s3-envisioning",
+    "Cloudinarys3MappingFolder": "s3",
     "allowContentTypes": [
       "image/*", 
       "application/pdf", 
