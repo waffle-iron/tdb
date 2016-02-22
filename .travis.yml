@@ -16,9 +16,6 @@ script:
 #after_script:
 #  - codeclimate-test-reporter < lcov.info
 
-install: true
-script: true
-
 deploy:
   provider: modulus
   api_key:
