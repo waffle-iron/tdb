@@ -2,6 +2,24 @@
 
 A fresh start. Reboot on 11.23.2015.
 
+
+## Installation
+
+Create a `.env` file on the project root with the following variables. To add the environment variables we are using the [meteor-dotenv](https://github.com/okgrow/meteor-dotenv) package.
+
+| Environment Variable         | Description                                                                        |
+|------------------------------|------------------------------------------------------------------------------------|
+| AWS_ACCESS_KEY_ID            | Used for file uploads - http://aws.amazon.com                                      |
+| AWS_SECRET_ACCESS_KEY        | Used for file uploads - http://aws.amazon.com                                      |
+| AWS_S3_BUCKET                | Used for file uploads - http://aws.amazon.com                                      |
+| AWS_S3_FOLDER                | Used for file uploads - http://aws.amazon.com                                      |
+| AWS_S3_REGION                | Used for file uploads - http://aws.amazon.com                                      |
+| CLOUDINARY_ACCESS_KEY_ID     | Used for transform images - http://cloudinary.com                                  |
+| CLOUDINARY_SECRET_ACCESS_KEY | Used for transform images - http://cloudinary.com                                  |
+| MAIL_URL                     | Used for sending emails - https://mailgun.com                                      |
+
+
+
 ## Searching with elastic search
 **Attention**: TechDB currently supports ElasticSearch 1.7
 
