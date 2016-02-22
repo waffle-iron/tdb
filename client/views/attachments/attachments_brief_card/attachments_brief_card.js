@@ -4,6 +4,9 @@ Template.attachmentsBriefCard.helpers({
       type: 'fetch'
     };
   },
+  isFromWeb() {
+    return this.data.from === 'web';
+  },
   classIconName() {
     console.log(this);
     switch (this.file.type) {
