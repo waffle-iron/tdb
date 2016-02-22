@@ -61,7 +61,7 @@ Template.attachmentsAddFromUrl.helpers({
         file: {
           _id: fileObj._id,
           type: fileObj.original.type,
-          s3Url: fileObj.S3Url('files'),
+          s3Url: 'debug',
           sourceUrl: t.sourceUrl.get()
         }
       });
