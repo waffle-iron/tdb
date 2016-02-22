@@ -1,22 +1,14 @@
 {
   "public": {
-    "AWSBucket": "envisioning",
     "CloudinaryName": "envisioning",
-    "Cloudinarys3MappingFolder": "s3-envisioning"
-  },
-  "AWS": {
-    "S3": {
-      "region": "us-east-1",
-      "bucket": "envisioning",
-      "folder": "tdb",
-      "accessKeyId": "AKIAJLKFY5DZO6CZHA3Q",
-      "secretAccessKey": "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",
-      "ACL": "public-read"
-    }
-  },
-  "Cloudinary": {
-    "accessKeyId": "239915733999986",
-    "secretAccessKey": "_r8Su9wMXyYtJ7Y68Ap6Cl2yw4U"
+    "Cloudinarys3MappingFolder": "s3-envisioning",
+    "allowContentTypes": [
+      "image/*", 
+      "application/pdf", 
+      ".zip",
+      ".ai", 
+      ".eps"
+    ]
   },
   "ES_URL": "http://localhost:9200"
 }

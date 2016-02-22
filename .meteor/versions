@@ -59,7 +59,7 @@ cloudspider:icheck@1.0.2
 coffeescript@1.0.11
 comerc:autoform-selectize@2.2.4
 copleykj:tagstripper@1.0.0
-cosmos:browserify@0.9.3
+cosmos:browserify@0.9.4
 danappelxx:hover.css@1.0.0
 dangrossman:bootstrap-daterangepicker@2.1.13
 dburles:collection-helpers@1.0.4
@@ -121,8 +121,8 @@ mdg:validation-error@0.4.0
 meteor@1.1.10
 meteor-base@1.0.1
 meteorhacks:async@1.0.0
-meteorhacks:fast-render@2.11.0
-meteorhacks:inject-data@1.4.1
+meteorhacks:fast-render@2.12.0
+meteorhacks:inject-data@2.0.0
 meteorhacks:meteorx@1.4.1
 meteorhacks:npm@1.5.0
 meteorhacks:picker@1.0.3
@@ -175,7 +175,8 @@ npm-container@1.1.0
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
 ordered-dict@1.0.4
-ovcharik:alertifyjs@1.4.1
+ovcharik:alertifyjs@1.6.1
+pauldowman:dotenv@1.0.1
 peppelg:bootstrap-3-modal@1.0.4
 promise@0.5.1
 rafa93br:delete-button@3.0.0
