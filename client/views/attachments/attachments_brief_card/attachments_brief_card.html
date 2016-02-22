@@ -13,9 +13,11 @@
     {{#if $or ($eq from 'url') ($eq from 'upload')}}
         <!-- file is image, we can display it as an image -->
         {{#if isImage}}
+          <!-- NOT WORKING BECAUSE IT IS LOOKING FOR IMAGES ON COLLECITONFS IMAGES -->
           {{> safeImg url=(getCloudinaryCard (s3path file._id)) class='img-responsive margin-auto' width='600' height='400'}}
         {{else}}
         <!-- file is not an image, we will display an icon representing it -->
+          <!-- WE MUST PROVIDE A WAY TO KEEP PROPORTIONS-->
           <div class="empty-message">
             <i class='{{classIconName}}'></i>
             <h3> {{name}} </h3>
