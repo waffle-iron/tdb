@@ -7,19 +7,22 @@ node_js:
 #  code_climate:
 #    repo_token: 1d63b91b9f6fd76ee316949330832f9ccd6d4a0a7ce167a9c7b8989b5b9dac8a
 
-before_install:
-  - "curl https://install.meteor.com | /bin/sh"
+# before_install:
+#   - "curl https://install.meteor.com | /bin/sh"
 
-install: true
-
-script:
-  - meteor build ./code
+# script: 
+#   - meteor build ./code
 
 #after_script:
 #  - codeclimate-test-reporter < lcov.info
 
+install: true
+script: true
+
 deploy:
   provider: modulus
-  api_key: "b0aa5561-87e4-4c19-9625-2cb17197d4d9"
+  api_key:
+    secure: F40JkalpKIDKY3BkIS6177ZVR83zOsxicMuwJemfmhi/RugzqMQR5i09OhUN5Wet37e0+MYSgZf1nJZGIZEzCOGHBoOpAuiLKd1Wvhv4tf6V+eCRG8ItTHpfedqQf/oysyhQEFjX0a7JqC5uuaAs4Ws91ZK7Nu4XHAGTUxifKu0=
   project_name: "TDB"
   on: master
+
