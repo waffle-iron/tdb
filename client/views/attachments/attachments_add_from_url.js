@@ -18,15 +18,14 @@ Template.attachmentsAddFromUrl.helpers({
   attachmentFromUrl() {
     return Template.instance().attachment.get();
   },
-  fileObjFromUrl() {
-    return Template.instance().fileObj.get();
+  fileObjId() {
+    return Template.instance().fileObjId.get();
   },
   isDownloading() {
     return Template.instance().isDownloading.get();
   },
   onDownloadBegin() {
     let t = Template.instance();
-    console.log(t.isDownloading.get());
     return function() {
       t.isDownloading.toggle();
       t.fileObjId.set(null);
@@ -45,9 +44,6 @@ Template.attachmentsAddFromUrl.helpers({
       toastr.error('Error uploading file');
       t.isDownloading.toggle();
     };
-  },
-  fileObjId() {
-    return Template.instance().fileObjId.get();
   },
   onUploadBegin() {
     let t = Template.instance();

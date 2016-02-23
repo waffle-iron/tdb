@@ -7,7 +7,7 @@
       <div class="panel-body">
         {{#if isUploading}}
           <h3>Our servers are uploading your file...</h3>
-          {{#with FS.GetFile "files" fileObj._id}}
+          {{#with FS.GetFile "files" fileObjId}}
             {{> FS.UploadProgressBar bootstrap=true}}
           {{/with}}
         {{else}}
