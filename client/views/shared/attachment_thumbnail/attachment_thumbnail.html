@@ -2,10 +2,12 @@
   <div class="attachment-thumbnail {{class}}">
     {{#if attachment}}
       {{#if isFromWeb}}
-        {{> safeImg url=(getCloudinaryFetchImage attachment.web.thumbnailUrl options)}}
+        <!-- must fetch -->
+        {{> safeImg url=(c.url attachment.web.thumbnailUrl width=width height=height type='fetch' crop=crop)}}
       {{else}}
         {{#if isImage}}
-          {{> safeImg url=(getCloudinaryCard (s3pathFiles attachment.file._id) options) }}
+          <!-- autoupload from Files collection -->
+          {{> safeImg url=(c.url (s3pathFiles attachment.file._id) width=width height=height crop=crop) }}
         {{else}}
             <i class='fa {{classIconName}}'></i>
         {{/if}}

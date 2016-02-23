@@ -26,8 +26,10 @@ Template.attachmentsAddFromUrl.helpers({
   },
   onDownloadBegin() {
     let t = Template.instance();
+    console.log(t.isDownloading.get());
     return function() {
       t.isDownloading.toggle();
+      t.fileObjId.set(null);
     };
   },
   onDownloadError() {
@@ -44,9 +46,13 @@ Template.attachmentsAddFromUrl.helpers({
       t.isDownloading.toggle();
     };
   },
+  fileObjId() {
+    return Template.instance().fileObjId.get();
+  },
   onUploadBegin() {
     let t = Template.instance();
     return function(fileId, sourceUrl) {
+      t.fileObjId.set(fileId);
       t.sourceUrl.set(sourceUrl);
     };
   },
@@ -69,6 +75,7 @@ Template.attachmentsAddFromUrl.helpers({
 });
 
 Template.attachmentsAddFromUrl.onCreated(function() {
+  this.fileObjId = new ReactiveVar();
   this.fileObj = new ReactiveVar;
   this.sourceUrl = new ReactiveVar;
   this.attachment = new ReactiveVar;

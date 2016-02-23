@@ -341,6 +341,7 @@ Template.registerHelper('shortIt', function(stringToShorten, maxCharsAmount) {
 });
 
 Template.registerHelper('getCloudinaryCard', (cloudinaryId, options = {}) => {
+  console.log(cloudinaryId);
   if (cloudinaryId) {
     let baseOptions = {
       width: 600,

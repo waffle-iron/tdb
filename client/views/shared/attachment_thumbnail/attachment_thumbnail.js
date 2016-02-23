@@ -8,6 +8,11 @@ Template.attachmentThumbnail.helpers({
   isFromWeb() {
     return Template.instance().data.attachment.from === 'web';
   },
+  optionsFetch() {
+    return {
+      type: 'fetch'
+    };
+  },
   options() {
     let className = Template.instance().data.class;
     if (className === 'small') return { width: 60, height: 60 };

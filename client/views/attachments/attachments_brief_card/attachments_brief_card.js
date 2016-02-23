@@ -6,7 +6,7 @@ Template.attachmentsBriefCard.helpers({
   },
   useBackground() {
     // Apply background if is not from web and not a file image.
-    return this.from !== 'web' && this.file.type.indexOf('image') !== 0;
+    return this.from !== 'web' && (this.file && this.file.type.indexOf('image') !== 0);
   },
   isImage() {
     return this.file.type.indexOf('image') === 0;
