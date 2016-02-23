@@ -12,20 +12,25 @@
       {{/panelTools}}
     {{/panelTitle}}
     {{#panelContent}}
-      <div class="feed-activity-list">
+      <!-- <div class="feed-activity-list">
         {{#each attachments}}
-          <div class="feed-element">
+        <div class="feed-element">
             <a href="{{pathFor 'attachments.entry' id=_id}}" class="pull-left">
-            {{> attachmentThumbnail attachment=this class='small'}}
+            {{> attachmentThumbnail 
+                attachment=this 
+                class='small' 
+                width='60'
+                height='60'
+                crop='fit'}}
           </a>
             <div class="media-body ">
               <div class="pull-right">
-                <!-- <a href="{{pathFor 'attachments.entry' id=_id}}" class="btn btn-success btn-xs">
+                  <a href="{{pathFor 'attachments.entry' id=_id}}" class="btn btn-success btn-xs">
                   <i class="fa fa-eye" alt="Entry"></i> Entry
                 </a>
                 <a href="{{url}}" target="blank" class="btn btn-default btn-xs">
                   <i class="fa fa-external-link" alt="Redirect"></i>
-                </a> -->
+                </a>
               </div>
               <strong>{{name}}</strong>
               <br>
@@ -33,7 +38,7 @@
             </div>
           </div>
         {{/each}}
-      </div>
+      </div> -->
     {{/panelContent}}
   {{/panelContainer}}
 </template>

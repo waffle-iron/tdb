@@ -6,23 +6,34 @@
       </div>
       <div class="panel-body">
         {{#if isUploading}}
+          <h3>Our servers are uploading your file...</h3>
           {{#with FS.GetFile "files" fileObj._id}}
             {{> FS.UploadProgressBar bootstrap=true}}
           {{/with}}
-          {{> spinnerWave}}
         {{else}}
-          {{#if attachment}}
-            {{> attachmentThumbnail attachment=attachment class='preview'}}
-            <h3> {{attachment.name}} </h3>
-            <h3> {{attachment.file.type}}</h3>
+          <div class="animated fadeIn">
+            {{#if attachment}}
+              {{> attachmentThumbnail 
+                attachment=attachment 
+                class="preview"
+                width='400'
+                height='400'
+                crop='fit'}}
           {{else}}
             <div class="empty-message">
               <i class="fa fa-file-o"></i>
               <h3>No file to display</h3>
             </div>
           {{/if}}
+          </div>
         {{/if}}
       </div>
+      {{#if attachment}}
+        <div class="panel-footer">
+           <h3> {{attachment.name}} </h3>
+           <h4> {{attachment.file.type}}</h4>  
+        </div>
+      {{/if}}
     </div>
   </div>
 </template>
