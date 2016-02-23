@@ -5,7 +5,7 @@
     "allowContentTypes": [
       "image/*", 
       "application/pdf", 
-      ".zip",
+      "application/zip",
       ".ai", 
       ".eps"
     ]
