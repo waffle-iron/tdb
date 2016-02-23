@@ -1,7 +1,8 @@
 Template.orgAttachments.helpers({
   attachments() {
-    return Attachments.find({})
-  }
+    return Attachments.find({});
+  },
+
 });
 
 Template.orgAttachments.events({

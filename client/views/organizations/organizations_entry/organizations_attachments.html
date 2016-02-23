@@ -12,29 +12,28 @@
       {{/panelTools}}
     {{/panelTitle}}
     {{#panelContent}}
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Attachment Name</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each attachments}}
-            <tr>
-              <td>{{name}}</td>
-              <td>
-               <a href="{{pathFor 'attachments.entry' id=_id}}" class="btn btn-success btn-xs">
-                  <i class="fa fa-eye" alt="Entry"></i>
+      <div class="feed-activity-list">
+        {{#each attachments}}
+          <div class="feed-element">
+            <a href="{{pathFor 'attachments.entry' id=_id}}" class="pull-left">
+            {{> attachmentThumbnail attachment=this class='small'}}
+          </a>
+            <div class="media-body ">
+              <div class="pull-right">
+                <!-- <a href="{{pathFor 'attachments.entry' id=_id}}" class="btn btn-success btn-xs">
+                  <i class="fa fa-eye" alt="Entry"></i> Entry
                 </a>
                 <a href="{{url}}" target="blank" class="btn btn-default btn-xs">
                   <i class="fa fa-external-link" alt="Redirect"></i>
-                </a>
-              </td>
-            </tr>
-          {{/each}}
-        </tbody>
-      </table>
+                </a> -->
+              </div>
+              <strong>{{name}}</strong>
+              <br>
+              <small class="text-muted">{{description}}</small>
+            </div>
+          </div>
+        {{/each}}
+      </div>
     {{/panelContent}}
   {{/panelContainer}}
 </template>

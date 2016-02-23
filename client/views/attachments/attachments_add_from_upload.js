@@ -15,7 +15,7 @@ AutoForm.hooks({
 });
 
 Template.attachmentsAddFromUpload.helpers({
-  attachmentUpload() {
+  attachmentFromUpload() {
     return Template.instance().attachment.get();
   },
   fileObjFromUpload() {

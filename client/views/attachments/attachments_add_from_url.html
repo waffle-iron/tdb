@@ -23,7 +23,7 @@
           {{#if isDownloading}}
             {{> spinnerWave}}
           {{else}}
-            {{> attachmentPreview attachmentFromUrl}}
+            {{> attachmentThumbnail attachment=attachmentFromUrl class="preview" }}
           {{/if}}
         </div>
       </div>

@@ -11,13 +11,13 @@
     {{/if}}
     
     <img src="{{url}}" 
-      class="safe-img {{class}}" 
+      class="safe-img img-responsive {{class}}" 
       id="{{id}}"
       style="{{#if loadingImg}}visibility:hidden; display:none;{{/if}}" 
       onerror="this.style.display='none';" />
   {{else}}
     <img src="{{notFound}}" 
-      class="{{class}}" 
+      class="safe-img img-responsive {{class}} " 
       style="width:{{width}}px; height:{{height}}px;">
   {{/if}}
 </template>

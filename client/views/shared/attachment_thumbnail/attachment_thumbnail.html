@@ -1,0 +1,15 @@
+<template name="attachmentThumbnail">
+  <div class="attachment-thumbnail {{class}}">
+    {{#if attachment}}
+      {{#if isFromWeb}}
+        {{> safeImg url=(getCloudinaryFetchImage attachment.web.thumbnailUrl options)}}
+      {{else}}
+        {{#if isImage}}
+          {{> safeImg url=(getCloudinaryCard (s3pathFiles attachment.file._id) options) }}
+        {{else}}
+            <i class='fa {{classIconName}}'></i>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  </div>
+</template>
