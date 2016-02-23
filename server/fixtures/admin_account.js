@@ -16,16 +16,16 @@ Meteor.startup(function() {
   //
   //  Preserve only determined ROLES, add them if do not exist
   //
-  _.each(ROLES, function(role, index) {
-    let existingRole = Meteor.roles.findOne({name: role});
     Meteor.roles.remove({
       name: {$nin: ROLES}
+    });  
+  _.each(ROLES, function(role, index) {
+    let existingRole = Meteor.roles.findOne({name: role});
+    Meteor.roles.upsert({
+      name: role
+    }, {
+      name: role,
+      hierarchy: index
     });
-    if (!existingRole) {
-      Meteor.roles.insert({
-        name: role,
-        hierarchy: index
-      });
-    }
   });
 });
