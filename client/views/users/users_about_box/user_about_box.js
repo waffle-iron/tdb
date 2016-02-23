@@ -32,6 +32,26 @@ Template.userAboutBox.events({
       crop: false
     });
   },
+  'click #delete-user': function() {
+    swal({
+      title: 'Are you sure?',
+      text: 'You will not be able to undo this action!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Yes, delete it!',
+      closeOnConfirm: true
+    }, () => {
+      Meteor.call('Users.methods.remove', this._id, (err, res) => {
+        if (err) {
+          return toastr.error(err.toString(), 'Error');
+        }
+        toastr.success('User removed successfully', 'Success');
+        FlowRouter.go('users.dashboard');
+      });
+    });
+
+  },
   'mouseenter .update-picture-icon': function() {
     $('.change-profile-image a').fadeIn();
   },
