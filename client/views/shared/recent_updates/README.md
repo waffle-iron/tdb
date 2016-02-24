@@ -19,7 +19,6 @@ The updates will arrive in real time as they are created on our server
 ## Example
 #### Filter all updates from a specific user:
 
-**client**
 ```handlebars
 <template name="userUpdates">
   {{> recentUpdates counterId='userCounter' selector=userSelector initialCount=20}}
@@ -38,7 +37,6 @@ Template.userUpdates.helpers({
 
 #### All updates from a specific collection:
 
-**client**
 ```handlebars
 <template name="technologiesDashboard">
   {{> recentUpdates counterId='technologiesCounter' selector=selector initialCount=20}}
