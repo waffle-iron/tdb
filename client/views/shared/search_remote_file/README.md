@@ -14,7 +14,7 @@ There's callbacks functions for all states of the process.
 
 - onUploadBegin(**fileId**, **url**): When upload has been started. We already can track the state of the file now using the `fileId`.
 
-- onUploadError(**error**): When some error occured while uploading the file for the server.
+- onUploadError(**error**): When some error occurred while uploading the file for the server.
 
 - onUploadSuccess(**fileObj**): When the file is already on the server.
 
