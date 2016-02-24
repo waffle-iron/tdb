@@ -16,9 +16,9 @@ AutoForm.hooks({
 
 
 Template.attachmentsAddFromWebsite.events({
-  'input input[name="imageUrl"]': function(e, t) {
+  'input input[name="web.thumbnailUrl"]': function(e, t) {
     let attachment = t.attachment.get();
-    attachment.imageUrl = e.target.value;
+    attachment.web.thumbnailUrl = e.target.value;
     t.attachment.set(attachment);
   },
 });
@@ -43,5 +43,7 @@ Template.attachmentsAddFromWebsite.helpers({
 });
 
 Template.attachmentsAddFromWebsite.onCreated(function() {
-  this.attachment = new ReactiveVar({});
+  this.attachment = new ReactiveVar({
+    web: {}
+  });
 });
