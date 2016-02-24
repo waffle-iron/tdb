@@ -74,15 +74,15 @@ Template.menu.helpers({
         regex: '^organizations',
         name: 'Organizations',
         icon: Icons.collections.organizations,
-        roles: ['god', 'admin'],
+        roles: ['god', 'admin', 'editor'],
         submenu: [
           {
-            roles: ['god', 'admin'],
+            roles: ['god', 'admin', 'editor'],
             linkTo: 'organizations.dashboard',
             name: 'Dashboard',
           },
           {
-            roles: ['god', 'admin'],
+            roles: ['god', 'admin', 'editor'],
             linkTo: 'organizations.add',
             name: 'New'
           }
