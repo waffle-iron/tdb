@@ -64,7 +64,7 @@ Organizations.esDriver(esClient, 'techdb', 'organizations', (cleanedDoc, doc, ho
 
 > **Attention**: TechDB currently supports ElasticSearch 2.1
 
-## Log operations
+## Tracking collection operations
 
 Simply use `logDriver: true` on your SimpleSchema keys that you want to watch for updates.
 
