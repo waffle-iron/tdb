@@ -29,41 +29,36 @@ Create a `.env` file on the project root with the following variables. To add th
 
 
 
-## Searching with elastic search
-**Attention**: TechDB currently supports ElasticSearch 2.1
+## Tracking fields with Elastic Search
+> **Attention**: TechDB currently supports ElasticSearch 2.1
 
 Simply use ```esDriver: true``` on your SimpleSchema keys that you want to river to ElasticSearch.
-
 Only updates on those fields will trigger the river.
 
-```javascript
+**lib**
+```js
 Schemas.Organization = new SimpleSchema({
   name: {
     type: String,
-    logDriver: true
-  },
-  foundingYear: {
-    type: Number,
-    logDriver: true
-  },
-  country: {
-    type: String,
-    esDriver: true,
-    autoform: {
-      type: 'countryFlags'
-    }
+    esDriver: true
   },
 ...
+}
 ```
-Then tell Mongo.Collection to use esDriver, passing an elasticsearch client instance, the **index** and the **type**. You can optionally pass a function to transform the doc before sending it to elasticsearch. In this function you can access the cleanedDoc (filtered doc excluding fields that does not have esDriver: true, the original doc and a reference to the hook function who called this action) (*should only exist on server since client does not know about elastic search*)
-```javascript
-Meteor.isServer && Organizations.esDriver(esClient, 'techdb', 'organizations', (cleanedDoc, doc, hook) => {
+
+**server**
+
+Tell `Mongo.Collection` to use `esDriver`, passing an elasticsearch client instance. The **index** and the **type**. 
+
+You can optionally pass a function to transform the `doc` before sending it to elasticsearch. In this function you can access the `cleanedDoc` (filtered doc excluding fields that does not have `esDriver: true`, the original `do`c and a reference to the `hook` function who called this action)
+> Should only exist on server since client does not know about elastic search
+
+```js
+Organizations.esDriver(esClient, 'techdb', 'organizations', (cleanedDoc, doc, hook) => {
  // return doc
 });
 ```
-```javascript
 
-```
 *Notes:*
 - we must wrap the elasticSearch.Client method's with Async.wrap so we can call the asynchronous methods on a synchronous way
 - we should make docTransformer a pure function: it must not change the original doc object, since other adapters may utilize this doc as well. Instead, we must make a copy, mutate and return it
