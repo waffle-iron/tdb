@@ -37,15 +37,15 @@ Template.menu.helpers({
         regex: '^technologies',
         name: 'Technologies',
         icon: Icons.collections.technologies,
-        roles: ['god', 'admin'],
+        roles: ['god', 'admin', 'editor'],
         submenu: [
           {
-            roles: ['god', 'admin'],
+            roles: ['god', 'admin', 'editor'],
             linkTo: 'technologies.dashboard',
             name: 'Dashboard'
           },
           {
-            roles: ['god', 'admin'],
+            roles: ['god', 'admin', 'editor'],
             linkTo: 'technologies.add',
             name: 'New'
           }

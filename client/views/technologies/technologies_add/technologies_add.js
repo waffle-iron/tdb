@@ -1,7 +1,7 @@
 AutoForm.hooks({
   insertTechnologiesForm: {
     onSuccess() {
-      toastr.success('Technologie created successfully: ' + this.insertDoc.name, 'Success');
+      toastr.success('Technology created successfully: ' + this.insertDoc.name, 'Success');
       FlowRouter.go('technologies.dashboard');
     },
     onError(formType, error) {
