@@ -20,6 +20,13 @@ deploy:
   provider: modulus
   api_key:
     secure: F40JkalpKIDKY3BkIS6177ZVR83zOsxicMuwJemfmhi/RugzqMQR5i09OhUN5Wet37e0+MYSgZf1nJZGIZEzCOGHBoOpAuiLKd1Wvhv4tf6V+eCRG8ItTHpfedqQf/oysyhQEFjX0a7JqC5uuaAs4Ws91ZK7Nu4XHAGTUxifKu0=
-  project_name: "TDB"
+  project_name: "tdb"
   on: master
 
+
+deploy:
+  provider: modulus
+  api_key:
+    secure: F40JkalpKIDKY3BkIS6177ZVR83zOsxicMuwJemfmhi/RugzqMQR5i09OhUN5Wet37e0+MYSgZf1nJZGIZEzCOGHBoOpAuiLKd1Wvhv4tf6V+eCRG8ItTHpfedqQf/oysyhQEFjX0a7JqC5uuaAs4Ws91ZK7Nu4XHAGTUxifKu0=
+  project_name: "tdb-staging"
+  on: staging
