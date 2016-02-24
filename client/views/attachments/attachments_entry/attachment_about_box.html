@@ -23,12 +23,30 @@
             {{else}}
               No description
             {{/if}}
-         </p>
+          </p>
         </header>
       </div>
     {{/panelContent}}
     {{#panelContent}}
       <table class="table">
+        <tr>
+          <td><b>From</b></td>
+          <td>
+            <div class="label label-default">{{from}}</div>
+          </td>
+        </tr>
+        {{#if isFromWeb}}
+          <tr>
+            <td><b>Web</b></td>
+            <td><a href="{{web.sourceUrl}}" target="blank">Visit Page</a></td>
+          </tr>
+        {{else}}
+          <td><b>File</b></td>
+          <td>
+            <!-- Temporary solution -->
+            <a href="https://s3.amazonaws.com/envisioning/tdb/files/{{file._id}}" download>Download</a>
+            </td>
+        {{/if}}
         <tr>
           <td><b>Upload Date</b></td>
           <td>{{moFormat createdAt 'DD/MM/YYYY'}}</td>
