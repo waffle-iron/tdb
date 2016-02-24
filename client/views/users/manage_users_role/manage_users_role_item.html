@@ -1,7 +1,9 @@
 <template name="manageUserRoleItem">
   <tr class="manage-table-item">
     <td>
-      <img src="{{img}}" class="img-circle" alt="user-img">
+      {{> safeImg url=img class="img-circle"}}
+<!--      <img src="{{img}}" class="img-circle" alt="user-img">-->
+      
     </td>
     <td>
       <a href="#" class="text-info">{{{getDisplayName}}}</a>

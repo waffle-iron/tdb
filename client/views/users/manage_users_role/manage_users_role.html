@@ -11,7 +11,7 @@
                 username=username 
                 emails=emails 
                 fullName=profile.fullName 
-                img=(getUserThumb profile.imageId)
+                img=(getUserThumb (s3pathImages profile.imageId))
                 role=getRolesForUser}}
             {{/each}}
           </tbody>
