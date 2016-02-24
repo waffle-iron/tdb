@@ -36,7 +36,7 @@ Template.userUpdates.helpers({
 });
 ```
 
-### All updates from a specific collection:
+#### All updates from a specific collection:
 
 **client**
 ```handlebars
