@@ -20,7 +20,7 @@ Create a `.env` file on the project root with the following variables. To add th
 | ELASTICSEARCH_URL            | ElasticSearch server - http://searchly.com                                         |
 
 
-## Components
+## Reusable Components
 - [recentUpdates](https://github.com/envisioning/techdb/tree/master/client/views/shared/recent_updates)
 - [smartInputFile](https://github.com/envisioning/techdb/tree/master/client/views/shared/smart_input_file)
 - [searchRemoteFile](https://github.com/envisioning/techdb/tree/master/client/views/shared/search_remote_file)
