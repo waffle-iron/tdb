@@ -66,7 +66,8 @@ Organizations.esDriver(esClient, 'techdb', 'organizations', (cleanedDoc, doc, ho
 
 ## Log operations
 
-Simply use ```logDriver: true``` on your SimpleSchema keys that you want to watch for updates
+Simply use `logDriver: true` on your SimpleSchema keys that you want to watch for updates.
+
 ```javascript
 Schemas.Organization = new SimpleSchema({
   name: {
@@ -74,32 +75,20 @@ Schemas.Organization = new SimpleSchema({
     esDriver: true,
     logDriver: true
   },
-  foundingYear: {
-    type: Number,
-    esDriver: true,
-    logDriver: true
-  },
-  country: {
-    type: String,
-    esDriver: true,
-    logDriver: true,
-    autoform: {
-      type: 'countryFlags'
-    }
-  },
   ...
+}
 ```
-Then tell Mongo.Collection to use esDriver, passing the **collection** where you want to store the Logs and a function that returns how should the doc be identified. Attaching this to the Collection makes it log Inserts, Deletes and Updates on fields with ```logDriver: true```
-```javascript
+Then tell `Mongo.Collection` to use `logDriver`, passing the **collection** where you want to store the Logs and a function that returns how should the `doc` be identified. Attaching this to the Collection makes it log `insert`, `remove` and `update` operations.
+
+```js
 Meteor.users.logDriver(Logs, (doc, hook) => {
   let tDoc = hook.transform();
   return tDoc.identification(['username', 'email', 'fullName']);
 });
 ```
 
-
 **TODO**
-We must provide a way to specify a custom text for each operation
+- We must provide a way to specify a custom text for each operation
 
 
 
