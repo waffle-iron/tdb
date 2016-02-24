@@ -17,12 +17,12 @@ The updates will arrive in real time as they are created on our server
 ```
 
 ## Example
-Filter all updates from a specific user:
+#### Filter all updates from a specific user:
 
 **client**
 ```handlebars
 <template name="userUpdates">
-  {{> recentUpdates counterId='recentUpdatesCounter' selector=userSelector initialCount=20}}
+  {{> recentUpdates counterId='userCounter' selector=userSelector initialCount=20}}
 </template>
 ```
 
@@ -36,9 +36,21 @@ Template.userUpdates.helpers({
 });
 ```
 
-**server**
+### All updates from a specific collection:
+
+**client**
+```handlebars
+<template name="technologiesDashboard">
+  {{> recentUpdates counterId='technologiesCounter' selector=selector initialCount=20}}
+</template>
+```
+
 ```js
-Meteor.publish('recentUpdatesCounter', function(selector) {
-  Counts.publish(this, 'recentUpdatesCounter', Logs.find(selector));
+Template.technologiesDashboard.helpers({
+  selector() {
+    return {
+      collection: 'technologies'
+    }
+  }
 });
 ```
