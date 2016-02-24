@@ -104,7 +104,8 @@ We must provide a way to specify a custom text for each operation
 - [smartInputFile](https://github.com/envisioning/techdb/tree/master/client/views/shared/smart_input_file)
 - [searchRemoteFile](https://github.com/envisioning/techdb/tree/master/client/views/shared/search_remote_file)
 - [searchMetadata](https://github.com/envisioning/techdb/tree/master/client/views/shared/search_metadata)
-- 
+
+
 ### SearchSource
 
 - Will draw a search input, with an icon indicating status (loaded, loading or error), will print some search metadata (time to execute the query on elasticsearch and total number of results)
