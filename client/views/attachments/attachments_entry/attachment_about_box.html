@@ -1,5 +1,5 @@
 <template name="attachmentAboutBox">
-  {{#panelContainer class='float-e-margins attachment-card' }}
+  {{#panelContainer class='float-e-margins attachment-about-box' }}
     {{#panelTitle}}
       <h3>
         <i class="{{Icons.collections.attachments}}"></i> {{name}}
@@ -35,7 +35,7 @@
         </tr>
         <tr>
           <td><b>Created By</b></td>
-          <td> {{> safeImg url=(getUserThumb (s3pathImages user.profile.imageId)) class="img-circle m-t-xs link"}} </td>
+          <td> <a href="{{pathFor 'users.entry' id=user._id}}">{{> safeImg url=(getUserThumb (s3pathImages user.profile.imageId)) class="img-circle m-t-xs link"}} </a></td>
         </tr>
       </table>
     {{/panelContent}}
