@@ -20,6 +20,15 @@ Create a `.env` file on the project root with the following variables. To add th
 | ELASTICSEARCH_URL            | ElasticSearch server - http://searchly.com                                         |
 
 
+## Components
+- [recentUpdates](https://github.com/envisioning/techdb/tree/master/client/views/shared/recent_updates)
+- [smartInputFile](https://github.com/envisioning/techdb/tree/master/client/views/shared/smart_input_file)
+- [searchRemoteFile](https://github.com/envisioning/techdb/tree/master/client/views/shared/search_remote_file)
+- [searchMetadata](https://github.com/envisioning/techdb/tree/master/client/views/shared/search_metadata)
+- [searchSource](https://github.com/envisioning/techdb/tree/master/client/views/shared/search_source)
+
+
+
 ## Searching with elastic search
 **Attention**: TechDB currently supports ElasticSearch 2.1
 
@@ -97,12 +106,5 @@ Meteor.users.logDriver(Logs, (doc, hook) => {
 **TODO**
 We must provide a way to specify a custom text for each operation
 
-
-
-## Components
-- [recentUpdates](https://github.com/envisioning/techdb/tree/master/client/views/shared/recent_updates)
-- [smartInputFile](https://github.com/envisioning/techdb/tree/master/client/views/shared/smart_input_file)
-- [searchRemoteFile](https://github.com/envisioning/techdb/tree/master/client/views/shared/search_remote_file)
-- [searchMetadata](https://github.com/envisioning/techdb/tree/master/client/views/shared/search_metadata)
 
 
