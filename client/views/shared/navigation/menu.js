@@ -92,15 +92,15 @@ Template.menu.helpers({
         regex: '^attachments',
         name: 'Attachments',
         icon: Icons.collections.attachments,
-        roles: ['god', 'admin'],
+        roles: ['god', 'admin', 'editor'],
         submenu: [
           {
-            roles: ['god', 'admin'],
+            roles: ['god', 'admin', 'editor'],
             linkTo: 'attachments.dashboard',
             name: 'Dashboard',
           },
           {
-            roles: ['god', 'admin'],
+            roles: ['god', 'admin', 'editor'],
             linkTo: 'attachments.add',
             name: 'New'
           }
