@@ -21,7 +21,7 @@ Create a `.env` file on the project root with the following variables. To add th
 
 
 ## Searching with elastic search
-**Attention**: TechDB currently supports ElasticSearch 1.7
+**Attention**: TechDB currently supports ElasticSearch 2.1
 
 Simply use ```esDriver: true``` on your SimpleSchema keys that you want to river to ElasticSearch.
 
