@@ -100,36 +100,11 @@ We must provide a way to specify a custom text for each operation
 
 
 ## Components
-### Recent Updates
-- Will draw a box with a list of recent updateds inside a scrollable region and buttons to load more or load less results.
-- The updates will arrive in real time as they are created on our server
-
-```javascript
-{{> recentUpdates}}
-@params:
-counterId {String} a unique id to be used on the reactive counter plublication
-selector {Object} mongo selector to filter updates
-initialCount {Integer} (optional, defaults to 5) initial number of loaded updates
-countIncrement {Integer} (optional, defaults to 5) number of new updates loaded per request
-```
-Example, filter all updates from a specific user:
-
-**template.html**
-```html
-<template name="userUpdates">
-{{> recentUpdates counterId='user' selector=userSelector initialCount=20}}
-</template>
-```
-**template.js**
-```javascript
-Template.userUpdates.helpers({
-  userSelector() {
-    return {
-      userId: 'cqd2odEAQm6xhHkjQs'
-    }
-  }
-})
-```
+- [recentUpdates](https://github.com/envisioning/techdb/tree/master/client/views/shared/recent_updates)
+- [smartInputFile](https://github.com/envisioning/techdb/tree/master/client/views/shared/smart_input_file)
+- [searchRemoteFile](https://github.com/envisioning/techdb/tree/master/client/views/shared/search_remote_file)
+- [searchMetadata](https://github.com/envisioning/techdb/tree/master/client/views/shared/search_metadata)
+- 
 ### SearchSource
 
 - Will draw a search input, with an icon indicating status (loaded, loading or error), will print some search metadata (time to execute the query on elasticsearch and total number of results)
