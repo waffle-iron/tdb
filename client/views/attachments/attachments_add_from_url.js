@@ -41,7 +41,7 @@ Template.attachmentsAddFromUrl.helpers({
   onUploadError() {
     let template = Template.instance();
     return function(err) {
-      toastr.error('Error uploading file');
+      toastr.error(err.toString());
       t.isDownloading.toggle();
     };
   },
