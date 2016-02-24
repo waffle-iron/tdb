@@ -55,10 +55,11 @@ Template.topNavbar.helpers({
 Template.topNavbar.onCreated(function() {
   this.env = new ReactiveVar;
   Meteor.call('env', (error, env) => {
+    console.log('ENV:', env);
     if (env === 'development') {
       this.env.set({
         name: env,
-        color: 'defaut'
+        color: 'default'
       });
     }
 
