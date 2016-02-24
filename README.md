@@ -30,7 +30,6 @@ Create a `.env` file on the project root with the following variables. To add th
 
 
 ## Tracking fields with Elastic Search
-> **Attention**: TechDB currently supports ElasticSearch 2.1
 
 Simply use ```esDriver: true``` on your SimpleSchema keys that you want to river to ElasticSearch.
 Only updates on those fields will trigger the river.
@@ -59,10 +58,11 @@ Organizations.esDriver(esClient, 'techdb', 'organizations', (cleanedDoc, doc, ho
 });
 ```
 
-*Notes:*
-- we must wrap the elasticSearch.Client method's with Async.wrap so we can call the asynchronous methods on a synchronous way
-- we should make docTransformer a pure function: it must not change the original doc object, since other adapters may utilize this doc as well. Instead, we must make a copy, mutate and return it
+**Notes**:
+- We must wrap the elasticSearch.Client method's with Async.wrap so we can call the asynchronous methods on a synchronous way
+- We should make docTransformer a pure function: it must not change the original doc object, since other adapters may utilize this doc as well. Instead, we must make a copy, mutate and return it
 
+> **Attention**: TechDB currently supports ElasticSearch 2.1
 
 ## Log operations
 
