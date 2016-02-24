@@ -5,11 +5,11 @@ Template.searchRemoteFile.events({
     t.onDownloadBegin();
     Meteor.call('attachData', url, function(err) {
       if (err) {
-        t.data.onDownloadError(err);
+        t.onDownloadError(err);
       } else {
         Meteor.call('uploadFileFromUrl', url, function(error, fileId) {
           if (error) {
-            t.data.onUploadError(error);
+            t.onUploadError(error);
           } else {
             t.fileId.set(fileId);
             t.onUploadBegin(fileId, url);
@@ -37,6 +37,16 @@ Template.searchRemoteFile.onCreated(function() {
       }
     }
   });
+
+  this.onUploadError = (error) => {
+    $('.btn-download').button('reset');
+    this.data.onUploadError && this.data.onUploadError(error);
+  };
+
+  this.onDownloadError = (error) => {
+    $('.btn-download').button('reset');
+    this.data.onDownloadError && this.data.onDownloadError(error);
+  };
 
   this.onDownloadBegin = () => {
     $('.btn-download').button('loading');
