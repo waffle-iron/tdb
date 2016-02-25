@@ -7,7 +7,7 @@ node_js:
 #  code_climate:
 #    repo_token: 1d63b91b9f6fd76ee316949330832f9ccd6d4a0a7ce167a9c7b8989b5b9dac8a
 
-before_install: true
+before_install:
   - "curl https://install.meteor.com | /bin/sh"
 
 script:
