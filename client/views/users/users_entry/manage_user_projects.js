@@ -1,24 +1,22 @@
 Template.manageUserProjects.helpers({
   projects() {
-    return SearchSources.globalSearch.getData({
-      transform(matchText, regExp) {
-        return matchText.replace(regExp, '<b>$&</b>');
-      },
-      sort: {_score: -1}
-    });
+    return SearchSources.globalSearch.getTransformedData();
   },
-
   getOptions() {
     return {
       types: ['projects']
     };
   },
-  user(){
+  user() {
     let user = Meteor.users.findOne({
-      _id: FlowRouter.getParam('id')
+      _id: Template.instance().data.userId
     });
 
     return user;
   },
 });
 
+
+Template.manageUserProjects.onCreated(function() {
+  this.subscribe('user.projects', this.data.userId);
+});

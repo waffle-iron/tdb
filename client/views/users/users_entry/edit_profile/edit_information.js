@@ -9,3 +9,13 @@ AutoForm.hooks({
     },
   }
 });
+
+
+Template.editInformation.onRendered(function() {
+  this.subscribe('users.info', this.data.userId);
+});
+Template.editInformation.helpers({
+  user() {
+    return Meteor.users.findOne(Template.instance().data.userId);
+  }
+});

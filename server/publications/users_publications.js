@@ -106,3 +106,31 @@ Meteor.publish('user.status', function(userId) {
     }
   });
 });
+
+Meteor.publish('user.projects', function(userId) {
+  check(userId, String);
+  return Meteor.users.find({
+    _id: userId
+  }, {
+    fields: {
+      projectsId: 1
+    }
+  });
+});
+
+Meteor.publish('user.info', function(userId) {
+  check(userId, String);
+  return Meteor.users.find({
+    _id: userId
+  }, {
+    fields: {
+      'profile.firstName': 1,
+      'profile.lastName': 1,
+      'profile.affiliation': 1,
+      'profile.country': 1,
+      'profile.birth': 1,
+      'profile.gender': 1,
+      'profile.address': 1
+    }
+  });
+});

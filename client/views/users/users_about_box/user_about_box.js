@@ -1,4 +1,17 @@
 const IMAGE_ASPECT_RATIO = 1;
+
+confirmDeleteUser = function(callback) {
+    swal({
+      title: 'Are you sure?',
+      text: 'You will not be able to undo this action!',
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#DD6B55',
+      confirmButtonText: 'Yes, delete it!',
+      closeOnConfirm: false
+    }, callback);
+};
+
 Template.userAboutBox.events({
   'click #manage-user-role': function(e) {
     e.preventDefault();
@@ -7,7 +20,7 @@ Template.userAboutBox.events({
   'click #edit-info': function(e) {
     e.preventDefault();
     Modal.show('editInformation', {
-      user: this
+      userId: this._id
     });
   },
   'click #edit-contact': function(e) {
@@ -33,15 +46,7 @@ Template.userAboutBox.events({
     });
   },
   'click #delete-user': function() {
-    swal({
-      title: 'Are you sure?',
-      text: 'You will not be able to undo this action!',
-      type: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#DD6B55',
-      confirmButtonText: 'Yes, delete it!',
-      closeOnConfirm: true
-    }, () => {
+    confirmDeleteUser(() => {
       Meteor.call('Users.methods.remove', this._id, (err, res) => {
         if (err) {
           return toastr.error(err.toString(), 'Error');
@@ -50,7 +55,6 @@ Template.userAboutBox.events({
         FlowRouter.go('users.dashboard');
       });
     });
-
   },
   'mouseenter .update-picture-icon': function() {
     $('.change-profile-image a').fadeIn();
