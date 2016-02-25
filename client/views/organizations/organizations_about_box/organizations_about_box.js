@@ -2,8 +2,8 @@ const IMAGE_ASPECT_RATIO = 1;
 
 Template.orgAboutBox.events({
   'click #add-people': function() {
-    Modal.show('addKeyPeople', {
-      org: this
+    Modal.show('organizationsManageKeyPeople', {
+      orgId: this._id
     });
   },
   'click #org-edit': function() {

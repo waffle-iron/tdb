@@ -36,7 +36,7 @@
           <td>
             {{#each keyPeople}}
               <a href="#">
-                <img src="{{image}}" class="img-circle" alt="bill-gates">
+                {{> safeImg url=(c.url image width=38 height=38 type='fetch' crop='thumb' gravity='face') class='img-circle'}}
               </a>
             {{/each}}
             <a href="#" class="btn add-people" id="add-people">

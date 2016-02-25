@@ -62,3 +62,14 @@ Meteor.publishComposite('organizations.single', function(organizationId) {
     }]
   };
 });
+
+Meteor.publish('organizations.keyPeople', function(orgId) {
+  check(orgId, String);
+  return Organizations.find({
+    _id: orgId
+  }, {
+    fields: {
+      keyPeople: 1
+    }
+  });
+});
