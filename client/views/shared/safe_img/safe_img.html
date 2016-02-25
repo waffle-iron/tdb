@@ -10,11 +10,16 @@
       {{> spinnerWave}}
     {{/if}}
     
+    {{#unless error}}
     <img src="{{url}}" 
-      class="safe-img img-responsive {{class}}" 
+      class="safe-img {{class}}" 
       id="{{id}}"
       style="{{#if loadingImg}}visibility:hidden; display:none;{{/if}}" 
       onerror="this.style.display='none';" />
+    {{else}}
+    <img src="https://placehold.it/50x50" 
+      class="{{class}}" />
+    {{/unless}}
   {{else}}
     <img src="{{notFound}}" 
       class="safe-img img-responsive {{class}} " 
