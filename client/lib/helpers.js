@@ -363,7 +363,7 @@ Template.registerHelper('getUserThumb', (cloudinaryId) => {
     return $.cloudinary.url(cloudinaryId, {
       width: 150,
       height: 150,
-      crop: 'fill',
+      crop: 'thumb',
       gravity: 'face'
     });
   }
