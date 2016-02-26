@@ -109,6 +109,7 @@ Template.enrollAccount.events({
     let password_again = formData.password_again;
     let username = formData.username;
     let username_and_email = formData.username_and_email;
+    let firstName = formData.firstName;
     // Clears profile data removing username, email, and pwd
     delete formData.current_password;
     delete formData.email;
@@ -116,6 +117,7 @@ Template.enrollAccount.events({
     delete formData.password_again;
     delete formData.username;
     delete formData.username_and_email;
+    delete formData.firstName;
 
     if (AccountsTemplates.options.confirmPassword) {
       // Checks passwords for correct match
@@ -143,6 +145,15 @@ Template.enrollAccount.events({
     t.subscribe('singleUser', user._id);
     Accounts.resetPassword(AccountsTemplates.getparamToken(), password, function(error) {
       if (error) return toastr.error(error.toString());
+      
+      Meteor.users.update({
+        _id: user._id
+      }, {
+        $set: {
+          'profile.firstName': firstName
+        }
+      });
+
       return FlowRouter.go('main.index');
     });
   }
