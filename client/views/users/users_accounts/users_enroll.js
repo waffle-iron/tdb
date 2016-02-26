@@ -79,8 +79,9 @@ Template.enrollAccount.events({
             });
           }
           someError = true;
-        } else
+        } else {
           field.setSuccess();
+        }
       }
     });
 
@@ -115,6 +116,26 @@ Template.enrollAccount.events({
     delete formData.password_again;
     delete formData.username;
     delete formData.username_and_email;
+
+    if (AccountsTemplates.options.confirmPassword) {
+      // Checks passwords for correct match
+      if (password_again && password !== password_again) {
+        var pwd_again = AccountsTemplates.getField("password_again");
+        if (pwd_again.negativeValidation)
+          pwd_again.setError(AccountsTemplates.texts.errors.pwdMismatch);
+        else
+          AccountsTemplates.state.form.set("error", [{
+            field: pwd_again.getDisplayName(),
+            err: AccountsTemplates.texts.errors.pwdMismatch
+          }]);
+        AccountsTemplates.setDisabled(false);
+        //reset reCaptcha form
+        if (state === "signUp" && AccountsTemplates.options.showReCaptcha) {
+          grecaptcha.reset();
+        }
+        return;
+      }
+    }
 
     let paramToken = AccountsTemplates.getparamToken();
     let user = Meteor.users.findOne({ 'services.password.reset.token': paramToken });
