@@ -340,48 +340,6 @@ Template.registerHelper('shortIt', function(stringToShorten, maxCharsAmount) {
   return stringToShorten;
 });
 
-Template.registerHelper('getCloudinaryCard', (cloudinaryId, options = {}) => {
-  console.log(cloudinaryId);
-  if (cloudinaryId) {
-    let baseOptions = {
-      width: 600,
-      height: 400,
-      crop: 'fill',
-      gravity: 'center'
-    };
-    let finalOptions = {
-      ...baseOptions,
-      ...options
-    };
-    return $.cloudinary.url(cloudinaryId, finalOptions);
-  }
-  return 'https://placehold.it/600x400';
-});
-
-Template.registerHelper('getUserThumb', (cloudinaryId) => {
-  if (cloudinaryId) {
-    return $.cloudinary.url(cloudinaryId, {
-      width: 150,
-      height: 150,
-      crop: 'thumb',
-      gravity: 'face'
-    });
-  }
-  return '/img/unknown-user.png';
-});
-
-Template.registerHelper('getCloudinaryFetchImage', (url) => {
-  if (url) {
-    return $.cloudinary.url(url, {
-      width: 400,
-      height: 400,
-      crop: 'fill',
-      gravity: 'center',
-      type: 'fetch'
-    });
-  }
-  return 'https://placehold.it/400x400';
-});
 
 Template.registerHelper('s3pathImages', (cloudinaryId) => {
   return buildS3mappingFolder(cloudinaryId, 'images');
