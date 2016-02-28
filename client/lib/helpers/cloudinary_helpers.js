@@ -37,9 +37,22 @@ Cloudinary.helpers = {
       });
     }
     return 'https://placehold.it/400x400';
+  },
+  getS3MappingFolder: function(cloudinaryId, collectionName) {
+    if (!cloudinaryId) return '';
+    if (!Meteor.settings.public.Cloudinarys3MappingFolder) throw new Error('Must configure s3mappingFolder');
+    return `${Meteor.settings.public.Cloudinarys3MappingFolder}/${collectionName}/${cloudinaryId}`;
   }
 };
 
 Template.registerHelper('getCloudinaryCard', Cloudinary.helpers.getCard);
 Template.registerHelper('getUserThumb', Cloudinary.helpers.getThumb);
 Template.registerHelper('getCloudinaryFetchImage', Cloudinary.helpers.getFetchImage);
+
+Template.registerHelper('s3pathImages', (cloudinaryId) => {
+  return Cloudinary.helpers.getS3MappingFolder(cloudinaryId, 'images');
+});
+
+Template.registerHelper('s3pathFiles', (cloudinaryId) => {
+  return Cloudinary.helpers.getS3MappingFolder(cloudinaryId, 'files');
+});
