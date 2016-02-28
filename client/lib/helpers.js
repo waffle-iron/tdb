@@ -391,7 +391,4 @@ Template.registerHelper('s3pathFiles', (cloudinaryId) => {
   return buildS3mappingFolder(cloudinaryId, 'files');
 });
 
-Template.registerHelper('isAdminOrEditor', function() {
-  let user = Meteor.user();
-  return user && Roles.userIsInRole(user, ['admin', 'editor']);
-});
+
