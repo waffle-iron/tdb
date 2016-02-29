@@ -10,7 +10,7 @@ Template.menu.helpers({
         name: 'Dashboard',
         linkTo: 'mainDashboard',
         icon: 'fa fa-dashboard',
-        roles: ADMIN,
+        roles: ADMIN_EDITOR_VIEWER,
       },
       {
         regex: '^search',
@@ -23,12 +23,12 @@ Template.menu.helpers({
         regex: '^users',
         name: 'Users',
         icon: 'fa fa-users',
-        roles: ADMIN,
+        roles: ADMIN_EDITOR_VIEWER,
         submenu: [
           {
             name: 'Dashboard',
             linkTo: 'users.dashboard',
-            roles: ADMIN
+            roles: ADMIN_EDITOR_VIEWER
           },
           {
             roles: ADMIN,
@@ -41,10 +41,10 @@ Template.menu.helpers({
         regex: '^technologies',
         name: 'Technologies',
         icon: Icons.collections.technologies,
-        roles: ADMIN_EDITOR,
+        roles: ADMIN_EDITOR_VIEWER,
         submenu: [
           {
-            roles: ADMIN_EDITOR,
+            roles: ADMIN_EDITOR_VIEWER,
             linkTo: 'technologies.dashboard',
             name: 'Dashboard'
           },
@@ -59,10 +59,10 @@ Template.menu.helpers({
         regex: '^projects',
         name: 'Projects',
         icon: Icons.collections.projects,
-        roles: ADMIN,
+        roles: ADMIN_EDITOR_VIEWER,
         submenu: [
           {
-            roles: ADMIN_EDITOR,
+            roles: ADMIN_EDITOR_VIEWER,
             linkTo: 'projects.dashboard',
             name: 'Dashboard'
           },
@@ -78,10 +78,10 @@ Template.menu.helpers({
         regex: '^organizations',
         name: 'Organizations',
         icon: Icons.collections.organizations,
-        roles: ADMIN_EDITOR,
+        roles: ADMIN_EDITOR_VIEWER,
         submenu: [
           {
-            roles: ADMIN_EDITOR,
+            roles: ADMIN_EDITOR_VIEWER,
             linkTo: 'organizations.dashboard',
             name: 'Dashboard',
           },
@@ -96,10 +96,10 @@ Template.menu.helpers({
         regex: '^attachments',
         name: 'Attachments',
         icon: Icons.collections.attachments,
-        roles: ADMIN_EDITOR,
+        roles: ADMIN_EDITOR_VIEWER,
         submenu: [
           {
-            roles: ADMIN_EDITOR,
+            roles: ADMIN_EDITOR_VIEWER,
             linkTo: 'attachments.dashboard',
             name: 'Dashboard',
           },

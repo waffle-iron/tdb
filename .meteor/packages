@@ -79,9 +79,11 @@ es5-shim
 sacha:spin
 yogiben:autoform-tags
 mpowaga:autoform-summernote
+fourseven:scss
 cfs:s3
-cfs:standard-packages
 cfs:gridfs
+cfs:ui
+cfs:standard-packages
 cfs:ejson-file
 kevohagan:sweetalert
 insecure

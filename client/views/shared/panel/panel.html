@@ -19,7 +19,7 @@
   </div>
 </template>
 <template name="panelTools">
-  {{#if isAdminOrEditor}}
+  {{#if isInRole 'admin,editor'}}
     <div class="ibox-tools {{class}}">
       {{> UI.contentBlock}}
     </div>
