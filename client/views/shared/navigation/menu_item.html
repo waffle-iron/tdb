@@ -4,6 +4,7 @@
             <a href="{{#if linkTo}}{{pathFor linkTo}}{{else}}#{{/if}}"><i class={{icon}}></i> <span class="nav-label">{{name}}</span>{{#if submenu}}<span class="fa arrow"></span>{{/if}}</a>
             {{#if submenu}}
                 <ul class="nav nav-second-level collapse">
+                    <li class="nav-second-level-label">{{name}}</li>
                     {{#each submenu}}
                         {{> submenuItem}}
                     {{/each}}
