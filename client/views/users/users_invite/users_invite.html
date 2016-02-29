@@ -1,5 +1,5 @@
 <template name="usersInvite">
-  {{#panelContainer class='elastic-search' }}
+  {{#panelContainer}}
     {{#panelTitle}}
       <h3>
         <i class="fa fa-user-plus"></i>
@@ -8,12 +8,13 @@
     {{/panelTitle}}
     {{#panelContent}}
       {{#autoForm schema="InviteSchema" id="inviteUsersForm" type="method" meteormethod="inviteUser" class="form-horizontal" }}
-        {{>afQuickField name="email" label-class="col-sm-3" input-col-class="col-sm-9"}} 
-        {{>afQuickField name="roles" label-class="col-sm-3" input-col-class="col-sm-9"}} 
+
+        {{>afQuickField name="email" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+        {{>afQuickField name="roles" label-class="col-sm-2" input-col-class="col-sm-10"}} 
         <div class="row">
           <div class="col col-xs-12">
-            <button type="submit" class="btn btn-primary">
-              Invite User
+            <button type="submit" class="btn btn-primary pull-right">
+              Send Invitation
             </button>
           </div>
         </div>
