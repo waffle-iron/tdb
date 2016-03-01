@@ -4,11 +4,11 @@
       <h3>
         <i class="{{Icons.collections.attachments}}"></i> {{name}}
       </h3>
-      <div class="ibox-tools">
+      {{#panelTools}}
         <a href="#" id="attachment-edit">
           <i class="fa fa-pencil"></i>
         </a>
-      </div>
+      {{/panelTools}}
     {{/panelTitle}}
     {{#panelContent}}
       {{> attachmentThumbnail attachment=this class='preview'}}
@@ -45,7 +45,7 @@
           <td>
             <!-- Temporary solution -->
             <a href="https://s3.amazonaws.com/envisioning/tdb/files/{{file._id}}" download>Download</a>
-            </td>
+          </td>
         {{/if}}
         <tr>
           <td><b>Upload Date</b></td>
