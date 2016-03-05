@@ -78,7 +78,7 @@ ecmascript
 es5-shim
 sacha:spin
 yogiben:autoform-tags
-mpowaga:autoform-summernote
+q42:autoform-markdown
 fourseven:scss
 cfs:s3
 cfs:gridfs
