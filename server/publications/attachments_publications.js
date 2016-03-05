@@ -63,3 +63,12 @@ Meteor.publishComposite('attachments.single', function(attachmentId) {
     }]
   };
 });
+
+Meteor.publish('attachments.quickList', function() {
+  return Attachments.find({}, {
+    fields: {
+      name: 1
+    }
+  });
+});
+

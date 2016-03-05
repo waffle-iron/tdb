@@ -54,6 +54,8 @@ chuangbo:cookie@1.1.0
 cloudspider:icheck@1.0.2
 coffeescript@1.0.12-beta.12
 comerc:autoform-selectize@2.2.4
+comerc:autoform-typeahead@1.0.3
+comerc:bs-typeahead@1.0.2
 copleykj:tagstripper@1.0.0
 cosmos:browserify@0.9.4
 danappelxx:hover.css@1.0.0
@@ -147,6 +149,8 @@ momentjs:moment@2.11.2
 mongo@1.1.4-beta.12
 mongo-id@1.0.1
 mongo-livedata@1.0.9
+mpowaga:jquery-fileupload@9.11.2
+mpowaga:jquery-ui-widget@1.11.4
 mpowaga:string-template@0.1.0
 mquandalle:perfect-scrollbar@0.6.5_2
 msavin:jetsetter@1.5.2
@@ -203,10 +207,11 @@ url@1.0.6-beta.12
 useraccounts:bootstrap@1.13.1
 useraccounts:core@1.13.1
 useraccounts:flow-routing@1.13.1
-vazco:universe-autoform-select@0.3.1
-vazco:universe-selectize@0.1.5
+vazco:universe-autoform-select@0.3.3
+vazco:universe-selectize@0.1.6
 webapp@1.2.5-beta.12
 webapp-hashing@1.0.6-beta.12
+yogiben:autoform-file@0.4.2
 yogiben:autoform-modals@0.3.8
 yogiben:autoform-tags@0.2.0
 zimme:active-route@2.3.2

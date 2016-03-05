@@ -34,9 +34,6 @@ technologiesRoutes.route('/:id/entry', {
     });
     return technologie && technologie.name;
   },
-  subscriptions(params) {
-    this.register('technology', subs.subscribe('technology', params.id));
-  },
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'technologiesEntry'
@@ -53,8 +50,5 @@ technologiesRoutes.route('/:id/edit', {
     BlazeLayout.render('defaultLayout', {
       main: 'technologiesEdit'
     });
-  },
-  subscriptions(params) {
-    this.register('technology', subs.subscribe('technology', params.id));
   }
 });

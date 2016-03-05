@@ -73,3 +73,11 @@ Meteor.publish('organizations.keyPeople', function(orgId) {
     }
   });
 });
+
+Meteor.publish('organizations.quickList', function() {
+  return Organizations.find({}, {
+    fields: {
+      name: 1
+    }
+  });
+});
