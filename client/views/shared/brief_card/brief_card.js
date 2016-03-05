@@ -14,12 +14,12 @@ Template.briefCard.helpers({
       return 'deleted';
     }
   },
-  stateDeleted() {
-    return Template.instance().state.get() === 'deleted';
-  },
   stateEdited() {
     return Template.instance().state.get() === 'updated';
   },
+  isDeleted() {
+    return Template.instance().state.get() === 'deleted';
+  }
 });
 
 Template.briefCard.onCreated(function() {

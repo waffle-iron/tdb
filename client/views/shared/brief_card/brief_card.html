@@ -1,4 +1,5 @@
 <template name="briefCard">
+  {{#unless isDeleted}}
   {{#panelContainer class='product-box brief-card' }}
     {{#panelContent class='no-padding' }}
       <div class="brief-img">
@@ -21,9 +22,11 @@
         {{#if stateEdited}}
           <span class='label label-warning'><i class='fa fa-pencil'></i> Edited</span>
         {{/if}}
+        <!--
         {{#if stateDeleted}}
           <span class='label label-danger'><i class='fa fa-trash'></i> Deleted</span>
         {{/if}}
+        -->
         {{#panelTools}}
           <a href="# " class="edit ">
             <i class="fa fa-pencil "></i>
@@ -37,4 +40,5 @@
       <p>{{{description}}}</p>
     {{/panelContent}}
   {{/panelContainer}}
+  {{/unless}}
 </template>
