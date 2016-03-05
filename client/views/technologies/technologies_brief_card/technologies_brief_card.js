@@ -27,6 +27,7 @@ Template.techBriefCard.helpers({
   //  Edit handler
   //
   onEdit() {
+    /*
     let type = this._type;
     let changedBriefCards = Template.instance().changedBriefCards;
 
@@ -38,6 +39,10 @@ Template.techBriefCard.helpers({
           t.state.set('updated');
         }
       });
+    };
+    */
+    return function(data, t) {
+      FlowRouter.go('technologies.edit', {id: data._id});
     };
   }
 });
