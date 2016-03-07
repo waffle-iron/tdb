@@ -1,0 +1,11 @@
+<template name="orgBriefCard">
+ {{#briefCard 
+  _id=_id
+  title=name
+  collection='organizations' 
+  link=getLink
+  onDelete=onDelete
+  onEdit=onEdit}}
+  {{> safeImg url=(getCloudinaryCard (s3pathImages logo)) class='img-responsive margin-auto'}}
+{{/briefCard}}
+</template>

@@ -1,3 +1,4 @@
+
 {
   "parser": "babel-eslint",
   "env": {
@@ -40,7 +41,7 @@
  */
     "no-shadow": 2,                  // http://eslint.org/docs/rules/no-shadow
     "no-shadow-restricted-names": 2, // http://eslint.org/docs/rules/no-shadow-restricted-names
-    "no-unused-vars": [2, {          // http://eslint.org/docs/rules/no-unused-vars
+    "no-unused-vars": [0, {          // http://eslint.org/docs/rules/no-unused-vars
       "vars": "local",
       "args": "after-used"
     }],
@@ -147,7 +148,7 @@
     "new-cap": [2, {                 // http://eslint.org/docs/rules/new-cap
       "newIsCap": true,
         "capIsNewExceptions": [
-            "Match", "Any", "Object", "ObjectIncluding", "OneOf", "Optional", "Where", "DataTable"
+            "Match", "Any", "Object", "ObjectIncluding", "OneOf", "Optional", "Where", "DataTable", "ES", "FS", "Cloudinary"
         ]      
     }],
     "no-multiple-empty-lines": [2, { // http://eslint.org/docs/rules/no-multiple-empty-lines
@@ -167,11 +168,10 @@
       "before": false,
       "after": true
     }],
-    "space-after-keywords": 2,       // http://eslint.org/docs/rules/space-after-keywords
+    //"keyword-spacing": 2,       // http://eslint.org/docs/rules/keyword-spacing
     "space-before-blocks": 2,        // http://eslint.org/docs/rules/space-before-blocks
     "space-before-function-paren": [2, "never"], // http://eslint.org/docs/rules/space-before-function-paren
     "space-infix-ops": 2,            // http://eslint.org/docs/rules/space-infix-ops
-    "space-return-throw-case": 2,    // http://eslint.org/docs/rules/space-return-throw-case
     "spaced-comment": 2,        // http://eslint.org/docs/rules/spaced-line-comment
     "no-this-before-super": 2
   }

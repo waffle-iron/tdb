@@ -1,0 +1,17 @@
+<template name="attachmentThumbnail">
+  <div class="attachment-thumbnail {{class}}">
+    {{#if attachment}}
+      {{#if isFromWeb}}
+        <!-- must fetch -->
+        {{> safeImg class="img-responsive" url=(c.url attachment.web.thumbnailUrl width=width height=height type='fetch' crop=crop)}}
+      {{else}}
+        {{#if isImage}}
+          <!-- autoupload from Files collection -->
+          {{> safeImg class="img-responsive" url=(c.url (s3pathFiles attachment.file._id) width=width height=height crop=crop) }}
+        {{else}}
+            <i class='fa {{classIconName}}'></i>
+        {{/if}}
+      {{/if}}
+    {{/if}}
+  </div>
+</template>

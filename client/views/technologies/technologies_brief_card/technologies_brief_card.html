@@ -1,0 +1,12 @@
+<template name="techBriefCard">
+ {{#briefCard 
+  _id=_id
+  title=name
+  img=(getCloudinaryCard logo)
+  collection='technologies' 
+  link=getLink
+  onDelete=onDelete
+  onEdit=onEdit}}
+  {{> safeImg url=(getCloudinaryCard (s3pathImages logo)) class='img-responsive margin-auto'}}
+{{/briefCard}}
+</template>

@@ -1,0 +1,40 @@
+<template name="briefCard">
+  {{#panelContainer class='product-box brief-card' }}
+    {{#panelContent class='no-padding' }}
+      <div class="brief-img">
+        <div class="icon-brief-box">
+          <i class="{{icon}} fa-2x"></i>
+        </div>
+        {{> UI.contentBlock}}
+        <!--
+        {{#if template}}
+          {{> Template.dynamic template=template data=data}}
+        {{else}}
+          {{> safeImg url=img class='img-responsive margin-auto'}}
+        {{/if}}
+        -->
+      </div>
+    {{/panelContent}}
+    {{#panelContent}}
+      <div class="title-tools ">
+        <h3 class='link truncate-text'>{{{title}}}</h3>
+        {{#if stateEdited}}
+          <span class='label label-warning'><i class='fa fa-pencil'></i> Edited</span>
+        {{/if}}
+        {{#if stateDeleted}}
+          <span class='label label-danger'><i class='fa fa-trash'></i> Deleted</span>
+        {{/if}}
+        {{#panelTools}}
+          <a href="# " class="edit ">
+            <i class="fa fa-pencil "></i>
+          </a>
+          <a href="# " class="delete ">
+            <i class="fa fa-trash "></i>
+          </a>
+        {{/panelTools}}
+      </div>
+      <h5>{{{subtitle}}}</h5>
+      <p>{{{description}}}</p>
+    {{/panelContent}}
+  {{/panelContainer}}
+</template>

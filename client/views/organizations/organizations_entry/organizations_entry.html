@@ -1,0 +1,30 @@
+<template name="organizationsEntry">
+  {{#if Template.subscriptionsReady}}
+    {{#with org}}
+      <div class="row">
+        <div class="col-md-3">
+          {{> orgAboutBox}}
+        </div>
+        <div class="col-md-9">
+          <div class="row">
+            <div class="col-xs-12">
+              {{> orgProjects}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              {{> orgTechnologies}}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              {{> orgAttachments}}
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/with}}
+  {{else}}
+    {{> spinner}}
+  {{/if}}
+</template>

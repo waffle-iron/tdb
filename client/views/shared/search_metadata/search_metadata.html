@@ -1,0 +1,15 @@
+<template name="searchMetadata">
+  <div id="search-metadata" class="search-metadata">
+    <div class="input-group">
+      <span class="input-group-addon">
+        <i class='fa {{statusIconClass}}'></i>
+      </span>
+      <input class="form-control" placeholder="Url for get attachment metadata. (Ex. http://github.com)" type="text" id="search-url">
+      <span class="input-group-btn">
+        <button type="button" class="btn btn-primary btn-fetch" data-loading-text="Fetching metadata...">Fetch metadata</button>
+      </span>
+    </div>
+    <div class="metadata">
+    </div>
+  </div>
+</template>
