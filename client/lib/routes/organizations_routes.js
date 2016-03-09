@@ -51,7 +51,4 @@ organizationsRoutes.route('/:id/edit', {
       main: 'organizationsEdit'
     });
   },
-  subscriptions(params) {
-    this.register('organization', subs.subscribe('organization', params.id));
-  }
 });

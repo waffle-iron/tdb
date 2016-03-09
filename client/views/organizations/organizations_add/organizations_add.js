@@ -9,3 +9,9 @@ AutoForm.hooks({
       },
   }
 });
+
+Template.organizationsAdd.onCreated(function() {
+	this.subscribe('projects.quickList');
+  this.subscribe('technologies.quickList');
+  this.subscribe('attachments.quickList');
+});
