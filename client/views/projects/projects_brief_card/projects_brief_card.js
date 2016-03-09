@@ -21,13 +21,19 @@ Template.projectsBriefCard.helpers({
   //  Edit handler
   //
   onEdit() {
+    /*
     let identification = this.name;
-    return function(data, t) {
+      return function(data, t) {
       Modal.show('projectsEdit', {
         projectId: data._id,
         onSuccess() {
           t.state.set('updated');
         }
+      });
+    };*/
+    return function(data, t) {
+      FlowRouter.go('projects.edit', {
+        id: data._id
       });
     };
   }

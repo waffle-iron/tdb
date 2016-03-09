@@ -19,7 +19,7 @@ Template.attachmentsDashboard.helpers({
       height: 400,
       crop: 'fill',
       type: 'fetch'
-    }); 
+    });
     return img[0].src;
   }
 
@@ -34,4 +34,8 @@ Template.attachmentsDashboard.events({
       });
     });
   }
+});
+
+Template.attachmentsDashboard.onCreated(function() {
+  SearchSources.globalSearch.clearResults();
 });

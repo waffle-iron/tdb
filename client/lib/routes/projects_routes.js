@@ -34,9 +34,6 @@ projectsRoutes.route('/:id/entry', {
     });
     return project && project.name;
   },
-  subscriptions(params) {
-    this.register('project', subs.subscribe('project', params.id));
-  },
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'projectsEntry'
@@ -54,7 +51,4 @@ projectsRoutes.route('/:id/edit', {
       main: 'projectsEdit'
     });
   },
-  subscriptions(params) {
-    this.register('project', subs.subscribe('project', params.id));
-  }
 });
