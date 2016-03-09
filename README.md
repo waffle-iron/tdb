@@ -1,9 +1,9 @@
 # TechDB  [![Code Climate](https://codeclimate.com/github/envisioning/techdb/badges/gpa.svg)](https://codeclimate.com/github/envisioning/techdb)
 
-| CI Pipeline         | Status                |
+| Branch       | Status                |
 |------------------------------|---------------------------------------------------------------------|
-| Staging            | [![Codeship Status for envisioning/tdb](https://codeship.com/projects/878e70d0-c82e-0133-dc26-1aeb7925fee8/status?branch=staging)](https://codeship.com/projects/139232)|
-| Production         | [![Codeship Status for envisioning/tdb](https://codeship.com/projects/878e70d0-c82e-0133-dc26-1aeb7925fee8/status?branch=master)](https://codeship.com/projects/139232)|
+| master            | [![Codeship Status for envisioning/tdb](https://codeship.com/projects/878e70d0-c82e-0133-dc26-1aeb7925fee8/status?branch=staging)](https://codeship.com/projects/139232)|
+| staging         | [![Codeship Status for envisioning/tdb](https://codeship.com/projects/878e70d0-c82e-0133-dc26-1aeb7925fee8/status?branch=master)](https://codeship.com/projects/139232)|
 
 
 A fresh start. Reboot on 11.23.2015.
