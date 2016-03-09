@@ -6,7 +6,13 @@ Meteor.publishComposite('tabularProjectsList', function(tableName, ids, fields) 
   return {
     find() {
       this.unblock();
-      return Projects.find({_id: {$in: ids}}, {fields: fields});
+      return Projects.find({
+        _id: {
+          $in: ids
+        }
+      }, {
+        fields: fields
+      });
     },
   };
 });
@@ -24,3 +30,12 @@ Meteor.publishComposite('projects.single', function(projectId) {
     }
   };
 });
+
+Meteor.publish('projects.quickList', function() {
+  return Projects.find({}, {
+    fields: {
+      name: 1
+    }
+  });
+});
+

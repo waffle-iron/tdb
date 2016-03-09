@@ -31,3 +31,11 @@ Meteor.publishComposite('technologies.single', function(techId) {
     }
   };
 });
+
+Meteor.publish('technologies.quickList', function() {
+  return Technologies.find({}, {
+    fields: {
+      name: 1
+    }
+  });
+});

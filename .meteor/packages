@@ -78,10 +78,12 @@ ecmascript
 es5-shim
 sacha:spin
 yogiben:autoform-tags
-mpowaga:autoform-summernote
+q42:autoform-markdown
+fourseven:scss
 cfs:s3
-cfs:standard-packages
 cfs:gridfs
+cfs:ui
+cfs:standard-packages
 cfs:ejson-file
 kevohagan:sweetalert
 insecure
@@ -98,3 +100,7 @@ meteorhacks:search-source
 dferber:reactive-var-toggle
 pauldowman:dotenv
 meteorhacks:kadira
+tdb:ui
+yogiben:autoform-file
+comerc:bs-typeahead
+comerc:autoform-typeahead

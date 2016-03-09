@@ -18,7 +18,8 @@ const DEFAULT_DESCRIPTION_FUZZINESS = 1;
  *  @data -> results
  *  @metadata -> total, took
  */
-SearchSource.defineSource('globalSearch', function(searchText, options = {}) {
+SearchSource.defineSource('globalSearch', function(searchText, options) {
+  options = options || {};
   let nameBoost = options.nameBoost || DEFAULT_NAME_BOOST;
   let nameFuzziness = options.nameFuzziness || DEFAULT_NAME_FUZZINESS;
   let descriptionBoost = options.descriptionBoost || DEFAULT_DESCRIPTION_BOOST;

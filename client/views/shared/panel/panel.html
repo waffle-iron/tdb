@@ -19,11 +19,12 @@
   </div>
 </template>
 <template name="panelTools">
-  <div class="ibox-tools {{class}}">
-    {{> UI.contentBlock}}
-  </div>
+  {{#if isInRole 'admin,editor'}}
+    <div class="ibox-tools {{class}}">
+      {{> UI.contentBlock}}
+    </div>
+  {{/if}}
 </template>
-
 <template name="panel">
   {{#panelContainer}}
     {{#panelTitle}}
@@ -34,7 +35,6 @@
       {{title}}
       </h3>
     {{/panelTitle}}
-
     {{#panelContent}}
       {{> UI.contentBlock}}
     {{/panelContent}}

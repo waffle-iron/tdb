@@ -1,4 +1,8 @@
 SearchSources = {};
+SearchSource.prototype.clearResults = function() {
+  this.store.remove({});
+};
+
 const SEARCH_THROTTLE = 200;
 const SEARCH_OPTIONS = {
   keepHistory: false,
@@ -64,7 +68,11 @@ Template.searchSource.onCreated(function() {
     this.makeSearch();
   });
 
-  Meteor.setTimeout(() => {
+  this.searchAgainTimeout = Meteor.setTimeout(() => {
     this.makeSearch();
   }, 1000);
+});
+
+Template.searchSource.onDestroyed(function() {
+  clearTimeout(this.searchAgainTimeout);
 });
