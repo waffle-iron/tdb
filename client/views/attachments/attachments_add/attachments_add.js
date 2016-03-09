@@ -3,11 +3,17 @@ onAddAttachmentSuccess = function(doc) {
 
   toastr.success('Attachment created successfully: ' + doc.name, 'Success');
 
-  if (currentRoute === 'organizations.add') {
-  	Modal.hide();
-  }
+  let modalRoutes = [
+  	'organizations.add',
+  	'organizations.edit',
+  	'technologies.add',
+  	'technologies.edit',
+  ]
 
-  if (currentRoute === 'attachments.add') {
+  if (_.contains(modalRoutes, currentRoute)) {
+    Modal.hide();
+  } else {
     FlowRouter.go('attachments.dashboard');
   }
-}
+
+};

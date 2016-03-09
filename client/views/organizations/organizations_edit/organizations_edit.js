@@ -16,6 +16,13 @@ Template.organizationsEdit.onCreated(function() {
   this.subscribe('attachments.quickList');
 });
 
+Template.organizationsEdit.events({
+  'click .btn-create-attachment': function(e) {
+    e.preventDefault();
+    Modal.show('attachmentsAddModal');
+  }
+});
+
 Template.organizationsEdit.helpers({
   organization() {
     return Organizations.findOne(FlowRouter.getParam('id'));
