@@ -18,13 +18,23 @@
       {{> afQuickField name="status" label-class="col-sm-2" input-col-class="col-sm-9"}} 
       {{> afQuickField name="evId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
       {{> afQuickField name="url" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-      <h2>Technologies Stash</h2>
-      <hr />      
-      {{> afQuickField name="technologiesStash" label-class="col-sm-2" input-col-class="col-sm-9"}} 
 
       <h2>Relations</h2>
-      <hr />      
+      <hr />
+  
+      {{> afQuickField name="technologiesStash" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+
       {{> afQuickField name="organizationsId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+
+      <div class="form-group">
+        <label for="" class="col-sm-2 control-label">Related Attachments</label>
+        <div class="col-sm-9">
+          {{> afFieldInput name="attachmentsId" placeholder="Search attachments by title"}}           
+        </div>
+        <div class="col-sm-1">
+          <button class="btn btn-large btn-primary btn-create-attachment"><span class="fa fa-plus"></span></button>
+        </div>
+      </div>
 
       {{> submit texto="Edit Project" buttonClass="col-sm-9" offsetClass="col-sm-offset-2"}}
     {{/autoForm}}
