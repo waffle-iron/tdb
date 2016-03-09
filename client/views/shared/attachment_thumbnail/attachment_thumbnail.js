@@ -1,9 +1,7 @@
 Template.attachmentThumbnail.helpers({
-  classIconName() {
-    return Template.instance().classIconName();
-  },
   isImage() {
-    return Template.instance().data.attachment.file.type.indexOf('image') === 0;
+    let attachment = Template.instance().data.attachment;
+    return attachment.file && attachment.file.type.indexOf('image') === 0;
   },
   isFromWeb() {
     return Template.instance().data.attachment.from === 'web';
@@ -19,12 +17,9 @@ Template.attachmentThumbnail.helpers({
     if (className === 'preview') return { width: 400, height: 400 };
     if (className === 'card') return { width: 600, height: 400 };
     return {};
-  }
-});
-
-Template.attachmentThumbnail.onCreated(function() {
-  this.classIconName = () => {
-    switch (this.data.attachment.file.type) {
+  },
+  classIconName() {
+    switch (this.attachment.file.type) {
       case 'application/pdf':
         return 'fa-file-pdf-o';
       case 'application/zip':
@@ -38,5 +33,5 @@ Template.attachmentThumbnail.onCreated(function() {
       default:
         return 'fa-file-o';
     }
-  };
+  }
 });

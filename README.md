@@ -5,6 +5,8 @@ A fresh start. Reboot on 11.23.2015.
 
 ## Installation
 
+### Environment Dependencies
+
 Create a `.env` file on the project root with the following variables. To add the environment variables we are using the [meteor-dotenv](https://github.com/okgrow/meteor-dotenv) package.
 
 | Environment Variable         | Description                                                                        |
@@ -19,8 +21,23 @@ Create a `.env` file on the project root with the following variables. To add th
 | MAIL_URL                     | SMTP for sending emails - https://mailgun.com                                      |
 | ELASTICSEARCH_URL            | ElasticSearch server - http://searchly.com                                         |
 | KADIRA_APP_ID                | Performance monitoring - https://kadira.io                                         |
-| KADIRA_APP_SECRET            | Performance monitoring -https://kadira.io                                          |
+| KADIRA_APP_SECRET            | Performance monitoring - https://kadira.io                                          |
 
+### Local Packages Dependencies
+
+We use some some packages that are not avaliable on atmosphere, so we use [mgp](https://github.com/DispatchMe/mgp) to fetch this dependencies.
+
+First install the `mgp` with npm.
+
+```bash
+> npm install -g mgp
+```
+
+Then go to the project root and run:
+
+```bash
+> mgp
+```
 
 ## Reusable Components
 - [recentUpdates](https://github.com/envisioning/techdb/tree/master/client/views/shared/recent_updates)

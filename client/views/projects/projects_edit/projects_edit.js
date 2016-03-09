@@ -2,11 +2,6 @@ AutoForm.hooks({
   updateProjectsForm: {
     onSuccess() {
       toastr.success('Project updated successfully', 'Success');
-      if (this.template.data && typeof this.template.data.onSuccess === 'function') {
-        this.template.data.onSuccess();
-      }
-      this.template.parent().data.onSuccess();
-      Modal.hide();
     },
     onError(formType, error) {
       toastr.error(error.toString(), 'Error');
@@ -15,11 +10,13 @@ AutoForm.hooks({
 });
 
 Template.projectsEdit.onCreated(function() {
-  this.subscribe('projects.single', this.data.projectId);
+  this.subscribe('projects.single', FlowRouter.getParam('id'));
+  this.subscribe('technologies.quickList');
+  this.subscribe('organizations.quickList');
 });
 
 Template.projectsEdit.helpers({
-  project() {
-    return Projects.findOne(Template.instance().data.projectId);
+  organization() {
+    return Projects.findOne(FlowRouter.getParam('id'));
   }
 });
