@@ -8,6 +8,8 @@ onAddAttachmentSuccess = function(doc) {
   	'organizations.edit',
   	'technologies.add',
   	'technologies.edit',
+  	'projects.add',
+  	'projects.edit',
   ]
 
   if (_.contains(modalRoutes, currentRoute)) {
