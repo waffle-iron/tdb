@@ -31,19 +31,23 @@ Template.orgBriefCard.helpers({
   //  Edit handler
   //
   onEdit() {
-    let type = this._type;
-    let changedBriefCards = Template.instance().changedBriefCards;
+    // let type = this._type;
+    // let changedBriefCards = Template.instance().changedBriefCards;
 
-    identification = this.name;
+    // identification = this.name;
+    // return function(data, t) {
+    //   Modal.show('orgEdit', {
+    //     orgId: data._id,
+    //     onSuccess: function() {
+    //       t.state.set('updated');
+    //       //  changedBriefCards.push(t);
+    //     }
+    //   });
+    // };
     return function(data, t) {
-      Modal.show('orgEdit', {
-        orgId: data._id,
-        onSuccess: function() {
-          t.state.set('updated');
-          //  changedBriefCards.push(t);
-        }
+      FlowRouter.go('organizations.edit', {
+        id: data._id
       });
     };
   }
 });
-
