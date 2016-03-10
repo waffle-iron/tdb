@@ -1,0 +1,29 @@
+<template name="technologiesImport">
+	<input type="file" name="csv">
+	<button id="import">Import Cards</button>
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<td>Card ID</td>
+				<td>Card Name</td>
+				<td>Card URL</td>
+				<td>Card Description</td>
+				<td>Attachment Links</td>
+			</tr>
+		</thead>
+		<tbody>
+		{{#each parsedResults}}
+			<tr>
+				<td>{{id}}</td>
+				<td>{{name}}</td>
+				<td>{{url}}</td>
+				<td>{{description}}</td>
+				<td>{{attachmentLinks}}</td>
+			</tr>
+		{{/each}}
+		</tbody>
+	</table>
+
+
+</template> 

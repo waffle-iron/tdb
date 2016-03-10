@@ -1,5 +1,27 @@
 Meteor.methods({
   // Need to be on the server to avoid CORS.
+  uploadImageFromUrl: function(url) {
+    check(url, String);
+
+    function upload(_url, callback) {
+      console.info('Starting to download file from remote url:', _url);
+
+      try {
+        Images.insert(_url, function(error, fileObj) {
+          if (error) return callback(error);
+
+          return callback(null, fileObj._id);
+        });
+      } catch (e) {
+        return callback(e);
+      }
+    }
+
+    // Async to get file metadata.
+    let uploadImageFromUrlSync = Async.wrap(upload);
+    return uploadImageFromUrlSync(url);
+  },
+  // Need to be on the server to avoid CORS.
   uploadFileFromUrl: function(url) {
     check(url, String);
 
