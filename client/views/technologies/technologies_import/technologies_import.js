@@ -9,39 +9,19 @@ Template.technologiesImport.events({
   },
 
   'click #import': function(e, t) {
-
-    function asyncLoop(array, func, callback) {
-      for (let i = 0; i < array.length; i++) {
-        func(i);
-        if (i === array.length - 1) {
-          callback();
-        }
-      }
-    }
-
     let parsedResults = t.parsedResults.get();
     parsedResults.forEach((item) => {
       let attachmentLinks = item.attachmentLinks.split(',').map((link) => link.trim());
-
-      let images = [];
-      asyncLoop(attachmentLinks, function(i) {
-        Meteor.call('uploadImageFromUrl', attachmentLinks[i], (error, fileId) => {
-          images.push({
-            src: fileId,
-            description: 'No Description',
-            showcased: false
-          });
-        });
-      }, function() {
-        images[0].showcased = true;
-        Meteor.call('Technologies.methods.add', {
-          name: item.name,
-          images: images
-        });
-      });
+      Meteor.call('uploadImagesFromUrls', attachmentLinks, function(err, images) {
+      	console.log(images);
+        // Meteor.call('Technologies.methods.add', {
+        //   name: item.name,
+        //   images: images
+        // });
+      })
     });
   }
-})
+});
 
 Template.technologiesImport.helpers({
   parsedResults() {

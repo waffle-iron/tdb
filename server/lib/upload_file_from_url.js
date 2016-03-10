@@ -1,4 +1,25 @@
 Meteor.methods({
+
+  uploadImagesFromUrls: function(urls){
+    check(urls, [String])
+    function uploadImages(urls, callback) {
+      let images = [];
+      urls.forEach((link) => {
+        Meteor.call('uploadImageFromUrl', link, (error, fileId) => {
+          images.push({
+            src: fileId,
+            description: 'No Description',
+            showcased: false
+          });
+        });
+      });
+      callback(null, images);
+    }
+
+    let uploadImagesSync = Async.wrap(uploadImages);
+    return uploadImagesSync;
+  },
+
   // Need to be on the server to avoid CORS.
   uploadImageFromUrl: function(url) {
     check(url, String);
