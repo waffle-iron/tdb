@@ -52,3 +52,14 @@ technologiesRoutes.route('/:id/edit', {
     });
   }
 });
+
+technologiesRoutes.route('/import', {
+  name: 'technologies.import',
+  parent: 'technologies.dashboard',
+  title: 'Import from CSV',
+  action() {
+    BlazeLayout.render('defaultLayout', {
+      main: 'technologiesImport'
+    });
+  }
+});
