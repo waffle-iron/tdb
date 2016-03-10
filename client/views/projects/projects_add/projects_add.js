@@ -14,4 +14,5 @@ AutoForm.hooks({
 Template.projectsAdd.onCreated(function() {
   this.subscribe('organizations.quickList');
   this.subscribe('technologies.quickList');
+  this.subscribe('attachments.quickList');
 })

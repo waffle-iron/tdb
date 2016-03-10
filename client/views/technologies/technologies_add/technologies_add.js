@@ -10,9 +10,7 @@ AutoForm.hooks({
   }
 });
 
-
 Template.technologiesAdd.onCreated(function() {
   this.subscribe('projects.quickList');
   this.subscribe('organizations.quickList');
-  this.subscribe('attachments.quickList');
 })

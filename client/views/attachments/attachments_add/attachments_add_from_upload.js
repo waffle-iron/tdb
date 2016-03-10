@@ -5,8 +5,7 @@ AutoForm.hooks({
       return doc;
     },
     onSuccess() {
-      toastr.success('Attachment created successfully: ' + this.insertDoc.name, 'Success');
-      FlowRouter.go('attachments.dashboard');
+      return onAddAttachmentSuccess(this.insertDoc);
     },
     onError(formType, error) {
       toastr.error(error.toString(), 'Error');

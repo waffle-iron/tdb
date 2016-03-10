@@ -18,13 +18,16 @@
       {{> afQuickField name="status" label-class="col-sm-2" input-col-class="col-sm-9"}} 
       {{> afQuickField name="evId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
       {{> afQuickField name="url" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-      <h2>Technologies Stash</h2>
-      <hr />      
-      {{> afQuickField name="technologiesStash" label-class="col-sm-2" input-col-class="col-sm-9"}} 
 
       <h2>Relations</h2>
-      <hr />      
+      <hr />
+  
+      {{> afQuickField name="technologiesStash" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+
       {{> afQuickField name="organizationsId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+
+      
+      {{> attachmentsFieldInput name="attachmentsId" }}
 
       {{> submit texto="Edit Project" buttonClass="col-sm-9" offsetClass="col-sm-offset-2"}}
     {{/autoForm}}

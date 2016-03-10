@@ -22,7 +22,7 @@ Template.technologiesActions.helpers({
 Template.technologiesActions.events({
   'click #btn-edit': function(e) {
     e.stopPropagation();
-    FlowRouter.go('technologiesEdit', {id: this._id});
+    FlowRouter.go('technologies.edit', {id: this._id});
   },
   'click #btn-remove': function(e) {
     e.stopPropagation();

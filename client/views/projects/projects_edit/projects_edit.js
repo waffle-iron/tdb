@@ -11,6 +11,7 @@ AutoForm.hooks({
 
 Template.projectsEdit.onCreated(function() {
   this.subscribe('projects.single', FlowRouter.getParam('id'));
+  this.subscribe('attachments.quickList');
   this.subscribe('technologies.quickList');
   this.subscribe('organizations.quickList');
 });
