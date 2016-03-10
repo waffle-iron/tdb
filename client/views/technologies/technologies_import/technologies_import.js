@@ -10,36 +10,13 @@ Template.technologiesImport.events({
 
   'click #import': function(e, t) {
 
-    function asyncLoop(iterations, func, callback) {
-      var index = 0;
-      var done = false;
-      var loop = {
-        next: function() {
-          if (done) {
-            return;
-          }
-
-          if (index < iterations) {
-            index++;
-            func(loop);
-
-          } else {
-            done = true;
-            callback();
-          }
-        },
-
-        iteration: function() {
-          return index - 1;
-        },
-
-        break: function() {
-          done = true;
+    function asyncLoop(array, func, callback) {
+      for (let i = 0; i < array.length; i++) {
+        func(i);
+        if (i === array.length - 1) {
           callback();
         }
-      };
-      loop.next();
-      return loop;
+      }
     }
 
     let parsedResults = t.parsedResults.get();
@@ -47,17 +24,16 @@ Template.technologiesImport.events({
       let attachmentLinks = item.attachmentLinks.split(',').map((link) => link.trim());
 
       let images = [];
-      asyncLoop(attachmentLinks.length, function(loop) {
-        Meteor.call('uploadImageFromUrl', attachmentLinks[loop.iteration()], (error, fileId) => {
+      asyncLoop(attachmentLinks, function(i) {
+        Meteor.call('uploadImageFromUrl', attachmentLinks[i], (error, fileId) => {
           images.push({
             src: fileId,
             description: 'No Description',
             showcased: false
           });
-
-          loop.next();
         });
-
+      }, function() {
+        images[0].showcased = true;
         Meteor.call('Technologies.methods.add', {
           name: item.name,
           images: images
