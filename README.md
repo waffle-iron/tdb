@@ -27,7 +27,8 @@ Create a `.env` file on the project root with the following variables. To add th
 | MAIL_URL                     | SMTP for sending emails - https://mailgun.com                                      |
 | ELASTICSEARCH_URL            | ElasticSearch server - http://searchly.com                                         |
 | KADIRA_APP_ID                | Performance monitoring - https://kadira.io                                         |
-| KADIRA_APP_SECRET            | Performance monitoring - https://kadira.io                                          |
+| KADIRA_APP_SECRET            | Performance monitoring - https://kadira.io                                         |
+| MONGO_URL                    | MongoDB connection string                                                          |
 
 ### Local Packages Dependencies
 
