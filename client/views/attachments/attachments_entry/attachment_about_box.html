@@ -35,6 +35,7 @@
             <div class="label label-default">{{from}}</div>
           </td>
         </tr>
+        <br>
         {{#if isFromWeb}}
           <tr>
             <td><b>Web</b></td>
@@ -47,10 +48,12 @@
             <a href="https://s3.amazonaws.com/envisioning/tdb/files/{{file._id}}" download>Download</a>
           </td>
         {{/if}}
+        <br>
         <tr>
           <td><b>Upload Date</b></td>
           <td>{{moFormat createdAt 'DD/MM/YYYY'}}</td>
         </tr>
+        <br>
         <tr>
           <td><b>Created By</b></td>
           <td> <a href="{{pathFor 'users.entry' id=user._id}}">{{> safeImg url=(getUserThumb (s3pathImages user.profile.imageId)) class="img-circle m-t-xs link"}} </a></td>
@@ -61,16 +64,16 @@
       <div class="related-links">
         <h5><i class="{{Icons.collections.projects}}"></i> Related Projects </h5>
         {{#each relatedProjects}}2
-          <a href="{{pathFor 'projects.entry' id=_id}}">{{name}}</a>
+          <a href="{{pathFor 'projects.entry' id=_id}}">{{name}} &nbsp;</a>
           {{else}}
             No related projects
         {{/each}}
       </div>
       <hr />
       <div class="related-links">
-        <h5><i class="{{Icons.collections.technologies}}"></i> Related </h5>
+        <h5><i class="{{Icons.collections.technologies}}"></i> Related Technologies</h5>
         {{#each relatedTechnologies}}
-          <a href="{{pathFor 'technologies.entry' id=_id}}">{{name}}</a>
+          <a href="{{pathFor 'technologies.entry' id=_id}}">{{name}} &nbsp;</a>
           {{else}}
             No related technologies
         {{/each}}
