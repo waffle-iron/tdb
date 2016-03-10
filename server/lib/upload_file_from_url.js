@@ -13,6 +13,7 @@ Meteor.methods({
           });
         });
       });
+      // This guy don't wait the loop ends...
       callback(null, images);
     }
 
