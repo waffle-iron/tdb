@@ -9,8 +9,16 @@ AutoForm.hooks({
   }
 });
 
+Template.projectsEdit.events({
+  'click .btn-create-attachment': function(e){
+    e.preventDefault();
+    Modal.show('attachmentsAddModal');
+  }
+});
+
 Template.projectsEdit.onCreated(function() {
   this.subscribe('projects.single', FlowRouter.getParam('id'));
+  this.subscribe('attachments.quickList');
   this.subscribe('technologies.quickList');
   this.subscribe('organizations.quickList');
 });

@@ -10,6 +10,12 @@ AutoForm.hooks({
   }
 });
 
+Template.technologiesAdd.events({
+  'click .btn-create-attachment': function(e){
+    e.preventDefault();
+    Modal.show('attachmentsAddModal');
+  }
+});
 
 Template.technologiesAdd.onCreated(function() {
   this.subscribe('projects.quickList');
