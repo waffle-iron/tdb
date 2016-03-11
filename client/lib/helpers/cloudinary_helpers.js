@@ -4,7 +4,8 @@ Cloudinary.helpers = {
       let baseOptions = {
         width: 600,
         height: 400,
-        crop: 'fill',
+        crop: 'pad',
+        background: 'white',
         gravity: 'center'
       };
       let finalOptions = {

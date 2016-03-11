@@ -2,11 +2,11 @@
  {{#briefCard 
   _id=_id
   title=name
-  img=(getCloudinaryCard logo)
+  img=(getCloudinaryCard image)
   collection='technologies' 
   link=getLink
   onDelete=onDelete
   onEdit=onEdit}}
-  {{> safeImg url=(getCloudinaryCard (s3pathImages logo)) class='img-responsive margin-auto'}}
+  {{> safeImg url=(getCloudinaryCard (s3pathImages image)) class='img-responsive margin-auto'}}
 {{/briefCard}}
 </template>
