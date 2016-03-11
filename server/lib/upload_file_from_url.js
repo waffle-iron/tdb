@@ -1,5 +1,5 @@
 Meteor.methods({
-
+  /*
   uploadImagesFromUrls: function(urls){
     check(urls, [String])
     function uploadImages(urls, callback) {
@@ -20,9 +20,11 @@ Meteor.methods({
     let uploadImagesSync = Async.wrap(uploadImages);
     return uploadImagesSync;
   },
-
+  */
+  
   // Need to be on the server to avoid CORS.
   uploadImageFromUrl: function(url) {
+    this.unblock();
     check(url, String);
 
     function upload(_url, callback) {
