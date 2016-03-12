@@ -6,6 +6,8 @@ let projectsRoutes = FlowRouter.group({
 projectsRoutes.route('/', {
   name: 'projects.dashboard',
   title: 'Projects Dashboard',
+  btnText: 'Create new Project',
+  btnLink: 'projects.add',
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'projectsDashboard'

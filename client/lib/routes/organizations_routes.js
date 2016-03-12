@@ -6,6 +6,8 @@ let organizationsRoutes = FlowRouter.group({
 organizationsRoutes.route('/', {
   name: 'organizations.dashboard',
   title: 'Organizations Dashboard',
+  btnText: 'Create new Organization',
+  btnLink: 'organizations.add',
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'organizationsDashboard'

@@ -5,6 +5,8 @@ let usersRoutes = FlowRouter.group({
 usersRoutes.route('/', {
   name: 'users.dashboard',
   title: 'Users Dashboard',
+  btnLink: 'users.invite',
+  btnText: 'Invite new User',
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'usersDashboard'

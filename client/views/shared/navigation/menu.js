@@ -11,6 +11,7 @@ Template.menu.helpers({
         linkTo: 'mainDashboard',
         icon: 'fa fa-dashboard',
         roles: ADMIN_EDITOR_VIEWER,
+
       },
       {
         regex: '^search',
@@ -22,93 +23,40 @@ Template.menu.helpers({
       {
         regex: '^users',
         name: 'Users',
+        linkTo: 'users.dashboard',
         icon: 'fa fa-users',
         roles: ADMIN_EDITOR_VIEWER,
-        submenu: [
-          {
-            name: 'Dashboard',
-            linkTo: 'users.dashboard',
-            roles: ADMIN_EDITOR_VIEWER
-          },
-          {
-            roles: ADMIN,
-            linkTo: 'users.invite',
-            name: 'Invite'
-          }
-        ]
       },
       {
         regex: '^technologies',
         name: 'Technologies',
+        linkTo: 'technologies.dashboard',
         icon: Icons.collections.technologies,
         roles: ADMIN_EDITOR_VIEWER,
-        submenu: [
-          {
-            roles: ADMIN_EDITOR_VIEWER,
-            linkTo: 'technologies.dashboard',
-            name: 'Dashboard'
-          },
-          {
-            roles: ADMIN_EDITOR,
-            linkTo: 'technologies.add',
-            name: 'New'
-          }
-        ]
       },
       {
         regex: '^projects',
         name: 'Projects',
+        linkTo: 'projects.dashboard',
         icon: Icons.collections.projects,
         roles: ADMIN_EDITOR_VIEWER,
-        submenu: [
-          {
-            roles: ADMIN_EDITOR_VIEWER,
-            linkTo: 'projects.dashboard',
-            name: 'Dashboard'
-          },
-          {
-            roles: ADMIN,
-            linkTo: 'projects.add',
-            name: 'New'
-          }
-        ]
       },
 
       {
         regex: '^organizations',
         name: 'Organizations',
+        linkTo: 'organizations.dashboard',
         icon: Icons.collections.organizations,
         roles: ADMIN_EDITOR_VIEWER,
-        submenu: [
-          {
-            roles: ADMIN_EDITOR_VIEWER,
-            linkTo: 'organizations.dashboard',
-            name: 'Dashboard',
-          },
-          {
-            roles: ADMIN_EDITOR,
-            linkTo: 'organizations.add',
-            name: 'New'
-          }
-        ]
+        
       },
       {
         regex: '^attachments',
         name: 'Attachments',
+        linkTo: 'attachments.dashboard',
         icon: Icons.collections.attachments,
         roles: ADMIN_EDITOR_VIEWER,
-        submenu: [
-          {
-            roles: ADMIN_EDITOR_VIEWER,
-            linkTo: 'attachments.dashboard',
-            name: 'Dashboard',
-          },
-          {
-            roles: ADMIN_EDITOR,
-            linkTo: 'attachments.add',
-            name: 'New'
-          }
-        ]
+        
       }
     ];
   }

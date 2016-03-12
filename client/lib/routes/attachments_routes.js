@@ -6,6 +6,8 @@ let attachmentsRoutes = FlowRouter.group({
 attachmentsRoutes.route('/', {
   name: 'attachments.dashboard',
   title: 'Attachments Dashboard',
+  btnText: 'Create new Attachment',
+  btnLink: 'attachments.add',
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'attachmentsDashboard'
