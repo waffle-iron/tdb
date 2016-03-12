@@ -5,7 +5,7 @@ let technologiesRoutes = FlowRouter.group({
 
 technologiesRoutes.route('/', {
   name: 'technologies.dashboard',
-  title: 'Technologies Dashboard',
+  title: 'Technologies',
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'technologiesDashboard'

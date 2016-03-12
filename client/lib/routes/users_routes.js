@@ -4,7 +4,7 @@ let usersRoutes = FlowRouter.group({
 
 usersRoutes.route('/', {
   name: 'users.dashboard',
-  title: 'Users Dashboard',
+  title: 'Users',
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'usersDashboard'

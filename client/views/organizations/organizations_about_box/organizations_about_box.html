@@ -12,7 +12,9 @@
     {{/panelTitle}}
     {{#panelContent}}
       {{#with logoImage}}
-        <img src="{{c.url (cloudinaryId "images") width='500' height='500' crop='fill'}}" class="img-responsive change-logo-image" alt="organization-img">
+          {{> safeImg 
+            url=(c.url (cloudinaryId 'images') width='500' height='500' crop='fill') class="img-responsive change-logo-image" 
+            width='500' height='500'}}
         {{else}}
           <img src="https://placehold.it/500x500" class="img-responsive change-logo-image" alt="organization-img">
       {{/with}}

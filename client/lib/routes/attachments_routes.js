@@ -5,7 +5,7 @@ let attachmentsRoutes = FlowRouter.group({
 
 attachmentsRoutes.route('/', {
   name: 'attachments.dashboard',
-  title: 'Attachments Dashboard',
+  title: 'Attachments',
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'attachmentsDashboard'

@@ -7,6 +7,8 @@
   link=getLink
   onDelete=onDelete
   onEdit=onEdit}}
+  <a href="{{pathFor 'technologies.entry' id=_id}}">
   {{> safeImg url=(getCloudinaryCard (s3pathImages image)) class='img-responsive margin-auto'}}
+  </a>
 {{/briefCard}}
 </template>

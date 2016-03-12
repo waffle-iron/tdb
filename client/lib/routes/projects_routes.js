@@ -5,7 +5,7 @@ let projectsRoutes = FlowRouter.group({
 
 projectsRoutes.route('/', {
   name: 'projects.dashboard',
-  title: 'Projects Dashboard',
+  title: 'Projects',
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'projectsDashboard'
