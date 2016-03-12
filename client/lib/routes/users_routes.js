@@ -4,16 +4,12 @@ let usersRoutes = FlowRouter.group({
 
 usersRoutes.route('/', {
   name: 'users.dashboard',
-<<<<<<< HEAD
   title: 'Users',
-=======
-  title: 'Users Dashboard',
-  btnLink: 'users.invite',
-  btnText: 'Invite new User',
->>>>>>> b3c09bd1c8b4151ff0598564eb73acc9a8085844
   action() {
     BlazeLayout.render('defaultLayout', {
-      main: 'usersDashboard'
+      main: 'usersDashboard',
+      btnLink: 'users.invite',
+      btnText: 'Invite new ssUser',
     });
   },
 });

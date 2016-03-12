@@ -3,6 +3,7 @@ Template.pageHeading.helpers({
   // Need refactor.
   // Its 2:48am now. Zzzzzzzz...
 
+  /*
   title() {
     var title = FlowRouter.current().route.options.title;
     FlowRouter.watchPathChange();
@@ -21,5 +22,5 @@ Template.pageHeading.helpers({
     FlowRouter.watchPathChange();
     return (typeof btnLink === 'function') ? btnLink() : btnLink;
   }
-
+  */
 });

@@ -5,12 +5,12 @@ let attachmentsRoutes = FlowRouter.group({
 
 attachmentsRoutes.route('/', {
   name: 'attachments.dashboard',
-  title: 'Attachments Dashboard',
-  btnText: 'Create new Attachment',
-  btnLink: 'attachments.add',
+  title: 'Attachments',
   action() {
     BlazeLayout.render('defaultLayout', {
-      main: 'attachmentsDashboard'
+      main: 'attachmentsDashboard',
+      btnText: 'Create new Attachment',
+      btnLink: 'attachments.add',
     });
   }
 });

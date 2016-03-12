@@ -5,12 +5,12 @@ let technologiesRoutes = FlowRouter.group({
 
 technologiesRoutes.route('/', {
   name: 'technologies.dashboard',
-  title: 'Technologies Dashboard',
-  btnText: 'Create new Technology',
-  btnLink: 'technologies.add',
+  title: 'Technologies',
   action() {
     BlazeLayout.render('defaultLayout', {
-      main: 'technologiesDashboard'
+      main: 'technologiesDashboard',
+      btnText: 'Create new Technology',
+      btnLink: 'technologies.add',
     });
   }
 });
