@@ -27,7 +27,7 @@ Template.attachmentsAddFromUpload.helpers({
     let t = Template.instance();
     return function(fileObj) {
       t.fileObj.set(fileObj);
-      t.attachment.set(undefined);
+      t.attachment.set(false);
       t.isUploading.set(true);
     };
   },
@@ -46,6 +46,16 @@ Template.attachmentsAddFromUpload.helpers({
         }
       });
     };
+  },
+  onUploadCancel() {
+    let t = Template.instance();
+    return function(){
+      t.fileObj.set(false)
+      t.attachment.set(false)
+      t.isUploading.set(false);
+      $('#insertAttachmentFromUploadForm')[0].reset();
+      toastr.success('Success', 'Upload was canceled.');
+    }
   }
 });
 

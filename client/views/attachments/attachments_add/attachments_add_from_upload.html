@@ -1,7 +1,8 @@
 <template name="attachmentsAddFromUpload">
   <div class="row">
     <div class="col-xs-8">
-      {{> smartInputFile onUploadBegin=onUploadBegin onUploadSuccess=onUploadSuccess}}
+      {{> smartInputFile onUploadBegin=onUploadBegin onUploadSuccess=onUploadSuccess uploadOnFileSelected="true" onUploadCancel=onUploadCancel}}
+      
       {{#autoForm id="insertAttachmentFromUploadForm" 
         doc=attachmentFromUpload 
         collection="Attachments" 
