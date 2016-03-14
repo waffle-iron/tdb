@@ -6,9 +6,11 @@
     link=(pathFor 'attachments.entry' id=_id) 
     onDelete=onDelete 
     onEdit=onEdit}}
-      {{#if useBackground}}
-        <img src="img/rsz_attachment-background.jpg" class="img-responsive" alt="">
-      {{/if}}
-      {{> attachmentThumbnail attachment=this class="card" width=600 height=400 crop='fill'}}
+      <a href="{{pathFor 'attachments.entry' id=_id}}">
+        {{#if useBackground}}
+          <img src="img/rsz_attachment-background.jpg" class="img-responsive" alt="">
+        {{/if}}
+        {{> attachmentThumbnail attachment=this class="card" width=600 height=400 crop='fill'}}
+      </a>
   {{/briefCard}}
 </template>

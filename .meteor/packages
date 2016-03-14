@@ -104,3 +104,5 @@ tdb:ui
 yogiben:autoform-file
 comerc:bs-typeahead
 comerc:autoform-typeahead
+harrison:papa-parse
+useful:mongo-counter

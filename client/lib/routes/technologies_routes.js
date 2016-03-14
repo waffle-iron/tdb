@@ -5,10 +5,12 @@ let technologiesRoutes = FlowRouter.group({
 
 technologiesRoutes.route('/', {
   name: 'technologies.dashboard',
-  title: 'Technologies Dashboard',
+  title: 'Technologies',
   action() {
     BlazeLayout.render('defaultLayout', {
-      main: 'technologiesDashboard'
+      main: 'technologiesDashboard',
+      btnText: 'Create new Technology',
+      btnLink: 'technologies.add',
     });
   }
 });
@@ -49,6 +51,17 @@ technologiesRoutes.route('/:id/edit', {
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'technologiesEdit'
+    });
+  }
+});
+
+technologiesRoutes.route('/import', {
+  name: 'technologies.import',
+  parent: 'technologies.dashboard',
+  title: 'Import from CSV',
+  action() {
+    BlazeLayout.render('defaultLayout', {
+      main: 'technologiesImport'
     });
   }
 });

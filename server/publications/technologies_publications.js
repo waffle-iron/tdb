@@ -28,7 +28,20 @@ Meteor.publishComposite('technologies.single', function(techId) {
       return Technologies.find({
         _id: techId
       });
-    }
+    }, children: [
+      {
+        find(tech) {
+          if (tech.images) {
+            let imagesId = _.pluck(tech.images, 'src') || [];
+            return Images.find({
+              _id: {
+                $in: imagesId
+              }
+            });
+          }
+        }
+      }
+    ]
   };
 });
 

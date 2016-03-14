@@ -6,6 +6,8 @@
   link=(pathFor 'projects.entry' id=_id)
   onDelete=onDelete
   onEdit=onEdit}}
-  {{> safeImg url=(getCloudinaryCard (s3pathImages logo)) class='img-responsive margin-auto'}}
+  <a href="{{pathFor 'projects.entry' id=_id}}">
+    {{> safeImg url=(getCloudinaryCard (s3pathImages logo)) class='img-responsive margin-auto'}}
+  </a>
 {{/briefCard}}
 </template>

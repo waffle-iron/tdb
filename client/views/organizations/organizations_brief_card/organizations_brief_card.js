@@ -51,3 +51,11 @@ Template.orgBriefCard.helpers({
     };
   }
 });
+
+Template.orgBriefCard.events({
+  'click .link': function() {
+    FlowRouter.go('organizations.entry', {
+      id: this._id
+    });
+  }
+});
