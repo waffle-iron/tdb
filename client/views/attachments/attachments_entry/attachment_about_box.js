@@ -27,3 +27,11 @@ Template.attachmentAboutBox.helpers({
     });
   },
 });
+
+Template.attachmentAboutBox.events({
+  'click #attachment-edit': function() {
+    Modal.show('attachmentsEdit', {
+      attachmentId: this._id,
+    });
+  }
+});

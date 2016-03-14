@@ -5,10 +5,12 @@ let organizationsRoutes = FlowRouter.group({
 
 organizationsRoutes.route('/', {
   name: 'organizations.dashboard',
-  title: 'Organizations Dashboard',
+  title: 'Organizations',
   action() {
     BlazeLayout.render('defaultLayout', {
-      main: 'organizationsDashboard'
+      main: 'organizationsDashboard',
+      btnText: 'Create new Organization',
+      btnLink: 'organizations.add'
     });
   }
 });

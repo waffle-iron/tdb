@@ -17,12 +17,11 @@
       style="{{#if loadingImg}}visibility:hidden; display:none;{{/if}}" 
       onerror="this.style.display='none';" />
     {{else}}
-    <img src="https://placehold.it/50x50" 
+    <img src="https://placehold.it/{{width}}x{{height}}" 
       class="{{class}}" />
     {{/unless}}
   {{else}}
-    <img src="{{notFound}}" 
-      class="safe-img img-responsive {{class}} " 
-      style="width:{{width}}px; height:{{height}}px;">
+    <img src="https://placehold.it/{{width}}x{{height}}" 
+      class="{{class}}">
   {{/if}}
 </template>
