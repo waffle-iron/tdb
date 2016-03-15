@@ -19,6 +19,10 @@ Template.search.helpers({
     });
     Template.instance().changedBriefCards = [];
     let results = SearchSources.globalSearch.getTransformedData();
+
+    let scores = results.map((r) => r._score);
+    console.log(scores);
+
     return results;
   },
   getOptions() {
