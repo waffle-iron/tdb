@@ -23,9 +23,6 @@ SearchSource.prototype.getTransformedData = function() {
         return matchText.replace(regExp, '<em>$&</em>');
       }
       return matchText;
-    },
-    sort: {
-      _score: -1
     }
   });
 };
