@@ -177,11 +177,11 @@
                 </button>
                 <p>
                   <a class="text-info" href="/users/fr8NmM6KTzYxmf6dQ/entry">Ben Stiller</a>
-                  <div class="label label-success">updated the document</div>
+                  <span class="label label-success">updated the document</span>
                   <a class="text-info" href="/users/nJM7ggsv3ggHPun8v/entry">rafael.correia.poli@gmail.com</a>
-                  <div class="date">
+                  <span class="date">
                     09/03/2016 04:16:42
-                  </div>
+                  </span>
                 </p>
               </li>
               <li class="list-group-item">
