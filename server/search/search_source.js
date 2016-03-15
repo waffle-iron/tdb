@@ -107,6 +107,7 @@ SearchSource.defineSource('globalSearch', function(searchText, {
     body: {
       from: from,
       size: size,
+      sort: ["_score", {"name": {"order": "desc"}}],
       query: finalQuery,
       highlight: {
         pre_tags: ['<em>'],
