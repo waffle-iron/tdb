@@ -77,5 +77,5 @@ Template.searchSource.onCreated(function() {
 });
 
 Template.searchSource.onDestroyed(function() {
-  clearTimeout(this.searchAgainTimeout);
+  this.source.clearResults();
 });

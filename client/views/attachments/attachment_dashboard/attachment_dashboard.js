@@ -22,8 +22,6 @@ Template.attachmentsDashboard.helpers({
     });
     return img[0].src;
   }
-
-
 });
 
 Template.attachmentsDashboard.events({
@@ -34,8 +32,4 @@ Template.attachmentsDashboard.events({
       });
     });
   }
-});
-
-Template.attachmentsDashboard.onCreated(function() {
-  SearchSources.globalSearch.clearResults();
 });
