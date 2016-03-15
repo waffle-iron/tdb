@@ -18,8 +18,13 @@
             </div>
           {{/if}}
         </div>
+        {{#if hasMoreResults}}
+          <!-- TODO: fix inline css -->
+          <div class="col-xs-12" style="text-align: center">
+            <button class="btn btn-default load-more">Load More</button>
+          </div>
+        {{/if}}
       </div>
     {{/panelContent}}
   {{/panelContainer}}
 </template>
-

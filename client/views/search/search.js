@@ -1,6 +1,14 @@
-Template.search.onCreated(function() {
-  this.changedBriefCards = [];
-});
+Template.search.events({
+  'click .load-more' (e, t) {
+    // Inc size by 8
+    t.size.set(t.size.get() + 8);
+  },
+
+  'input [name="search"]' (e, t) {
+    // Set size to default when user starts a new search
+    t.size.set(8);
+  },
+})
 
 Template.search.helpers({
   results() {
@@ -14,11 +22,24 @@ Template.search.helpers({
     return results;
   },
   getOptions() {
+    let t = Template.instance();
     return function() {
       let entityFilter = Session.get('entityFilter') || [];
       return {
+        size: t.size.get(),
         types: entityFilter
       };
     };
+  },
+
+  hasMoreResults() {
+    let t = Template.instance();
+    let metadata = SearchSources.globalSearch.getMetadata();
+    return metadata && metadata.total > t.size.get();
   }
+});
+
+Template.search.onCreated(function() {
+  this.changedBriefCards = [];
+  this.size = new ReactiveVar(8);
 });
