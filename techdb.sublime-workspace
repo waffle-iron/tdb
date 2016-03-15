@@ -1,0 +1,442 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"bakc",
+				"background-color"
+			],
+			[
+				"cha",
+				"challenge"
+			],
+			[
+				"break",
+				"breakthrough"
+			],
+			[
+				"idea",
+				"idea_description"
+			],
+			[
+				"protot",
+				"prototype_description"
+			],
+			[
+				"VIABI",
+				"VIABILITY"
+			],
+			[
+				"NECESS",
+				"NECESSITY"
+			],
+			[
+				"INVE",
+				"INVESTMENT"
+			],
+			[
+				"EXPL",
+				"EXPLAINABILITY"
+			],
+			[
+				"DEMON",
+				"DEMONSTRATION"
+			],
+			[
+				"CONC",
+				"CONCEPT"
+			],
+			[
+				"CATEGO",
+				"CATEGORY"
+			],
+			[
+				"cate",
+				"category"
+			],
+			[
+				"font",
+				"font-size"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 354.0,
+		"last_filter": "package",
+		"selected_items":
+		[
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"packag",
+				"Package Control: Install Package"
+			],
+			[
+				"package ins",
+				"Package Control: Install Package"
+			],
+			[
+				"sync",
+				"Package Syncing: Disable Syncing"
+			],
+			[
+				"packa",
+				"Package Control: Satisfy Dependencies"
+			],
+			[
+				"html",
+				"HTMLPrettify"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"gist",
+				"Gist: Create Public Gist"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"sublieme",
+				"SublimeLinter: Show All Errors"
+			],
+			[
+				"sublime",
+				"SublimeLinter: Enable Linter"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"package inst",
+				"Package Control: Install Package"
+			],
+			[
+				"linter",
+				"SublimeLinter: Next Error"
+			],
+			[
+				"line",
+				"SublimeLinter: Enable Debug Mode"
+			],
+			[
+				"remove pa",
+				"Package Control: Remove Package"
+			],
+			[
+				"install pa",
+				"Package Control: Install Package"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"package sy",
+				"Package Syncing: Pull Settings"
+			],
+			[
+				"package sync",
+				"Package Syncing: Enable Syncing"
+			],
+			[
+				"package control",
+				"Package Control: Install Package"
+			],
+			[
+				"css",
+				"Run CSScomb"
+			],
+			[
+				"ind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"tumblr",
+				"Set Syntax: Tumblr"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"package syn",
+				"Package Syncing: Push Settings"
+			],
+			[
+				"trim",
+				"Trimmer: Trim leading whitespace."
+			],
+			[
+				"trail",
+				"Trailing Spaces: Toggle Trailing Spaces Highlighting"
+			],
+			[
+				"aligment",
+				"Preferences: Alignment Key Bindings – Default"
+			],
+			[
+				"alignment",
+				"Preferences: Alignment Key Bindings – Default"
+			],
+			[
+				"color",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"packagein",
+				"Package Control: Install Package"
+			],
+			[
+				"instal ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/arthursoares/Sites/techdb"
+	],
+	"file_history":
+	[
+		"/Volumes/Untitled/readme.txt",
+		"/Users/arthursoares/Sites/techdb/stylesheets/elements/technologyCard.import.less",
+		"/Users/arthursoares/Sites/techdb/technologyCard.html",
+		"/Users/arthursoares/Sites/techdb/stylesheets/main.css",
+		"/Users/arthursoares/Downloads/yWh8Z11J.json",
+		"/Users/arthursoares/Downloads/yWh8Z11J.json.txt",
+		"/Users/arthursoares/Sites/techdb/css/bootstrap.css",
+		"/Users/arthursoares/Sites/techdb/css/style.css",
+		"/Users/arthursoares/Sites/techdb/dashboardView.html",
+		"/Users/arthursoares/Sites/techdb/projectCollections.html",
+		"/Users/arthursoares/Sites/techdb/projectEntry.html",
+		"/Users/arthursoares/Sites/techdb/js/plugins/codemirror/mode/xquery/xquery.js",
+		"/Library/Preferences/com.native-instruments.Kontakt 5.plist",
+		"/Users/arthursoares/Sites/gleesonpaulino/base.css",
+		"/Users/arthursoares/Sites/gleesonpaulino/custom.css",
+		"/Users/arthursoares/Sites/gleesonpaulino/master.html",
+		"/private/etc/apache2/httpd.conf",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/Package Syncing/Package Syncing.sublime-settings",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/User/Package Syncing.sublime-settings",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/arthursoares/Sites/techdb/private/insinia_html/project_detail.html",
+		"/Users/arthursoares/Sites/techdb.sublime-workspace",
+		"/Users/arthursoares/Sites/dotfiles/create_labels.sh",
+		"/Users/arthursoares/Sites/techdb-gitbook/README.md",
+		"/Users/arthursoares/Sites/techdb-gitbook/GLOSSARY.md",
+		"/Users/arthursoares/Sites/dotfiles/base.gitignore",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/arthursoares/Dropbox/Documents/Tumblr Themes/csspool",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/CSScomb/CSScomb.sublime-settings",
+		"/Users/arthursoares/Dropbox/Documents/Tumblr Themes/the",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/Alignment/Default (OSX).sublime-keymap",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/User/HTML.sublime-settings",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/Terminal/Base File.sublime-settings",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/User/Base File.sublime-settings",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/TrailingSpaces/trailing_spaces.sublime-settings",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/arthursoares/Library/Application Support/Sublime Text 3/Packages/User/trailing_spaces.sublime-settings"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 158.0,
+		"where_history":
+		[
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"set_order",
+			"list_bt_order_lb",
+			"order_bts",
+			".name",
+			"order_bts[ID]",
+			"order_bts[ID].",
+			"set_order",
+			"sort_on",
+			"tech_option_bt",
+			"tech_option_bt selected",
+			"order_bts[ID].name",
+			"sort_on",
+			"order_bts",
+			"lang.category",
+			"CATEGORY",
+			"category",
+			"sort_On",
+			"sub_order",
+			"function set_location",
+			"set_location",
+			"list_bt_order_lb",
+			"console.log(\"o",
+			"console.log('",
+			"console.log('ord",
+			"order",
+			"category",
+			"HIGH_VIABILITY",
+			"innerHtml",
+			"cluster",
+			"lang.clear_visited",
+			"RELATED TECH",
+			"RELATED",
+			"RELATED TECHNOLOGIES",
+			"RELATED",
+			"CATEGORY",
+			".btn-outline {",
+			"btn-outline",
+			"background-color: #1ab394",
+			"z",
+			".label {",
+			"menu.js",
+			"meteor.js"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 65.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "techdb.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 33.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 400.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 274.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
