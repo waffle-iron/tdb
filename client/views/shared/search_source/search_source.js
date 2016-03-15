@@ -58,7 +58,10 @@ Template.searchSource.onCreated(function() {
   this.searchText = new ReactiveVar('');
   this.makeSearch = function() {
     let opt = typeof this.options === 'function' ? this.options() : this.options;
-    this.source.search(this.searchText.get(), opt);
+
+    if (!!this.searchText.get()){
+      this.source.search(this.searchText.get(), opt);
+    }
   };
 
   if (!this.source || !this.source instanceof SearchSource) {
