@@ -1,6 +1,7 @@
 SearchSources = {};
 SearchSource.prototype.clearResults = function() {
   this.store.remove({});
+  this.metaData.set({});
 };
 
 const SEARCH_THROTTLE = 200;
