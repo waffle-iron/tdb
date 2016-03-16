@@ -10,7 +10,7 @@ projectsRoutes.route('/', {
     BlazeLayout.render('defaultLayout', {
       main: 'projectsDashboard',
       btnText: 'Create new Project',
-      btnLink: 'projects.add',      
+      btnLink: 'projects.add',
     });
   }
 });
