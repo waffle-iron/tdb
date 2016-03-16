@@ -1,10 +1,10 @@
 let dashboardRoutes = FlowRouter.group({
   prefix: '/dashboard',
-  name: 'Dashboard'
+  name: 'dashboard'
 });
 
 dashboardRoutes.route('/', {
-  name: 'mainDashboard',
+  name: 'dashboard',
   title: 'Dashboard',
   action() {
     BlazeLayout.render('defaultLayout', {main: 'mainDashboard'});

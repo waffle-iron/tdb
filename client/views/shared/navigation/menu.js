@@ -6,18 +6,17 @@ Template.menu.helpers({
   items: function() {
     return [
       {
-        regex: '^dashboard',
-        name: 'Dashboard',
-        linkTo: 'mainDashboard',
-        icon: 'fa fa-dashboard',
-        roles: ADMIN_EDITOR_VIEWER,
-
-      },
-      {
         regex: '^search',
         name: 'Search',
         linkTo: 'search',
         icon: 'fa fa-search',
+        roles: ADMIN_EDITOR_VIEWER,
+      },
+      {
+        regex: '^dashboard',
+        name: 'Dashboard',
+        linkTo: 'dashboard',
+        icon: 'fa fa-dashboard',
         roles: ADMIN_EDITOR_VIEWER,
       },
       {
