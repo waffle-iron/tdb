@@ -22,9 +22,9 @@ SearchSource.defineSource('globalSearch', function(searchText, {
   nameBoost = 100,
   nameFuzziness = 2,
   descriptionBoost = 1,
-  descriptionFuzziness = 1
+  descriptionFuzziness = 1,
+  techIdBoost = 200
 }) {
-
   searchText = searchText.toLowerCase();
   let words = searchText.trim().split(' ');
   let lastWord = words[words.length - 1] || '';
@@ -36,30 +36,41 @@ SearchSource.defineSource('globalSearch', function(searchText, {
           bool: {
             should: [ // Any of these conditions should match, the most, more relevant
               {
-                match: {
+                match: {                  // Tech Id
+                  techId: {
+                    query: searchText,
+                    boost: techIdBoost
+                  }
+                }
+              }, {
+                prefix: {
+                  techId: {
+                    value: lastWord,
+                    boost: techIdBoost
+                  }
+                }
+              }, {
+                match: {                  // Name
                   name: {
                     query: searchText,
                     boost: nameBoost
                   }
                 }
-              },
-              {
+              }, {
                 prefix: {
                   name: {
                     value: lastWord,
                     boost: nameBoost
                   }
                 }
-              },
-              {
-                match: {
+              }, {
+                match: {                // Description
                   description: {
                     query: searchText,
                     boost: descriptionBoost
                   }
                 }
-              },
-              {
+              }, {
                 prefix: {
                   description: {
                     value: lastWord,
@@ -71,26 +82,23 @@ SearchSource.defineSource('globalSearch', function(searchText, {
           }
         }
       ],
-      should: [
-        {
-          match_phrase_prefix: {
-            name: {
-              query: searchText,
-              boost: nameBoost,
-              slop: 5
-            }
+      should: [{
+        match_phrase_prefix: {
+          name: {
+            query: searchText,
+            boost: nameBoost,
+            slop: 5
           }
-            },
-        {
-          match_phrase_prefix: {
-            description: {
-              query: searchText,
-              boost: descriptionBoost,
-              slop: 5
-            }
+        }
+      }, {
+        match_phrase_prefix: {
+          description: {
+            query: searchText,
+            boost: descriptionBoost,
+            slop: 5
           }
-        },
-      ]
+        }
+      }, ]
     }
   };
 
@@ -107,7 +115,11 @@ SearchSource.defineSource('globalSearch', function(searchText, {
     body: {
       from: from,
       size: size,
-      sort: ["_score", {"name": {"order": "desc"}}],
+      sort: ['_score', {
+        name: {
+          order: 'desc'
+        }
+      }],
       query: finalQuery,
       highlight: {
         pre_tags: ['<em>'],
@@ -138,7 +150,7 @@ SearchSource.defineSource('userSearch', function(searchText, {
   emailBoost = 5,
   usernameBoost = 10
 } = {}) {
-  
+
   searchText = searchText.toLowerCase();
   let words = searchText.trim().split(' ');
   let lastWord = words[words.length - 1] || '';
@@ -156,40 +168,35 @@ SearchSource.defineSource('userSearch', function(searchText, {
                     boost: nameBoost
                   }
                 }
-              },
-              {
+              }, {
                 prefix: {
                   'profile.fullName': {
                     value: lastWord,
                     boost: nameBoost
                   }
                 }
-              },
-              {
+              }, {
                 match: {
                   username: {
                     query: searchText,
                     boost: usernameBoost
                   }
                 }
-              },
-              {
+              }, {
                 prefix: {
                   username: {
                     value: lastWord,
                     boost: usernameBoost
                   }
                 }
-              },
-              {
+              }, {
                 match: {
                   'emails.address': {
                     query: searchText,
                     boost: emailBoost
                   }
                 }
-              },
-              {
+              }, {
                 prefix: {
                   'emails.address': {
                     value: lastWord,
@@ -201,17 +208,15 @@ SearchSource.defineSource('userSearch', function(searchText, {
           }
         }
       ],
-      should: [
-        {
-          match_phrase_prefix: {
-            'profile.fullName': {
-              query: searchText,
-              boost: nameBoost,
-              slop: 5
-            }
+      should: [{
+        match_phrase_prefix: {
+          'profile.fullName': {
+            query: searchText,
+            boost: nameBoost,
+            slop: 5
           }
-        },
-      ]
+        }
+      }, ]
     }
   };
 
