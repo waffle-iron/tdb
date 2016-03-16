@@ -9,7 +9,7 @@ usersRoutes.route('/', {
     BlazeLayout.render('defaultLayout', {
       main: 'usersDashboard',
       btnLink: 'users.invite',
-      btnText: 'Invite new ssUser',
+      btnText: 'Invite new User',
     });
   },
 });
