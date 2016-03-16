@@ -42,11 +42,12 @@
             <td><a href="{{web.sourceUrl}}" target="blank">Visit Page</a></td>
           </tr>
         {{else}}
-          <td><b>File</b></td>
-          <td>
-            <!-- Temporary solution -->
-            <a href="{{awsUrl}}" download>Download</a>
-          </td>
+          <tr>
+            <td><b>File</b></td>
+            <td>
+              <a href="{{awsUrl}}" download>Download</a>
+            </td>
+          </tr>
         {{/if}}
         <br>
         <tr>
