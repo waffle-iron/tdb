@@ -1,8 +1,9 @@
 Template.techBriefCard.helpers({
   getLink() {
-    return FlowRouter.path('technologies.entry', {
-      id: this._id
-    });
+    return ''; // Milestone 1
+    // return FlowRouter.path('technologies.entry', {
+    //   id: this._id
+    // });
   },
   //
   //  Delete Handler

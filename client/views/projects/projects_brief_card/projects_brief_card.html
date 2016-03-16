@@ -3,11 +3,11 @@
   _id=_id
   title=name
   collection='projects' 
-  link=(pathFor 'projects.entry' id=_id)
+  link=''
   onDelete=onDelete
   onEdit=onEdit}}
-  <a href="{{pathFor 'projects.entry' id=_id}}">
+  <!-- <a href="{{pathFor 'projects.entry' id=_id}}"> -->
     {{> safeImg url=(getCloudinaryCard (s3pathImages logo)) class='img-responsive margin-auto'}}
-  </a>
+  <!-- </a> -->
 {{/briefCard}}
 </template>
