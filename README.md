@@ -1,4 +1,4 @@
-# TechDB  [![Code Climate](https://codeclimate.com/github/envisioning/techdb/badges/gpa.svg)](https://codeclimate.com/github/envisioning/techdb)
+# TDB  [![Code Climate](https://codeclimate.com/github/envisioning/techdb/badges/gpa.svg)](https://codeclimate.com/github/envisioning/techdb)
 
 | Branch       | Status                |
 |------------------------------|---------------------------------------------------------------------|
@@ -88,7 +88,7 @@ Organizations.esDriver(esClient, 'techdb', 'organizations', (cleanedDoc, doc, ho
 - We must wrap the elasticSearch.Client method's with Async.wrap so we can call the asynchronous methods on a synchronous way
 - We should make docTransformer a pure function: it must not change the original doc object, since other adapters may utilize this doc as well. Instead, we must make a copy, mutate and return it
 
-> **Attention**: TechDB currently supports ElasticSearch 2.1
+> **Attention**: TDB currently supports ElasticSearch 2.1
 
 ## Tracking collection operations
 
