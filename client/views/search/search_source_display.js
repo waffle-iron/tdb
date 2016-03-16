@@ -27,6 +27,10 @@ Template.searchSourceDisplay.helpers({
         types = t.data.types.split(',').map((t) => t.trim());
       }
 
+      if (!Array.isArray(types)){
+        throw new Error('types should be an array');
+      }
+
       return {
         size: t.size.get(),
         types: types
