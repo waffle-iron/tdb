@@ -1,12 +1,4 @@
 Template.attachmentsDashboard.helpers({
-  getOptions: function() {
-    return {
-      types: ['attachments']
-    };
-  },
-  attachments: function() {
-    return SearchSources.globalSearch.getTransformedData();
-  },
   attachmentSelector: function() {
     return {
       collection: 'attachments'
@@ -22,11 +14,18 @@ Template.attachmentsDashboard.helpers({
     });
     return img[0].src;
   }
-
-
 });
 
 Template.attachmentsDashboard.events({
+  'click .load-more' (e, t) {
+    // Inc size by 8
+    t.size.set(t.size.get() + 8);
+  },
+
+  'input [name="search"]' (e, t) {
+    // Set size to default when user starts a new search
+    t.size.set(8);
+  },
   'click tbody > tr': function(event) {
     handleTableClick(event, (rowData) => {
       FlowRouter.go('attachments.entry', {
@@ -37,5 +36,5 @@ Template.attachmentsDashboard.events({
 });
 
 Template.attachmentsDashboard.onCreated(function() {
-  SearchSources.globalSearch.clearResults();
+  this.size = new ReactiveVar(8);
 });

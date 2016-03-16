@@ -1,5 +1,3 @@
-
-
 Template.organizationsDashboard.helpers({
   organizations() {
     return SearchSources.globalSearch.getTransformedData();
@@ -8,16 +6,6 @@ Template.organizationsDashboard.helpers({
     return this._highlight && this._highlight.description ? this._highlight.description : this.description;
   },
 
-  getOptions() {
-    return {
-      types: ['organizations']
-    };
-  },
-  orgSelector() {
-    return {
-      collection: 'organizations'
-    };
-  },
   onDelete() {
     return function(data) {
       console.log('delete ', data);

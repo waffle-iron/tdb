@@ -30,7 +30,8 @@ Template.userCard.events({
 Template.userCard.onCreated(function() {
   this.isDeleted = new ReactiveVar(false);
 
-  this.subscribe('user.status', this.data._id);
+  // TODO: Need fix this sub
+  this.subscribe('users.single', this.data._id);
 });
 Template.userCard.helpers({
   user() {

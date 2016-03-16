@@ -1,6 +1,7 @@
 SearchSources = {};
 SearchSource.prototype.clearResults = function() {
   this.store.remove({});
+  this.metaData.set({});
 };
 
 const SEARCH_THROTTLE = 200;
@@ -8,12 +9,10 @@ const SEARCH_OPTIONS = {
   keepHistory: false,
   localSearch: false
 };
-SearchSources.globalSearch = new SearchSource('globalSearch',
-  ['name', 'description'],
+SearchSources.globalSearch = new SearchSource('globalSearch', ['name', 'description'],
   SEARCH_OPTIONS);
 
-SearchSources.userSearch = new SearchSource('userSearch',
-  ['profile.fullName', 'username', 'emails.address'],
+SearchSources.userSearch = new SearchSource('userSearch', ['profile.fullName', 'username', 'emails.address'],
   SEARCH_OPTIONS);
 SearchSource.prototype.getTransformedData = function() {
   return this.getData({
@@ -24,9 +23,6 @@ SearchSource.prototype.getTransformedData = function() {
         return matchText.replace(regExp, '<em>$&</em>');
       }
       return matchText;
-    },
-    sort: {
-      _score: -1
     }
   });
 };
@@ -58,7 +54,12 @@ Template.searchSource.onCreated(function() {
   this.searchText = new ReactiveVar('');
   this.makeSearch = function() {
     let opt = typeof this.options === 'function' ? this.options() : this.options;
-    this.source.search(this.searchText.get(), opt);
+
+    if (!!this.searchText.get()) {
+      this.source.search(this.searchText.get(), opt);
+    } else {
+      this.source.clearResults();
+    }
   };
 
   if (!this.source || !this.source instanceof SearchSource) {
@@ -74,5 +75,5 @@ Template.searchSource.onCreated(function() {
 });
 
 Template.searchSource.onDestroyed(function() {
-  clearTimeout(this.searchAgainTimeout);
+  this.source.clearResults();
 });
