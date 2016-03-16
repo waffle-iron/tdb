@@ -9,7 +9,7 @@ const SEARCH_OPTIONS = {
   keepHistory: false,
   localSearch: false
 };
-SearchSources.globalSearch = new SearchSource('globalSearch', ['name', 'description'],
+SearchSources.globalSearch = new SearchSource('globalSearch', ['name', 'description', 'techId'],
   SEARCH_OPTIONS);
 
 SearchSources.userSearch = new SearchSource('userSearch', ['profile.fullName', 'username', 'emails.address'],
