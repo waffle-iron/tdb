@@ -12,7 +12,7 @@ Template.searchSourceDisplay.events({
 
 Template.searchSourceDisplay.helpers({
   results() {
-    return SearchSources.globalSearch.getTransformedData();
+    return Template.instance().data.source.getTransformedData();
   },
   options() {
     let t = Template.instance();
@@ -46,4 +46,5 @@ Template.searchSourceDisplay.helpers({
 
 Template.searchSourceDisplay.onCreated(function() {
   this.size = new ReactiveVar(8);
+  $('input[name="search"]').val('l');
 });

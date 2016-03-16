@@ -1,20 +1,31 @@
 <template name="searchResults">
   <div class="search-results">
     {{#each this}}
-      <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 animated fadeInRight">
-        {{#if $eq _type 'organizations'}}
+      {{#if $eq _type 'organizations'}}
+        <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 animated fadeInRight">
           {{> orgBriefCard}}
-        {{/if}}
-        {{#if $eq _type 'technologies'}}
+        </div>
+      {{/if}}
+      {{#if $eq _type 'technologies'}}
+        <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 animated fadeInRight">
           {{> techBriefCard}}
-        {{/if}}
-        {{#if $eq _type 'projects'}}
+        </div>
+      {{/if}}
+      {{#if $eq _type 'projects'}}
+        <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 animated fadeInRight">
           {{> projectsBriefCard}}
-        {{/if}}
-        {{#if $eq _type 'attachments'}}
+        </div>
+      {{/if}}
+      {{#if $eq _type 'attachments'}}
+        <div class="col col-xs-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 animated fadeInRight">
           {{> attachmentsBriefCard}}
-        {{/if}}
-      </div>
+        </div>
+      {{/if}}
+      {{#if $eq _type 'users'}}
+        <div class="col col-xs-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 animated fadeInRight">
+          {{> userCard }}
+        </div>
+      {{/if}}
       {{else}}
         <div class="empty-message">
           <i class='fa fa-search'></i>

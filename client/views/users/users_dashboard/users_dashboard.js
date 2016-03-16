@@ -1,8 +1,4 @@
 Template.usersDashboard.helpers({
-  users() {
-    let results = SearchSources.userSearch.getTransformedData();
-    return results;
-  },
   userRecentUpdatesSelector() {
     return {
       collection: 'users'
@@ -13,7 +9,4 @@ Template.usersDashboard.helpers({
       id: this._id
     });
   },
-  fullName() {
-    return this['profile.fullName'];
-  }
 });
