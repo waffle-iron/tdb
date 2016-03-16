@@ -3,30 +3,7 @@
     <div class="col-xs-12">
       {{#panelContainer class='elastic-search' }}
         {{#panelContent}}
-          <div class="search-source-display-mode">
-            {{> searchSource source=SearchSources.globalSearch options=getOptions}} 
-            {{> searchDisplayMode id='orgSearch'}}
-          </div>
-          <div class="row grid-view">
-            <div class="col col-xs-12">
-              {{#if $eq (getSearchDisplayMode 'orgSearch') 'list'}}
-                {{#each organizations}}
-                  <h3>{{{name}}}</h3>
-                  <h5>
-                    <b>{{_score}}</b> score from
-                    <b>{{_type}}</b> type
-                    <br> {{{description}}}
-                  </h5>
-                  <hr />
-                {{/each}}
-              {{/if}}
-              {{#if $eq (getSearchDisplayMode 'orgSearch') 'grid'}}
-                <div class="row">
-                  {{> searchResults organizations}}
-                </div>
-              {{/if}}
-            </div>
-          </div>
+          {{> searchSourceDisplay types="organizations" displayMode='orgSearch'}}
         {{/panelContent}}
       {{/panelContainer}}
     </div>
@@ -35,5 +12,5 @@
     <div class="col-xs-12">
       {{> recentUpdates counterId='org' selector=orgSelector initialCount=10 countIncrement=5}}
     </div>
-  </div>  
+  </div>
 </template>

@@ -11,36 +11,26 @@ Template.search.events({
 })
 
 Template.search.helpers({
-  results() {
-    _.each(Template.instance().changedBriefCards, (t) => {
-      if (t) {
-        t.state.set(null);
-      }
-    });
-    Template.instance().changedBriefCards = [];
-    let results = SearchSources.globalSearch.getTransformedData();
+  // results() {
+  //   _.each(Template.instance().changedBriefCards, (t) => {
+  //     if (t) {
+  //       t.state.set(null);
+  //     }
+  //   });
+  //   Template.instance().changedBriefCards = [];
+  //   let results = 3;
 
-    let scores = results.map((r) => r._score);
-    console.log(scores);
+  //   let scores = results.map((r) => r._score);
+  //   console.log(scores);
 
-    return results;
-  },
-  getOptions() {
+  //   return results;
+  // },
+  getTypes() {
     let t = Template.instance();
     return function() {
-      let entityFilter = Session.get('entityFilter') || [];
-      return {
-        size: t.size.get(),
-        types: entityFilter
-      };
+      return Session.get('entityFilter') || [];
     };
   },
-
-  hasMoreResults() {
-    let t = Template.instance();
-    let metadata = SearchSources.globalSearch.getMetadata();
-    return metadata && metadata.total > t.size.get();
-  }
 });
 
 Template.search.onCreated(function() {

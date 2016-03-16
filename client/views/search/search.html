@@ -4,27 +4,7 @@
       <div class="icons-row">
         {{> selectEntities}}
       </div>
-      <div class="search-source-display-mode">
-        {{> searchSource source=SearchSources.globalSearch options=getOptions}} {{> searchDisplayMode id='mainSearch'}}
-      </div>
-      <div class="row">
-        <div class="col col-xs-12">
-          {{#if $eq (getSearchDisplayMode 'mainSearch') 'list'}}
-            <h5>Placeholder for ListView</h5>
-          {{/if}}
-          {{#if $eq (getSearchDisplayMode 'mainSearch') 'grid'}}
-            <div class="row">
-              {{> searchResults results}}
-            </div>
-          {{/if}}
-        </div>
-        {{#if hasMoreResults}}
-          <!-- TODO: fix inline css -->
-          <div class="col-xs-12" style="text-align: center">
-            <button class="btn btn-default load-more">Load More</button>
-          </div>
-        {{/if}}
-      </div>
+       {{> searchSourceDisplay types=getTypes displayMode='mainSearch'}}
     {{/panelContent}}
   {{/panelContainer}}
 </template>
