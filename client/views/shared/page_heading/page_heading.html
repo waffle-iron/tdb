@@ -3,10 +3,9 @@
     <div class="col-lg-8">
       <h2>{{title}}</h2> {{> breadcrumbInspinia}}
     </div>
-    <div class="col-lg-4">
+    <div class="col-sm-12 col-lg-4">
       {{#if btnLink}}
-        <a href="{{pathFor btnLink}}" class="btn btn-primary pull-right" 
-        style="margin-top:14px;">{{btnText}}</a>
+        <a href="{{pathFor btnLink}}" class="btn btn-primary">{{btnText}}</a>
       {{/if}}
     </div>
   </div>

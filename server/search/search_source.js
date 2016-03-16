@@ -1,14 +1,10 @@
-const DEFAULT_NAME_BOOST = 100;
-const DEFAULT_DESCRIPTION_BOOST = 1;
-const DEFAULT_NAME_FUZZINESS = 2;
-const DEFAULT_DESCRIPTION_FUZZINESS = 1;
-
-
 /**
  * SearchSouce globalSearch
  * get data from any source (in this case, esEngine)
  *
  * options:
+ * @from {Integer} defines the offset from the first result you want to fetch
+ * @size {Integer} allows you to configure the maximum amount of hits to be returned
  * @nameBoost {Integer} the weight of Name on the calculation of relevance
  * @nameFuzziness {Integer} Name's level of fuzziness
  * @descriptionBoost {Integer} the weight of Description/Description.longText on the calculation of relevance
@@ -18,18 +14,20 @@ const DEFAULT_DESCRIPTION_FUZZINESS = 1;
  *  @data -> results
  *  @metadata -> total, took
  */
-SearchSource.defineSource('globalSearch', function(searchText, options) {
-  options = options || {};
-  let nameBoost = options.nameBoost || DEFAULT_NAME_BOOST;
-  let nameFuzziness = options.nameFuzziness || DEFAULT_NAME_FUZZINESS;
-  let descriptionBoost = options.descriptionBoost || DEFAULT_DESCRIPTION_BOOST;
-  let descriptionFuzziness = options.descriptionFuzziness || DEFAULT_DESCRIPTION_FUZZINESS;
-  let types = options.types || [];
+
+SearchSource.defineSource('globalSearch', function(searchText, {
+  from = 0,
+  size = 8,
+  types = [],
+  nameBoost = 100,
+  nameFuzziness = 2,
+  descriptionBoost = 1,
+  descriptionFuzziness = 1
+}) {
 
   searchText = searchText.toLowerCase();
   let words = searchText.trim().split(' ');
   let lastWord = words[words.length - 1] || '';
-
 
   let query = {
     bool: {
@@ -107,7 +105,9 @@ SearchSource.defineSource('globalSearch', function(searchText, options) {
     index: 'techdb',
     type: types.join(','), // filter types
     body: {
-      size: 100,
+      from: from,
+      size: size,
+      sort: ["_score", {"name": {"order": "desc"}}],
       query: finalQuery,
       highlight: {
         pre_tags: ['<em>'],
@@ -131,13 +131,13 @@ SearchSource.defineSource('globalSearch', function(searchText, options) {
   };
 });
 
-const DEFAULT_USER_USERNAME_BOOST = 10;
-const DEFAULT_USER_NAME_BOOST = 1;
-const DEFAULT_EMAIL_BOOST = 5;
-SearchSource.defineSource('userSearch', function(searchText, options = {}) {
-  let nameBoost = options.nameBoost || DEFAULT_USER_NAME_BOOST;
-  let usernameBoost = options.usernameBoost || DEFAULT_DESCRIPTION_BOOST;
-  let emailBoost = options.emailBoost || DEFAULT_EMAIL_BOOST;
+SearchSource.defineSource('userSearch', function(searchText, {
+  from = 0,
+  size = 8,
+  nameBoost = 1,
+  emailBoost = 5,
+  usernameBoost = 10
+} = {}) {
   
   searchText = searchText.toLowerCase();
   let words = searchText.trim().split(' ');
