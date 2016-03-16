@@ -43,7 +43,10 @@ Template.briefCard.events({
   },
   'click .link': function(e, t) {
     e.preventDefault();
-    FlowRouter.go(t.data.link);
+
+    if (!!t.data.link) {
+      FlowRouter.go(t.data.link);
+    }
+
   }
 });
-

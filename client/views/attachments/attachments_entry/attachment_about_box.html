@@ -11,7 +11,7 @@
       {{/panelTools}}
     {{/panelTitle}}
     {{#panelContent}}
-      {{> attachmentThumbnail attachment=this class='preview' height="500" width="500" crop="fill"}}
+      {{> attachmentThumbnail attachment=this class='preview' height="400" width="600" crop="fill"}}
     {{/panelContent}}
     {{#panelContent}}
       <div class="description">
@@ -42,11 +42,12 @@
             <td><a href="{{web.sourceUrl}}" target="blank">Visit Page</a></td>
           </tr>
         {{else}}
-          <td><b>File</b></td>
-          <td>
-            <!-- Temporary solution -->
-            <a href="https://s3.amazonaws.com/envisioning/tdb/files/{{file._id}}" download>Download</a>
-          </td>
+          <tr>
+            <td><b>File</b></td>
+            <td>
+              <a href="{{awsUrl}}" download>Download</a>
+            </td>
+          </tr>
         {{/if}}
         <br>
         <tr>
@@ -63,7 +64,7 @@
     {{#panelContent}}
       <div class="related-links">
         <h5><i class="{{Icons.collections.projects}}"></i> Related Projects </h5>
-        {{#each relatedProjects}}2
+        {{#each relatedProjects}}
           <a href="{{pathFor 'projects.entry' id=_id}}">{{name}} &nbsp;</a>
           {{else}}
             No related projects

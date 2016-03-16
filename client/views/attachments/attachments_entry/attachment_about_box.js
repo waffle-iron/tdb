@@ -26,6 +26,9 @@ Template.attachmentAboutBox.helpers({
       }
     });
   },
+  awsUrl() {
+    return `https://s3.amazonaws.com/envisioning/${Meteor.settings.public.AWS_S3_FOLDER}/files/${this.file._id}`;
+  }
 });
 
 Template.attachmentAboutBox.events({
