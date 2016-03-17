@@ -100,9 +100,6 @@
       <div class="col-lg-12">
         <div class="ibox">
           <div class="ibox-title">
-            <h5>Latest Technologies</h5>
-          </div>
-          <div class="ibox-content">
             <div class="search-source-display-mode">
               <div class="search-source">
                 <div class="input-group">
@@ -121,6 +118,9 @@
                 </button>
               </div>
             </div>
+          </div>
+          <div class="ibox-content">
+
             <div class="row">
               <!-- Começo tecnologia -->
               <div class="col-md-3">
