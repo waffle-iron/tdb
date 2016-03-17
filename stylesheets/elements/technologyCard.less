@@ -79,11 +79,10 @@ padding: 10px;
 }
 
 #techStash {
-  position: fixed;
+  position: absolute;
   left: 0px;
   padding-left: -300px;
-  margin-left: -15px;
-  height: 120%;
+  height: 90%;
   display: block;
   width: 300px;
   background-color: white;
@@ -131,4 +130,45 @@ td.project-people {
   padding: 0px;
   vertical-align:top;
 }
+.technology-draft {
+  border-radius: 0px;
+  border-image: none;
+  border-style: solid solid solid;
+  border-width: 0px 0px 0px 10px;
+  border-color: #f8ac59;
 
+}
+table.table tbody tr {
+    cursor: inherit !important;
+}
+@media (min-width:768px) {
+  .wrapper{
+    /*width:100%;*/
+  }
+  #main-content{
+    padding-top: 0px;
+    min-height: 100%;
+    height: auto;
+    padding-left: 300px;
+    padding-right: 0px;
+  }
+  #main-content > .row {
+    overflow-x:scroll;
+    overflow-y:hidden;
+    white-space:nowrap;
+  }
+  #main-content > .row [class*="col-lg"], #main-content > .row [class*="col-md"], #main-content > .row [class*="col-sm"] {
+    float:none;
+    display:inline-block;
+    white-space:normal;
+    vertical-align:top;
+  }
+  #main-content [class*="collectionSubColumn"] {
+    width: 300px;
+    float:none;
+    display:inline-block;
+    white-space:normal;
+    padding: 0px;
+    vertical-align:top;
+  }
+}

@@ -10,9 +10,10 @@
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="stylesheets/main.css" rel="stylesheet">
 
-
 </head>
 
-<body>
+<body class="top-navigation">
 <div id="__blaze-root">
 <div id="wrapper">
+<div id="page-wrapper" class="gray-bg">
+

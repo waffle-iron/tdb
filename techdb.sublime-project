@@ -4,5 +4,12 @@
 		{
 			"path": "."
 		}
-	]
+	],
+	"settings":
+	    {
+	        "less2css":
+	        {
+	            "main_file": "/Users/arthursoares/Sites/techdb/stylesheets/main.less"
+	        }
+	    }
 }
