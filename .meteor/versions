@@ -77,6 +77,7 @@ es5-shim@4.3.2-beta.12
 fastclick@1.0.8-beta.12
 fortawesome:fontawesome@4.5.0
 fourseven:scss@3.4.1
+generalledger:sleepforms@0.0.1
 geojson-utils@1.0.5-beta.12
 gromo:jquery.scrollbar@0.0.1
 gwendall:body-events@0.1.6
