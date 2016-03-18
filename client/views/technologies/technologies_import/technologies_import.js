@@ -141,15 +141,20 @@ Template.technologiesImport.events({
       _.each(item.links, (link) => {
         let url = link.url;
         UploadList.statics.setLinkStatus(item, url, STATUS.PROCESSING);
-        Meteor.call('uploadImageFromUrl', url, (err, res) => {
-          if (err) {
-            UploadList.statics.setLinkStatus(item, url, STATUS.ERROR);
-          } else {
-            UploadList.statics.setLinkStatus(item, url, STATUS.DONE);
-            UploadList.statics.pushImageId(item, res);
-          }
-          UploadList.statics.decrementRemaining(item);
-        });
+
+        
+          Meteor.call('uploadImageFromUrl', url, (err, res) => {
+            if (err) {
+              UploadList.statics.setLinkStatus(item, url, STATUS.ERROR);
+            } else {
+              UploadList.statics.setLinkStatus(item, url, STATUS.DONE);
+              UploadList.statics.pushImageId(item, res);
+            }
+            UploadList.statics.decrementRemaining(item);
+          });
+
+         Meteor._sleepForMs(5000);
+
       });
     });
   }
