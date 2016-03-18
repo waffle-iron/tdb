@@ -65,7 +65,7 @@
       <div class="related-links">
         <h5><i class="{{Icons.collections.projects}}"></i> Related Projects </h5>
         {{#each relatedProjects}}
-          <a href="{{pathFor 'projects.entry' id=_id}}">{{name}} &nbsp;</a>
+          <a href="{{pathFor 'projects.edit' id=_id}}">{{name}} &nbsp;</a>
           {{else}}
             No related projects
         {{/each}}
@@ -74,10 +74,11 @@
       <div class="related-links">
         <h5><i class="{{Icons.collections.technologies}}"></i> Related Technologies</h5>
         {{#each relatedTechnologies}}
-          <a href="{{pathFor 'technologies.entry' id=_id}}">{{name}} &nbsp;</a>
+          <a href="{{pathFor 'technologies.edit' id=_id}}">{{name}} &nbsp;</a>
           {{else}}
             No related technologies
         {{/each}}
+
       </div>
       <hr />
       <div class="related-links">
