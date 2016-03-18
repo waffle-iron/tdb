@@ -21,7 +21,7 @@
         <tbody>
           {{#each technologies}}
             <tr>
-              <td>{{name}}</td>
+              <td><a href="{{pathFor 'technologies.edit' id=_id}}">{{name}}</a></td>
             </tr>
           {{/each}}
         </tbody>
