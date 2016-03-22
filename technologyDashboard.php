@@ -18,7 +18,7 @@
 <div class="wrapper-content">
   <div class="row tooltip-demo">
     <!-- About box -->
-    <div class="col-lg-3">
+    <div class="col-lg-3 col-sm-5">
       <div class="ibox">
         <div class="ibox-title">
           <h5>Technologies Overview</h5>
@@ -59,7 +59,7 @@
     </div>
     <!-- fim do about box -->
     <!-- Início tech stash -->
-    <div class="col-lg-9">
+    <div class="col-lg-9 col-sm-7">
       <div class="ibox">
         <div class="ibox-title">
           <h5>Latest updates</h5>

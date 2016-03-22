@@ -77,7 +77,7 @@
             </div>
             <!-- Content -->
             <div class="ibox-content">
-              <div class="row cards-box">
+              <div class="row cards-box cards-responsive">
                 <div class="cards-size"></div>
                 <?php include "elements/technologyCard.php" ?>
                 <?php include "elements/technologyCard.php" ?>
@@ -103,7 +103,7 @@
               </div>
             </div>
             <div class="ibox-content">
-              <div class="row cards-box">
+              <div class="row cards-box cards-responsive">
                 <div class="cards-size"></div>
                 <?php include "elements/projectCard.php" ?>
                 <?php include "elements/projectCard.php" ?>
@@ -128,7 +128,7 @@
               </div>
             </div>
             <div class="ibox-content">
-              <div class="row cards-box">
+              <div class="row cards-box cards-responsive">
                 <div class="cards-size"></div>
                 <?php include "elements/attachmentCard.php" ?>
                 <?php include "elements/attachmentCard.php" ?>

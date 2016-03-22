@@ -34,16 +34,15 @@ margin-bottom: 0;
 }
 .cards-item {
 margin-bottom: 15px;
-width: 230px;
 }
 </style>
 <script>
 $(window).load(function() {
 $('.cards-box').masonry({
 // options
-itemSelector: '.cards-item',
-columnWidth: 230,
-gutter: 15
+columnWidth: '.cards-size',
+gutter: 15,
+percentPosition: true
 });
 });
 </script></body>
