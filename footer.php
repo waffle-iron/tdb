@@ -42,8 +42,8 @@ $(window).load(function() {
 $('.cards-box').masonry({
 // options
 itemSelector: '.cards-item',
-columnWidth: 300,
-gutter: 25
+columnWidth: 290,
+gutter: 20
 });
 });
 </script></body>

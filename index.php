@@ -21,7 +21,7 @@
                 <tbody>
                   <tr>
                     <td>
-                      We have <strong>123</strong> Technologies on TDB
+                      We have <strong>123</strong> Technologies in TDB
                     </td>
                   </tr>
                   <tr>
@@ -41,7 +41,7 @@
                   </tr>
                   <tr>
                     <td>
-                      The newest one is <a href="" class="label label-danger">3D touch sensitive screens</a>
+                      The newest one is <a href="" class="label label-danger"><i class="fa fa-database"></i> 3D touch sensitive screens</a>
                     </td>
                   </tr>
                 </tbody>
@@ -63,7 +63,7 @@
                 <tbody>
                   <tr>
                     <td>
-                      We have <strong>23</strong> Projects on TDB
+                      We have <strong>23</strong> Projects in TDB
                     </td>
                   </tr>
                   <tr>
@@ -83,7 +83,7 @@
                   </tr>
                   <tr>
                     <td>
-                      The newest one is <a href="" class="label"><i class="fa fa-folder"></i> Futuro da Medicina</a>
+                      The newest one is <a href="" class="label label-outline"><i class="fa fa-folder"></i> Futuro da Medicina</a>
                     </td>
                   </tr>
                 </tbody>
@@ -98,7 +98,7 @@
           <div class="ibox dashboard-ibox">
             <div class="ibox-title">
               <h2>
-              <i class="fa fa-database"></i> Organizations
+              <i class="fa fa-building"></i> Organizations
               </h2>
             </div>
             <div class="ibox-content">
@@ -107,27 +107,12 @@
                 <tbody>
                   <tr>
                     <td>
-                      We have <strong>123</strong> Technologies on TDB
+                      We have <strong>13</strong> organizations in TDB
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <strong>80</strong> of them are <a href="" class="label label-primary">Published</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>20</strong> of them are <a href="" class="label label-warning">Under Review</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>05</strong> of them are <a href="" class="label label-danger">Drafts</a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      The newest one is <a href="" class="label label-danger">3D touch sensitive screens</a>
+                      The newest one is <a href="" class="label label-outline"><i class="icon fa fa-building"></i> Tesla Motors</a>
                     </td>
                   </tr>
                 </tbody>
@@ -140,7 +125,7 @@
           <div class="ibox dashboard-ibox">
             <div class="ibox-title">
               <h2>
-              <i class="fa fa-folder"></i> Attachments
+              <i class="fa fa-paperclip"></i> Attachments
               </h2>
             </div>
             <div class="ibox-content">
@@ -149,27 +134,12 @@
                 <tbody>
                   <tr>
                     <td>
-                      We have <strong>23</strong> Projects on TDB
+                      We have <strong>23</strong> attachments in TDB
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <strong>80</strong> of them are active
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>20</strong> of them are prospect
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <strong>05</strong> of them are closed
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      The newest one is <a href="" class="label"><i class="fa fa-folder"></i> Futuro da Medicina</a>
+                      The newest one is <a href="" class="label label-outline"><i class="fa fa-paperclip"></i> Sky Blue Sky</a>
                     </td>
                   </tr>
                 </tbody>
@@ -188,28 +158,27 @@
         <div class="ibox-content">
           <ul class="list-group">
             <li class="list-group-item">
-              <span class="badge badge-primary">5 min ago</span>
-              <a class="label" href="#"><i class="icon fa fa-users"></i> Rafael Pelosini</a> was invited by <a href="#">Arthur Soares</a>
+              <span class="badge badge-primary">5 min</span>
+              <a class="label label-outline" href="#"><i class="icon fa fa-users"></i> Rafael Pelosini</a> was invited by <a href="#">Arthur Soares</a>
             </li>
             <li class="list-group-item">
-              <span class="badge badge-primary">6 min ago</span>
-
-              <a class="label" href="#"><i class="icon fa fa-paperclip"></i> Skin Patch</a> has 2 new images uploaded by <a href="#">Arthur Soares</a>
+              <span class="badge badge-primary">6 min</span>
+              <a class="label label-outline" href="#"><i class="icon fa fa-paperclip"></i> Skin Patch</a> has 2 new images uploaded by <a href="#">Arthur Soares</a>
             </li>
             <li class="list-group-item">
-              <span class="badge badge-primary">8 min ago</span>
+              <span class="badge badge-primary">8 min</span>
               <a class="label label-warning" href="#"><i class="icon fa fa-database"></i> Skin Patch</a> has 2 new images uploaded by <a href="#">Arthur Soares</a>
             </li>
             <li class="list-group-item">
-              <span class="badge badge-primary">9 min ago</span>
-              <a class="label" href="#"><i class="icon fa fa-folder"></i> Futuro da Medicina</a> was created by <a href="#">Arthur Soares</a>
+              <span class="badge badge-primary">9 min</span>
+              <a class="label label-outline" href="#"><i class="icon fa fa-folder"></i> Futuro da Medicina</a> was created by <a href="#">Arthur Soares</a>
             </li>
             <li class="list-group-item">
-              <span class="badge badge-primary">9 min ago</span>
+              <span class="badge badge-primary">9 min</span>
               <a class="label label-danger" href="#"><i class="icon fa fa-database"></i> 3D touch sensitive screens</a> was created by <a href="#">Arthur Soares</a>
             </li>
             <li class="list-group-item">
-              <span class="badge badge-primary">9 min ago</span>
+              <span class="badge badge-primary">9 min</span>
               <a class="label label-danger" href="#"><i class="icon fa fa-database"></i> 3D touch sensitive screens</a> was created by <a href="#">Arthur Soares</a>
             </li>
           </ul>
