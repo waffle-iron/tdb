@@ -4,8 +4,7 @@
         <div class="ibox-content no-padding techLabel">
             <div class="technologyTools">
                 <div class="btn-group">
-                    <button class="btn btn-xs btn-outline btn-primary"><i class="fa fa-folder"></i></button>
-                    <button data-toggle="dropdown" class="btn btn-xs btn-outline btn-primary dropdown-toggle" aria-expanded="false"><i class="fa fa-bars"></i> <span class="caret"></span></button>
+                    <button data-toggle="dropdown"  class="btn btn-xs btn-outline btn-primary dropdown-toggle" aria-expanded="false"><i class="fa fa-folder"></i> <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#">View Collections</a>

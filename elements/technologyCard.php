@@ -1,11 +1,11 @@
 <?php
 $id = rand(0,2);
 $technology = array
-    (
-        array("Drone Delivery","primary","http://emsowue.cloudimg.io/s/crop/500x300/http://si.wsj.net/public/resources/images/BN-AS240_gerdro_G_20131209114324.jpg","Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage", "Published"),
-        array("Telehealth","danger","http://res.cloudinary.com/envisioning/image/upload/c_fill,g_center,h_400,w_600/v1/s3-staging/images/MtygmCTFcMyo7wCyX","Can be as simple as text messaging a family doctor, and as complex as using a health chair capable of medical examinations.", "Draft"),
-        array("Telepresence Robots","warning","http://res.cloudinary.com/envisioning/image/upload/c_fill,g_center,h_400,w_600/v1/s3-staging/images/5gzKXx88PgezXc4ua","Wheeled device with display and sensors, enabling users to remotely navigate environments and interact with people.", "Review")
-    );
+(
+array("Drone Delivery","primary","http://emsowue.cloudimg.io/s/crop/500x300/http://si.wsj.net/public/resources/images/BN-AS240_gerdro_G_20131209114324.jpg","Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage", "Published"),
+array("Telehealth","danger","http://res.cloudinary.com/envisioning/image/upload/c_fill,g_center,h_400,w_600/v1/s3-staging/images/MtygmCTFcMyo7wCyX","Can be as simple as text messaging a family doctor, and as complex as using a health chair capable of medical examinations.", "Draft"),
+array("Telepresence Robots","warning","http://res.cloudinary.com/envisioning/image/upload/c_fill,g_center,h_400,w_600/v1/s3-staging/images/5gzKXx88PgezXc4ua","Wheeled device with display and sensors, enabling users to remotely navigate environments and interact with people.", "Review")
+);
 ?>
 <!-- Começo tecnologia -->
 <div class="cards-item">
@@ -13,8 +13,7 @@ $technology = array
         <div class="ibox-content no-padding techLabel panel-<?php echo $technology[$id][1]; ?>">
             <div class="technologyTools">
                 <div class="btn-group">
-                    <button class="btn btn-xs btn-outline btn-primary"><i class="fa fa-database"></i></button>
-                    <button data-toggle="dropdown" class="btn btn-xs btn-outline btn-primary dropdown-toggle" aria-expanded="false"><i class="fa fa-bars"></i> <span class="caret"></span></button>
+                    <button data-toggle="dropdown"  class="btn btn-xs btn-outline btn-primary dropdown-toggle" aria-expanded="false"><i class="fa fa-database"></i> <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#">Add to Project</a>
