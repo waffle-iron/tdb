@@ -1,3 +1,27 @@
+/* 3 columns by default */
+
+
+@media only screen and (min-width: 1300px) {
+  /* 5 columns for larger screens */
+  .cards-size, .cards-item { width: 19%; }
+}
+@media only screen and (min-width: 1050px) and (max-width: 1299px) {
+.cards-size, .cards-item { width: 23%; }
+}
+
+@media only screen and (min-width: 781px) and (max-width: 1049px) {
+.cards-size, .cards-item { width: 32%; }
+}
+
+@media only screen and (min-width: 700px) and (max-width: 800px) {
+.cards-size, .cards-item { width: 30%; }
+}
+
+@media only screen and (max-width: 699px) {
+  .cards-size, .cards-item { width: 44%; }
+}
+
+
 @media (min-width: 768px) {
   #page-wrapper {
     position: inherit;

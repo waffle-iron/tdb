@@ -78,6 +78,7 @@
             <!-- Content -->
             <div class="ibox-content">
               <div class="row cards-box">
+                <div class="cards-size"></div>
                 <?php include "elements/technologyCard.php" ?>
                 <?php include "elements/technologyCard.php" ?>
                 <?php include "elements/technologyCard.php" ?>

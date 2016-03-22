@@ -1,10 +1,10 @@
 <div class="footer">
-    <div class="pull-right">
-        10GB of <strong>250GB</strong> Free.
-    </div>
-    <div>
-        <strong>Copyright</strong> Example Company &copy; 2014-2015
-    </div>
+	<div class="pull-right">
+		10GB of <strong>250GB</strong> Free.
+	</div>
+	<div>
+		<strong>Copyright</strong> Example Company &copy; 2014-2015
+	</div>
 </div>
 </div>
 </div>
@@ -27,14 +27,13 @@ connectWith: ".connectList"
 </script>
 <style>
 .cards-box {
-margin: 0 auto;
+	margin: 0 auto;
 }
 .cards-box .ibox {
-margin-bottom: 0;
+	margin-bottom: 0;
 }
 .cards-item {
-margin-bottom: 25px;
-width: 250px;
+	margin-bottom: 15px;
 }
 </style>
 <script>
@@ -42,8 +41,9 @@ $(window).load(function() {
 $('.cards-box').masonry({
 // options
 itemSelector: '.cards-item',
-columnWidth: 250,
-gutter: 15
+columnWidth: '.cards-size',
+gutter: 15,
+percentPosition: true
 });
 });
 </script></body>
