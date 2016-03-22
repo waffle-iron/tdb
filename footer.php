@@ -34,7 +34,7 @@ margin-bottom: 0;
 }
 .cards-item {
 margin-bottom: 25px;
-width: 300px;
+width: 250px;
 }
 </style>
 <script>
@@ -42,8 +42,8 @@ $(window).load(function() {
 $('.cards-box').masonry({
 // options
 itemSelector: '.cards-item',
-columnWidth: 290,
-gutter: 20
+columnWidth: 250,
+gutter: 15
 });
 });
 </script></body>

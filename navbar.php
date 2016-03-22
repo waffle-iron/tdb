@@ -36,6 +36,7 @@
                         <ul role="menu" class="dropdown-menu">
                             <li><a href="projectCollections.php">projectCollections</a></li>
                             <li><a href="projectEntry.php">projectEntry</a></li>
+                            <li><a href="organizationEntry.php">organizationEntry</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
