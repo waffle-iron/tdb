@@ -41,8 +41,7 @@
                     <li class="dropdown">
                         <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Elements <span class="caret"></span></a>
                         <ul role="menu" class="dropdown-menu">
-                            <li class="active"><a href="technologyCard.php">technologyCard</a></li>
-                            <li class="active"><a href="attachmentCard.php">attachmentCard</a></li>
+                            <li class="active"><a href="cards.php">Cards</a></li>
                         </ul>
                     </li>
                 </ul>
