@@ -104,9 +104,10 @@
             </div>
             <div class="ibox-content">
               <div class="row cards-box">
-               <?php include "elements/projectCard.php" ?>
-               <?php include "elements/projectCard.php" ?>
-               <?php include "elements/projectCard.php" ?>
+                <div class="cards-size"></div>
+                <?php include "elements/projectCard.php" ?>
+                <?php include "elements/projectCard.php" ?>
+                <?php include "elements/projectCard.php" ?>
               </div>
             </div>
           </div>
@@ -128,6 +129,7 @@
             </div>
             <div class="ibox-content">
               <div class="row cards-box">
+                <div class="cards-size"></div>
                 <?php include "elements/attachmentCard.php" ?>
                 <?php include "elements/attachmentCard.php" ?>
                 <?php include "elements/attachmentCard.php" ?>

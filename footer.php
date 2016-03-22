@@ -27,13 +27,14 @@ connectWith: ".connectList"
 </script>
 <style>
 .cards-box {
-	margin: 0 auto;
+margin: 0 auto;
 }
 .cards-box .ibox {
-	margin-bottom: 0;
+margin-bottom: 0;
 }
 .cards-item {
-	margin-bottom: 15px;
+margin-bottom: 15px;
+width: 230px;
 }
 </style>
 <script>
@@ -41,9 +42,8 @@ $(window).load(function() {
 $('.cards-box').masonry({
 // options
 itemSelector: '.cards-item',
-columnWidth: '.cards-size',
-gutter: 15,
-percentPosition: true
+columnWidth: 230,
+gutter: 15
 });
 });
 </script></body>
