@@ -28,9 +28,6 @@
                     <li>
                         <a href="/attachments"><i class="fa fa-paperclip"></i> <span class="nav-label">Attachments</span></a>
                     </li>
-                    <li>
-                        <a href="/users"><i class="fa fa-users"></i> <span class="nav-label">Users</span></a>
-                    </li>
                     <li class="dropdown">
                         <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Views <span class="caret"></span></a>
                         <ul role="menu" class="dropdown-menu">
@@ -48,12 +45,15 @@
                 </ul>
                 <ul class="nav navbar-top-links navbar-right">
                     <li>
-                        <span class="m-r-sm text-muted welcome-message">Welcome to TechDB</span>
+                        <a href="usersDashboard.php">
+                            <span class="fa fa-users"></span>
+                        </a>
                     </li>
                     <li>
-                        <a href="login.html">
-                            <i class="fa fa-sign-out"></i> Log out
-                        </a>
+                        <span class="m-r-sm text-muted welcome-message">Arthur Soares</span>
+                    </li>
+                    <li>
+                        <a href="login.html"><span class="fa fa-sign-out"></span></a>
                     </li>
                 </ul>
             </div>

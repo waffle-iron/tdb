@@ -13,7 +13,7 @@ array("Telepresence Robots","warning","http://res.cloudinary.com/envisioning/ima
         <div class="ibox-content no-padding techLabel panel-<?php echo $technology[$id][1]; ?>">
             <div class="technologyTools">
                 <div class="btn-group">
-                    <button data-toggle="dropdown"  class="btn btn-xs btn-outline btn-primary dropdown-toggle" aria-expanded="false"><i class="fa fa-database"></i> <span class="caret"></span></button>
+                    <button data-toggle="dropdown"  class="btn btn-xs btn-white dropdown-toggle" aria-expanded="false"><i class="fa fa-database"></i> <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         <li>
                             <a href="#">Add to Project</a>
