@@ -25,13 +25,10 @@
 
       {{> afQuickField name="projectsId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
       {{> afQuickField name="technologiesId" label-class="col-sm-2" input-col-class="col-sm-9"}}
-       
-      
       {{> attachmentsFieldInput name="attachmentsId" }}
-
       <hr />
-
-      {{> submit texto="Edit Organization" buttonClass="col-sm-9" offsetClass="col-sm-offset-2"}}
+      
+       {{> editFormButtons buttonClass="col-sm-9" offsetClass="col-sm-offset-2" cancelPath='organizations.dashboard'}}
     {{/autoForm}}
     {{else}}
      <div class="modal-body">
@@ -39,4 +36,17 @@
     </div>
     {{/if}}
   {{/panel}}
+</template>
+
+<template name="editFormButtons">
+  <div class="form-group">
+    <div class="{{buttonClass}} {{offsetClass}}" align="right">
+    <a href="{{pathFor cancelPath}}" class="btn btn-default btn-lg">
+        Cancel Edit
+      </a>
+      <button type="submit" class="btn btn-success btn-lg">
+        Save
+      </button>
+    </div>
+  </div>
 </template>

@@ -46,7 +46,7 @@ organizationsRoutes.route('/:id/entry', {
 
 organizationsRoutes.route('/:id/edit', {
   name: 'organizations.edit',
-  parent: 'organizations.entry',
+  parent: 'organizations.dashboard',
   title: 'Edit',
   action() {
     BlazeLayout.render('defaultLayout', {
