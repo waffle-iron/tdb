@@ -39,3 +39,16 @@ Meteor.publish('projects.quickList', function() {
   });
 });
 
+Meteor.publish('projects-status-counter', function() {
+  Counts.publish(this, 'projects-prospect', Projects.find({
+    status: 'prospect'
+  }));
+  Counts.publish(this, 'projects-open', Projects.find({
+    status: 'open'
+  }));
+  Counts.publish(this, 'projects-closed', Projects.find({
+    status: 'closed'
+  }));
+});
+
+

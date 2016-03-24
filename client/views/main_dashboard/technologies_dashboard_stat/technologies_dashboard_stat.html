@@ -1,0 +1,19 @@
+<template name="technologiesDashboardStat">
+  {{#dashboardStat icon=Icons.collections.technologies title='Technologies' total=total}}
+    {{#if Template.subscriptionsReady}}
+      <p><b>{{publishedCount}}</b> of them are
+        <label class="label label-primary">Published</label>
+      </p>
+      <hr>
+      <p><b>{{reviewCount}}</b> of them are
+        <label class="label label-warning">Under Review</label>
+      </p>
+      <hr>
+      <p><b>{{draftCount}}</b> of them are
+        <label class="label label-danger">Drafts</label>
+      </p>
+    {{else}}
+      <p>Loading...</p>
+    {{/if}}
+  {{/dashboardStat}}
+</template>

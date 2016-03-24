@@ -10,11 +10,10 @@
         <a href="{{pathFor pathForAdd}}" class="btn btn-primary"> 
           Add a new {{pluralize title 1}} 
         </a>
-        
         <hr>
-
-        <p>We have <b>{{value}}</b> {{title}} on TDB</p>
-
+        <p>We have <b>{{total}}</b> {{title}} on TDB</p>
+        <hr> 
+        {{> UI.contentBlock}}
       {{/panelContent}}
     {{/panelContainer}}
   </div>

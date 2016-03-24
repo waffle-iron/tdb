@@ -28,20 +28,19 @@ Meteor.publishComposite('technologies.single', function(techId) {
       return Technologies.find({
         _id: techId
       });
-    }, children: [
-      {
-        find(tech) {
-          if (tech.images) {
-            let imagesId = _.pluck(tech.images, 'src') || [];
-            return Images.find({
-              _id: {
-                $in: imagesId
-              }
-            });
-          }
+    },
+    children: [{
+      find(tech) {
+        if (tech.images) {
+          let imagesId = _.pluck(tech.images, 'src') || [];
+          return Images.find({
+            _id: {
+              $in: imagesId
+            }
+          });
         }
       }
-    ]
+    }]
   };
 });
 
@@ -52,3 +51,16 @@ Meteor.publish('technologies.quickList', function() {
     }
   });
 });
+
+Meteor.publish('technologies-status-counter', function() {
+  Counts.publish(this, 'technologies-published', Technologies.find({
+    status: 'published'
+  }));
+  Counts.publish(this, 'technologies-review', Technologies.find({
+    status: 'review'
+  }));
+  Counts.publish(this, 'technologies-draft', Technologies.find({
+    status: 'draft'
+  }));
+});
+
