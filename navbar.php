@@ -34,7 +34,7 @@
                             <li><a href="projectCollections.php">projectCollections</a></li>
                             <li><a href="projectEntry.php">projectEntry</a></li>
                             <li><a href="organizationEntry.php">organizationEntry</a></li>
-                            <li><a href="technologyAdd.php">organizationEntry</a></li>
+                            <li><a href="technologyAdd.php">technologyAdd</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
