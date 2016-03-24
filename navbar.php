@@ -2,7 +2,7 @@
     <nav class="navbar navbar-static-top" role="navigation">
         <div class="navbar-header">
             <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
-            <i class="fa fa-reorder"></i>
+                <i class="fa fa-reorder"></i>
             </button>
             <a href="index.php" class="navbar-brand">TDB</a>
         </div>
@@ -34,6 +34,7 @@
                             <li><a href="projectCollections.php">projectCollections</a></li>
                             <li><a href="projectEntry.php">projectEntry</a></li>
                             <li><a href="organizationEntry.php">organizationEntry</a></li>
+                            <li><a href="technologyAdd.php">organizationEntry</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -42,20 +43,20 @@
                             <li class="active"><a href="cards.php">Cards</a></li>
                         </ul>
                     </li>
-                </ul>
-                <ul class="nav navbar-top-links navbar-right">
-                    <li>
-                        <a href="usersDashboard.php">
-                            <span class="fa fa-users"></span>
-                        </a>
-                    </li>
-                    <li>
-                        <span class="m-r-sm text-muted welcome-message">Arthur Soares</span>
-                    </li>
-                    <li>
-                        <a href="login.html"><span class="fa fa-sign-out"></span></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
+            </ul>
+            <ul class="nav navbar-top-links navbar-right">
+                <li>
+                    <a href="usersDashboard.php">
+                        <span class="fa fa-users"></span>
+                    </a>
+                </li>
+                <li>
+                    <span class="m-r-sm text-muted welcome-message">Arthur Soares</span>
+                </li>
+                <li>
+                    <a href="login.html"><span class="fa fa-sign-out"></span></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>

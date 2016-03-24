@@ -1,10 +1,10 @@
 <div class="footer">
-	<div class="pull-right">
-		10GB of <strong>250GB</strong> Free.
-	</div>
-	<div>
-		<strong>Copyright</strong> Example Company &copy; 2014-2015
-	</div>
+    <div class="pull-right">
+        10GB of <strong>250GB</strong> Free.
+    </div>
+    <div>
+        <strong>Copyright</strong> Example Company &copy; 2014-2015
+    </div>
 </div>
 </div>
 </div>
@@ -20,30 +20,34 @@
 <script src="js/plugins/masonary/masonry.pkgd.min.js"></script>
 <script>
 $(document).ready(function() {
-$(".sortable-list").sortable({
-connectWith: ".connectList"
-}).disableSelection();
+    $(".sortable-list").sortable({
+        connectWith: ".connectList"
+    }).disableSelection();
 });
 </script>
 <style>
 .cards-box {
-margin: 0 auto;
+    margin: 0 auto;
 }
+
 .cards-box .ibox {
-margin-bottom: 0;
+    margin-bottom: 0;
 }
+
 .cards-item {
-margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 </style>
 <script>
 $(window).load(function() {
-$('.cards-box').masonry({
-// options
-columnWidth: '.cards-size',
-gutter: 15,
-percentPosition: true
+    $('.cards-box').masonry({
+        // options
+        columnWidth: '.cards-size',
+        gutter: 15,
+        percentPosition: true
+    });
 });
-});
-</script></body>
+</script>
+</body>
+
 </html>
