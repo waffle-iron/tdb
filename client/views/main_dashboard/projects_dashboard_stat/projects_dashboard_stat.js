@@ -1,5 +1,6 @@
 Template.projectsDashboardStat.onCreated(function() {
   this.subscribe('projects-status-counter');
+  this.subscribe('last-project-added');
 });
 
 Template.projectsDashboardStat.helpers({
@@ -11,6 +12,14 @@ Template.projectsDashboardStat.helpers({
   },
   closedCount() {
     return Counts.get('projects-closed');
+  },
+  lastProjectAdded() {
+    return Projects.findOne({}, {
+      sort: {
+        createdAt: -1
+      },
+      limit: 1
+    });
   }
 });
 

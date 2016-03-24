@@ -51,4 +51,12 @@ Meteor.publish('projects-status-counter', function() {
   }));
 });
 
+Meteor.publish('last-project-added', function() {
+  return Projects.find({}, {
+    sort: {
+      createdAt: -1
+    },
+    limit: 1
+  });
+});
 
