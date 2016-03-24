@@ -1,5 +1,6 @@
 Template.technologiesDashboardStat.onCreated(function() {
   this.subscribe('technologies-status-counter');
+  this.subscribe('last-technology-added');
 });
 
 Template.technologiesDashboardStat.helpers({
@@ -12,5 +13,12 @@ Template.technologiesDashboardStat.helpers({
   draftCount() {
     return Counts.get('technologies-draft');
   },
+  lastTechnologyAdded() {
+    return Technologies.findOne({}, {
+      sort: {
+        createdAt: -1
+      }
+    });
+  }
 });
 

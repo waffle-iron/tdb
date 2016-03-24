@@ -64,3 +64,12 @@ Meteor.publish('technologies-status-counter', function() {
   }));
 });
 
+Meteor.publish('last-technology-added', function() {
+  return Technologies.find({}, {
+    sort: {
+      createdAt: -1
+    },
+    limit: 1
+  });
+});
+
