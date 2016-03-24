@@ -1,14 +1,20 @@
 <template name="dashboardStat">
   <div class="dashboard-stat">
     {{#panelContainer}}
-      {{#panelTitle}}   
+      {{#panelTitle}}
         <h2>
           <i class="{{icon}}"></i> {{title}}
          </h2>
       {{/panelTitle}}
       {{#panelContent}}
-        <h2 class="no-margins">{{value}}</h2>
-        <small>total records</small>
+        <button class="btn btn-primary"> 
+          Add a new {{pluralize title 1}} 
+        </button>
+        
+        <hr>
+
+        <p>We have <b>{{value}}</b> {{title}} on TDB</p>
+
       {{/panelContent}}
     {{/panelContainer}}
   </div>
