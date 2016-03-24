@@ -24,7 +24,7 @@
           <h5>Technologies Overview</h5>
         </div>
         <div class="ibox-content dashboard-ibox">
-          <p><a href="/organizations/add" class="btn btn-block btn-primary">Add a new technology</a></p>
+          <p><a href="technologyAdd.php" class="btn btn-block btn-primary">Add a new technology</a></p>
           <table class="table">
             <tbody>
               <tr>
