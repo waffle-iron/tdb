@@ -13,9 +13,11 @@
         <label class="label label-danger">Drafts</label>
       </p>
       <hr>
-      <p>The newest one is
-        <label class="label label-danger">{{lastTechnologyAdded.name}}</label>
+      {{#with lastTechnologyAdded}}
+        <p>The newest one is
+          <a href="{{pathFor 'technologies.edit' id=_id}}" class=" label label-danger "><i class="{{Icons.collections.technologies}}"></i> {{name}}</a>
       </p>
+      {{/with}}
     {{else}}
       <p>Loading...</p>
     {{/if}}

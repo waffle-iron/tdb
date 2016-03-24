@@ -12,7 +12,7 @@
       <hr>
       {{#with lastProjectAdded}}
         <p>The newest one is
-          <a href="{{pathFor 'projects.edit' id=_id}}" class="label label-outline"><i class="{{Icons.collections.projects}}"></i> {{lastProjectAdded.name}}</a>
+          <a href="{{pathFor 'projects.edit' id=_id}}" class="label label-outline"><i class="{{Icons.collections.projects}}"></i> {{name}}</a>
         </p>
       {{/with}}
     {{else}}
