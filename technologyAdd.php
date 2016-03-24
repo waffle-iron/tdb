@@ -143,6 +143,29 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h1>
+                            <i class="fa fa-paperclip"></i>
+                            Organizations
+                            </h1>
+                            <div class="ibox-tools">
+                                <a href="#" id="manage-org-attachments">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="row cards-box cards-responsive">
+                                <div class="cards-size"></div>
+                                <?php include "elements/organizationCard.php" ?>
+                                <?php include "elements/organizationCard.php" ?>
+                                <?php include "elements/organizationCard.php" ?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- INICIO Projects -->
                 <div class="row">
                     <div class="ibox float-e-margins">
