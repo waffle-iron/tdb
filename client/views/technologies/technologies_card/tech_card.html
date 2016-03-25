@@ -1,64 +1,74 @@
 <template name="techTools">
   <div class="btn-group technologyTools">
-    <button data-toggle="dropdown" class="btn btn-xs btn-white dropdown-toggle" aria-expanded="false"><i class="fa fa-database"></i> <span class="caret"></span></button>
-    <div>
-      <ul class="dropdown-menu">
-        <li>
-          <a href="#">Add to Project</a>
-        </li>
-        <li>
-          <a href="#">Add to Collection</a>
-        </li>
-        <li>
-          <a href="#">Add an Attachment</a>
-        </li>
-        <li>
-          <a href="#">Change status</a>
-        </li>
-        <li class="divider"></li>
-        <li>
-          <a href="#">Add a comment</a>
-        </li>
-        <li>
-          <a href="#">Edit status</a>
-        </li>
-        <li class="divider"></li>
-        <li>
-          <a href="technologyEdit.php">Edit technology</a>
-        </li>
-        <li>
-          <a href="#">Delete technology</a>
-        </li>
-      </ul>
-    </div>
+    <button data-toggle="dropdown" class="btn btn-xs btn-white dropdown-toggle" aria-expanded="false">
+      <i class="{{Icons.collections.technologies}}"></i> <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li>
+        <a href="#">Add to Project</a>
+      </li>
+      <li>
+        <a href="#">Add to Collection</a>
+      </li>
+      <li>
+        <a href="#">Add an Attachment</a>
+      </li>
+      <li>
+        <a href="#">Change status</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="#">Add a comment</a>
+      </li>
+      <li>
+        <a href="#">Edit status</a>
+      </li>
+      <li class="divider"></li>
+      <li>
+        <a href="technologyEdit.php">Edit technology</a>
+      </li>
+      <li>
+        <a href="#">Delete technology</a>
+      </li>
+    </ul>
   </div>
 </template>
-
 <template name="techDesc">
   <div class="technology-desc">
     <div>
       <h5 href="#" class="technology-name"><a href="technologyEntry.php"><span class="card-id">T0021</span> Telepresence Robots</a></h5>
       <div class="btn-group btn-xs btn-addons">
-        <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Readiness: 4"><i class="fa fa-bullseye"></i> 4</button>
-        <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Average Industry Impact: 4"><i class="fa fa-rocket"></i> 4</button>
+        {{#btnTooltip text="Readiness: 4" }}
+          <i class="{{Icons.collections.readiness}}"></i> 4
+        {{/btnTooltip}}
+        {{#btnTooltip text="Average Industry Impact: 4" }}
+          <i class="{{Icons.collections.impact}}"></i> 4
+        {{/btnTooltip}}
       </div>
     </div>
     <p>Wheeled device with display and sensors, enabling users to remotely navigate environments and interact with people.</p>
-
     {{> techBottomButtons}}
   </div>
 </template>
-
 <template name="techBottomButtons">
   <div class="btn-group">
-    <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Entry"><a href="technologyEntry.php"><i class="fa fa-eye"></i></a></button>
-    <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Status is Review">Review</button>
-    <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="11 attachments"><i class="fa fa-paperclip"></i> 11</button>
-    <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="02 projects"><i class="fa fa-folder-o"></i> 2</button>
-    <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="04 organizations"><i class="fa fa-building"></i> 4</button>
+    {{#btnTooltip text="View Entry" }}
+      Review
+    {{/btnTooltip}}
+    {{#btnTooltip text="Status is Review" }}
+      Review
+    {{/btnTooltip}}
+    {{#btnTooltip text="11 attachments" }}
+      <i class="Icons.collections.attachments"></i> 11
+    {{/btnTooltip}}
+    {{#btnTooltip text="02 projects" }}
+      <i class="{{Icons.collections.projects}}"></i> 2
+    {{/btnTooltip}}
+    {{#btnTooltip text="04 organizations" }}
+      <i class="{{Icons.collections.organizations}}"></i> 4
+    {{/btnTooltip}}
   </div>
 </template>
-
 <template name="techCard">
   <div class="ibox technology-box">
     <div class="ibox-content no-padding techLabel panel-warning">
@@ -70,13 +80,13 @@
     </div>
   </div>
 </template>
-
-
 <template name="tooltip">
-    <span class="label {{labelClass}}" 
-    data-toggle="tooltip" 
-    data-placement="{{placement}}" 
-    title="{{title}}">
+  <span class="label {{labelClass}}" data-toggle="tooltip" data-placement="{{placement}}" title="{{title}}">
         {{> UI.contentBlock }}
     </span>
+</template>
+<template name="btnTooltip">
+  <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" data-original-title="{{text}}">
+    {{> UI.contentBlock}}
+  </button>
 </template>
