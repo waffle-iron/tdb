@@ -1,0 +1,18 @@
+<template name="techCardDesc">
+  <div class="technology-desc">
+    <h5 class="technology-name">
+        <a href="{{pathFor 'technologies.entry' _id=_id}}">
+          <span class="card-id">{{{techId}}}</span> {{{name}}}
+        </a>
+      </h5>
+    <div class="btn-group btn-xs btn-addons">
+      {{#btnTooltip text=(concat "Readiness:" '4')}}
+        <i class="{{Icons.collections.readiness}}"></i> 4
+      {{/btnTooltip}}
+      {{#btnTooltip text=(concat "Average Industry Impact:" '4')}}
+        <i class="{{Icons.collections.impact}}"></i> 4
+      {{/btnTooltip}}
+    </div>
+    <p>Wheeled device with display and sensors, enabling users to remotely navigate environments and interact with people.</p>
+  </div>
+</template>

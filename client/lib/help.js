@@ -1,12 +1,13 @@
 removeConfirmation = function(name, callback) {
   swal({
     title: 'Are you sure?',
-    text: 'Your will not be able to recover this document "' + name + '"!',
+    text: 'You will not be able to recover this document <b>"' + name + '"</b>.',
     type: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#DD6B55',
-    confirmButtonText: 'Yes, delete it!',
-    closeOnConfirm: false
+    confirmButtonText: 'Yes',
+    closeOnConfirm: false,
+    html: true
   }, () => {
     callback();
   });

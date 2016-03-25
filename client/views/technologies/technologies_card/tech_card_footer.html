@@ -1,0 +1,19 @@
+<template name="techCardFooter">
+  <div class="btn-group">
+    {{#btnTooltip text="View Entry" }}
+      Review
+    {{/btnTooltip}}
+    {{#btnTooltip text="Status is Review" }}
+      Review
+    {{/btnTooltip}}
+    {{#btnTooltip text=(concat '4' "attachments") }}
+      <i class="Icons.collections.attachments"></i> 11
+    {{/btnTooltip}}
+    {{#btnTooltip text=(concat '4' "projects") }}
+      <i class="{{Icons.collections.projects}}"></i> 2
+    {{/btnTooltip}}
+    {{#btnTooltip text=(concat '4' "organizations") }}
+      <i class="{{Icons.collections.organizations}}"></i> 4
+    {{/btnTooltip}}
+  </div>
+</template>
