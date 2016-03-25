@@ -9,7 +9,8 @@ AutoForm.hooks({
 
     // Called when any submit operation fails
     onError: function(formType, error) {
-      toastr.error(error.reason, error.error);
+      console.log(error)
+      toastr.error(error);
     },
   }
 });
