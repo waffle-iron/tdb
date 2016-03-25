@@ -81,3 +81,13 @@ Meteor.publish('organizations.quickList', function() {
     }
   });
 });
+
+Meteor.publish('last-organization-added', function() {
+  return Organizations.find({}, {
+    sort: {
+      createdAt: -1
+    },
+    limit: 1
+  });
+});
+
