@@ -40,14 +40,12 @@ Template.menu.helpers({
         icon: Icons.collections.projects,
         roles: ADMIN_EDITOR_VIEWER,
       },
-
       {
         regex: '^organizations',
         name: 'Organizations',
         linkTo: 'organizations.dashboard',
         icon: Icons.collections.organizations,
         roles: ADMIN_EDITOR_VIEWER,
-        
       },
       {
         regex: '^attachments',
@@ -55,7 +53,6 @@ Template.menu.helpers({
         linkTo: 'attachments.dashboard',
         icon: Icons.collections.attachments,
         roles: ADMIN_EDITOR_VIEWER,
-        
       }
     ];
   }

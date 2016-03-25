@@ -5,7 +5,7 @@
         <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
           <i class="fa fa-reorder"></i>
         </button>
-        <a href="/dashboard" class="navbar-brand">TDB</a>
+        <a href="{{pathFor 'dashboard'}}" class="navbar-brand">TDB</a>
       </div>
       <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
@@ -15,22 +15,22 @@
             </div>
           </form> -->
           <li>
-            <a href="/ "><i class="fa fa-search"></i> <span class="nav-label">Search</span></a>
+            <a href="{{pathFor 'search'}}"><i class="fa fa-search"></i> <span class="nav-label">Search</span></a>
           </li>
           <li>
-            <a href="/technologies"><i class="fa fa-database"></i> <span class="nav-label">Technologies</span></a>
+            <a href="{{pathFor 'technologies.dashboard'}}"><i class="fa fa-database"></i> <span class="nav-label">Technologies</span></a>
           </li>
           <li>
-            <a href="/projects"><i class="fa fa-folder"></i> <span class="nav-label">Projects</span></a>
+            <a href="{{pathFor 'projects.dashboard'}}"><i class="fa fa-folder"></i> <span class="nav-label">Projects</span></a>
           </li>
           <li>
-            <a href="/organizations"><i class="fa fa-building"></i> <span class="nav-label">Organizations</span></a>
+            <a href="{{pathFor 'organizations.dashboard'}}"><i class="fa fa-building"></i> <span class="nav-label">Organizations</span></a>
           </li>
           <li>
-            <a href="/attachments"><i class="fa fa-paperclip"></i> <span class="nav-label">Attachments</span></a>
+            <a href="{{pathFor 'attachments.dashboard'}}"><i class="fa fa-paperclip"></i> <span class="nav-label">Attachments</span></a>
           </li>
           <li>
-            <a href="/users"><i class="fa fa-users"></i> <span class="nav-label">Users</span></a>
+            <a href="{{pathFor 'users.dashboard'}}"><i class="fa fa-users"></i> <span class="nav-label">Users</span></a>
           </li>
         </ul>
         <ul class="nav navbar-top-links navbar-right">
