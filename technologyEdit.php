@@ -21,36 +21,36 @@
         <div class="col-lg-3">
             <div style="position: fixed; width: 22.5%;">
                 <?php include "elements/technologyCard_add.php" ?>
-            </div>
-            <!-- STATUS -->
-            <div class="ibox">
-                <div class="ibox-content">
-                    <form id="quickEdit" novalidate="novalidate">
-                        <div class="form-group" data-required="true">
-                            <label>Status</label>
-                            <fieldset>
-                                <div class="radio radio-danger radio-inline">
-                                    <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
-                                    <label for="inlineRadio1">Draft </label>
-                                </div>
-                                <div class="radio radio-warning radio-inline">
-                                    <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked checked="">
-                                    <label for="inlineRadio1">Review</label>
-                                </div>
-                                <div class="radio radio-primary radio-inline">
-                                    <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
-                                    <label for="inlineRadio2">Published</label>
-                                </div>
-                            </fieldset>
-                        </div>
-                    </form>
-                    <p>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-primary">Save</button>
-                            <button type="button" class="btn btn-sm btn-outline btn-primary">Cancel</button>
-                            <button type="button" class="btn btn-sm btn-outline btn-primary">Delete</button>
-                        </div>
-                    </p>
+                <!-- STATUS -->
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <form id="quickEdit" novalidate="novalidate">
+                            <div class="form-group" data-required="true">
+                                <label>Status</label>
+                                <fieldset>
+                                    <div class="radio radio-danger radio-inline">
+                                        <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                                        <label for="inlineRadio1">Draft </label>
+                                    </div>
+                                    <div class="radio radio-warning radio-inline">
+                                        <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked checked="">
+                                        <label for="inlineRadio1">Review</label>
+                                    </div>
+                                    <div class="radio radio-primary radio-inline">
+                                        <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                        <label for="inlineRadio2">Published</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </form>
+                        <p>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-primary">Save</button>
+                                <button type="button" class="btn btn-sm btn-outline btn-primary">Cancel</button>
+                                <button type="button" class="btn btn-sm btn-outline btn-primary">Delete</button>
+                            </div>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
