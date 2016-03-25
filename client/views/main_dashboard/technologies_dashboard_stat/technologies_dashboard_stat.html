@@ -15,7 +15,7 @@
       <hr>
       {{#with lastTechnologyAdded}}
         <p>The newest one is
-          <a href="{{pathFor 'technologies.edit' id=_id}}" class=" label label-danger "><i class="{{Icons.collections.technologies}}"></i> {{name}}</a>
+        {{> technologyLabel}}
       </p>
       {{/with}}
     {{else}}
