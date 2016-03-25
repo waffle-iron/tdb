@@ -1,0 +1,13 @@
+<template name="attachmentsDashboardStat">
+  {{#dashboardStat icon=Icons.collections.attachments title='Attachments' total=total}}
+    {{#if Template.subscriptionsReady}}
+      {{#with lastAttachmentAdded}}
+        <span>The newest one is
+          <a href="{{pathFor 'attachments.entry' id=_id}}" class="label label-outline"><i class="{{Icons.collections.attachments}}"></i> {{name}}</a>
+        </span>
+      {{/with}}
+    {{else}}
+      <p>Loading...</p>
+    {{/if}}
+  {{/dashboardStat}}
+</template>

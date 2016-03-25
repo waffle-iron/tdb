@@ -1,8 +1,19 @@
 .dashboard-stat {
-	.btn {
-		width: 100%;
-	}
-	hr {
-		margin: 10px 0px;
-	}
+  .btn {
+    width: 100%;
+  }
+  hr {
+    margin: 10px 0px;
+  }
+  .label {
+    white-space: normal;
+    &.label-outline {
+      background-color: #fff;
+      transition: all .5s;
+      border: 1px solid #c2c2c2;
+      &:hover {
+        color: #c2c2c2!important;
+      }
+    }
+  }
 }
