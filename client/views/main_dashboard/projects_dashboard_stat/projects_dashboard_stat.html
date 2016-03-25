@@ -1,0 +1,22 @@
+<template name="projectsDashboardStat">
+  {{#dashboardStat icon=Icons.collections.projects title='Projects' total=total}}
+    {{#if Template.subscriptionsReady}}
+      <p><b>{{openCount}}</b> of them are active
+      </p>
+      <hr>
+      <p><b>{{prospectCount}}</b> of them are prospect
+      </p>
+      <hr>
+      <p><b>{{closedCount}}</b> of them are closed
+      </p>
+      <hr>
+      {{#with lastProjectAdded}}
+        <p>The newest one is
+          <a href="{{pathFor 'projects.edit' id=_id}}" class="label label-outline"><i class="{{Icons.collections.projects}}"></i> {{name}}</a>
+        </p>
+      {{/with}}
+    {{else}}
+      <p>Loading...</p>
+    {{/if}}
+  {{/dashboardStat}}
+</template>
