@@ -72,3 +72,12 @@ Meteor.publish('attachments.quickList', function() {
   });
 });
 
+Meteor.publish('last-attachment-added', function() {
+  return Attachments.find({}, {
+    sort: {
+      createdAt: -1
+    },
+    limit: 1
+  });
+});
+
