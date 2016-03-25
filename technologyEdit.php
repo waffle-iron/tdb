@@ -19,8 +19,37 @@
 <div class="wrapper-content">
     <div class="row tooltip-demo">
         <div class="col-lg-3">
-            <div style="position: fixed; width: 22.5%;">
-                <?php include "elements/technologyCard_add.php" ?>
+            <?php include "elements/technologyCard_add.php" ?>
+            <!-- STATUS -->
+            <div class="ibox">
+                <div class="ibox-content">
+                    <form id="quickEdit" novalidate="novalidate">
+                        <div class="form-group" data-required="true">
+                            <label>Status</label>
+                            <fieldset>
+                                <div class="radio radio-danger radio-inline">
+                                    <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked="">
+                                    <label for="inlineRadio1">Draft </label>
+                                </div>
+                                <div class="radio radio-warning radio-inline">
+                                    <input type="radio" id="inlineRadio1" value="option1" name="radioInline" checked checked="">
+                                    <label for="inlineRadio1">Review</label>
+                                </div>
+                                <div class="radio radio-primary radio-inline">
+                                    <input type="radio" id="inlineRadio2" value="option2" name="radioInline">
+                                    <label for="inlineRadio2">Published</label>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </form>
+                    <p>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-primary">Save</button>
+                            <button type="button" class="btn btn-sm btn-outline btn-primary">Cancel</button>
+                            <button type="button" class="btn btn-sm btn-outline btn-primary">Delete</button>
+                        </div>
+                    </p>
+                </div>
             </div>
         </div>
         <div class="col-lg-9">
@@ -85,21 +114,67 @@
                     </div>
                 </div>
                 <div class="ibox">
-                    <div class="ibox-content">
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Summary</label>
-                            <div class="col-sm-9">
-                                <textarea class="form-control" style="resize: none;" rows="2" placeholder="Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage"></textarea>
-                                <span style="display: inline-block;text-align: right; position: absolute; right: 20px; font-size: 10px; margin-top: -17px;">0 / 140</span>
-                                <p class="help-block m-b-none">This description will be used in the cards inside TDB and FutureKit. It has a 140 characters limit.</p>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">Description</label>
-                            <div class="col-sm-9">
-                                <img src="img/gfm.jpg" class="img-responsive" />
-                                <p class="help-block m-b-none">Avoid starting description with technology Title. Try keeping description to ±3 sentences, highlighting: <i>Technical (What is it?)</i>, <i>Relevance (What does it do?)</i> & <i>Importance (Why does is matter?)</i>.
-                                </p>
+                    <div class="ibox-title">
+                        <h3>Description</h3>
+                    </div>
+                    <div class="tabs-container">
+                        <div class="tabs-left">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#tab-1" aria-expanded="true">Published</a></li>
+                                <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">Draft #1 <span style="color:#c2c2c2; font-weight:300; font-style: italic; font-size:85%;"> – Mar 25th</span></a></li>
+                                <li class=""><a data-toggle="tab" href="#tab-2" aria-expanded="false">Draft #3 <span style="color:#c2c2c2; font-weight:300; font-style: italic; font-size:85%;"> – Mar 20th</span></a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <label class="col-sm-2 text-right">Summary</label>
+                                        <div class="col-sm-9">
+                                            <p>Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage</p>
+                                        </div>
+                                        <label class="col-sm-2 text-right">Description</label>
+                                        <div class="col-sm-9">
+                                            <p>Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage.</p>
+                                            <p>This description can be a lot longer and rich in text</p>
+                                            <ul>
+                                                <li>We can have bullet lists</li>
+                                                <li>Other things</li>
+                                            </ul>
+                                            <p>and nice formating</p>
+                                            <p class="text-right"><small><i>Latest edit done by Arthur Soares 3 days ago</i></small> </p>
+                                        </div>
+                                        <div class="col-sm-9 col-md-offset-2">
+                                            <button class="btn btn-primary btn-outline btn-sm btn-block">Edit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="tab-2" class="tab-pane">
+                                    <div class="panel-body">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Summary</label>
+                                            <div class="col-sm-9">
+                                                <textarea class="form-control" style="resize: none;" rows="2" placeholder="Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage"></textarea>
+                                                <span style="display: inline-block;text-align: right; position: absolute; right: 20px; font-size: 10px; margin-top: -17px;">0 / 140</span>
+                                                <p class="help-block m-b-none">This description will be used in the cards inside TDB and FutureKit. It has a 140 characters limit.</p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Description</label>
+                                            <div class="col-sm-9">
+                                                <img src="img/gfm.jpg" class="img-responsive" />
+                                                <p class="help-block m-b-none">Avoid starting description with technology Title. Try keeping description to ±3 sentences, highlighting: <i>Technical (What is it?)</i>, <i>Relevance (What does it do?)</i> & <i>Importance (Why does is matter?)</i>.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-9 col-md-offset-2">
+                                            <div class="btn-group btn-block">
+                                                <button class="btn btn-sm btn-primary btn-outline" type="button">Publish</button>
+                                                <button class="btn btn-sm btn-primary btn-outline" type="button">Save draft</button>
+                                                <button class="btn btn-sm btn-outline btn-primary" type="button">Cancel</button>
+                                                <button class="btn btn-sm btn-outline btn-primary" type="button">Delete</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -125,6 +200,7 @@
                         </div>
                     </div>
                 </div>
+                <!-- INICIO Projects -->
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
                         <h1>
