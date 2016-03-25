@@ -38,10 +38,10 @@
     <div>
       <h5 href="#" class="technology-name"><a href="technologyEntry.php"><span class="card-id">T0021</span> Telepresence Robots</a></h5>
       <div class="btn-group btn-xs btn-addons">
-        {{#btnTooltip text="Readiness: 4" }}
+        {{#btnTooltip text=(concat "Readiness:" '4')}}
           <i class="{{Icons.collections.readiness}}"></i> 4
         {{/btnTooltip}}
-        {{#btnTooltip text="Average Industry Impact: 4" }}
+        {{#btnTooltip text=(concat "Average Industry Impact:" '4')}}
           <i class="{{Icons.collections.impact}}"></i> 4
         {{/btnTooltip}}
       </div>
@@ -58,23 +58,23 @@
     {{#btnTooltip text="Status is Review" }}
       Review
     {{/btnTooltip}}
-    {{#btnTooltip text="11 attachments" }}
+    {{#btnTooltip text=(concat '4' "attachments") }}
       <i class="Icons.collections.attachments"></i> 11
     {{/btnTooltip}}
-    {{#btnTooltip text="02 projects" }}
+    {{#btnTooltip text=(concat '4' "projects") }}
       <i class="{{Icons.collections.projects}}"></i> 2
     {{/btnTooltip}}
-    {{#btnTooltip text="04 organizations" }}
+    {{#btnTooltip text=(concat '4' "organizations") }}
       <i class="{{Icons.collections.organizations}}"></i> 4
     {{/btnTooltip}}
   </div>
 </template>
 <template name="techCard">
   <div class="ibox technology-box">
-    <div class="ibox-content no-padding techLabel panel-warning">
+    <div class="ibox-content no-padding techLabel panel-{{techColor status}}">
       {{> techTools}}
-      <a href="technologyEntry.php">
-        <img src="http://res.cloudinary.com/envisioning/image/upload/c_fill,g_center,h_400,w_600/v1/s3-staging/images/5gzKXx88PgezXc4ua" class="img-responsive">
+      <a href="{{pathFor 'technologies.entry' _id=_id}}">
+      {{> safeImg url="http://res.cloudinary.com/envisioning/image/upload/c_fill,g_center,h_400,w_600/v1/s3-staging/images/5gzKXx88PgezXc4ua" class="img-responsive"}}
       </a>
       {{> techDesc}}
     </div>
