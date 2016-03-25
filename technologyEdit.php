@@ -19,7 +19,9 @@
 <div class="wrapper-content">
     <div class="row tooltip-demo">
         <div class="col-lg-3">
-            <?php include "elements/technologyCard_add.php" ?>
+            <div style="position: fixed; width: 22.5%;">
+                <?php include "elements/technologyCard_add.php" ?>
+            </div>
             <!-- STATUS -->
             <div class="ibox">
                 <div class="ibox-content">
