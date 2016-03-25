@@ -20,6 +20,20 @@
       {{/with}}
     {{/panelContent}}
     {{#panelContent}}
+      <div class="description">
+        <header>
+          <h4>Description</h4>
+          <p>
+            {{#if description}}
+              {{description}}
+            {{else}}
+              No description
+            {{/if}}
+          </p>
+        </header>
+      </div>
+    {{/panelContent}}
+    {{#panelContent}}
       <table class="table">
         <tr>
           <td>Founding Year</td>
