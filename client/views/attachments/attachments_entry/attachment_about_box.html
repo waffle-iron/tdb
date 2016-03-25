@@ -30,6 +30,13 @@
     {{#panelContent}}
       <table class="table">
         <tr>
+          <td><b>Type</b></td>
+          <td>
+            <div class="label label-success">{{type}}</div>
+          </td>
+        </tr>
+        <br>
+        <tr>
           <td><b>From</b></td>
           <td>
             <div class="label label-default">{{from}}</div>
@@ -78,7 +85,6 @@
           {{else}}
             No related technologies
         {{/each}}
-
       </div>
       <hr />
       <div class="related-links">
