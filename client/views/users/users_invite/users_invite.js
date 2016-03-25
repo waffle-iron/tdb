@@ -3,7 +3,7 @@ AutoForm.hooks({
 
     // Called when any submit operation succeeds
     onSuccess: function(formType, result) {
-      toastr.success('Usuário convidado com sucesso: ' + this.insertDoc.email, 'Sucesso');
+      toastr.success('The invitation has been sent to ' + this.insertDoc.email, 'Success');
       FlowRouter.go('users.dashboard');
     },
 
