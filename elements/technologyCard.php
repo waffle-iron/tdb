@@ -36,7 +36,7 @@ array("Telepresence Robots","warning","http://res.cloudinary.com/envisioning/ima
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#">Edit technology</a>
+                            <a href="technologyEdit.php">Edit technology</a>
                         </li>
                         <li>
                             <a href="#">Delete technology</a>
