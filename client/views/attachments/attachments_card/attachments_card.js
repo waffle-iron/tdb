@@ -4,6 +4,18 @@ Template.attachmentsCard.onCreated(function() {
 Template.attachmentsCard.helpers({
   isDeleted() {
     return Template.instance().state.get() === 'deleted';
+  },
+  fetchOptions() {
+    return {
+      type: 'fetch'
+    };
+  },
+  useBackground() {
+    // Apply background if is not from web and not a file image.
+    return this.from !== 'web' && (this.file && this.file.type.indexOf('image') !== 0);
+  },
+  isImage() {
+    return this.file.type.indexOf('image') === 0;
   }
 });
 
@@ -20,3 +32,4 @@ Template.attachmentsCard.events({
     });
   }
 });
+
