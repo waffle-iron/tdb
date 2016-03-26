@@ -3,8 +3,8 @@
     <div class="ibox card-box">
       <div class="ibox-content no-padding">
         {{> orgCardTools}}
-        <a href="{{pathFor 'organizations.entry' _id=_id}}">
-        {{> safeImg url="http://res.cloudinary.com/envisioning/image/upload/c_fill,g_center,h_400,w_600/v1/s3-staging/images/5gzKXx88PgezXc4ua" class="img-responsive"}}
+        <a href="{{pathFor 'organizations.entry' id=_id}}">
+        {{> safeImg url=(getCloudinaryCard (s3pathImages logo)) class='img-responsive'}}
         </a> 
         <div class="card-body">
           {{> orgCardDesc}}
