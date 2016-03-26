@@ -17,7 +17,8 @@ Icons = {
     users: 'fa fa-users',
     default: 'fa fa-question',
     readiness: 'fa fa-bullseye',
-    impact: 'fa fa-rocket'
+    impact: 'fa fa-rocket',
+    collections: 'fa fa-archive'
   },
   gender: {
     male: 'fa fa-mars',

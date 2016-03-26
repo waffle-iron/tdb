@@ -1,8 +1,8 @@
-<template name="techCardTools">
-  <div class="btn-group card-tools">
+<template name="orgCardTools">
+    <div class="btn-group card-tools">
     <button data-toggle="dropdown" class="btn btn-xs btn-white dropdown-toggle" aria-expanded="false">
-      <i class="{{Icons.collections.technologies}}"></i> <span class="caret"></span>
-    </button>
+      <i class="{{Icons.collections.organizations}}"></i> <span class="caret"></span>
+    </button>    
     <ul class="dropdown-menu">
       <li>
         <a href="#">Add to Project</a>
@@ -25,10 +25,10 @@
       </li>
       <li class="divider"></li>
       <li>
-        <a href="{{pathFor 'technologies.edit' _id=_id}}">Edit technology</a>
+        <a href="{{pathFor 'organizations.edit' _id=_id}}">Edit organization</a>
       </li>
       <li>
-        <a href="#" class='delete'>Delete technology</a>
+        <a href="#" class='delete'>Delete organization</a>
       </li>
     </ul>
   </div>
