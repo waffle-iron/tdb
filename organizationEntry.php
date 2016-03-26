@@ -20,32 +20,28 @@
     <div class="row tooltip-demo">
         <div class="col-lg-3">
             <?php include "elements/organizationCard_entry.php" ?>
-            <div class="ibox float-e-margins org-about-box">
-                <div class="ibox-content">
-                    <table class="table">
-                        <tr>
-                            <td>Founding Year</td>
-                            <td>2003</td>
-                        </tr>
-                        <tr>
-                            <td>Country</td>
-                            <td><span class="flag-icon flag-icon-us"></span> United States</td>
-                        </tr>
-                        <tr>
-                            <td>Type</td>
-                            <td><span class="badge badge-warning">Private</span></td>
-                        </tr>
-                        <tr>
-                            <td>People</td>
-                            <td>
-                                <a href="#" class="btn btn-xs" id="add-people">
-                                    <i class="fa fa-plus"></i>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
+            <table class="table small">
+                <tr>
+                    <td>Founding Year</td>
+                    <td>2003</td>
+                </tr>
+                <tr>
+                    <td>Country</td>
+                    <td><span class="flag-icon flag-icon-us"></span> United States</td>
+                </tr>
+                <tr>
+                    <td>Type</td>
+                    <td><span class="label label-primary">Private</span></td>
+                </tr>
+                <tr>
+                    <td>People</td>
+                    <td>
+                        <a href="#" class="btn btn-xs" id="add-people">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                    </td>
+                </tr>
+            </table>
         </div>
         <!-- Second box -->
         <div class="col-lg-9">

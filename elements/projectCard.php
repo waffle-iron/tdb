@@ -33,7 +33,7 @@
                 <div>
                     <a href="projectEntry.php"><h5 href="#" class="technology-name"><span class="card-id">EV091</span> Futuro da Medicina</h5></a>
                 </div>
-                <p>Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage. Close monitoring of crops could improve water use and pest management.</p>
+                <p>Futuro da Medicina is a content platform that is being developed for OneHealth since 2013. It started with some visualizations back in 2011. Our main contact is Dr. Sergio, CEO.</p>
                 <div class="btn-group">
                     <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Entry"><a href="projectEntry.php"><i class="fa fa-eye"></i></a></button>
                     <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="Open project">Active</button>
