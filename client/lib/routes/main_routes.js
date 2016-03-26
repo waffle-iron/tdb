@@ -1,5 +1,5 @@
 FlowRouter.triggers.enter([AccountsTemplates.ensureSignedIn], {
-  except: ['search']
+  except: ['dashboard']
 });
 
 FlowRouter.notFound = {
@@ -11,17 +11,14 @@ FlowRouter.notFound = {
   }
 };
 
-FlowRouter.route('/', {
+FlowRouter.route('/search', {
   name: 'search',
   title: 'Search',
-  triggersEnter: [function(context, redirect) {
-    if (!Meteor.user()) {
-      redirect('/signin');
-    }
-  }],
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'search'
     });
   },
 });
+
+

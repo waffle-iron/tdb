@@ -1,0 +1,19 @@
+<template name="orgCardFooter">
+  <div class="btn-group card-footer">
+    {{#btnTooltip text="View Entry" }}
+      <i class="fa fa-eye"></i>
+    {{/btnTooltip}}
+    {{#btnTooltip text="Private" }}
+      Private
+    {{/btnTooltip}}
+    {{#btnTooltip text=(concat '4' " technologies") }}
+      <i class="Icons.collections.technologies"></i> 11
+    {{/btnTooltip}}
+    {{#btnTooltip text=(concat '4' " projects") }}
+      <i class="{{Icons.collections.projects}}"></i> 2
+    {{/btnTooltip}}
+    {{#btnTooltip text=(concat '4' " attachments") }}
+      <i class="{{Icons.collections.attachments}}"></i> 4
+    {{/btnTooltip}}
+  </div>  
+</template>

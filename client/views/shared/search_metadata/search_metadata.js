@@ -7,7 +7,7 @@ const FETCH_ERRORS = {
 
 Template.searchMetadata.events({
   'click .btn-fetch': _.throttle(function(e, t) {
-    let url = $('#search-url').val();
+    let url = $('#search-url').val().trim();
 
     t.status.set(SEARCH_STATUS.LOADING);
     $(e.target).button('loading');

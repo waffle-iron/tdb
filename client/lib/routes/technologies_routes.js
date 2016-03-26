@@ -27,21 +27,21 @@ technologiesRoutes.route('/add', {
   },
 });
 
-// technologiesRoutes.route('/:id/entry', {
-//   name: 'technologies.entry',
-//   parent: 'technologies.dashboard',
-//   title() {
-//     let technologie = Technologies.findOne({
-//       _id: FlowRouter.getParam('id')
-//     });
-//     return technologie && technologie.name;
-//   },
-//   action() {
-//     BlazeLayout.render('defaultLayout', {
-//       main: 'technologiesEntry'
-//     });
-//   },
-// });
+technologiesRoutes.route('/:id/entry', {
+  name: 'technologies.entry',
+  parent: 'technologies.dashboard',
+  title() {
+    let technologie = Technologies.findOne({
+      _id: FlowRouter.getParam('id')
+    });
+    return technologie && technologie.name;
+  },
+  action() {
+    BlazeLayout.render('defaultLayout', {
+      main: 'technologiesEntry'
+    });
+  },
+});
 
 
 technologiesRoutes.route('/:id/edit', {

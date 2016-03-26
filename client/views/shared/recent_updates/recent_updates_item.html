@@ -3,7 +3,9 @@
     <a href="{{pathFor routeName id=docId}}" class="label label-{{color}}">
       <i class="icon {{icon}}"></i> {{docName}} 
     </a>
-    <p> was {{description}} by
+    <p> 
+      {{getText}}
+      <!--was {{description}} by-->
       <a href="{{pathFor 'users.entry' id=userId }}"> 
         {{userIdentification}}
       </a>

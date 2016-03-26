@@ -33,3 +33,22 @@ Template.registerHelper('shortIt', function(stringToShorten, maxCharsAmount) {
   }
   return stringToShorten;
 });
+
+Template.registerHelper('concat', function() {
+  return Array.prototype.slice.call(arguments, 0, -1).join('');
+});
+
+
+Template.registerHelper('techColor', function(status) {
+  switch (status) {
+    case 'draft':
+      return 'danger';
+    case 'review':
+      return 'warning';
+    case 'published':
+      return 'primary';
+    default:
+      return 'default';
+  }
+});
+
