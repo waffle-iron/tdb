@@ -12,7 +12,7 @@ Icons = {
   collections: {
     organizations: 'fa fa-building',
     projects: 'fa fa-folder',
-    technologies: 'fa fa-database',
+    technologies: 'fa fa-gear',
     attachments: 'fa fa-paperclip',
     users: 'fa fa-users',
     default: 'fa fa-question',
