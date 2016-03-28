@@ -35,6 +35,21 @@
         </ul>
         <ul class="nav navbar-top-links navbar-right">
           <li>
+            <a href="{{pathFor 'users.dashboard'}}">
+              <span class="fa fa-users"></span>
+            </a>
+          </li>
+          <li>
+            <span class="m-r-sm text-muted welcome-message">
+              {{currentUser.identification}}
+            </span>
+          </li>
+          <li>
+            <a href="#" id="logout"><span class="fa fa-sign-out"></span></a>
+          </li>
+        </ul>
+        <!-- <ul class="nav navbar-top-links navbar-right">
+          <li>
             <span class="m-r-sm text-muted welcome-message">Welcome to TechDB</span>
           </li>
           <li>
@@ -42,7 +57,7 @@
               <i class="fa fa-sign-out"></i> Log out
             </a>
           </li>
-        </ul>
+        </ul> -->
       </div>
     </nav>
   </div>
