@@ -10,7 +10,7 @@ const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 
 gulp.task('styles', () => {
-  return gulp.src('app/styles/*.less')
+  return gulp.src('../src/client/stylesheets/*.less')
     .pipe($.plumber())
     .pipe($.sourcemaps.init())
     .pipe($.less({
@@ -124,7 +124,7 @@ gulp.task('serve', ['styles', 'templates', 'scripts', 'fonts'], () => {
     '.tmp/fonts/**/*'
   ]).on('change', reload);
 
-  gulp.watch('app/styles/**/*.less', ['styles']);
+  gulp.watch('../src/client/stylesheets/**/*.less', ['styles']);
   gulp.watch('app/templates/**/*.hbs', ['templates', reload]);
   gulp.watch('app/scripts/**/*.js', ['scripts']);
   gulp.watch('app/fonts/**/*', ['fonts']);
@@ -189,18 +189,11 @@ gulp.task('wiredep', () => {
     .pipe(gulp.dest('app'));
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'extras'], () => {
+gulp.task('build', ['html', 'styles', 'images', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({
     title: 'build',
     gzip: true
   }));
-});
-
-gulp.task('meteor', ['styles'], () => {
-  return gulp.src('dist/styles/*').pipe($.size({
-    title: 'build',
-    gzip: true
-  })).pipe(gulp.dest('../src/client/stylesheets'));
 });
 
 gulp.task('default', ['clean'], () => {
