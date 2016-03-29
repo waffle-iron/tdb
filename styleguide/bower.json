@@ -5,7 +5,8 @@
     "modernizr": "~2.8.1",
     "bootstrap": "^3.3.6",
     "handlebars": "^4.0.5",
-    "font-awesome": "^4.5.0"
+    "font-awesome": "^4.5.0",
+    "masonry": "^4.0.0"
   },
   "overrides": {
     "bootstrap-sass": {

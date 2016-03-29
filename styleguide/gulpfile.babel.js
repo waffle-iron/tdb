@@ -33,6 +33,7 @@ gulp.task('scripts', () => {
     .pipe($.babel())
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('.tmp/scripts'))
+    .pipe(gulp.dest('dist/scripts'))
     .pipe(reload({
       stream: true
     }));
@@ -168,7 +169,8 @@ gulp.task('templates', () => {
     .pipe($.declare({
       namespace: 'TDB.templates' // change this to whatever you want
     }))
-    .pipe(gulp.dest('.tmp/templates'));
+    .pipe(gulp.dest('.tmp/templates'))
+    .pipe(gulp.dest('dist/templates'));
 });
 
 // inject bower components
@@ -192,6 +194,13 @@ gulp.task('build', ['html', 'images', 'fonts', 'extras'], () => {
     title: 'build',
     gzip: true
   }));
+});
+
+gulp.task('meteor', ['styles'], () => {
+  return gulp.src('dist/styles/*').pipe($.size({
+    title: 'build',
+    gzip: true
+  })).pipe(gulp.dest('../src/client/stylesheets'));
 });
 
 gulp.task('default', ['clean'], () => {

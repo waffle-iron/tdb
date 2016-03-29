@@ -21,13 +21,9 @@
   </head>
 
   <body class="top-navigation pace-done">
-    <!--[if lt IE 10]>
-      <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-    <![endif]-->
     <div id="wrapper">
       <div id="page-wrapper" class="gray-bg" style="min-height: 472px;">
-        <div id="navbar"></div>
-        <div id="dashboard"></div>
+        <div id="mainDashboard"></div>
       </div>
     </div>
     <!-- build:js scripts/vendor.js -->
@@ -35,13 +31,17 @@
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/bower_components/handlebars/handlebars.js"></script>
+    <script src="/bower_components/get-size/get-size.js"></script>
+    <script src="/bower_components/ev-emitter/ev-emitter.js"></script>
+    <script src="/bower_components/desandro-matches-selector/matches-selector.js"></script>
+    <script src="/bower_components/fizzy-ui-utils/utils.js"></script>
+    <script src="/bower_components/outlayer/outlayer.js"></script>
+    <script src="/bower_components/masonry/masonry.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-    <script src="/templates/navbar.js"></script>
-    <script src="/templates/dashboard.js"></script>
-    <!-- build:js scripts/main.js -->
-    <script src="scripts/main.js"></script>
-    <!-- endbuild -->
+    <script src="templates/components/navbar.js"></script>
+    <script src="templates/mainDashboard.js"></script>
+    <script src="scripts/mainDashboard.js"></script>
   </body>
 
 </html>
