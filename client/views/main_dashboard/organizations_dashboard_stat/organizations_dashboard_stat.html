@@ -1,11 +1,25 @@
 <template name="organizationsDashboardStat">
   {{#dashboardStat icon=Icons.collections.organizations title='Organizations' total=total}}
     {{#if Template.subscriptionsReady}}
-      {{#with lastOrganizationAdded}}
-        <p>The newest one is
-          <a href="{{pathFor 'organizations.entry' id=_id}}" class="label label-outline"><i class="{{Icons.collections.organizations}}"></i> {{name}}</a>
-        </p>
-      {{/with}}
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>
+              We have <strong>{{total}}</strong> Organizations in TDB
+            </td>
+          </tr>
+          <tr>
+            <td>
+              {{#with lastOrganizationAdded}}
+                The newest one is 
+                <a href="{{pathFor 'organizations.entry' id=_id}}" class="label label-outline">
+                  <i class="{{Icons.collections.organizations}}"></i> {{name}}
+                </a>
+              {{/with}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     {{else}}
       <p>Loading...</p>
     {{/if}}
