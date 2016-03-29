@@ -1,20 +1,17 @@
 <template name="dashboardStat">
-  <div class="dashboard-stat">
-    {{#panelContainer}}
-      {{#panelTitle}}
-        <h2>
-          <i class="{{icon}}"></i> {{title}}
-         </h2>
-      {{/panelTitle}}
-      {{#panelContent}}
-        <a href="{{pathFor pathForAdd}}" class="btn btn-success"> 
+  {{#panelContainer class="dashboard-ibox"}}
+    {{#panelTitle}}
+      <h2>
+        <i class="{{icon}}"></i> {{title}}
+       </h2>
+    {{/panelTitle}}
+    {{#panelContent}}
+      <p>
+        <a href="{{pathFor pathForAdd}}" class="btn btn-primary btn-block"> 
           Add a new {{pluralize title 1}} 
-        </a>
-        <hr>
-        <p>We have <b>{{total}}</b> {{title}} on TDB</p>
-        <hr> 
-        {{> UI.contentBlock}}
-      {{/panelContent}}
-    {{/panelContainer}}
-  </div>
+        </a>        
+      </p>
+      {{> UI.contentBlock}}
+    {{/panelContent}}
+  {{/panelContainer}}
 </template>
