@@ -24,7 +24,7 @@ Template.searchSourceDisplay.helpers({
         types = t.data.types();
       } else {
         // If is an array like "attachments, organizations", mount the array
-        types = t.data.types.split(',').map(t => t.trim());
+        types = t.data.types.split(',').map(type => type.trim());
       }
 
       if (!Array.isArray(types)) {
