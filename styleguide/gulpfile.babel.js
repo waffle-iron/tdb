@@ -1,4 +1,3 @@
-// generated on 2016-03-29 using generator-webapp 2.0.0
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
@@ -174,7 +173,7 @@ gulp.task('templates', () => {
 
 // inject bower components
 gulp.task('wiredep', () => {
-  gulp.src('app/styles/*.scss')
+  gulp.src('app/styles/*.less')
     .pipe(wiredep({
       ignorePath: /^(\.\.\/)+/
     }))
@@ -198,3 +197,4 @@ gulp.task('build', ['html', 'images', 'fonts', 'extras'], () => {
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
 });
+
