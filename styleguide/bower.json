@@ -3,7 +3,8 @@
   "private": true,
   "dependencies": {
     "modernizr": "~2.8.1",
-    "bootstrap": "^3.3.6"
+    "bootstrap": "^3.3.6",
+    "handlebars": "^4.0.5"
   },
   "overrides": {
     "bootstrap-sass": {

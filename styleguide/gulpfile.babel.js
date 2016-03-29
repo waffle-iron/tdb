@@ -60,7 +60,7 @@ const testLintOptions = {
 gulp.task('lint', lint('app/scripts/**/*.js'));
 gulp.task('lint:test', lint('test/spec/**/*.js', testLintOptions));
 
-gulp.task('html', ['styles', 'scripts'], () => {
+gulp.task('html', ['styles', 'templates', 'scripts'], () => {
   return gulp.src('app/*.html')
     .pipe($.useref({
       searchPath: ['.tmp', 'app', '.']
@@ -105,7 +105,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
+gulp.task('serve', ['styles', 'templates', 'scripts', 'fonts'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -120,10 +120,12 @@ gulp.task('serve', ['styles', 'scripts', 'fonts'], () => {
   gulp.watch([
     'app/*.html',
     'app/images/**/*',
+    '.tmp/templates/**/*.js',
     '.tmp/fonts/**/*'
   ]).on('change', reload);
 
   gulp.watch('app/styles/**/*.less', ['styles']);
+  gulp.watch('app/templates/**/*.hbs', ['templates', reload]);
   gulp.watch('app/scripts/**/*.js', ['scripts']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
@@ -158,6 +160,16 @@ gulp.task('serve:test', ['scripts'], () => {
   gulp.watch('test/spec/**/*.js', ['lint:test']);
 });
 
+gulp.task('templates', () => {
+  return gulp.src('app/templates/**/*.hbs')
+    .pipe($.handlebars())
+    .pipe($.defineModule('plain'))
+    .pipe($.declare({
+      namespace: 'TDB.templates' // change this to whatever you want
+    }))
+    .pipe(gulp.dest('.tmp/templates'));
+});
+
 // inject bower components
 gulp.task('wiredep', () => {
   gulp.src('app/styles/*.scss')
@@ -184,4 +196,3 @@ gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
 });
-
