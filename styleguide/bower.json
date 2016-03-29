@@ -9,11 +9,17 @@
     "masonry": "^4.0.0"
   },
   "overrides": {
-    "bootstrap-sass": {
+    "bootstrap": {
       "main": [
-        "assets/stylesheets/_bootstrap.scss",
-        "assets/fonts/bootstrap/*",
-        "assets/javascripts/bootstrap.js"
+        "dist/css/bootstrap.css",
+        "dist/fonts/*",
+        "dist/js/bootstrap.js"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css",
+        "fonts/*"
       ]
     }
   },
