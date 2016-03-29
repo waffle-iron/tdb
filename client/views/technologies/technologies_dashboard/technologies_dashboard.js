@@ -5,3 +5,15 @@ Template.technologiesDashboard.events({
   //   });
   // }
 });
+
+
+Template.technologiesDashboard.helpers({
+  technologiesCount() {
+    return Counts.get('docCounter-technologies');
+  },
+  techSelector() {
+    return {
+      collection: 'technologies'
+    };
+  }
+});

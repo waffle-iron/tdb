@@ -5,7 +5,11 @@ Template.organizationsDashboard.helpers({
   getDescription() {
     return this._highlight && this._highlight.description ? this._highlight.description : this.description;
   },
-
+  orgSelector() {
+    return {
+      collection: 'organizations'
+    };
+  },
   onDelete() {
     return function(data) {
       console.log('delete ', data);
