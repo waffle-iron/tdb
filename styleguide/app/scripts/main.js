@@ -1,1 +1,2 @@
-console.log(TDB.templates);
+document.querySelector("#app").innerHTML = TDB.templates.test();
+

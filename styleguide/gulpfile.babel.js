@@ -162,7 +162,9 @@ gulp.task('serve:test', ['scripts'], () => {
 
 gulp.task('templates', () => {
   return gulp.src('app/templates/**/*.hbs')
-    .pipe($.handlebars())
+    .pipe($.handlebars({
+      handlebars: require('handlebars')
+    }))
     .pipe($.defineModule('plain'))
     .pipe($.declare({
       namespace: 'TDB.templates' // change this to whatever you want
