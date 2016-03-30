@@ -3,10 +3,31 @@ A frontend reference for TDB developers.
 
 ## Guide
 
+### Setup the Environment
+
+Install gulp globally.
+```
+npm install -g gulp
+```
+
+Access the `styleguide` folder and install the depedencies.
+```
+cd styleguide
+npm install
+```
+
+Run the development environment.
+```
+gulp serve
+```
+
+Your default browser will open automatically.
+
+
 ### Create new component
 Components are located at `app/templates/components`. To create a component you need to create a new file with `.hbs` extension (handlebars) and import on `index.html` and register it on `main.js` file. The template name will be the name of your file.
 
-### Example
+#### Example
 **app/templates/components/coolComponent.hbs**
 ```handlebars
 <div class="cool-component">
@@ -33,7 +54,7 @@ Yes! Its `coolComponent.js` and not `coolComponent.hbs`, because our `gulp` task
 ### Create a new route
 A route needs a top level component to render it. The top level components (screens) are located in `app/templates`. To create a new route follow the next steps. 
 
-### Example
+#### Example
 
 **app/templates/coolDashboard.hbs**
 ```handlebars
