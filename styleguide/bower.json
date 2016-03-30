@@ -1,0 +1,30 @@
+{
+  "name": "styleguide",
+  "private": true,
+  "dependencies": {
+    "modernizr": "~2.8.1",
+    "bootstrap": "^3.3.6",
+    "handlebars": "^4.0.5",
+    "font-awesome": "^4.5.0",
+    "masonry": "^4.0.0"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css",
+        "dist/fonts/*",
+        "dist/js/bootstrap.js"
+      ]
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css",
+        "fonts/*"
+      ]
+    }
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
