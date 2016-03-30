@@ -27,6 +27,12 @@
       "main": [
         "jquery.slimscroll.js"
       ]
+    },
+    "masonry": {
+      "main": [
+        "dist/masonry.pkgd.js"
+      ],
+      "dependencies": {}
     }
   },
   "devDependencies": {
@@ -34,3 +40,4 @@
     "mocha": "^2.4.5"
   }
 }
+
