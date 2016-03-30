@@ -2,6 +2,16 @@ var TDBRouter = {
   routes: [],
   rootElement: document.querySelector('#main'),
 
+  _getTemplateName: function(hash) {
+    var templateName;
+    this.routes.forEach(function(route) {
+      if (route.hash === window.location.hash) {
+        templateName = route.templateName;
+      }
+    });
+    return templateName || 'notFound';
+  },
+
   addRoute: function(hash, templateName) {
     this.routes.push({
       hash: hash,
@@ -9,13 +19,10 @@ var TDBRouter = {
     });
     return this.routes;
   },
+
   render: function(hash) {
-    var self = this;
-    this.routes.forEach(function(route) {
-      if (route.hash === window.location.hash) {
-        self.rootElement.innerHTML = TDB.templates[route.templateName]();
-      }
-    })
+    var template = TDB.templates[this._getTemplateName(hash)];
+    this.rootElement.innerHTML = template();
   }
 }
 
@@ -26,3 +33,4 @@ $(document).ready(function() {
 $(window).bind("hashchange", function() {
   TDBRouter.render(window.location.hash);
 });
+
