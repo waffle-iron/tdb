@@ -25,3 +25,11 @@ TDBRouter.addRoute('#/attachmentsDashboard','attachmentsDashboard', () => {
     percentPosition: true
   });
 });
+TDBRouter.addRoute('#/projectsDashboard','projectsDashboard', () => {
+  $('.cards-box').masonry({
+    // options
+    columnWidth: '.cards-size',
+    gutter: 15,
+    percentPosition: true
+  });
+});
