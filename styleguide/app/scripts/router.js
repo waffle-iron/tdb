@@ -1,30 +1,38 @@
+'use strict';
+
 var TDBRouter = {
   routes: [],
   rootElement: document.querySelector('#main'),
 
-  _getTemplateName: function(hash) {
-    var templateName;
-    this.routes.forEach(function(route) {
-      if (route.hash === window.location.hash) {
-        templateName = route.templateName;
+  _getRouteByHash: function(hash) {
+    var route;
+    this.routes.forEach(function(r) {
+      if (r.hash === window.location.hash) {
+        route = r;
       }
     });
-    return templateName || 'notFound';
+    return route;
   },
 
-  addRoute: function(hash, templateName) {
+  addRoute: function(hash, templateName, callback) {
     this.routes.push({
       hash: hash,
-      templateName: templateName
+      templateName: templateName,
+      callback: callback
     });
     return this.routes;
   },
 
   render: function(hash) {
-    var template = TDB.templates[this._getTemplateName(hash)];
-    this.rootElement.innerHTML = template();
+    var route = this._getRouteByHash(hash);
+    if (route){
+      this.rootElement.innerHTML = TDB.templates[route.templateName]();
+      route.callback && route.callback();
+    }else {
+      this.rootElement.innerHTML = TDB.templates.notFound();
+    }
   }
-}
+};
 
 $(document).ready(function() {
   TDBRouter.render(window.location.hash);

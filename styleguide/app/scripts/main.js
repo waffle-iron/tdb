@@ -4,7 +4,13 @@ Handlebars.registerPartial('footer', TDB.templates.footer());
 Handlebars.registerPartial('technologyCard', TDB.templates.technologyCard());
 
 
-// Register routes (route, templateName)
+// Register routes (hash, templateName, initCallback)
 TDBRouter.addRoute('', 'mainDashboard');
-TDBRouter.addRoute('index', 'mainDashboard');
-TDBRouter.addRoute('#/technologiesDashboard', 'technologiesDashboard');
+TDBRouter.addRoute('#/technologiesDashboard','technologiesDashboard', () => {
+  $('.cards-box').masonry({
+    // options
+    columnWidth: '.cards-size',
+    gutter: 15,
+    percentPosition: true
+  });
+});
