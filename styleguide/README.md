@@ -14,6 +14,7 @@ Access the `styleguide` folder and install the depedencies.
 ```
 cd styleguide
 npm install
+bower install
 ```
 
 Run the development environment.
