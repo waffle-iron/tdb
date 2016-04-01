@@ -118,13 +118,9 @@
         <div class="ibox-content">
           <div class="row cards-box">
             <div class="cards-size"></div>
-            {{> technologyCard}}
-            {{> technologyCard}}
-            {{> technologyCard}}
-            {{> technologyCard}}
-            {{> technologyCard}}
-            {{> technologyCard}}
-            {{> technologyCard}}
+              {{#each technologies}}
+                {{> technologyCard this }}
+              {{/each}}
           </div>
         </div>
       </div>

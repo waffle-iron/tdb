@@ -3,34 +3,19 @@
 var TDBRouter = {
   routes: [],
   rootElement: document.querySelector('#main'),
-
-  getRouteByHash: function(hash) {
-    var route;
-    this.routes.forEach(function(r) {
-      if (r.hash === window.location.hash) {
-        route = r;
-      }
-    });
-    return route;
+  getRouteByHash: function(hash){
+    return this.routes.find(r => r.path === hash.substring(1));
   },
-
-  addRoute: function(hash, templateName, callback) {
-    this.routes.push({
-      hash: hash,
-      templateName: templateName,
-      callback: callback || ()
-    });
-    return this.routes;
+  addRoute: function({path, template, onRendered, context}) {
+    return this.routes.push({path, template, onRendered, context});
   },
-
   render: function(hash) {
     var route = this.getRouteByHash(hash);
     if (route) {
-      this.rootElement.innerHTML = TDB.templates[route.templateName]();
-      window.setTimeout(route.callback, 0);
-      }, 0)
+      this.rootElement.innerHTML = TDB.templates[route.template](route.context);
+      window.setTimeout(route.onRendered, 0);  
     } else {
-      this.rootElement.innerHTML = TDB.templates.notFound();
+      this.rootElement.innerHTML = TDB.templates.notFound()
     }
   }
 };
