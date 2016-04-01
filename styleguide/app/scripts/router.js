@@ -4,7 +4,7 @@ var TDBRouter = {
   routes: [],
   rootElement: document.querySelector('#main'),
 
-  _getRouteByHash: function(hash) {
+  getRouteByHash: function(hash) {
     var route;
     this.routes.forEach(function(r) {
       if (r.hash === window.location.hash) {
@@ -18,17 +18,18 @@ var TDBRouter = {
     this.routes.push({
       hash: hash,
       templateName: templateName,
-      callback: callback
+      callback: callback || ()
     });
     return this.routes;
   },
 
   render: function(hash) {
-    var route = this._getRouteByHash(hash);
-    if (route){
+    var route = this.getRouteByHash(hash);
+    if (route) {
       this.rootElement.innerHTML = TDB.templates[route.templateName]();
-      route.callback && route.callback();
-    }else {
+      window.setTimeout(route.callback, 0);
+      }, 0)
+    } else {
       this.rootElement.innerHTML = TDB.templates.notFound();
     }
   }

@@ -6,39 +6,20 @@ Handlebars.registerPartial('projectCard', TDB.templates.projectCard());
 Handlebars.registerPartial('attachmentCard', TDB.templates.attachmentCard());
 Handlebars.registerPartial('organizationCard', TDB.templates.organizationCard());
 
+// Helpers
+function initMansory() {
+  $('.cards-box').masonry({
+    // options
+    columnWidth: '.cards-size',
+    gutter: 15,
+    percentPosition: true
+  });
+}
 
 // Register routes (hash, templateName, initCallback)
 TDBRouter.addRoute('', 'mainDashboard');
-TDBRouter.addRoute('#/technologiesDashboard','technologiesDashboard', () => {
-  $('.cards-box').masonry({
-    // options
-    columnWidth: '.cards-size',
-    gutter: 15,
-    percentPosition: true
-  });
-});
+TDBRouter.addRoute('#/technologiesDashboard', 'technologiesDashboard', initMansory)
+TDBRouter.addRoute('#/attachmentsDashboard', 'attachmentsDashboard', initMansory)
+TDBRouter.addRoute('#/projectsDashboard', 'projectsDashboard', initMansory)
+TDBRouter.addRoute('#/organizationsDashboard', 'organizationsDashboard', initMansory)
 
-TDBRouter.addRoute('#/attachmentsDashboard','attachmentsDashboard', () => {
-  $('.cards-box').masonry({
-    // options
-    columnWidth: '.cards-size',
-    gutter: 15,
-    percentPosition: true
-  });
-});
-TDBRouter.addRoute('#/projectsDashboard','projectsDashboard', () => {
-  $('.cards-box').masonry({
-    // options
-    columnWidth: '.cards-size',
-    gutter: 15,
-    percentPosition: true
-  });
-});
-TDBRouter.addRoute('#/organizationsDashboard','organizationsDashboard', () => {
-  $('.cards-box').masonry({
-    // options
-    columnWidth: '.cards-size',
-    gutter: 15,
-    percentPosition: true
-  });
-});
