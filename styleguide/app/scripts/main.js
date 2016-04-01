@@ -19,8 +19,7 @@ function initMansory() {
 // Register routes
 TDBRouter.addRoute({
   path: '',
-  template: 'mainDashboard',
-  onRendered: initMansory,
+  template: 'mainDashboard'
 });
 
 TDBRouter.addRoute({
