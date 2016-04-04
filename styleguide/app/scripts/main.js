@@ -189,6 +189,76 @@ TDBRouter.addRoute({
     }]
   }
 });
+TDBRouter.addRoute({
+  path: '/projects/collection',
+  template: 'projectCollection',
+  onRendered: initProjectEntry,
+  context: {
+    collectionName: 'Taxonomy',
+    technologiesStash: [{
+      name: 'Drone Delivery',
+      description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
+      src: '../images/technology.jpg'
+    }, {
+      name: 'Other cool technology',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
+      src: '../images/organization.png'
+    }],
+    collection: [{
+      title: 'IT & Systems',
+      description: 'The capacity for being fast and efficient can mean success or failure in the field. With more resources requiring electricity to operate escalating demands should be quelled. Acquiring energy, transmitting energy, and effective use of energy gives an edge in deployed assets for their ability to remain self-sufficient and reduce expenditures on unnecessary losses.',
+      subCollection: [{
+        title: 'Distribution',
+        description: 'Means of distribution',
+        technologies: [{
+          name: 'Drone Delivery',
+          description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
+          src: '../images/technology.jpg'
+        }, {
+          name: 'Other cool technology',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
+          src: '../images/organization.png'
+        }]
+      }]
+    }, {
+      title: 'IT & Systems',
+      description: 'The capacity for being fast and efficient can mean success or failure in the field. With more resources requiring electricity to operate escalating demands should be quelled. Acquiring energy, transmitting energy, and effective use of energy gives an edge in deployed assets for their ability to remain self-sufficient and reduce expenditures on unnecessary losses.',
+      subCollection: [{
+        title: 'Distribution',
+        description: 'Means of distribution',
+        technologies: [{
+          name: 'Drone Delivery',
+          description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
+          src: '../images/technology.jpg'
+        }, {
+          name: 'Other cool technology',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
+          src: '../images/organization.png'
+        }]
+      }, {
+        title: 'Production',
+        description: 'Means of distribution',
+        technologies: [{
+          name: 'Drone Delivery',
+          description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
+          src: '../images/technology.jpg'
+        }, {
+          name: 'Other cool technology',
+          description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
+          src: '../images/organization.png'
+        }]
+      }, ]
+    }],
+    latestUpdates: [{
+      object: 'Futuro da Medicina',
+      type: 'folder',
+      url: '#/projects/entry',
+      action: 'was created',
+      author: 'Arthur Soares',
+      time: '5 min'
+    }]
+  }
+});
 
 
 
