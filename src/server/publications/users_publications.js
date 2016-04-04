@@ -139,3 +139,10 @@ Meteor.publish('user.info', function(userId) {
     }
   });
 });
+
+
+Meteor.publish('users-roles-counter', function() {
+  Counts.publish(this, 'users-admin', Roles.getUsersInRole('admin'));
+  Counts.publish(this, 'users-editor', Roles.getUsersInRole('editor'));
+  Counts.publish(this, 'users-viewer', Roles.getUsersInRole('viewer'));
+});

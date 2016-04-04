@@ -1,33 +1,33 @@
-<template name="technologiesDashboardStat">
-  {{#dashboardStat icon=Icons.collections.technologies title='Technologies'}}
+<template name="usersDashboardStat">
+  {{#dashboardStat icon=Icons.collections.users title='Users' pathForAdd=(pathFor 'users.invite')}}
     {{#if Template.subscriptionsReady}}
       <table class="table">
         <tbody>
           <tr>
-            <td>We have <b>{{totalCount}}</b> Technologies on TDB</td>
+            <td>We have <b>{{total}}</b> {{title}} Users on TDB</td>
           </tr>
           <tr>
             <td>
-              <strong>{{publishedCount}}</strong> of them are <a href="" class="label label-primary">Published</a>
+              <strong>{{adminCount}}</strong> of them are <a href="" class="label label-primary">Admin</a>
             </td>
           </tr>
           <tr>
             <td>
-              <strong>{{reviewCount}}</strong> of them are <a href="" class="label label-warning">Under Review</a>
+              <strong>{{editorCount}}</strong> of them are <a href="" class="label label-warning">Editor</a>
             </td>
           </tr>
           <tr>
             <td>
-              <strong>{{draftCount}}</strong> of them are <a href="" class="label label-danger">Drafts</a>
+              <strong>{{viewerCount}}</strong> of them are <a href="" class="label label-danger">Viewer</a>
             </td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td>
               {{#with lastTechnologyAdded}}
               The newest one is {{> technologyLabel}}
               {{/with}}
             </td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>    
     {{else}}

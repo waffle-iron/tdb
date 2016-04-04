@@ -4,6 +4,9 @@ Template.technologiesDashboardStat.onCreated(function() {
 });
 
 Template.technologiesDashboardStat.helpers({
+  totalCount() {
+    return Counts.get('docCounter-technologies');
+  },
   publishedCount() {
     return Counts.get('technologies-published');
   },

@@ -4,7 +4,7 @@
       <table class="table">
         <tbody>
           <tr>
-            <td>We have <b>{{total}}</b> {{title}} Projects on TDB</td>
+            <td>We have <b>{{totalCount}}</b> Projects on TDB</td>
           </tr>
           <tr>
             <td>
@@ -28,6 +28,8 @@
                 <a href="{{pathFor 'projects.edit' id=_id}}" class="label label-outline">
                   <i class="{{Icons.collections.projects}}"></i> {{name}}
                 </a>
+              {{else}}
+                <i>No projects were added on TDB yet.</i>
               {{/with}}
             </td>
           </tr>

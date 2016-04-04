@@ -3,6 +3,9 @@ Template.organizationsDashboardStat.onCreated(function() {
 });
 
 Template.organizationsDashboardStat.helpers({
+  totalCount() {
+    return Counts.get('docCounter-organizations');
+  },  
   lastOrganizationAdded() {
     return Organizations.findOne({}, {
       sort: {

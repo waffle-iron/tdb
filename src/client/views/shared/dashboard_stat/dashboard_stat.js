@@ -6,7 +6,7 @@ Template.dashboardStat.events({
 
 Template.dashboardStat.helpers({
   pathForAdd() {
-    return `${Template.instance().data.title.toLowerCase()}.add`;
+    return Template.instance().data.pathForAdd || `${Template.instance().data.title.toLowerCase()}.add`;
   }
 });
 

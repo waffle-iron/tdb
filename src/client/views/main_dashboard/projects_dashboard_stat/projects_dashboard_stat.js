@@ -4,6 +4,9 @@ Template.projectsDashboardStat.onCreated(function() {
 });
 
 Template.projectsDashboardStat.helpers({
+  totalCount() {
+    return Counts.get('docCounter-projects');
+  },
   openCount() {
     return Counts.get('projects-open');
   },

@@ -3,6 +3,9 @@ Template.attachmentsDashboardStat.onCreated(function() {
 });
 
 Template.attachmentsDashboardStat.helpers({
+  totalCount() {
+    return Counts.get('docCounter-attachments');
+  },
   lastAttachmentAdded() {
     return Attachments.findOne({}, {
       sort: {
