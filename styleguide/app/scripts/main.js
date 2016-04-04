@@ -4,6 +4,7 @@ Handlebars.registerPartial('footer', TDB.templates.footer);
 Handlebars.registerPartial('technologyCard', TDB.templates.technologyCard);
 Handlebars.registerPartial('technologyCard_add', TDB.templates.technologyCard_add);
 Handlebars.registerPartial('projectCard', TDB.templates.projectCard);
+Handlebars.registerPartial('projectCard_add', TDB.templates.projectCard_add);
 Handlebars.registerPartial('attachmentCard', TDB.templates.attachmentCard);
 Handlebars.registerPartial('organizationCard', TDB.templates.organizationCard);
 Handlebars.registerPartial('latestUpdates', TDB.templates.latestUpdates);
@@ -17,12 +18,28 @@ function initMansory() {
     percentPosition: true
   });
 }
+
+function initProjectEntry() {
+  $('.cards-box').masonry({
+    // options
+    columnWidth: '.cards-size',
+    gutter: 15,
+    percentPosition: true
+  });
+  $(".sortable-list").sortable({
+    connectWith: ".connectList"
+  }).disableSelection();
+}
+
 // Register routes
 TDBRouter.addRoute({
   path: '',
   template: 'mainDashboard'
 });
 
+///////////////////
+// Technologies //
+//////////////////
 TDBRouter.addRoute({
   path: '/technologies',
   template: 'technologiesDashboard',
@@ -124,6 +141,56 @@ TDBRouter.addRoute({
   }
 });
 
+//////////////
+// Projects //
+//////////////
+TDBRouter.addRoute({
+  path: '/projects',
+  template: 'projectsDashboard',
+  onRendered: initMansory,
+  context: {
+    projects: [{
+      name: 'Futuro da Medicina',
+      evID: 'EV0091',
+      description: 'Futuro da Medicina is a content platform that is being developed for OneHealth since 2013. It started with some visualizations back in 2011. Our main contact is Dr. Sergio, CEO.',
+      src: '../images/project.png',
+      status: 'Active'
+    }],
+    latestUpdates: [{
+      object: 'Futuro da Medicina',
+      type: 'folder',
+      url: '#/projects/entry',
+      action: 'was created',
+      author: 'Arthur Soares',
+      time: '5 min'
+    }]
+  }
+});
+
+TDBRouter.addRoute({
+  path: '/projects/entry',
+  template: 'projectEntry',
+  onRendered: initProjectEntry,
+  context: {
+    projects: [{
+      name: 'Futuro da Medicina',
+      evID: 'EV0091',
+      description: 'Futuro da Medicina is a content platform that is being developed for OneHealth since 2013. It started with some visualizations back in 2011. Our main contact is Dr. Sergio, CEO.',
+      src: '../images/project.png',
+      status: 'Active'
+    }],
+    latestUpdates: [{
+      object: 'Futuro da Medicina',
+      type: 'folder',
+      url: '#/projects/entry',
+      action: 'was created',
+      author: 'Arthur Soares',
+      time: '5 min'
+    }]
+  }
+});
+
+
 
 TDBRouter.addRoute({
   path: '/attachments',
@@ -150,29 +217,6 @@ TDBRouter.addRoute({
       object: 'Drone Delivery',
       type: 'gear',
       url: '#/technologies/entry',
-      action: 'was created',
-      author: 'Arthur Soares',
-      time: '5 min'
-    }]
-  }
-});
-
-TDBRouter.addRoute({
-  path: '/projects',
-  template: 'projectsDashboard',
-  onRendered: initMansory,
-  context: {
-    projects: [{
-      name: 'Futuro da Medicina',
-      evID: 'EV0091',
-      description: 'Futuro da Medicina is a content platform that is being developed for OneHealth since 2013. It started with some visualizations back in 2011. Our main contact is Dr. Sergio, CEO.',
-      src: '../images/project.png',
-      status: 'Active'
-    }],
-    latestUpdates: [{
-      object: 'Futuro da Medicina',
-      type: 'folder',
-      url: '#/projects/entry',
       action: 'was created',
       author: 'Arthur Soares',
       time: '5 min'
