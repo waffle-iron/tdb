@@ -13,10 +13,19 @@ Template.recentUpdatesItem.helpers({
   icon() {
     return Icons.collections[this.collection] || Icons.collections.default;
   },
-  userIdentification() {
-    return this.user() && this.user().identification(['username', 'fullName', 'email']) || 'unknown';
-  },
   routeName() {
     return `${this.collection}.entry`;
+  },
+  tech() {
+    return Technologies.findOne({
+      _id: Template.instance().data.docId
+    });
+  }
+});
+
+Template.recentUpdatesItem.onCreated(function() {
+  console.log(this);
+  if (this.data.collection === 'technologies') {
+    this.subscribe('technology.status', this.data.docId);
   }
 });

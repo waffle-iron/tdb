@@ -40,15 +40,6 @@ Template.registerHelper('concat', function() {
 
 
 Template.registerHelper('techColor', function(status) {
-  switch (status) {
-    case 'draft':
-      return 'danger';
-    case 'review':
-      return 'warning';
-    case 'published':
-      return 'primary';
-    default:
-      return 'default';
-  }
+  return ColorMap.tech.status[status] || ColorMap.tech.status.default;
 });
 

@@ -73,3 +73,15 @@ Meteor.publish('last-technology-added', function() {
   });
 });
 
+
+Meteor.publish('technology.status', function(techId) {
+  check(techId, String);
+
+  return Technologies.find({
+    _id: techId
+  }, {
+    fields: {
+      status: 1
+    }
+  });
+});

@@ -8,7 +8,7 @@
     {{/panelTitle}}
     {{#panelContent class='no-padding'}}
       {{#if totalCount}}
-        {{> scrollbarList logs=logs}}
+        {{> scrollbarList logs=logs hasIcon=hasIcon getColor=getColor}}
       {{else}}
         <div class="empty-message">
           <i class='fa fa-frown-o'></i>
@@ -35,7 +35,17 @@
   {{#perfectScrollbar}}
     <ul class="list-group">
       {{#each logs}}
-        {{> recentUpdatesItem}}
+        {{> recentUpdatesItem 
+          hasIcon=../hasIcon
+          getColor=../getColor
+          collection=collection
+          operation=operation
+          docName=docName
+          docId=docId
+          userIdentification=user.identification
+          createdAt=createdAt
+          createdBy=createdBy
+        }}
       {{/each}}
     </ul>
     {{/perfectScrollbar}}

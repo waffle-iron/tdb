@@ -4,6 +4,10 @@ const DEFAULT_COUNT_INCREMENT = 5;
 const COUNTER_PREFIX = 'recentUpdatesCounter-';
 
 Template.recentUpdates.helpers({
+  templateHasIcon() {
+    console.log(Template.instance().data);
+    return Template.instance().data.hasIcon;
+  },
   logs() {
       let displayCount = Template.instance().displayCount.get();
 
@@ -40,6 +44,8 @@ Template.scrollbarList.onRendered(function() {
 
 
 Template.recentUpdates.onCreated(function() {
+  console.log(this);
+  
   if (!this.data.counterId) throw new Error('Must specify a counter Id');
   this.initialCount = this.data.initialCount || DEFAULT_INITIAL_COUNT;
   this.countIncrement = this.data.countIncrement || DEFAULT_COUNT_INCREMENT;

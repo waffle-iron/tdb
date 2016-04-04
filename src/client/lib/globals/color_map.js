@@ -8,6 +8,14 @@ ColorMap = {
       default: 'primary'
     }
   },
+  tech: {
+    status: {
+      draft: 'danger',
+      review: 'warning',
+      published: 'success',
+      default: 'default'
+    }
+  },
   users: {
     role: {
       admin: 'info',
