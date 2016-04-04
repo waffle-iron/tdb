@@ -111,6 +111,13 @@ TDBRouter.addRoute({
       action: 'was created',
       author: 'Arthur Soares',
       time: '5 min'
+    }],
+    projects: [{
+      name: 'Futuro da Medicina',
+      evID: 'EV0091',
+      description: 'Futuro da Medicina is a content platform that is being developed for OneHealth since 2013. It started with some visualizations back in 2011. Our main contact is Dr. Sergio, CEO.',
+      src: '../images/project.png',
+      status: 'Active'
     }]
   }
 });
