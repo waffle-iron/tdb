@@ -48,11 +48,11 @@ TDBRouter.addRoute({
     technologies: [{
       name: 'Drone Delivery',
       description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
-      src: '../images/technology.jpg'
+      src: 'images/technology.jpg'
     }, {
       name: 'Other cool technology',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
-      src: '../images/organization.png'
+      src: 'images/organization.png'
     }],
     latestUpdates: [{
       object: 'Drone Delivery',
@@ -73,11 +73,11 @@ TDBRouter.addRoute({
     technologies: [{
       name: 'Drone Delivery',
       description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
-      src: '../images/technology.jpg'
+      src: 'images/technology.jpg'
     }, {
       name: 'Other cool technology',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
-      src: '../images/organization.png'
+      src: 'images/organization.png'
     }],
     latestUpdates: [{
       object: 'Drone Delivery',
@@ -98,11 +98,11 @@ TDBRouter.addRoute({
     technologies: [{
       name: 'Drone Delivery',
       description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
-      src: '../images/technology.jpg'
+      src: 'images/technology.jpg'
     }, {
       name: 'Other cool technology',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
-      src: '../images/organization.png'
+      src: 'images/organization.png'
     }],
     latestUpdates: [{
       object: 'Drone Delivery',
@@ -116,7 +116,7 @@ TDBRouter.addRoute({
       name: 'Futuro da Medicina',
       evID: 'EV0091',
       description: 'Futuro da Medicina is a content platform that is being developed for OneHealth since 2013. It started with some visualizations back in 2011. Our main contact is Dr. Sergio, CEO.',
-      src: '../images/project.png',
+      src: 'images/project.png',
       status: 'Active'
     }]
   }
@@ -131,11 +131,11 @@ TDBRouter.addRoute({
     technologies: [{
       name: 'Drone Delivery',
       description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
-      src: '../images/technology.jpg'
+      src: 'images/technology.jpg'
     }, {
       name: 'Other cool technology',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
-      src: '../images/organization.png'
+      src: 'images/organization.png'
     }],
     latestUpdates: [{
       object: 'Drone Delivery',
@@ -160,7 +160,7 @@ TDBRouter.addRoute({
       name: 'Futuro da Medicina',
       evID: 'EV0091',
       description: 'Futuro da Medicina is a content platform that is being developed for OneHealth since 2013. It started with some visualizations back in 2011. Our main contact is Dr. Sergio, CEO.',
-      src: '../images/project.png',
+      src: 'images/project.png',
       status: 'Active'
     }],
     latestUpdates: [{
@@ -183,7 +183,7 @@ TDBRouter.addRoute({
       name: 'Futuro da Medicina',
       evID: 'EV0091',
       description: 'Futuro da Medicina is a content platform that is being developed for OneHealth since 2013. It started with some visualizations back in 2011. Our main contact is Dr. Sergio, CEO.',
-      src: '../images/project.png',
+      src: 'images/project.png',
       status: 'Active'
     }],
     latestUpdates: [{
@@ -205,11 +205,11 @@ TDBRouter.addRoute({
     technologiesStash: [{
       name: 'Drone Delivery',
       description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
-      src: '../images/technology.jpg'
+      src: 'images/technology.jpg'
     }, {
       name: 'Other cool technology',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
-      src: '../images/organization.png'
+      src: 'images/organization.png'
     }],
     collection: [{
       title: 'IT & Systems',
@@ -220,11 +220,11 @@ TDBRouter.addRoute({
         technologies: [{
           name: 'Drone Delivery',
           description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
-          src: '../images/technology.jpg'
+          src: 'images/technology.jpg'
         }, {
           name: 'Other cool technology',
           description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
-          src: '../images/organization.png'
+          src: 'images/organization.png'
         }]
       }]
     }, {
@@ -236,11 +236,11 @@ TDBRouter.addRoute({
         technologies: [{
           name: 'Drone Delivery',
           description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
-          src: '../images/technology.jpg'
+          src: 'images/technology.jpg'
         }, {
           name: 'Other cool technology',
           description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
-          src: '../images/organization.png'
+          src: 'images/organization.png'
         }]
       }, {
         title: 'Production',
@@ -248,11 +248,11 @@ TDBRouter.addRoute({
         technologies: [{
           name: 'Drone Delivery',
           description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
-          src: '../images/technology.jpg'
+          src: 'images/technology.jpg'
         }, {
           name: 'Other cool technology',
           description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
-          src: '../images/organization.png'
+          src: 'images/organization.png'
         }]
       }, ]
     }],
@@ -277,17 +277,17 @@ TDBRouter.addRoute({
     attachments: [{
       name: 'Drone Delivery',
       description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
-      src: '../images/attachment.jpg',
+      src: 'images/attachment.jpg',
       type: 'Media'
     }, {
       name: 'Other cool technology',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
-      src: '../images/organization.png',
+      src: 'images/organization.png',
       type: 'Article'
     }, {
       name: 'Other cool technology',
       description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
-      src: '../images/organization.png',
+      src: 'images/organization.png',
       type: 'Article'
     }],
     latestUpdates: [{
@@ -309,7 +309,7 @@ TDBRouter.addRoute({
     organizations: [{
       name: 'Tesla',
       description: 'Tesla Motors, Inc. is an American automotive and energy storage company that designs, manufactures, and sells luxury electric cars, electric vehicle powertrain components, and battery products.',
-      src: '../images/organization.png',
+      src: 'images/organization.png',
       type: 'Private'
     }],
     latestUpdates: [{
