@@ -40,7 +40,7 @@ Components are located at `app/templates/components`. To create a component you 
 
 ```js
 // Register all components here
-Handlebars.registerPartial('coolComponent', TDB.templates.coolComponent());
+Handlebars.registerPartial('coolComponent', TDB.templates.coolComponent);
 ````
 
 **app/index.html**
@@ -65,9 +65,11 @@ A route needs a top level component to render it. The top level components (scre
 ```
 **app/scripts/main.js**
 ```js
-// Register routes (route, templateName)
-TDBRouter.addRoute('#/coolDashboard', 'coolDashboard');
-
+// Register routes
+TDBRouter.addRoute({
+  path: '/coolDashboard',
+  template: 'coolaDashboard',
+});
 ```
 
 **app/index.html**
