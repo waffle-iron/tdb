@@ -2,9 +2,9 @@ import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
 import del from 'del';
-import {
-  stream as wiredep
-} from 'wiredep';
+import { stream as wiredep } from 'wiredep';
+import ghPages from 'gulp-gh-pages';
+
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -196,7 +196,11 @@ gulp.task('build', ['html', 'styles', 'images', 'fonts', 'extras'], () => {
   }));
 });
 
+gulp.task('deploy', ['build'], () => {
+  return gulp.src('./dist/**/*')
+    .pipe(ghPages());
+});
+
 gulp.task('default', ['clean'], () => {
   gulp.start('build');
 });
-
