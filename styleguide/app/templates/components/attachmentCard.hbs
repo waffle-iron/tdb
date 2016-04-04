@@ -1,36 +1,21 @@
-<!-- Inicio Anexo -->
-<div class="cards-item">
-  <div class="ibox technology-box">
-    <div class="ibox-content no-padding techLabel">
-      <div class="technologyTools">
+  <div class="ibox card-box cards-item">
+    <div class="ibox-content no-padding card-label">
+      <div class="card-tools">
         <div class="btn-group">
           <button data-toggle="dropdown" class="btn btn-xs btn-white dropdown-toggle" aria-expanded="false"><i class="fa fa-paperclip"></i> <span class="caret"></span></button>
           <ul class="dropdown-menu">
-            <li>
-              <a href="#">Add to Project</a>
-            </li>
-            <li>
-              <a href="#">Add to Technology</a>
-            </li>
-            <li>
-              <a href="#">Add an Organization</a>
-            </li>
-            <li class="divider">
-            </li>
-            <li>
-              <a href="#">Edit</a>
-            </li>
-            <li>
-              <a href="#">Delete</a>
-            </li>
+            <li><a href="#">Add to Project</a></li>
+            <li><a href="#">Add to Technology</a></li>
+            <li><a href="#">Add an Organization</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Edit</a></li>
+            <li><a href="#">Delete</a></li>
           </ul>
         </div>
       </div>
       <a href="attachmentEntry.php"><img src="{{src}}" class="img-responsive" /></a>
-      <div class="technology-desc">
-        <div>
-          <a href="attachmentEntry.php"><h5 href="#" class="technology-name">{{name}}</h5></a>
-        </div>
+      <div class="card-description">
+          <h5 class="card-name"><a href="attachmentEntry.php">{{name}}</a></h5>
         <p>{{description}}</p>
         <div class="btn-group">
           <button class="btn btn-xs btn-outline btn-primary" data-toggle="tooltip" data-placement="top" title="" data-original-title="View Entry"><a href="attachmentEntry.php"><i class="fa fa-eye"></i></a></button>
@@ -42,5 +27,3 @@
       </div>
     </div>
   </div>
-</div>
-<!-- Fim Anexo -->
