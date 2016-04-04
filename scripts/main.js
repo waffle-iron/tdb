@@ -81,7 +81,7 @@ TDBRouter.addRoute({
   template: 'technologyEntry',
   onRendered: initMansory,
   context: {
-    technologies: technologies,
+    technologies: technologies, organizations: organizations, attachments: attachments,
     latestUpdates: [{
       object: 'Drone Delivery',
       type: 'gear',
