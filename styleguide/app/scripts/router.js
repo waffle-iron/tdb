@@ -13,7 +13,7 @@ var TDBRouter = {
     var route = this.getRouteByHash(hash);
     if (route) {
       this.rootElement.innerHTML = TDB.templates[route.template](route.context);
-      window.setTimeout(route.onRendered, 0);  
+      window.setTimeout(route.onRendered, 0);
     } else {
       this.rootElement.innerHTML = TDB.templates.notFound()
     }

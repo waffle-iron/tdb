@@ -2,6 +2,7 @@
 Handlebars.registerPartial('navbar', TDB.templates.navbar);
 Handlebars.registerPartial('footer', TDB.templates.footer);
 Handlebars.registerPartial('technologyCard', TDB.templates.technologyCard);
+Handlebars.registerPartial('technologyCard_add', TDB.templates.technologyCard_add);
 Handlebars.registerPartial('projectCard', TDB.templates.projectCard);
 Handlebars.registerPartial('attachmentCard', TDB.templates.attachmentCard);
 Handlebars.registerPartial('organizationCard', TDB.templates.organizationCard);
@@ -16,7 +17,6 @@ function initMansory() {
     percentPosition: true
   });
 }
-
 // Register routes
 TDBRouter.addRoute({
   path: '',
@@ -38,12 +38,37 @@ TDBRouter.addRoute({
       src: '../images/organization.png'
     }],
     latestUpdates: [{
-    	object: 'Drone Delivery',
-    	type:'gear',
-    	url: '#/technologies/entry',
-    	action:'was created',
-    	author:'Arthur Soares',
-    	time:'5 min'
+      object: 'Drone Delivery',
+      type: 'gear',
+      url: '#/technologies/entry',
+      action: 'was created',
+      author: 'Arthur Soares',
+      time: '5 min'
+    }]
+  }
+});
+
+TDBRouter.addRoute({
+  path: '/technologies/entry',
+  template: 'technologyEntry',
+  onRendered: initMansory,
+  context: {
+    technologies: [{
+      name: 'Drone Delivery',
+      description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
+      src: '../images/technology.jpg'
+    }, {
+      name: 'Other cool technology',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
+      src: '../images/organization.png'
+    }],
+    latestUpdates: [{
+      object: 'Drone Delivery',
+      type: 'gear',
+      url: '#/technologies/entry',
+      action: 'was created',
+      author: 'Arthur Soares',
+      time: '5 min'
     }]
   }
 });
@@ -70,12 +95,12 @@ TDBRouter.addRoute({
       type: 'Article'
     }],
     latestUpdates: [{
-    	object: 'Drone Delivery',
-    	type:'gear',
-    	url: '#/technologies/entry',
-    	action:'was created',
-    	author:'Arthur Soares',
-    	time:'5 min'
+      object: 'Drone Delivery',
+      type: 'gear',
+      url: '#/technologies/entry',
+      action: 'was created',
+      author: 'Arthur Soares',
+      time: '5 min'
     }]
   }
 });
@@ -93,18 +118,35 @@ TDBRouter.addRoute({
       status: 'Active'
     }],
     latestUpdates: [{
-    	object: 'Futuro da Medicina',
-    	type:'folder',
-    	url: '#/projects/entry',
-    	action:'was created',
-    	author:'Arthur Soares',
-    	time:'5 min'
+      object: 'Futuro da Medicina',
+      type: 'folder',
+      url: '#/projects/entry',
+      action: 'was created',
+      author: 'Arthur Soares',
+      time: '5 min'
     }]
   }
 });
 
-// Finish this
-// TDBRouter.addRoute('technologiesDashboard', initMansory);
-// TDBRouter.addRoute('projectsDashboard', initMansory);
-// TDBRouter.addRoute('organizationsDashboard', initMansory);
+TDBRouter.addRoute({
+  path: '/organizations/',
+  template: 'organizationsDashboard',
+  onRendered: initMansory,
+  context: {
+    organizations: [{
+      name: 'Tesla',
+      description: 'Tesla Motors, Inc. is an American automotive and energy storage company that designs, manufactures, and sells luxury electric cars, electric vehicle powertrain components, and battery products.',
+      src: '../images/organization.png',
+      type: 'Private'
+    }],
+    latestUpdates: [{
+      object: 'Tesla',
+      type: 'building',
+      url: '#/organizations/entry',
+      action: 'was created',
+      author: 'Arthur Soares',
+      time: '5 min'
+    }]
+  }
+});
 
