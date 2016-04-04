@@ -24,7 +24,6 @@ gulp serve
 
 Your default browser will open automatically.
 
-
 ### Create new component
 Components are located at `app/templates/components`. To create a component you need to create a new file with `.hbs` extension (handlebars) and import on `index.html` and register it on `main.js` file. The template name will be the name of your file.
 
@@ -97,8 +96,10 @@ All your registered components (partials) can be used inside other components wi
 ## Styling with less
 All the `.less` files are outside this project in the `src/client/stylesheets` folder. Every change will reflect on the TDB main application and right here automatically.
 
-
-
+### Deploy to gh-pages
+```
+gulp deploy
+```
 
 
 
