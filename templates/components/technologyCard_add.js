@@ -1,0 +1,5 @@
+this["TDB"] = this["TDB"] || {};
+this["TDB"]["templates"] = this["TDB"]["templates"] || {};
+this["TDB"]["templates"]["technologyCard_add"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    return "<!-- Começo tecnologia -->\n<div class=\"cards-item\">\n    <div class=\"ibox technology-box\">\n        <div class=\"ibox-content no-padding techLabel panel-warning\">\n            <img src=\"http://emsowue.cloudimg.io/s/crop/500x300/http://si.wsj.net/public/resources/images/BN-AS240_gerdro_G_20131209114324.jpg\" class=\"img-responsive\" />\n            <div class=\"technology-desc\">\n                <div>\n                    <h5 class=\"technology-name\"><span class=\"card-id\">T0021</span> <span id=\"22aphY63CBfWzzHPD_tech\">Drone Delivery</span></h5>\n                </div>\n                <p>Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage</p>\n            </div>\n        </div>\n    </div>\n</div>\n<!-- Fim tecnologia -->";
+},"useData":true});;
