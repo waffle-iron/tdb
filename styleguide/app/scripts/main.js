@@ -24,8 +24,33 @@ TDBRouter.addRoute({
 });
 
 TDBRouter.addRoute({
-  path: '/technologies/',
+  path: '/technologies',
   template: 'technologiesDashboard',
+  onRendered: initMansory,
+  context: {
+    technologies: [{
+      name: 'Drone Delivery',
+      description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
+      src: '../images/technology.jpg'
+    }, {
+      name: 'Other cool technology',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
+      src: '../images/organization.png'
+    }],
+    latestUpdates: [{
+      object: 'Drone Delivery',
+      type: 'gear',
+      url: '#/technologies/entry',
+      action: 'was created',
+      author: 'Arthur Soares',
+      time: '5 min'
+    }]
+  }
+});
+
+TDBRouter.addRoute({
+  path: '/technologies/edit',
+  template: 'technologyEdit',
   onRendered: initMansory,
   context: {
     technologies: [{
@@ -73,8 +98,35 @@ TDBRouter.addRoute({
   }
 });
 
+
 TDBRouter.addRoute({
-  path: '/attachments/',
+  path: '/technologies/add',
+  template: 'technologyAdd',
+  onRendered: initMansory,
+  context: {
+    technologies: [{
+      name: 'Drone Delivery',
+      description: 'Relatively cheap drones with advanced sensors and imaging capabilities are giving farmers new ways to increase yields and reduce crop damage',
+      src: '../images/technology.jpg'
+    }, {
+      name: 'Other cool technology',
+      description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat sapiente ipsa et voluptatum quibusdam temporibus veniam facilis praesentium nostrum, beatae sint quod earum quis, quos, delectus voluptatem sunt deleniti est.',
+      src: '../images/organization.png'
+    }],
+    latestUpdates: [{
+      object: 'Drone Delivery',
+      type: 'gear',
+      url: '#/technologies/entry',
+      action: 'was created',
+      author: 'Arthur Soares',
+      time: '5 min'
+    }]
+  }
+});
+
+
+TDBRouter.addRoute({
+  path: '/attachments',
   template: 'attachmentsDashboard',
   onRendered: initMansory,
   context: {
@@ -106,7 +158,7 @@ TDBRouter.addRoute({
 });
 
 TDBRouter.addRoute({
-  path: '/projects/',
+  path: '/projects',
   template: 'projectsDashboard',
   onRendered: initMansory,
   context: {
@@ -129,7 +181,7 @@ TDBRouter.addRoute({
 });
 
 TDBRouter.addRoute({
-  path: '/organizations/',
+  path: '/organizations',
   template: 'organizationsDashboard',
   onRendered: initMansory,
   context: {
