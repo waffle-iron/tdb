@@ -13,7 +13,7 @@
 </div>
 <div class="wrapper-content">
   <div class="row tooltip-demo">
-    <!-- About box -->
+    {{!-- About Box --}}
     <div class="col-lg-3 col-sm-5">
       <div class="ibox">
         <div class="ibox-title">
@@ -58,41 +58,10 @@
         </div>
       </div>
     </div>
-    <!-- fim do about box -->
-    <!-- Início tech stash -->
+
+    {{!-- Recent updates --}}
     <div class="col-lg-9 col-sm-7">
-      <div class="ibox">
-        <div class="ibox-title">
-          <h5>Latest updates</h5>
-        </div>
-        <div class="ibox-content">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <span class="badge badge-primary">5 min ago</span>
-              <a class="label label-primary" href="#">Drone Delivery</a> description was updated by <a href="#">Arthur Soares</a>
-            </li>
-            <li class="list-group-item">
-              <span class="badge badge-primary">6 min ago</span>
-              <a class="label label-warning" href="#">Skin Patch</a> has 2 new images uploaded by <a href="#">Arthur Soares</a>
-            </li>
-            <li class="list-group-item">
-              <span class="badge badge-primary">8 min ago</span>
-              <a class="label label-warning" href="#">Skin Patch</a> has 2 new images uploaded by <a href="#">Arthur Soares</a>
-            </li>
-            <li class="list-group-item">
-              <span class="badge badge-primary">9 min ago</span>
-              <a class="label label-danger" href="#">3D touch sensitive screens</a> was created by <a href="#">Arthur Soares</a>
-            </li>
-            <li class="list-group-item">
-              <span class="badge badge-primary">9 min ago</span>
-              <a class="label label-danger" href="#">3D touch sensitive screens</a> was created by <a href="#">Arthur Soares</a>
-            </li>
-            <li class="list-group-item">
-              <span class="badge badge-primary">9 min ago</span>
-              <a class="label label-danger" href="#">3D touch sensitive screens</a> was created by <a href="#">Arthur Soares</a>
-            </li>
-        </div>
-      </div>
+      {{> latestUpdates }}
     </div>
   </div>
   <!-- fim -->
@@ -123,7 +92,9 @@
         <div class="ibox-content">
           <div class="row cards-box">
             <div class="cards-size"></div>
-            {{> attachmentCard}} {{> attachmentCard}} {{> attachmentCard}} {{> attachmentCard}} {{> attachmentCard}} {{> attachmentCard}} {{> attachmentCard}}
+            {{#each attachments}}
+              {{> attachmentCard this }}
+            {{/each}}
           </div>
         </div>
       </div>

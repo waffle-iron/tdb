@@ -13,7 +13,7 @@
 </div>
 <div class="wrapper-content">
   <div class="row tooltip-demo">
-    <!-- About box -->
+    {{!-- About Box --}}
     <div class="col-lg-3 col-sm-5">
       <div class="ibox">
         <div class="ibox-title">
@@ -54,40 +54,9 @@
       </div>
     </div>
     <!-- fim do about box -->
-    <!-- Início tech stash -->
+    {{!-- Recent updates --}}
     <div class="col-lg-9 col-sm-7">
-      <div class="ibox">
-        <div class="ibox-title">
-          <h5>Latest updates</h5>
-        </div>
-        <div class="ibox-content">
-          <ul class="list-group">
-            <li class="list-group-item">
-              <span class="badge badge-primary">8 min</span>
-              <a class="label label-warning" href="#"><i class="icon fa fa-gear"></i> Skin Patch</a> was added to <a class="label label-outline" href="#"><i class="icon fa fa-folder"></i> Futuro da Medicina</a> by <a href="#">Arthur Soares</a>
-            </li>
-            <li class="list-group-item">
-              <span class="badge badge-primary">6 min ago</span>
-              <a class="label label-outline" href="#"><i class="icon fa fa-folder"></i> Futuro da Medicina</a> was created by <a href="#">Arthur Soares</a>
-            </li>
-            <li class="list-group-item">
-              <span class="badge badge-primary">8 min ago</span>
-              <a class="label label-warning" href="#">Skin Patch</a> has 2 new images uploaded by <a href="#">Arthur Soares</a>
-            </li>
-            <li class="list-group-item">
-              <span class="badge badge-primary">9 min ago</span>
-              <a class="label label-danger" href="#">3D touch sensitive screens</a> was created by <a href="#">Arthur Soares</a>
-            </li>
-            <li class="list-group-item">
-              <span class="badge badge-primary">9 min ago</span>
-              <a class="label label-danger" href="#">3D touch sensitive screens</a> was created by <a href="#">Arthur Soares</a>
-            </li>
-            <li class="list-group-item">
-              <span class="badge badge-primary">9 min ago</span>
-              <a class="label label-danger" href="#">3D touch sensitive screens</a> was created by <a href="#">Arthur Soares</a>
-            </li>
-        </div>
-      </div>
+      {{> latestUpdates }}
     </div>
   </div>
   <!-- fim -->
@@ -118,7 +87,9 @@
         <div class="ibox-content">
           <div class="row cards-box">
             <div class="cards-size"></div>
-            {{> projectCard}} {{> projectCard}} {{> projectCard}} {{> projectCard}} {{> projectCard}} {{> projectCard}}
+            {{#each projects}}
+              {{> projectCard this }}
+            {{/each}}
           </div>
         </div>
       </div>
