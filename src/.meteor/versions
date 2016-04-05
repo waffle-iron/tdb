@@ -189,6 +189,8 @@ service-configuration@1.0.6-beta.12
 session@1.1.2-beta.12
 sewdn:masked-input@1.0.6
 sha@1.0.4
+shcherbin:imagesloaded@3.1.8
+sjors:meteor-masonry@0.0.1
 softwarerero:accounts-t9n@1.2.2
 spacebars@1.0.8-beta.12
 spacebars-compiler@1.0.8-beta.12
