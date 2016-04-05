@@ -17,10 +17,6 @@ Template.searchSourceDisplay.onCreated(function() {
   });
 });
 
-Template.searchSourceDisplay.onDestroyed(function() {
-  window.removeEventListener('scroll');
-});
-
 Template.searchSourceDisplay.events({
   'input [name="search"]': (e, t) => t.size.set(DEFAULT_SIZE)
 });
