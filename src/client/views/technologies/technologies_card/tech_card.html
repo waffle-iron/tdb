@@ -6,7 +6,7 @@
         <a href="{{pathFor 'technologies.entry' id=_id}}">
         {{> safeImg url=(getCloudinaryCard (s3pathImages image)) class='img-responsive'}}
         </a> 
-        <div class="card-body">
+        <div class="card-description">
           {{> techCardDesc}}
           {{> techCardFooter}}
         </div>
