@@ -21,9 +21,18 @@ Template.searchResults.onRendered(function() {
       });
     },
     removeElement(node) {
-      $(node).remove();
-      masonry.remove(node);
-      masonry.layout();
+      $(node).velocity({
+        opacity: [0, 1]
+      }, {
+        easing: 'easeOutQuad',
+        duration: 200,
+        queue: false,
+        complete: function() {
+          $(node).remove();
+          masonry.remove(node);
+          masonry.layout();
+        }
+      });
     }
   };
 });
