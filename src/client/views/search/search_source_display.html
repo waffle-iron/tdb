@@ -11,13 +11,8 @@
     {{> searchResults results}}
   {{/if}}
   
-  {{#if hasMoreResults}}
-    <div class="row">
-      <!-- TODO: fix inline css -->
-      <div class="col-xs-12" style="text-align: center">
-        <button class="btn btn-default load-more">Load More</button>
-      </div>  
-    </div>
+  {{#if isLoading}}
+    {{> spinnerWave}}
   {{/if}}
 
   {{#unless results}}

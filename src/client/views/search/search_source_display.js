@@ -1,19 +1,33 @@
-Template.searchSourceDisplay.events({
-  'click .load-more'(e, t) {
-    // Inc size by 8
-    t.size.set(t.size.get() + 8);
-  },
+function isScrollOnBottom() {
+  return $(window).scrollTop() === $(document).height() - $(window).height();
+}
 
-  'input [name="search"]'(e, t) {
-    // Set size to default when user starts a new search
-    t.size.set(8);
-  },
+const DEFAULT_SIZE = 10;
+Template.searchSourceDisplay.onCreated(function() {
+  this.size = new ReactiveVar(DEFAULT_SIZE);
+  this.isLoading = new ReactiveVar(false);
+  this.increaseSize = (size) => this.size.set(this.size.get() + size);
+
+  window.addEventListener('scroll',
+    _.throttle(() => isScrollOnBottom() && this.increaseSize(DEFAULT_SIZE), 50));
+
+  this.autorun(() => {
+    let metadata = SearchSources.globalSearch.getMetadata();
+    this.isLoading.set(metadata && metadata.total > this.size.get() && isScrollOnBottom());
+  });
+});
+
+Template.searchSourceDisplay.onDestroyed(function() {
+  window.removeEventListener('scroll');
+});
+
+Template.searchSourceDisplay.events({
+  'input [name="search"]': (e, t) => t.size.set(DEFAULT_SIZE)
 });
 
 Template.searchSourceDisplay.helpers({
-  results() {
-    return Template.instance().data.source.getTransformedData();
-  },
+  results: () => Template.instance().data.source.getTransformedData(),
+  isLoading: () => Template.instance().isLoading.get(),
   options() {
     let t = Template.instance();
     return function() {
@@ -37,14 +51,4 @@ Template.searchSourceDisplay.helpers({
       };
     };
   },
-  hasMoreResults() {
-    let t = Template.instance();
-    let metadata = SearchSources.globalSearch.getMetadata();
-    return metadata && metadata.total > t.size.get();
-  },
-});
-
-Template.searchSourceDisplay.onCreated(function() {
-  this.size = new ReactiveVar(8);
-  $('input[name="search"]').val('l');
 });
