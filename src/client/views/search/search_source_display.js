@@ -2,14 +2,14 @@ function isScrollOnBottom() {
   return $(window).scrollTop() === $(document).height() - $(window).height();
 }
 
-const DEFAULT_SIZE = 10;
+const DEFAULT_SIZE = 5;
 Template.searchSourceDisplay.onCreated(function() {
   this.size = new ReactiveVar(DEFAULT_SIZE);
   this.isLoading = new ReactiveVar(false);
   this.increaseSize = (size) => this.size.set(this.size.get() + size);
 
   window.addEventListener('scroll',
-    _.throttle(() => isScrollOnBottom() && this.increaseSize(DEFAULT_SIZE), 50));
+    _.throttle(() => isScrollOnBottom() && this.increaseSize(DEFAULT_SIZE), 1000));
 
   this.autorun(() => {
     let metadata = SearchSources.globalSearch.getMetadata();
