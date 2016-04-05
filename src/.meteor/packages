@@ -107,3 +107,6 @@ useful:mongo-counter
 underscorestring:underscore.string
 generalledger:sleepforms
 jamiter:pluralize
+sjors:meteor-masonry
+shcherbin:imagesloaded
+velocityjs:velocityjs

@@ -24,7 +24,6 @@ Template.recentUpdatesItem.helpers({
 });
 
 Template.recentUpdatesItem.onCreated(function() {
-  console.log(this);
   if (this.data.collection === 'technologies') {
     this.subscribe('technology.status', this.data.docId);
   }

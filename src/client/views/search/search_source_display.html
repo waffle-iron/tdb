@@ -3,22 +3,24 @@
     {{> searchSource source=source options=options}} 
     {{> searchDisplayMode id=displayMode}}
   </div>
-  <div class="row grid-view">
-    <div class="col col-xs-12">
-      {{#if $eq (getSearchDisplayMode displayMode) 'list'}}
-        Placeholder for ListView
-      {{/if}}
-      {{#if $eq (getSearchDisplayMode displayMode) 'grid'}}
-        <div class="row">
-          {{> searchResults results}}
-        </div>
-      {{/if}}
+
+  {{#if $eq (getSearchDisplayMode displayMode) 'list'}}
+    Placeholder for ListView
+  {{/if}}
+  {{#if $eq (getSearchDisplayMode displayMode) 'grid'}}
+    {{> searchResults results}}
+  {{/if}}
+  
+  {{#if isLoading}}
+    {{> spinnerWave}}
+  {{/if}}
+
+  {{#unless results}}
+    <div class="row">
+      <div class="empty-message">
+        <i class='fa fa-search'></i>
+        <h3> Search for something to see the results</h3>
+      </div>  
     </div>
-    {{#if hasMoreResults}}
-      <!-- TODO: fix inline css -->
-      <div class="col-xs-12" style="text-align: center">
-        <button class="btn btn-default load-more">Load More</button>
-      </div>
-    {{/if}}
-  </div>
+  {{/unless}}
 </template>
