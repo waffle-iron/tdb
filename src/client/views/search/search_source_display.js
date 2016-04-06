@@ -7,28 +7,35 @@ const INCREASE_DELAY = 1000;
 Template.searchSourceDisplay.onCreated(function() {
   this.size = new ReactiveVar(DEFAULT_SIZE);
   this.isLoading = new ReactiveVar(false);
+
+  // Check if we already showed all
+  // elasticsearch data.
+  this.hasMoreData = () => {
+    let metadata = SearchSources.globalSearch.getMetadata();
+    return metadata && metadata.total > this.size.get();
+  };
+  
   this.increaseSize = (size) => {
     this.size.set(this.size.get() + size);
 
     // Keep calling until the page needs
     // to be scrolled.
-    Meteor.setTimeout(() => {
-      if (isScrollOnBottom()) {
-        this.increaseSize(size);
-      }
-    }, INCREASE_DELAY);
+    if (this.hasMoreData()) {
+      Meteor.setTimeout(() => {
+        if (isScrollOnBottom()) {
+          this.increaseSize(size);
+        }
+      }, INCREASE_DELAY);
+    }
   };
 
+  this.autorun(() =>
+    this.isLoading.set(this.hasMoreData() && isScrollOnBottom()));
+
   window.addEventListener('scroll',
-    _.throttle(() => isScrollOnBottom() && this.increaseSize(DEFAULT_SIZE), INCREASE_DELAY));
-
-  this.autorun(() => {
-    let metadata = SearchSources.globalSearch.getMetadata();
-    this.isLoading.set(metadata && metadata.total > this.size.get() && isScrollOnBottom());
-  });
+    _.throttle(() =>
+      isScrollOnBottom() && this.increaseSize(DEFAULT_SIZE), INCREASE_DELAY));
 });
-
-Template.searchSourceDisplay.onRendered(function() {});
 
 Template.searchSourceDisplay.events({
   'input [name="search"]': (e, t) => {
