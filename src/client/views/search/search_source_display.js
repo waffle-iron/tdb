@@ -3,13 +3,24 @@ function isScrollOnBottom() {
 }
 
 const DEFAULT_SIZE = 5;
+const INCREASE_DELAY = 1000;
 Template.searchSourceDisplay.onCreated(function() {
   this.size = new ReactiveVar(DEFAULT_SIZE);
   this.isLoading = new ReactiveVar(false);
-  this.increaseSize = (size) => this.size.set(this.size.get() + size);
+  this.increaseSize = (size) => {
+    this.size.set(this.size.get() + size);
+
+    // Keep calling until the page needs
+    // to be scrolled.
+    Meteor.setTimeout(() => {
+      if (isScrollOnBottom()) {
+        this.increaseSize(size);
+      }
+    }, INCREASE_DELAY);
+  };
 
   window.addEventListener('scroll',
-    _.throttle(() => isScrollOnBottom() && this.increaseSize(DEFAULT_SIZE), 1000));
+    _.throttle(() => isScrollOnBottom() && this.increaseSize(DEFAULT_SIZE), INCREASE_DELAY));
 
   this.autorun(() => {
     let metadata = SearchSources.globalSearch.getMetadata();
@@ -17,8 +28,15 @@ Template.searchSourceDisplay.onCreated(function() {
   });
 });
 
+Template.searchSourceDisplay.onRendered(function() {});
+
 Template.searchSourceDisplay.events({
-  'input [name="search"]': (e, t) => t.size.set(DEFAULT_SIZE)
+  'input [name="search"]': (e, t) => {
+    t.size.set(DEFAULT_SIZE);
+    if (isScrollOnBottom()) {
+      t.increaseSize(DEFAULT_SIZE);
+    }
+  }
 });
 
 Template.searchSourceDisplay.helpers({
