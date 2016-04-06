@@ -6,14 +6,14 @@
     {{#btnTooltip text="Status is Review" }}
       Review
     {{/btnTooltip}}
-    {{#btnTooltip text=(concat '4' " attachments") }}
-      <i class="Icons.collections.attachments"></i> 11
+    {{#btnTooltip text=(concat attachmentsCount " attachments") }}
+      <i class="{{Icons.collections.attachments}}"></i> {{attachmentsCount}}
     {{/btnTooltip}}
-    {{#btnTooltip text=(concat '4' " projects") }}
-      <i class="{{Icons.collections.projects}}"></i> 2
+    {{#btnTooltip text=(concat projectsCount " projects") }}
+      <i class="{{Icons.collections.projects}}"></i> {{projectsCount}}
     {{/btnTooltip}}
-    {{#btnTooltip text=(concat '4' " organizations") }}
-      <i class="{{Icons.collections.organizations}}"></i> 4
+    {{#btnTooltip text=(concat organizationsCount " organizations") }}
+      <i class="{{Icons.collections.organizations}}"></i> {{organizationsCount}}
     {{/btnTooltip}}
   </div>
 </template>

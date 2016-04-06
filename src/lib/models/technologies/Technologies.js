@@ -105,7 +105,7 @@ Schemas.Technology = new SimpleSchema({
           });
         }
       }
-    }
+    },
   },
   organizationsId: {
     type: [String],
@@ -142,7 +142,31 @@ Schemas.Technology = new SimpleSchema({
         });
       }
     }
-  }
+  },
+  attachmentsCount: {
+    type: Number,
+    esDriver: true,
+    autoValue() {
+      let attachmentsId = this.field('attachmentsId');
+      return attachmentsId.value && attachmentsId.value.length || 0;
+    }
+  },
+  projectsCount: {
+    type: Number,
+    esDriver: true,
+    autoValue() {
+      let projectsId = this.field('projectsId');
+      return projectsId.value && projectsId.value.length || 0;
+    }
+  },
+  organizationsCount: {
+    type: Number,
+    esDriver: true,
+    autoValue() {
+      let organizationsId = this.field('organizationsId');
+      return organizationsId.value && organizationsId.value.length || 0;
+    }
+  },
 });
 
 
@@ -176,6 +200,7 @@ Technologies.attachSchema(Schemas.Technology);
 Technologies.attachBehaviour('timestampable');
 Meteor.isServer && Technologies.esDriver(esClient, 'techdb', 'technologies', (cleanedDoc, doc, hook) => {
   let tDoc = hook.transform();
+
   let publishedDescription = tDoc.getPublishedDescription();
   if (publishedDescription && publishedDescription.longText) {
     cleanedDoc.description = TagStripper.strip(publishedDescription.longText);
@@ -190,6 +215,10 @@ Meteor.isServer && Technologies.esDriver(esClient, 'techdb', 'technologies', (cl
   }
   delete cleanedDoc.images;
 
+  // Counting relations
+  cleanedDoc.projectsCount = tDoc.projectsCount;
+  cleanedDoc.attachmentsCount = tDoc.attachmentsCount;
+  cleanedDoc.organizationsCount = tDoc.organizationsCount;
+
   return cleanedDoc;
 });
-
