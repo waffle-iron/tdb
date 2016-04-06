@@ -119,6 +119,7 @@ Schemas.Organization = new SimpleSchema({
     type: [String],
     optional: true,
     label: 'Related Attachments',
+    esDriver: true,
     autoform: {
       afFieldInput: {
         type: 'universe-select',
@@ -145,7 +146,9 @@ Schemas.Organization = new SimpleSchema({
  */
 Organizations.attachSchema(Schemas.Organization);
 Organizations.attachBehaviour('timestampable');
-Meteor.isServer && Organizations.esDriver(esClient, 'techdb', 'organizations');
+Meteor.isServer && Organizations.esDriver(esClient, 'techdb', 'organizations',  (cleanedDoc, doc, hook) => {
+  console.log(doc);
+});
 
 
 /**

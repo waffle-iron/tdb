@@ -18,9 +18,26 @@ function generateShortDescription(userId, doc) {
 function generateTechId(userId, doc) {
   doc.techId = s.lpad(AtomicCounter.increment('techId', 1), TECH_ID_PAD_SIZE, '0');
 }
+
+function generateCountersBeforeInsert(userId, doc) {
+  doc.projectsCount = doc.projectsId && doc.projectsId.length || 0;
+  doc.attachmentsCount = doc.attachmentsId && doc.attachmentsId.length || 0;
+  doc.organizationsCount = doc.organizationsId && doc.organizationsId.length || 0;
+}
+
+function generateCountersAfterUpdate(userId, doc) {
+  doc.projectsCount = doc.projectsId && doc.projectsId.length || 0;
+  doc.attachmentsCount = doc.attachmentsId && doc.attachmentsId.length || 0;
+  doc.organizationsCount = doc.organizationsId && doc.organizationsId.length || 0;
+}
+
 if (Meteor.isServer) {
   Technologies.before.insert(generateShortDescription);
   Technologies.before.insert(generateTechId);
+
+  // Counters
+  Technologies.before.insert(generateCountersBeforeInsert);
+  Technologies.before.update(generateCountersAfterUpdate);
 }
 
 /*

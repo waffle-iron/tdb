@@ -145,28 +145,19 @@ Schemas.Technology = new SimpleSchema({
   },
   attachmentsCount: {
     type: Number,
-    esDriver: true,
-    autoValue() {
-      let attachmentsId = this.field('attachmentsId');
-      return attachmentsId.value && attachmentsId.value.length || 0;
-    }
+    optional: true,
+    esDriver: true
   },
   projectsCount: {
     type: Number,
-    esDriver: true,
-    autoValue() {
-      let projectsId = this.field('projectsId');
-      return projectsId.value && projectsId.value.length || 0;
-    }
+    optional: true,
+    esDriver: true
   },
   organizationsCount: {
     type: Number,
-    esDriver: true,
-    autoValue() {
-      let organizationsId = this.field('organizationsId');
-      return organizationsId.value && organizationsId.value.length || 0;
-    }
-  },
+    optional: true,
+    esDriver: true
+  }
 });
 
 
