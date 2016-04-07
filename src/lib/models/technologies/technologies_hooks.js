@@ -26,9 +26,34 @@ function generateCountersBeforeInsert(userId, doc) {
 }
 
 function generateCountersAfterUpdate(userId, doc) {
-  doc.projectsCount = doc.projectsId && doc.projectsId.length || 0;
-  doc.attachmentsCount = doc.attachmentsId && doc.attachmentsId.length || 0;
-  doc.organizationsCount = doc.organizationsId && doc.organizationsId.length || 0;
+  const previousDoc = this.transform(this.previous);
+
+  console.log(previousDoc);
+
+  let changed = false;
+  let modifier = { $set: {} };
+
+  if (previousDoc.projectsId !== doc.projectsId) {
+    modifier.$set.projectsCount = doc.projectsId && doc.projectsId.length || 0;
+    changed = true;
+    console.log(changed)
+  }
+
+  if (previousDoc.attachmentsId !== doc.attachmentsId) {
+    modifier.$set.attachmentsCount = doc.attachmentsId && doc.attachmentsId.length || 0;
+    changed = true;
+    console.log(changed)
+  }
+
+  if (previousDoc.organizationsId !== doc.organizationsId) {
+    modifier.$set.organizationsCount = doc.organizationsId && doc.organizationsId.length || 0;
+    changed = true;
+    console.log(changed)
+  }
+
+  if (changed) {
+    // Technologies.update({ _id: doc._id }, modifier);
+  }
 }
 
 if (Meteor.isServer) {
@@ -37,15 +62,5 @@ if (Meteor.isServer) {
 
   // Counters
   Technologies.before.insert(generateCountersBeforeInsert);
-  Technologies.before.update(generateCountersAfterUpdate);
+  Technologies.after.update(generateCountersAfterUpdate, { fetchPrevious: true });
 }
-
-/*
-    autoValue() {
-      let longText = this.field('name');
-      console.log(longText.value);
-      if (longText.isSet) {
-        return Meteor.isServer && removeMarkdown(longText.value);
-      }
-      return '';
-    }*/
