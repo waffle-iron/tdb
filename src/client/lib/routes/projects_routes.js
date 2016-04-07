@@ -27,21 +27,32 @@ projectsRoutes.route('/add', {
   },
 });
 
-// projectsRoutes.route('/:id/entry', {
-//   name: 'projects.entry',
-//   parent: 'projects.dashboard',
-//   title() {
-//     let project = Projects.findOne({
-//       _id: FlowRouter.getParam('id')
-//     });
-//     return project && project.name;
-//   },
-//   action() {
-//     BlazeLayout.render('defaultLayout', {
-//       main: 'projectsEntry'
-//     });
-//   },
-// });
+projectsRoutes.route('/:id/entry', {
+  name: 'projects.entry',
+  parent: 'projects.dashboard',
+  title() {
+    let project = Projects.findOne({
+      _id: FlowRouter.getParam('id')
+    });
+    return project && project.name;
+  },
+  action() {
+    BlazeLayout.render('defaultLayout', {
+      main: 'projectsEntry'
+    });
+  },
+});
+
+projectsRoutes.route('/:id/collections/:collectionId', {
+  name: 'projects.collection',
+  parent: 'projects.dashboard',
+  action() {
+    BlazeLayout.render('defaultLayout', {
+      main: 'projectsCollection'
+    });
+  },
+});
+
 
 
 projectsRoutes.route('/:id/edit', {
@@ -54,3 +65,4 @@ projectsRoutes.route('/:id/edit', {
     });
   },
 });
+
