@@ -1,12 +1,20 @@
 Template.searchResults.onRendered(function() {
   const cardsBox = this.firstNode;
-  const masonry = new Masonry(cardsBox, {
-    // columnWidth: '.cards-size',
+  const options = {
     gutter: 15,
     percentPosition: true,
+    columnWidth: '.cards-size',
     itemSelector: '.cards-item'
-  });
+  };
 
+  function triggerLayout() {
+    return $(cardsBox).masonry(options);
+  }
+
+  // Init
+  $masonry = triggerLayout();
+
+  // Hooks
   cardsBox._uihooks = {
     insertElement(node, next) {
       // Attach a new invisible card to grid
@@ -16,8 +24,8 @@ Template.searchResults.onRendered(function() {
 
       // Append to mansory when the card is ready
       $(node).imagesLoaded(() => {
-        masonry.appended(node);
-        masonry.layout();
+        $masonry.masonry('appended', node);
+        triggerLayout();
       });
     },
     removeElement(node) {
@@ -29,8 +37,8 @@ Template.searchResults.onRendered(function() {
         queue: false,
         complete: function() {
           $(node).remove();
-          masonry.remove(node);
-          masonry.layout();
+          $masonry.masonry('remove', node);
+          triggerLayout();
         }
       });
     }
