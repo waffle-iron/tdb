@@ -3,12 +3,11 @@ function isScrollOnBottom() {
 }
 
 const DEFAULT_SIZE = 5;
-const INCREASE_DELAY = 1000;
 const DEBOUNCE_TIME = 50;
+
 Template.searchSourceDisplay.onCreated(function() {
   this.size = new ReactiveVar(DEFAULT_SIZE);
   this.loaded = new ReactiveVar(0);
-  this.isLoading = new ReactiveVar(false);
 
   this.increaseSize = (size) => {
     this.size.set(this.size.get() + size);
@@ -16,6 +15,7 @@ Template.searchSourceDisplay.onCreated(function() {
 
   this.autorun(() => {
     let metadata = SearchSources.globalSearch.getMetadata();
+    if (!metadata || !metadata.total) return this.size.set(DEFAULT_SIZE);
     let hasMoreData = metadata && metadata.total > this.size.get();
     if (this.loaded.get() === this.size.get()) {
       if (isScrollOnBottom()) {
@@ -33,11 +33,6 @@ Template.searchSourceDisplay.onCreated(function() {
   }), DEBOUNCE_TIME);
 });
 
-Template.searchSourceDisplay.events({
-  'input [name="search"]': (e, t) => {
-    t.size.set(DEFAULT_SIZE);
-  }
-});
 
 Template.searchSourceDisplay.helpers({
   results: () => Template.instance().data.source.getTransformedData(),
