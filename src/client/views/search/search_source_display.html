@@ -8,7 +8,7 @@
     Placeholder for ListView
   {{/if}}
   {{#if $eq (getSearchDisplayMode displayMode) 'grid'}}
-    {{> searchResults results}}
+    {{> searchResults results=results onLayoutComplete=onLayoutComplete}}
   {{/if}}
   
   {{#if isLoading}}

@@ -6,34 +6,35 @@ const DEFAULT_SIZE = 5;
 const INCREASE_DELAY = 1000;
 Template.searchSourceDisplay.onCreated(function() {
   this.size = new ReactiveVar(DEFAULT_SIZE);
+  this.loaded = new ReactiveVar(0);
   this.isLoading = new ReactiveVar(false);
 
   this.increaseSize = (size) => {
     this.size.set(this.size.get() + size);
   };
 
-  let countAutorun = 0;
+  this.autorun(() => {
+    console.log('size: ', this.size.get())
+    console.log('loaded: ', this.loaded.get())
+  });
+
   this.autorun(() => {
     let metadata = SearchSources.globalSearch.getMetadata();
     let hasMoreData = metadata && metadata.total > this.size.get();
-
-    Meteor.setTimeout(() => {
-      if (hasMoreData) {
-        if (isScrollOnBottom()) {
-          console.log('Increase from autorun ', countAutorun++);
-          this.increaseSize(DEFAULT_SIZE);
-        }
+    if (this.loaded.get() === this.size.get()) {
+      if (isScrollOnBottom()) {
+        this.increaseSize(DEFAULT_SIZE);
       }
-    }, INCREASE_DELAY);
+    }
   });
 
-  let countScroll = 0;
   window.addEventListener('scroll', _.throttle(() => {
-    if (isScrollOnBottom()) {
-      console.log('Increase from scroll ', countScroll++);
-      this.increaseSize(DEFAULT_SIZE);
+    if (this.loaded.get() === this.size.get()) {
+      if (isScrollOnBottom()) {
+        this.increaseSize(DEFAULT_SIZE);
+      }
     }
-  }, INCREASE_DELAY));
+  }), 1000);
 });
 
 Template.searchSourceDisplay.events({
@@ -48,6 +49,12 @@ Template.searchSourceDisplay.helpers({
     let metadata = SearchSources.globalSearch.getMetadata();
     let hasMoreData = metadata && metadata.total > Template.instance().size.get();
     return isScrollOnBottom() && hasMoreData;
+  },
+  onLayoutComplete() {
+    let t = Template.instance();
+    return (length) => {
+      t.loaded.set(length);
+    };
   },
   options() {
     let t = Template.instance();

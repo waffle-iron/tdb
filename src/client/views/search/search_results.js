@@ -7,12 +7,12 @@ Template.searchResults.onRendered(function() {
     itemSelector: '.cards-item'
   };
 
-  function triggerLayout() {
-    return $(cardsBox).masonry(options);
-  }
-
   // Init
-  $masonry = triggerLayout();
+  let $cardsBox = $(cardsBox).masonry(options);
+
+  $cardsBox.masonry('on', 'layoutComplete', (event, items) => {
+    this.data.onLayoutComplete(items.length);
+  });
 
   // Hooks
   cardsBox._uihooks = {
@@ -24,8 +24,8 @@ Template.searchResults.onRendered(function() {
 
       // Append to mansory when the card is ready
       $(node).imagesLoaded(() => {
-        $masonry.masonry('appended', node);
-        triggerLayout();
+        $cardsBox.masonry('appended', node);
+        $cardsBox.masonry();
       });
     },
     removeElement(node) {
@@ -37,8 +37,8 @@ Template.searchResults.onRendered(function() {
         queue: false,
         complete: function() {
           $(node).remove();
-          $masonry.masonry('remove', node);
-          triggerLayout();
+          $cardsBox.masonry('remove', node);
+          $cardsBox.masonry();
         }
       });
     }
