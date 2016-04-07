@@ -15,6 +15,7 @@ Template.searchSourceDisplay.onCreated(function() {
   let countAutorun = 0;
   this.autorun(() => {
     let metadata = SearchSources.globalSearch.getMetadata();
+    if (!metadata || !metadata.total) this.size.set(DEFAULT_SIZE);
     let hasMoreData = metadata && metadata.total > this.size.get();
 
     Meteor.setTimeout(() => {
@@ -28,27 +29,25 @@ Template.searchSourceDisplay.onCreated(function() {
   });
 
   let countScroll = 0;
-  window.addEventListener('scroll', _.throttle(() => {
+  window.addEventListener('scroll', _.debounce(() => {
     if (isScrollOnBottom()) {
       console.log('Increase from scroll ', countScroll++);
       this.increaseSize(DEFAULT_SIZE);
     }
-  }, INCREASE_DELAY));
+  }, 50));
+
+  this.size.set(DEFAULT_SIZE);
 });
 
 Template.searchSourceDisplay.events({
   'input [name="search"]': (e, t) => {
-    t.size.set(DEFAULT_SIZE);
+    //t.size.set(DEFAULT_SIZE);
   }
 });
 
 Template.searchSourceDisplay.helpers({
   results: () => Template.instance().data.source.getTransformedData(),
-  isLoading: () => {
-    let metadata = SearchSources.globalSearch.getMetadata();
-    let hasMoreData = metadata && metadata.total > Template.instance().size.get();
-    return isScrollOnBottom() && hasMoreData;
-  },
+  isLoading: () => Template.instance().data.source.getStatus().loading,
   options() {
     let t = Template.instance();
     return function() {
