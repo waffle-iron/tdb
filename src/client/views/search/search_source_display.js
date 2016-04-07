@@ -1,53 +1,49 @@
 function isScrollOnBottom() {
-  return $(window).scrollTop() === $(document).height() - $(window).height();
+  return window.innerHeight + window.scrollY >= 0.8 * document.body.scrollHeight;
+  //  return $(window).scrollTop() === $(document).height() - $(window).height();*/
 }
 
 const DEFAULT_SIZE = 5;
-const INCREASE_DELAY = 1000;
+const DEBOUNCE_TIME = 50;
+
 Template.searchSourceDisplay.onCreated(function() {
   this.size = new ReactiveVar(DEFAULT_SIZE);
-  this.isLoading = new ReactiveVar(false);
+  this.loaded = new ReactiveVar(0);
 
   this.increaseSize = (size) => {
     this.size.set(this.size.get() + size);
   };
 
-  let countAutorun = 0;
   this.autorun(() => {
     let metadata = SearchSources.globalSearch.getMetadata();
-    if (!metadata || !metadata.total) this.size.set(DEFAULT_SIZE);
+    if (!metadata || !metadata.total) return this.size.set(DEFAULT_SIZE);
     let hasMoreData = metadata && metadata.total > this.size.get();
-
-    Meteor.setTimeout(() => {
-      if (hasMoreData) {
-        if (isScrollOnBottom()) {
-          console.log('Increase from autorun ', countAutorun++);
-          this.increaseSize(DEFAULT_SIZE);
-        }
+    if (this.loaded.get() === this.size.get()) {
+      if (isScrollOnBottom()) {
+        this.increaseSize(DEFAULT_SIZE);
       }
-    }, INCREASE_DELAY);
+    }
   });
 
-  let countScroll = 0;
   window.addEventListener('scroll', _.debounce(() => {
-    if (isScrollOnBottom()) {
-      console.log('Increase from scroll ', countScroll++);
-      this.increaseSize(DEFAULT_SIZE);
+    if (this.loaded.get() === this.size.get()) {
+      if (isScrollOnBottom()) {
+        this.increaseSize(DEFAULT_SIZE);
+      }
     }
-  }, 50));
-
-  this.size.set(DEFAULT_SIZE);
+  }), DEBOUNCE_TIME);
 });
 
-Template.searchSourceDisplay.events({
-  'input [name="search"]': (e, t) => {
-    //t.size.set(DEFAULT_SIZE);
-  }
-});
 
 Template.searchSourceDisplay.helpers({
   results: () => Template.instance().data.source.getTransformedData(),
   isLoading: () => Template.instance().data.source.getStatus().loading,
+  onLayoutComplete() {
+    let t = Template.instance();
+    return (length) => {
+      t.loaded.set(length);
+    };
+  },
   options() {
     let t = Template.instance();
     return function() {
