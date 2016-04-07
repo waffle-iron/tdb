@@ -4,6 +4,7 @@ function isScrollOnBottom() {
 
 const DEFAULT_SIZE = 5;
 const INCREASE_DELAY = 1000;
+const DEBOUNCE_TIME = 50;
 Template.searchSourceDisplay.onCreated(function() {
   this.size = new ReactiveVar(DEFAULT_SIZE);
   this.loaded = new ReactiveVar(0);
@@ -12,11 +13,6 @@ Template.searchSourceDisplay.onCreated(function() {
   this.increaseSize = (size) => {
     this.size.set(this.size.get() + size);
   };
-
-  this.autorun(() => {
-    console.log('size: ', this.size.get())
-    console.log('loaded: ', this.loaded.get())
-  });
 
   this.autorun(() => {
     let metadata = SearchSources.globalSearch.getMetadata();
@@ -34,7 +30,7 @@ Template.searchSourceDisplay.onCreated(function() {
         this.increaseSize(DEFAULT_SIZE);
       }
     }
-  }), 1000);
+  }), DEBOUNCE_TIME);
 });
 
 Template.searchSourceDisplay.events({
@@ -45,11 +41,7 @@ Template.searchSourceDisplay.events({
 
 Template.searchSourceDisplay.helpers({
   results: () => Template.instance().data.source.getTransformedData(),
-  isLoading: () => {
-    let metadata = SearchSources.globalSearch.getMetadata();
-    let hasMoreData = metadata && metadata.total > Template.instance().size.get();
-    return isScrollOnBottom() && hasMoreData;
-  },
+  isLoading: () => Template.instance().data.source.getStatus().loading,
   onLayoutComplete() {
     let t = Template.instance();
     return (length) => {
