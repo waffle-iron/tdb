@@ -24,7 +24,7 @@ Template.searchSourceDisplay.onCreated(function() {
     }
   });
 
-  window.addEventListener('scroll', _.throttle(() => {
+  window.addEventListener('scroll', _.debounce(() => {
     if (this.loaded.get() === this.size.get()) {
       if (isScrollOnBottom()) {
         this.increaseSize(DEFAULT_SIZE);
