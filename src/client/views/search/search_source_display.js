@@ -1,5 +1,6 @@
 function isScrollOnBottom() {
-  return $(window).scrollTop() === $(document).height() - $(window).height();
+  return window.innerHeight + window.scrollY >= 0.8 * document.body.scrollHeight;
+  //  return $(window).scrollTop() === $(document).height() - $(window).height();*/
 }
 
 const DEFAULT_SIZE = 5;
