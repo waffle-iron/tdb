@@ -12,6 +12,9 @@ Schemas.Collection = new SimpleSchema({
   description: {
     type: Schemas.Description.pick(['userId', 'createdAt', 'status', 'longText'])
   },
+  projectId: {
+    type: String
+  },
   parentId: {
     type: String,
     optional: true
