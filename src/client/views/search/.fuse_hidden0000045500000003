@@ -8,10 +8,11 @@
     Placeholder for ListView
   {{/if}}
   {{#if $eq (getSearchDisplayMode displayMode) 'grid'}}
-    {{> searchResults results=results onLayoutComplete=onLayoutComplete}}
+    {{> searchResults results}}
   {{/if}}
   
   {{#if isLoading}}
+    is loading!
     {{> spinnerWave}}
   {{/if}}
 
