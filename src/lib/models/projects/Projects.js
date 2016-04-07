@@ -74,7 +74,7 @@ Schemas.Project = new SimpleSchema({
     }
   },
   collectionsSet: {
-    type: [Schemas.CollectionsSet],
+    type: [String],
     optional: true
   },
   organizationsId: {
