@@ -26,33 +26,27 @@ function generateCountersBeforeInsert(userId, doc) {
 }
 
 function generateCountersAfterUpdate(userId, doc) {
+  const currentDoc = this.transform(doc);
   const previousDoc = this.transform(this.previous);
-
-  console.log(previousDoc);
-
-  let changed = false;
+  const query = { _id: doc._id };
   let modifier = { $set: {} };
 
-  if (previousDoc.projectsId !== doc.projectsId) {
-    modifier.$set.projectsCount = doc.projectsId && doc.projectsId.length || 0;
-    changed = true;
-    console.log(changed)
+  function setCountFor(property) {
+    if (currentDoc[property]) {
+      if (!previousDoc[property] || previousDoc[property].length !== currentDoc[property].length) {
+        const entityName = property.replace('Id', '');
+        const countingProperty = `${entityName}Count`;
+        modifier.$set[countingProperty] = currentDoc[property].length;
+      }
+    }
   }
 
-  if (previousDoc.attachmentsId !== doc.attachmentsId) {
-    modifier.$set.attachmentsCount = doc.attachmentsId && doc.attachmentsId.length || 0;
-    changed = true;
-    console.log(changed)
-  }
+  setCountFor('attachmentsId');
+  setCountFor('projectsId');
+  setCountFor('organizationsId');
 
-  if (previousDoc.organizationsId !== doc.organizationsId) {
-    modifier.$set.organizationsCount = doc.organizationsId && doc.organizationsId.length || 0;
-    changed = true;
-    console.log(changed)
-  }
-
-  if (changed) {
-    // Technologies.update({ _id: doc._id }, modifier);
+  if (!_.isEmpty(modifier.$set)) {
+    Technologies.update(query, modifier);
   }
 }
 
