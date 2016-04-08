@@ -27,7 +27,12 @@ Meteor.publishComposite('projects.single', function(projectId) {
       return Projects.find({
         _id: projectId
       });
-    }
+    },
+    children: [{
+      find(project) {
+        return CollectionsSet.find({ projectId: project._id });
+      }
+    }]
   };
 });
 
@@ -59,4 +64,3 @@ Meteor.publish('last-project-added', function() {
     limit: 1
   });
 });
-

@@ -304,11 +304,3 @@ Schemas.Search = new SimpleSchema({
 });
 
 
-Schemas.CollectionsSet = new SimpleSchema({
-  name: {
-    type: String
-  },
-  collections: {
-    type: [String]
-  }
-});
