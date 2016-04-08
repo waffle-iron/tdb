@@ -48,7 +48,7 @@ projectsRoutes.route('/:projectId/collections-set/:collectionsSetId', {
   parent: 'projects.dashboard',
   action() {
     BlazeLayout.render('defaultLayout', {
-      main: 'projectsCollection'
+      main: 'collectionsSetEntry'
     });
   },
 });
