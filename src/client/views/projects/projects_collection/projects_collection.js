@@ -1,9 +1,14 @@
 Template.projectsCollection.onCreated(function() {
-  this.subscribe('collections.single', FlowRouter.getParam('collectionId'));
+  this.subscribe('collectionsSet.single', FlowRouter.getParam('collectionsSetId'));
 });
 
 Template.projectsCollection.helpers({
-  collection() {
-    return Collections.findOne({_id: FlowRouter.getParam('collectionId')});
+  collectionsSet() {
+    return CollectionsSet.findOne({
+      _id: FlowRouter.getParam('collectionsSetId'),
+      projectId: FlowRouter.getParam('projectId')});
+  },
+  project() {
+    return Projects.findOne({_id: FlowRouter.getParam('projectId')});
   }
 });

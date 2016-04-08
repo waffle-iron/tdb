@@ -1,0 +1,13 @@
+<template name="collectionsSetList">
+  {{#panel title="Collections Set List"}}
+    <table class="table">
+      {{#each collectionsSet}}
+        <tr>
+          <td>
+            <a href="{{pathFor 'projects.collectionsSet' projectId=projectId collectionsSetId=_id}}">{{name}}</a>
+           </td>
+        </tr>
+      {{/each}}
+    </table>
+  {{/panel}}
+</template>

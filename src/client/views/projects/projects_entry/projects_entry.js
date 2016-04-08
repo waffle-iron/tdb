@@ -7,5 +7,10 @@ Template.projectsEntry.helpers({
     return Projects.findOne({
       _id: FlowRouter.getParam('id')
     });
-  }
+  },
+  projectCollections() {
+    return Collections.find({
+      projectId: FlowRouter.getParam('id')
+    });
+  },
 });
