@@ -1,4 +1,6 @@
 <template name="projectsEntry">
-<h1>Insert Collections</h1>
-{{> collectionsAdd projectId=project._id}}
+{{#with project}}
+  {{> collectionsSetList projectId=project._id collectionsSet=getCollectionsSet}}
+  {{> collectionsSetAdd projectId=project._id}}
+{{/with}}
 </template>

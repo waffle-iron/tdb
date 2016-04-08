@@ -43,8 +43,8 @@ projectsRoutes.route('/:id/entry', {
   },
 });
 
-projectsRoutes.route('/:id/collections/:collectionId', {
-  name: 'projects.collection',
+projectsRoutes.route('/:projectId/collections-set/:collectionsSetId', {
+  name: 'projects.collectionsSet',
   parent: 'projects.dashboard',
   action() {
     BlazeLayout.render('defaultLayout', {
