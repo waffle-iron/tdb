@@ -47,7 +47,6 @@ chhib:selectize-bootstrap-3
 peppelg:bootstrap-3-modal
 rainhaven:mask-money
 reactive-var
-standard-minifiers
 meteor-base
 mobile-experience
 mongo
@@ -110,3 +109,5 @@ jamiter:pluralize
 sjors:meteor-masonry
 shcherbin:imagesloaded
 velocityjs:velocityjs
+standard-minifier-css
+standard-minifier-js
