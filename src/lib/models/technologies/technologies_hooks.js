@@ -26,18 +26,20 @@ function generateCountersBeforeInsert(userId, doc) {
 }
 
 function generateCountersAfterUpdate(userId, doc) {
-  const currentDoc = this.transform(doc);
-  const previousDoc = this.transform(this.previous);
+  const previousDoc = this.previous;
   const query = { _id: doc._id };
-  let modifier = { $set: {} };
+  let modifier = { $set: {}, $unset: {} };
 
   function setCountFor(property) {
-    if (currentDoc[property]) {
-      if (!previousDoc[property] || previousDoc[property].length !== currentDoc[property].length) {
-        const entityName = property.replace('Id', '');
-        const countingProperty = `${entityName}Count`;
-        modifier.$set[countingProperty] = currentDoc[property].length;
+    const entityName = property.replace('Id', '');
+    const countingProperty = `${entityName}Count`;
+
+    if (doc[property]) {
+      if (!previousDoc[property] || previousDoc[property].length !== doc[property].length) {
+        modifier.$set[countingProperty] = doc[property].length;
       }
+    } else if (doc[countingProperty]) {
+      modifier.$unset[countingProperty] = '';
     }
   }
 
@@ -45,7 +47,7 @@ function generateCountersAfterUpdate(userId, doc) {
   setCountFor('projectsId');
   setCountFor('organizationsId');
 
-  if (!_.isEmpty(modifier.$set)) {
+  if (!_.isEmpty(modifier.$set) || !_.isEmpty(modifier.$unset)) {
     Technologies.update(query, modifier);
   }
 }
