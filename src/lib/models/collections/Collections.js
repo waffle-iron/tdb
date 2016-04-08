@@ -12,6 +12,13 @@ Schemas.Collection = new SimpleSchema({
   description: {
     type: Schemas.Description.pick(['userId', 'createdAt', 'status', 'longText'])
   },
+  projectId: {
+    type: String
+  },
+  collectionsSetId: {
+    type: String,
+    optional: true
+  },
   parentId: {
     type: String,
     optional: true
@@ -65,5 +72,10 @@ Collections.helpers({
         _id: this.logo
       });
     }
+  },
+  childCollections() {
+    return Collections.find({
+      parentId: this._id
+    });
   }
 });

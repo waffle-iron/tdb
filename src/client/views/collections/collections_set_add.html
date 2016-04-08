@@ -1,0 +1,32 @@
+<template name="collectionsSetAdd">
+<!--   {{#panel title="Push Collection Set"}}
+  {{#autoForm id="pushCollectionsSetFrom" schema="Schemas.CollectionsSet" class="form-horizontal" type="normal" projectId=projectId}}
+      {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+      {{> afQuickField name="collections" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+
+      {{> submit texto="Push Collection Set to Project" buttonClass="col-sm-9" offsetClass="col-sm-offset-2"}}
+  {{/autoForm}}
+{{/panel}} -->
+
+  <!--
+  {{#panel title="Create Collection"}}
+    {{#autoForm id="insertCollectionsForm" collection="Collections" type="method" meteormethod="Collections.methods.add" projectId=projectId class="form-horizontal"}}
+        {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+        {{> afQuickField name="description" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+        {{> afQuickField name="parentId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+        {{> afQuickField name="technologiesId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+
+        {{> submit texto="Add Collection to Project" buttonClass="col-sm-9" offsetClass="col-sm-offset-2"}}
+    {{/autoForm}}
+  {{/panel}}
+  -->
+
+  {{#panel title="Create Collections Set"}}
+    {{#autoForm id="insertCollectionsSetForm" collection="CollectionsSet" type="method" meteormethod="CollectionsSet.methods.add" projectId=projectId class="form-horizontal"}}
+      {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+      <!--{{> afQuickField name="collections" label-class="col-sm-2" input-col-class="col-sm-9"}} -->
+
+        {{> submit texto="Add CollectionsSet to Project" buttonClass="col-sm-9" offsetClass="col-sm-offset-2"}}
+    {{/autoForm}}
+  {{/panel}}  
+</template>

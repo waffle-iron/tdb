@@ -1,54 +1,49 @@
 function isScrollOnBottom() {
-  return $(window).scrollTop() === $(document).height() - $(window).height();
+  return window.innerHeight + window.scrollY >= 0.8 * document.body.scrollHeight;
+  //  return $(window).scrollTop() === $(document).height() - $(window).height();*/
 }
 
 const DEFAULT_SIZE = 5;
-const INCREASE_DELAY = 1000;
+const DEBOUNCE_TIME = 50;
+
 Template.searchSourceDisplay.onCreated(function() {
   this.size = new ReactiveVar(DEFAULT_SIZE);
-  this.isLoading = new ReactiveVar(false);
+  this.loaded = new ReactiveVar(0);
 
-  // Check if we already showed all
-  // elasticsearch data.
-  this.hasMoreData = () => {
-    let metadata = SearchSources.globalSearch.getMetadata();
-    return metadata && metadata.total > this.size.get();
-  };
-  
   this.increaseSize = (size) => {
     this.size.set(this.size.get() + size);
-
-    // Keep calling until the page needs
-    // to be scrolled.
-    if (this.hasMoreData()) {
-      Meteor.setTimeout(() => {
-        if (isScrollOnBottom()) {
-          this.increaseSize(size);
-        }
-      }, INCREASE_DELAY);
-    }
   };
 
-  this.autorun(() =>
-    this.isLoading.set(this.hasMoreData() && isScrollOnBottom()));
-
-  window.addEventListener('scroll',
-    _.throttle(() =>
-      isScrollOnBottom() && this.increaseSize(DEFAULT_SIZE), INCREASE_DELAY));
-});
-
-Template.searchSourceDisplay.events({
-  'input [name="search"]': (e, t) => {
-    t.size.set(DEFAULT_SIZE);
-    if (isScrollOnBottom()) {
-      t.increaseSize(DEFAULT_SIZE);
+  this.autorun(() => {
+    let metadata = SearchSources.globalSearch.getMetadata();
+    if (!metadata || !metadata.total) return this.size.set(DEFAULT_SIZE);
+    let hasMoreData = metadata && metadata.total > this.size.get();
+    if (this.loaded.get() === this.size.get()) {
+      if (isScrollOnBottom()) {
+        this.increaseSize(DEFAULT_SIZE);
+      }
     }
-  }
+  });
+
+  window.addEventListener('scroll', _.debounce(() => {
+    if (this.loaded.get() === this.size.get()) {
+      if (isScrollOnBottom()) {
+        this.increaseSize(DEFAULT_SIZE);
+      }
+    }
+  }), DEBOUNCE_TIME);
 });
+
 
 Template.searchSourceDisplay.helpers({
   results: () => Template.instance().data.source.getTransformedData(),
-  isLoading: () => Template.instance().isLoading.get(),
+  isLoading: () => Template.instance().data.source.getStatus().loading,
+  onLayoutComplete() {
+    let t = Template.instance();
+    return (length) => {
+      t.loaded.set(length);
+    };
+  },
   options() {
     let t = Template.instance();
     return function() {

@@ -1,3 +1,6 @@
 <template name="projectsEntry">
-  Placeholder for xz<b>projectsEntry</b>
+{{#with project}}
+  {{> collectionsSetList projectId=project._id collectionsSet=getCollectionsSet}}
+  {{> collectionsSetAdd projectId=project._id}}
+{{/with}}
 </template>

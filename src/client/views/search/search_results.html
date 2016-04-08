@@ -1,7 +1,7 @@
 <template name="searchResults">
   <div id="masonry" class="row cards-box">
     <div class="cards-size"></div>
-    {{#each this}}
+    {{#each results}}
       <div class="card-box cards-item">
         {{#if $eq _type 'organizations'}}
           {{> orgCard}}
@@ -22,3 +22,4 @@
     {{/each}}
   </div>
 </template>
+

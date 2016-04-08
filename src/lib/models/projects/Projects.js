@@ -129,5 +129,16 @@ Meteor.isServer && Projects.esDriver(esClient, 'techdb', 'projects');
 Projects.helpers({
   link: function() {
     return window.location.host + '/projects/' + this._id + '/entry';
+  },
+  getTechnologiesStash() {
+    return this.technologiesStash && Technologies.find({
+      _id: {$in: this.technologiesStash}
+    });
+  },
+  getCollectionsSet() {
+    return this.collectionsSet && CollectionsSet.find({
+      //_id: {$in: this.collectionsSet}
+      projectId: this._id
+    });
   }
 });
