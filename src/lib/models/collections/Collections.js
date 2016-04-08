@@ -15,6 +15,10 @@ Schemas.Collection = new SimpleSchema({
   projectId: {
     type: String
   },
+  collectionsSetId: {
+    type: String,
+    optional: true
+  },
   parentId: {
     type: String,
     optional: true
@@ -68,5 +72,10 @@ Collections.helpers({
         _id: this.logo
       });
     }
+  },
+  childCollections() {
+    return Collections.find({
+      parentId: this._id
+    });
   }
 });
