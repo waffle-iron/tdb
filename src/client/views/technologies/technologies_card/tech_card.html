@@ -1,6 +1,6 @@
 <template name="techCard">
   {{#unless isDeleted}}
-    <div class="ibox">
+    <div class="ibox card-box cards-item">
       <div class="ibox-content no-padding card-label panel-{{techColor status}}">
         {{> techCardTools}}
         <a href="{{pathFor 'technologies.entry' id=_id}}">
