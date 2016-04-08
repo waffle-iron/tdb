@@ -3,8 +3,9 @@ Schemas.CollectionsSet = new SimpleSchema({
   name: {
     type: String
   },
-  collections: {
-    type: [String]
+  collectionsId: {
+    type: [String],
+    optional: true
   },
   projectId: {
     type: String
@@ -14,8 +15,18 @@ Schemas.CollectionsSet = new SimpleSchema({
 
 CollectionsSet.helpers({
   project() {
-    return Project.findOne({
+    return Projects.findOne({
       _id: this.projectId
+    });
+  },
+/*  collections() {
+    return this.collectionsId && Collections.find({
+      _id: {$in: this.collectionsId}
+    });
+  }*/
+  collections() {
+    return Collections.find({
+      collectionsSetId: this._id
     });
   }
 });
