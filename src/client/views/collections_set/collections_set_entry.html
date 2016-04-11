@@ -8,57 +8,12 @@
   <div class="row collections-set-entry">
     <div class="col col-sm-3">
       {{#with project}}
-        {{#panelContainer}}
-          {{#panelTitle}}
-          <div class="input-group">
-            <input type="text" placeholder="Search for a technology." class="input input-sm form-control">
-            <span class="input-group-btn">
-              <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-plus"></i> Add</button>
-            </span>
-          </div>            
-          {{/panelTitle}}
-
-          {{#panelContent class="stash"}}
-            {{#perfectScrollbar}}
-              {{#each getTechnologiesStash}} 
-                <div>
-                {{> techCard }} 
-                </div>
-              {{/each}}
-            {{/perfectScrollbar}}
-          {{/panelContent}}
-        {{/panelContainer}}
+        {{> techStash}}
       {{/with}}
     </div>
 
     <div class="col col-sm-9">
-      <!-- Collections -->
-      {{#each collections}}
-        {{#panelContainer}}
-          {{#panelTitle}}
-            {{name}}
-          {{/panelTitle}}        
-          {{#panelContent}}
-            {{description.longText}}
-            <!-- Sub Collections -->
-            {{#each childCollections}}
-              {{#panelContainer}}
-                {{#panelTitle}}
-                  {{name}}
-                {{/panelTitle}}  
-                {{#panelContent}}      
-                  {{description.longText}}
-
-                  <!-- Technologies of Sub Collection -->
-                  {{#each technologies}}
-                    {{> techCard}}
-                  {{/each}}
-                {{/panelContent}}
-              {{/panelContainer}}
-            {{/each}}
-          {{/panelContent}}
-        {{/panelContainer}}
-      {{/each}}
+      {{> collectionsBoard}}
     </div>
   </div>
   {{/with}}
