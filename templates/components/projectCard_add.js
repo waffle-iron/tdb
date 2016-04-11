@@ -11,5 +11,5 @@ this["TDB"]["templates"]["projectCard_add"] = Handlebars.template({"compiler":[7
     + alias4(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"name","hash":{},"data":data}) : helper)))
     + "</h5>\n      <p>"
     + alias4(((helper = (helper = helpers.description || (depth0 != null ? depth0.description : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"description","hash":{},"data":data}) : helper)))
-    + "</p>\n    </div>\n  </div>\n</div>\n</div>\n";
+    + "</p>\n    </div>\n  </div>\n</div>";
 },"useData":true});;

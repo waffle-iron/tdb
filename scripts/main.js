@@ -142,7 +142,7 @@ TDBRouter.addRoute({
   template: 'projectEntry',
   onRendered: initProjectEntry,
   context: {
-    projects: projects,
+    project: project,
     latestUpdates: [{
       object: 'Futuro da Medicina',
       type: 'folder',

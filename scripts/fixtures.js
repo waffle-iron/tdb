@@ -64,6 +64,14 @@ var projects = [{
   status: 'Active'
 }];
 
+var project = [{
+  name: 'Futuro da Medicina',
+  evID: 'EV0091',
+  description: 'Futuro da Medicina is a content platform that is being developed for OneHealth since 2013. It started with some visualizations back in 2011. Our main contact is Dr. Sergio, CEO.',
+  src: 'images/project.png',
+  status: 'Active'
+}];
+
 var projectCollection = [{
   title: 'IT & Systems',
   description: 'The capacity for being fast and efficient can mean success or failure in the field. With more resources requiring electricity to operate escalating demands should be quelled. Acquiring energy, transmitting energy, and effective use of energy gives an edge in deployed assets for their ability to remain self-sufficient and reduce expenditures on unnecessary losses.',
