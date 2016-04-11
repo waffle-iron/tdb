@@ -5,6 +5,7 @@ Handlebars.registerPartial('technologyCard', TDB.templates.technologyCard);
 Handlebars.registerPartial('technologyCard_add', TDB.templates.technologyCard_add);
 Handlebars.registerPartial('projectCard', TDB.templates.projectCard);
 Handlebars.registerPartial('projectCard_add', TDB.templates.projectCard_add);
+Handlebars.registerPartial('projectCollection_element', TDB.templates.projectCollection_element);
 Handlebars.registerPartial('attachmentCard', TDB.templates.attachmentCard);
 Handlebars.registerPartial('organizationCard', TDB.templates.organizationCard);
 Handlebars.registerPartial('latestUpdates', TDB.templates.latestUpdates);
@@ -141,7 +142,7 @@ TDBRouter.addRoute({
   template: 'projectEntry',
   onRendered: initProjectEntry,
   context: {
-    projects,
+    projects, collectionSet,
     latestUpdates: [{
       object: 'Futuro da Medicina',
       type: 'folder',
@@ -157,9 +158,8 @@ TDBRouter.addRoute({
   template: 'projectCollection',
   onRendered: initProjectEntry,
   context: {
-    collectionName: 'Taxonomy',
+    collectionSet,
     technologiesStash: technologies,
-    collection: projectCollection,
     latestUpdates: [{
       object: 'Futuro da Medicina',
       type: 'folder',
