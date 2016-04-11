@@ -19,14 +19,13 @@ CollectionsSet.helpers({
       _id: this.projectId
     });
   },
-/*  collections() {
-    return this.collectionsId && Collections.find({
-      _id: {$in: this.collectionsId}
-    });
-  }*/
+  // top level collections
   collections() {
     return Collections.find({
-      collectionsSetId: this._id
+      collectionsSetId: this._id,
+      parentId: {
+        $exists: false
+      }
     });
   }
 });

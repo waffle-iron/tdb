@@ -1,0 +1,48 @@
+<template name="collectionsBoard">
+  <div class="collections-board">
+    <!-- Collections -->
+    {{#perfectScrollbar}}
+      <div class="top-collections">
+        {{#each collections}}
+          {{#panelContainer class="collection-card"}}
+            {{#panelTitle}}
+              {{name}}
+              {{#panelTools}}
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
+                  <i class="fa fa-gear"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                  <li><a href="#">Edit Title</a></li>
+                  <li><a href="#">Edit Description</a></li>
+                  <li><a href="#" class="add-sub-collection">Add SubCollection</a></li>
+                </ul>
+              {{/panelTools}}
+            {{/panelTitle}}        
+            {{#panelContent}}
+              {{description.longText}}
+              <!-- Sub Collections -->
+              {{#perfectScrollbar}}
+                <div class="sub-collections-board">              
+                  {{#each childCollections}}
+                    {{#panelContainer class="sub-collection-card"}}
+                      {{#panelTitle}}
+                        {{name}}
+                      {{/panelTitle}}  
+                      {{#panelContent}}      
+                        {{description.longText}}
+                        <!-- Technologies of Sub Collection -->
+                        {{#each technologies}}
+                          {{> techCard}}
+                        {{/each}}
+                      {{/panelContent}}
+                    {{/panelContainer}}
+                  {{/each}}
+                </div>
+              {{/perfectScrollbar}}
+            {{/panelContent}}
+          {{/panelContainer}}
+        {{/each}}
+      </div>
+    {{/perfectScrollbar}}
+  </div>  
+</template>

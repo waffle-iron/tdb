@@ -130,9 +130,10 @@ Projects.helpers({
   link: function() {
     return window.location.host + '/projects/' + this._id + '/entry';
   },
-  getTechnologiesStash() {
+  getTechnologiesStash(query) {
     return this.technologiesStash && Technologies.find({
-      _id: {$in: this.technologiesStash}
+      _id: {$in: this.technologiesStash},
+      ...query
     });
   },
   getCollectionsSet() {

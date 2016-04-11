@@ -18,3 +18,5 @@ Template.collectionsSetEntry.events({
     });
   }
 });
+
+

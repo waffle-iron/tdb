@@ -1,9 +1,46 @@
-.collections-set-entry {
+.tech-stash {
   .stash {
     height: 800px;
   }
   .ps-container {
     height: 100%;
     position:relative;
+  }
+}
+
+.collections-board {
+  //height: 800px;
+
+  .ps-container {
+    position:relative;
+    height: 100%;
+  }
+
+  .top-collections {
+    display: flex;
+    flex-direction: row;
+
+    .collection-card {
+      min-width: 600px;
+      margin-right: 20px;
+
+      .ps-container {
+        position: relative;
+        height: 100%;
+        margin: 40px -20px -20px -20px;
+      }
+
+      .sub-collections-board {
+        
+        display: flex;
+        flex-direction: row;
+
+        .sub-collection-card {
+          border:1px solid lightgray;
+          min-width: 400px;
+          margin-right: 10px;
+        }
+      }         
+    }
   }
 }
