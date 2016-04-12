@@ -2,165 +2,19 @@
 {{#if Template.subscriptionsReady}}
   {{#with project}}
     <div class="wrapper-content">
-      <div class="row tooltip-demo">
-        <!-- About box -->
+      <div class="row">
         <div class="col-lg-3">
           {{> projectsAboutBox}}
         </div>
-        <!-- fim do about box -->
-        <!-- Início tech stash -->
         <div class="col-lg-9">
-          <div class="ibox">
-            <div class="ibox-title">
-              <h1>Technology Stash</h1>
-              <div class="ibox-tools">
-                <a class="#">
-                  <i class="fa fa-plus"></i>
-                </a>
-                <a class="collapse-link">
-                  <i class="fa fa-chevron-up"></i>
-                </a>
-              </div>
+          <div class="row">
+            <div class="col-sm-12">
+              {{> techStash}}
             </div>
-            <div class="ibox-content">
-              <div class="row">
-                <div class="col-sm-12">
-                  <input type="text" placeholder="Search" class="input-sm form-control">
-                </div>
-              </div>
-              <table class="footable table table-stripped toggle-arrow-tiny" data-page-size="8">
-                <thead>
-                  <tr>
-                    <th data-toggle="true">Name</th>
-                    <th>Status</th>
-                    <th>Added by</th>
-                    <th>Date</th>
-                    <th>Collections</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td><a herf="#">Drone Delivery</a></td>
-                    <td><span class="label label-primary">Published</span></td>
-                    <td><a href="#">Arthur S</a></td>
-                    <td>Dec 15, 2015</td>
-                    <td><a href="#" class="btn btn-xs btn-outline btn-primary">Energy</a> <a href="#" class="btn btn-xs btn-outline btn-primary">Production</a></td>
-                    <td>
-                      <a href="#"><i class="fa fa-arrows-alt fa-fw"></i></a>
-                      <a href="#"><i class="fa fa-search fa-fw"></i></a>
-                      <a href="#"><i class="fa fa-times fa-fw"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a herf="#">Drone Delivery</a></td>
-                    <td><span class="label label-danger">Draft</span></td>
-                    <td><a href="#">Michell Z</a></td>
-                    <td>Dec 17, 2015</td>
-                    <td></td>
-                    <td>
-                      <a href="#"><i class="fa fa-arrows-alt fa-fw"></i></a>
-                      <a href="#"><i class="fa fa-search fa-fw"></i></a>
-                      <a href="#"><i class="fa fa-times fa-fw"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a herf="#">Drone Delivery</a></td>
-                    <td><span class="label label-warning">Review</span></td>
-                    <td><a href="#">Arthur S</a></td>
-                    <td>Dec 15, 2015</td>
-                    <td><a href="#" class="btn btn-xs btn-outline btn-primary">Production</a></td>
-                    <td>
-                      <a href="#"><i class="fa fa-arrows-alt fa-fw"></i></a>
-                      <a href="#"><i class="fa fa-search fa-fw"></i></a>
-                      <a href="#"><i class="fa fa-times fa-fw"></i></a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><a herf="#">Drone Delivery</a></td>
-                    <td><span class="label label-primary">Published</span></td>
-                    <td><a href="#">Arthur S</a></td>
-                    <td>Dec 15, 2015</td>
-                    <td><a href="#" class="btn btn-xs btn-outline btn-primary">Energy</a> <a href="#" class="btn btn-xs btn-outline btn-primary">Production</a></td>
-                    <td>
-                      <a href="#"><i class="fa fa-arrows-alt fa-fw"></i></a>
-                      <a href="#"><i class="fa fa-search fa-fw"></i></a>
-                      <a href="#"><i class="fa fa-times fa-fw"></i></a>
-                    </td>
-                  </tr>
-                </tbody>
-                <tfoot>
-                  <tr>
-                    <td colspan="6">
-                      <ul class="pagination pull-right"></ul>
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
+            <div class="col-sm-12">
+              {{> collectionsSet}}
             </div>
-          </div>
-        </div>
-        <!-- fim -->
-        <div class="col-sm-9">
-          <div class="ibox">
-            <h2>Collection Sets</h2>
-          </div>
-          <div class="row-fluid">
-            <div class="ibox collection-ibox">
-              <div class="ibox-title">
-                <h2>Taxonomy</h2>
-                <div class="ibox-tools">
-                  <a href="#/projects/collection">Browse</a>
-                </div>
-              </div>
-              <div class="ibox-content collectionSetBox">
-                <p>This is what goes inside</p>
-                <div class="panel panel-default">
-                  <div class="panel-heading">Energy</div>
-                  <div class="panel-body">
-                    <p>The capacity for being fast and efficient can mean success or failure in the field. With more resources
-                      requiring electricity to operate escalating demands should be quelled. Acquiring energy, transmitting
-                      energy, and effective use of energy gives an edge in deployed assets for their ability to remain self-sufficient
-                      and reduce expenditures on unnecessary losses.</p>
-                    <ul class="sortable-list connectList agile-list ui-sortable">
-                      <li class="ui-sortable-handle">Efficiency <a href="#" class="pull-btn pull-right btn-xs btn-white"> 2</a></li>
-                      <li class="ui-sortable-handle">Management <a href="#" class="pull-btn pull-right btn-xs btn-white"> 2</a></li>
-                      <li class="ui-sortable-handle">Propulsion <a href="#" class="pull-btn pull-right btn-xs btn-white"> 2</a></li>
-                      <li class="ui-sortable-handle">Storage <a href="#" class="pull-btn pull-right btn-xs btn-white"> 2</a></li>
-                    </ul>
-                  </div>
-                  <div class="panel-footer">
-                    <div class="ibox-tools">
-                      <a href="#" alt="Edit Collection"><i class="fa fa-edit"></i></a>
-                      <a href="#" alt="Copy collection"><i class="fa fa-copy"></i></a>
-                      <a href="#" alt="Delete Collection"><i class="fa fa-trash"></i></a>
-                    </div>
-                  </div>
-                </div>
-                <div class="panel panel-default">
-                  <div class="panel-heading">IT &amp; Systems</div>
-                  <div class="panel-body">
-                    <p>The capacity for being fast and efficient can mean success or failure in the field. With more resources
-                      requiring electricity to operate escalating demands should be quelled. Acquiring energy, transmitting
-                      energy, and effective use of energy gives an edge in deployed assets for their ability to remain self-sufficient
-                      and reduce expenditures on unnecessary losses.</p>
-                    <ul class="sortable-list connectList agile-list ui-sortable">
-                      <li class="ui-sortable-handle">Communications <a href="#" class="pull-btn pull-right btn-xs btn-white"> 2</a></li>
-                      <li class="ui-sortable-handle">Computation <a href="#" class="pull-btn pull-right btn-xs btn-white"> 2</a></li>
-                      <li class="ui-sortable-handle">Internet of Things <a href="#" class="pull-btn pull-right btn-xs btn-white"> 2</a></li>
-                    </ul>
-                  </div>
-                  <div class="panel-footer">
-                    <div class="ibox-tools">
-                      <a href="#" alt="Edit Collection"><i class="fa fa-edit"></i></a>
-                      <a href="#" alt="Copy collection"><i class="fa fa-copy"></i></a>
-                      <a href="#" alt="Delete Collection"><i class="fa fa-trash"></i></a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div>            
         </div>
       </div>
     </div>
