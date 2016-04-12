@@ -1,4 +1,4 @@
-buildRegExp = function(searchText) {
+/*buildRegExp = function(searchText) {
   let words = searchText.trim().split(/[ \-\:\.]+/);
   let exps = _.map(words, function(word) {
     return `(?=.*${word})`;
@@ -25,4 +25,21 @@ Template.techStash.helpers({
       name: regex
     };
   }
+});
+*/
+
+
+Template.techStash.events({
+  'click .add-to-stash': function(event, template) {
+    Modal.show('techStashAdd', {
+      projectId: template.data._id
+    });
+  }
+});
+
+
+Template.techStash.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('techStash.single', );
+  })
 });

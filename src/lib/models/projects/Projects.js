@@ -63,15 +63,9 @@ Schemas.Project = new SimpleSchema({
     logDriver: true,
   },
   technologiesStash: {
-    type: [String],
+    type: [Schemas.StashedTech],
     optional: true,
     label: 'Technologies Stash',
-    autoform: {
-      type: 'universe-select',
-      multiple: true,
-      uniPlaceholder: 'Search by technology title...',
-      options: () => Technologies.quickList({})
-    }
   },
   collectionsSet: {
     type: [Schemas.CollectionsSet],

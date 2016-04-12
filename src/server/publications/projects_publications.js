@@ -33,7 +33,7 @@ Meteor.publishComposite('projects.single', function(projectId) {
         return CollectionsSet.find({ projectId: project._id });
       }
     }, {
-      find(project)  {
+      find(project) {
         return Organizations.find({
           projectsId: project._id
         }, {
@@ -43,6 +43,19 @@ Meteor.publishComposite('projects.single', function(projectId) {
           }
         });
       }
+    }, {
+      find(project) {
+        return Technologies.find({
+          _id: { $in: _.pluck(project.technologiesStash, 'technologyId') }
+        });
+      },
+      children: [{
+        find(technology) {
+          return Collections.find({
+            technologiesId: technology._id
+          });
+        }
+      }]
     }, {
       find(project) {
         return Meteor.users.find({
