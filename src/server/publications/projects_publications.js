@@ -32,6 +32,30 @@ Meteor.publishComposite('projects.single', function(projectId) {
       find(project) {
         return CollectionsSet.find({ projectId: project._id });
       }
+    }, {
+      find(project)  {
+        return Organizations.find({
+          projectsId: project._id
+        }, {
+          fields: {
+            name: 1,
+            projectsId: 1
+          }
+        });
+      }
+    }, {
+      find(project) {
+        return Meteor.users.find({
+          projectsId: project._id
+        }, {
+          fields: {
+            'profile.fullName': 1,
+            emails: 1,
+            username: 1,
+            projectsId: 1
+          }
+        });
+      }
     }]
   };
 });

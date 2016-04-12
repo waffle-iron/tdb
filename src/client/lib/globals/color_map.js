@@ -16,6 +16,14 @@ ColorMap = {
       default: 'default'
     }
   },
+  project: {
+    status: {
+      prospect: 'primary',
+      open: 'success',
+      closed: 'danger',
+      default: 'default'
+    }
+  },
   users: {
     role: {
       admin: 'info',
