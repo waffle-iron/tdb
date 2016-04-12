@@ -138,8 +138,17 @@ Projects.helpers({
   },
   getCollectionsSet() {
     return this.collectionsSet && CollectionsSet.find({
-      //_id: {$in: this.collectionsSet}
       projectId: this._id
+    });
+  },
+  getOrganizations() {
+    return Organizations.find({
+      projectsId: this._id
+    });
+  },
+  getParticipants() {
+    return Meteor.users.find({
+      projectsId: this._id
     });
   }
 });

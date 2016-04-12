@@ -27,6 +27,13 @@ Cloudinary.helpers = {
     }
     return '/img/unknown-user.png';
   },
+  aboutBox(cloudinaryId) {
+    console.log(cloudinaryId);
+    if (cloudinaryId) {
+      return $.cloudinary.url(cloudinaryId);
+    }
+    return '/img/not-found.png';
+  },
   getFetchImage(url) {
     if (url) {
       return $.cloudinary.url(url, {
@@ -46,9 +53,13 @@ Cloudinary.helpers = {
   }
 };
 
+//  TODO: Refatorar para usar o CloudinaryHelpers
 Template.registerHelper('getCloudinaryCard', Cloudinary.helpers.getCard);
 Template.registerHelper('getUserThumb', Cloudinary.helpers.getThumb);
 Template.registerHelper('getCloudinaryFetchImage', Cloudinary.helpers.getFetchImage);
+//  ----
+
+Template.registerHelper('CloudinaryHelpers', () => Cloudinary.helpers);
 
 Template.registerHelper('s3pathImages', (cloudinaryId) => {
   return Cloudinary.helpers.getS3MappingFolder(cloudinaryId, 'images');
