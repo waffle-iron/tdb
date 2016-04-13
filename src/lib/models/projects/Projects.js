@@ -67,10 +67,10 @@ Schemas.Project = new SimpleSchema({
     optional: true,
     label: 'Technologies Stash',
   },
-  collectionsSet: {
-    type: [Schemas.CollectionsSet],
+/*  collectionsSetId: {
+    type: [String],
     optional: true
-  },
+  },*/
   organizationsId: {
     type: [String],
     logDriver: true,
@@ -124,14 +124,14 @@ Projects.helpers({
   link: function() {
     return window.location.host + '/projects/' + this._id + '/entry';
   },
-  getTechnologiesStash(query) {
+  filteredTechStash(query) {
     return this.technologiesStash && Technologies.find({
       _id: {$in: this.technologiesStash},
       ...query
     });
   },
-  getCollectionsSet() {
-    return this.collectionsSet && CollectionsSet.find({
+  collectionsSet() {
+    return CollectionsSet.find({
       projectId: this._id
     });
   },
