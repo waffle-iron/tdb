@@ -77,5 +77,8 @@ Collections.helpers({
     return Collections.find({
       parentId: this._id
     });
+  },
+  techCount() {
+    return this.technologiesId && this.technologiesId.lenght || 0;
   }
 });

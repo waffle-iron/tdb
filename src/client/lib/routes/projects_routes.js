@@ -43,17 +43,6 @@ projectsRoutes.route('/:id/entry', {
   },
 });
 
-projectsRoutes.route('/:projectId/collections-set/:collectionsSetId', {
-  name: 'projects.collectionsSet',
-  parent: 'projects.dashboard',
-  action() {
-    BlazeLayout.render('defaultLayout', {
-      main: 'collectionsSetEntry'
-    });
-  },
-});
-
-
 
 projectsRoutes.route('/:id/edit', {
   name: 'projects.edit',
@@ -62,6 +51,16 @@ projectsRoutes.route('/:id/edit', {
   action() {
     BlazeLayout.render('defaultLayout', {
       main: 'projectsEdit'
+    });
+  },
+});
+
+projectsRoutes.route('/collections-set/:collectionsSetId', {
+  name: 'collectionsSet.entry',
+  parent: 'projects.entry',
+  action() {
+    BlazeLayout.render('defaultLayout', {
+      main: 'collectionsSetEntry'
     });
   },
 });
