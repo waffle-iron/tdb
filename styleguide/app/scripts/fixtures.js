@@ -16,6 +16,12 @@ const technologies = [{
   description: 'As people become more mobile, and automation and digital technologies more pervasive, security becomes increasingly important. Online services migrate towards two-step authentication, instead of only passwords, whereas identity documents include biometric data.',
   src: 'http://res.cloudinary.com/envisioning/image/upload/c_fill,g_center,h_400,w_600/v1/s3-staging/images/hfm3ZAxQWQBrGw47Q',
   status: 'Review'
+}, {
+  evID: '0095',
+  name: 'Oie',
+  description: 'As people become more mobile, and automation and digital technologies more pervasive, security becomes increasingly important. Online services migrate towards two-step authentication, instead of only passwords, whereas identity documents include biometric data.',
+  src: 'http://res.cloudinary.com/envisioning/image/upload/c_fill,g_center,h_400,w_600/v1/s3-staging/images/hfm3ZAxQWQBrGw47Q',
+  status: 'Review'
 }];
 
 const organizations = [{
