@@ -110,7 +110,7 @@ SearchSource.defineSource('globalSearch', function(searchText, {
           must_not: [
             {
               ids: {
-                values: excludeIds
+                values: excludeIds || []
               }
             }
           ]
