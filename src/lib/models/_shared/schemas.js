@@ -10,18 +10,16 @@ Schemas.StashedTech = new SimpleSchema({
       options: () => Technologies.quickList({})
     }
   },
+  techName: {
+    type: String,
+    optional: true,
+    autoform: {
+      omit: true
+    }
+  },
   addedAt: {
     type: Date,
-    optional: true,
-    autoValue() {
-      if (this.isInsert) {
-        return new Date();
-      } else if (this.isUpsert) {
-        return {$setOnInsert: new Date()};
-      } else {
-        this.unset();  // Prevent user from supplying their own value
-      }
-    }
+    optional: true
   },
   addedBy: {
     type: String,
