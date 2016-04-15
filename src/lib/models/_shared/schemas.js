@@ -1,7 +1,38 @@
 Schemas = {};
 Meteor.isClient && Template.registerHelper('Schemas', Schemas);
 
-
+Schemas.StashedTech = new SimpleSchema({
+  technologyId: {
+    type: String,
+    autoform: {
+      type: 'universe-select',
+      uniPlaceholder: 'Search by technology title...',
+      options: () => Technologies.quickList({})
+    }
+  },
+  techName: {
+    type: String,
+    optional: true,
+    autoform: {
+      omit: true
+    }
+  },
+  addedAt: {
+    type: Date,
+    optional: true
+  },
+  addedBy: {
+    type: String,
+    optional: true,
+    autoValue() {
+      if (Meteor.userId()) {
+        return Meteor.userId();
+      } else {
+        this.unset();
+      }
+    }
+  }
+});
 
 Schemas.validatedMethodUpdateSchema = new SimpleSchema({
   _id: {
@@ -115,7 +146,9 @@ typeaheadDatasets: {
 
 
 Schemas.contextualDescription = new SimpleSchema([
-  Schemas.Description.pick(['userId', 'createdAt', 'applications', 'applications.$', 'benefits', 'benefits.$', 'longText']), {
+  Schemas.Description.pick(['userId', 'createdAt', 'applications', 'applications.$', 'benefits', 'benefits.$',
+    'longText'
+  ]), {
     projectId: {
       type: String,
       autoform: {
@@ -300,15 +333,5 @@ Schemas.Search = new SimpleSchema({
     autoform: {
       type: 'url'
     }
-  }
-});
-
-
-Schemas.CollectionsSet = new SimpleSchema({
-  name: {
-    type: String
-  },
-  collections: {
-    type: [String]
   }
 });

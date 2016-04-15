@@ -27,21 +27,21 @@ projectsRoutes.route('/add', {
   },
 });
 
-// projectsRoutes.route('/:id/entry', {
-//   name: 'projects.entry',
-//   parent: 'projects.dashboard',
-//   title() {
-//     let project = Projects.findOne({
-//       _id: FlowRouter.getParam('id')
-//     });
-//     return project && project.name;
-//   },
-//   action() {
-//     BlazeLayout.render('defaultLayout', {
-//       main: 'projectsEntry'
-//     });
-//   },
-// });
+projectsRoutes.route('/:id/entry', {
+  name: 'projects.entry',
+  parent: 'projects.dashboard',
+  title() {
+    let project = Projects.findOne({
+      _id: FlowRouter.getParam('id')
+    });
+    return project && project.name;
+  },
+  action() {
+    BlazeLayout.render('defaultLayout', {
+      main: 'projectsEntry'
+    });
+  },
+});
 
 
 projectsRoutes.route('/:id/edit', {
@@ -54,3 +54,14 @@ projectsRoutes.route('/:id/edit', {
     });
   },
 });
+
+projectsRoutes.route('/collections-set/:collectionsSetId', {
+  name: 'collectionsSet.entry',
+  parent: 'projects.entry',
+  action() {
+    BlazeLayout.render('defaultLayout', {
+      main: 'collectionsSetEntry'
+    });
+  },
+});
+

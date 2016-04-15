@@ -1,49 +1,79 @@
-.collectionsub {
+.collectionSubColumn {
+  width: 300px;
+  float: none;
   display: inline-block;
-  clear: both;
-  margin-left: -20px;
-  margin-right: -20px;
-  z-index: 1;
-  /*  background-color: gray;*/
-}
-
-.collectionsub .ibox {
-  margin-bottom: 10px;
-  z-index: 1;
-}
-
-.collectionLabel {
-  border-radius: 0px;
-  border-image: none;
-  border-style: solid solid solid;
-  border-width: 6px 2px 2px 2px;
-  z-index: 1;
-}
-
-.collectionLabel .ibox-title {
-  border-width: 0 0 0 0;
-}
-
-.collectionLabel .ibox-content {
-  padding: 10px 10px 10px 10px;
-}
-
-.collectionsub .collectionSubColumn {
+  white-space: normal;
+  padding: 0px;
+  vertical-align: top;
+  margin-right: 4px;
+  border-radius: 4px;
   border: 1px solid lightgray;
+  .ibox-title {
+    border-style: solid solid none;
+    border-width: 3px 0 0;
+    color: inherit;
+    margin-bottom: 0;
+    padding: 5px 15px 3px;
+    min-height: 38px;
+  }
+  .ibox-content {
+    padding-bottom: 5px;
+    p {
+      display: block;
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+    }
+  }
 }
 
-#collectionSetBox {
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
-  margin: 0 0px 0 0px;
-  .collectionSubColumn {
-    width: 300px;
-    float: none;
+.collection-ibox {
+  .ibox-title {
+    border-width: 0 0 0 0;
+    h2 {}
+  }
+  .ibox-content {
+    padding: 10px 10px 10px 10px;
+  }
+  .collectionsub {
     display: inline-block;
-    white-space: normal;
-    padding: 0px;
-    vertical-align: top;
+    clear: both;
+    margin-left: -20px;
+    margin-right: -20px;
+    z-index: 1;
+    .ibox {
+      margin-bottom: 10px;
+      z-index: 1;
+    }
+  }
+  .agile-list li {
+    background: #FAFAFB;
+    border: 1px solid #e7eaec;
+    margin: 0px 0 10px 0;
+    padding: 8px;
+    border-radius: 2px;
+  }
+  .collectionSetBox {
+    /* overflow-x: scroll; */
+    overflow-y: hidden;
+    white-space: nowrap;
+    margin: 0 0px 0 0px;
+    .panel {
+      width: 300px;
+      float: none;
+      display: inline-block;
+      white-space: normal;
+      padding: 0px;
+      vertical-align: top;
+      .panel-body {
+        padding-bottom: 0px;
+      }
+      ul {
+        margin-bottom: 0px;
+      }
+    }
   }
 }
 
@@ -94,9 +124,10 @@
           a {}
         }
         .card-id {}
-        .btn-group { display: none;}
-        .btn-addons {
+        .btn-group {
+          display: none;
         }
+        .btn-addons {}
         p {
           white-space: nowrap;
           width: 65%;

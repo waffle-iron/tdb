@@ -164,6 +164,11 @@ Technologies.helpers({
     return _.find(this.images, function(desc) {
       return desc && desc.showcased;
     }) || {};
+  },
+  getCollections() {
+    return Collections.find({
+      technologiesId: this._id
+    });
   }
 });
 

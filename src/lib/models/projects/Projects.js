@@ -63,20 +63,14 @@ Schemas.Project = new SimpleSchema({
     logDriver: true,
   },
   technologiesStash: {
-    type: [String],
+    type: [Schemas.StashedTech],
     optional: true,
     label: 'Technologies Stash',
-    autoform: {
-      type: 'universe-select',
-      multiple: true,
-      uniPlaceholder: 'Search by technology title...',
-      options: () => Technologies.quickList({})
-    }
   },
-  collectionsSet: {
-    type: [Schemas.CollectionsSet],
+/*  collectionsSetId: {
+    type: [String],
     optional: true
-  },
+  },*/
   organizationsId: {
     type: [String],
     logDriver: true,
@@ -129,5 +123,26 @@ Meteor.isServer && Projects.esDriver(esClient, 'techdb', 'projects');
 Projects.helpers({
   link: function() {
     return window.location.host + '/projects/' + this._id + '/entry';
+  },
+  filteredTechStash(query) {
+    return this.technologiesStash && Technologies.find({
+      _id: {$in: this.technologiesStash},
+      ...query
+    });
+  },
+  collectionsSet() {
+    return CollectionsSet.find({
+      projectId: this._id
+    });
+  },
+  getOrganizations() {
+    return Organizations.find({
+      projectsId: this._id
+    });
+  },
+  getParticipants() {
+    return Meteor.users.find({
+      projectsId: this._id
+    });
   }
 });

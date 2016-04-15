@@ -27,7 +27,49 @@ Meteor.publishComposite('projects.single', function(projectId) {
       return Projects.find({
         _id: projectId
       });
-    }
+    },
+    children: [{
+      find(project) {
+        return CollectionsSet.find({ projectId: project._id });
+      }
+    }, {
+      find(project) {
+        return Organizations.find({
+          projectsId: project._id
+        }, {
+          fields: {
+            name: 1,
+            projectsId: 1
+          }
+        });
+      }
+    }, {
+      find(project) {
+        return Technologies.find({
+          _id: { $in: _.pluck(project.technologiesStash, 'technologyId') }
+        });
+      },
+      children: [{
+        find(technology) {
+          return Collections.find({
+            technologiesId: technology._id
+          });
+        }
+      }]
+    }, {
+      find(project) {
+        return Meteor.users.find({
+          projectsId: project._id
+        }, {
+          fields: {
+            'profile.fullName': 1,
+            emails: 1,
+            username: 1,
+            projectsId: 1
+          }
+        });
+      }
+    }]
   };
 });
 
@@ -59,4 +101,3 @@ Meteor.publish('last-project-added', function() {
     limit: 1
   });
 });
-

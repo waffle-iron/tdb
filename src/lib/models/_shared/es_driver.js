@@ -27,7 +27,6 @@ if (Meteor.isServer) {
 
   // A better result format on search methods
   esClient.prettySearch = function(searchObject) {
-    console.log(searchObject);
 
     let searchResponse = this.search(searchObject);
     let results = _.map(searchResponse.hits.hits, function(hit) {
