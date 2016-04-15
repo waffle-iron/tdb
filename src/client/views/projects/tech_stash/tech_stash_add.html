@@ -1,7 +1,21 @@
 <template name="techStashAdd">
-  {{#modal}}
-    {{#modalHeader}}
-      {{> modalHeaderContent title="Add Technology" icon="fa fa-plus" subtitle="Please search for a technology to add to the Project's stash"}}
-    {{/modalHeader}}
-  {{/modal}}    
+  {{#manageModal icon=Icons.collections.technologies title='Add Technology to Stash'}}
+    {{#if Template.subscriptionsReady}}
+      {{> searchSource source=SearchSources.globalSearch options=getOptions}}
+        {{#perfectScrollbar}}
+          <table class="table manage-table">
+            <tbody>
+              {{#each technologies}}
+                {{> techStashAddItem 
+                  onClick=onClick
+                  _id=_id 
+                  name=name}}
+              {{/each}}
+            </tbody>
+          </table>         
+        {{/perfectScrollbar}} 
+    {{else}}
+      {{> spinner}}
+    {{/if}}
+  {{/manageModal}}
 </template>

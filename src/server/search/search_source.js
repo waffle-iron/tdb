@@ -23,7 +23,8 @@ SearchSource.defineSource('globalSearch', function(searchText, {
   nameFuzziness = 2,
   descriptionBoost = 1,
   descriptionFuzziness = 1,
-  techIdBoost = 200
+  techIdBoost = 200,
+  excludeIds = []
 }) {
   searchText = searchText.toLowerCase();
   let words = searchText.trim().split(' ');
@@ -104,7 +105,17 @@ SearchSource.defineSource('globalSearch', function(searchText, {
 
   let finalQuery = {
     filtered: {
-      filter: {},
+      filter: {
+        bool: {
+          must_not: [
+            {
+              ids: {
+                values: excludeIds
+              }
+            }
+          ]
+        }
+      },
       query: query
     }
   };
