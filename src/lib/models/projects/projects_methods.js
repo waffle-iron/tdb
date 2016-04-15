@@ -71,12 +71,24 @@ Projects.methods.pushTechnologiesStash = new ValidatedMethod({
       _id: projectId,
       'technologiesStash.technologyId': techId
     });
-    if (project) {
-      throw new Meteor.Error(500, 'Technology already on stash.');
-    }
+    if (project) throw new Meteor.Error(500, 'Technology already on stash.');
 
+    let tech = Technologies.findOne({
+      _id: techId
+    }, {
+      fields: {
+        name: 1
+      }
+    });
+        
+    if (Meteor.isServer && !tech) {
+      throw new Meteor.Error(500, 'Technology not found.');
+    }
+    let techName = tech && tech.name;
     let stashedTech = {
       technologyId: techId,
+      techName: techName,
+      addedAt: new Date()
     };
 
     return Projects.update({

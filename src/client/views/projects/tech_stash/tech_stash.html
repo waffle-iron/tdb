@@ -5,8 +5,8 @@
     <div class="ibox-title">
       <h1>Technology Stash</h1>
       <div class="ibox-tools">
-        <a class="#">
-          <i class="fa fa-plus add-to-stash"></i>
+        <a href="#" class="add-to-stash">
+          <i class="fa fa-plus"></i>
         </a>
         <a class="collapse-link">
           <i class="fa fa-chevron-up"></i>
@@ -16,7 +16,7 @@
     <div class="ibox-content">
       <div class="row">
         <div class="col-sm-12">
-          <input type="text" placeholder="Search" class="input-sm form-control">
+          <input type="text" placeholder="Search" class="input-sm form-control stash-filter">
         </div>
       </div>
       <table class="footable table table-stripped toggle-arrow-tiny">
@@ -31,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          {{#each technologiesStash}}
+          {{#each filteredTechnologiesStash}}
             {{> techStashItem}}
           {{/each}}
         </tbody>
