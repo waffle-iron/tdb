@@ -7,29 +7,38 @@
       </div>
     </div>
     <div class="ibox-content collectionSetBox">
-      {{#each collections}}
-        <div class="panel panel-default">
-          <div class="panel-heading">{{name}}</div>
-          <div class="panel-body">
-            <p>
-              {{description}}
-            </p>
+      {{#if collections.count}}
+        {{#each collections}}
+          <div class="panel panel-default">
+            <div class="panel-heading">{{name}}</div>
+            <div class="panel-body">
+              <p>
+                {{description}}
+              </p>
 
-            {{#each childCollections}}
-            <ul class="sortable-list connectList agile-list ui-sortable">
-              <li class="ui-sortable-handle">{{name}} <a href="#" class="pull-btn pull-right btn-xs btn-white"> {{techCount}}</a></li>
-            </ul>
-            {{/each}}
-          </div>
-          <div class="panel-footer">
-            <div class="ibox-tools">
-              <a href="#" alt="Edit Collection"><i class="fa fa-edit"></i></a>
-              <a href="#" alt="Copy collection"><i class="fa fa-copy"></i></a>
-              <a href="#" alt="Delete Collection"><i class="fa fa-trash"></i></a>
+              {{#each childCollections}}
+              <ul class="sortable-list connectList agile-list ui-sortable">
+                <li class="ui-sortable-handle">{{name}} <a href="#" class="pull-btn pull-right btn-xs btn-white"> {{techCount}}</a></li>
+              </ul>
+              {{/each}}
+            </div>
+            <div class="panel-footer">
+              <div class="ibox-tools">
+                <a href="#" alt="Edit Collection"><i class="fa fa-edit"></i></a>
+                <a href="#" alt="Copy collection"><i class="fa fa-copy"></i></a>
+                <a href="#" alt="Delete Collection"><i class="fa fa-trash"></i></a>
+              </div>
             </div>
           </div>
+        {{/each}}
+      {{else}}
+        <div class="empty-message">
+          <i class='fa fa-frown-o'></i>
+          <h3>
+            Empty Collection Set
+          </h3>
         </div>
-      {{/each}}
+      {{/if}}      
     </div>
   </div>
 </template>

@@ -14,28 +14,37 @@
       </div>
     </div>
     <div class="ibox-content">
+      {{#if technologiesStash}}
       <div class="row">
         <div class="col-sm-12">
           <input type="text" placeholder="Search" class="input-sm form-control stash-filter">
         </div>
-      </div>
-      <table class="footable table table-stripped toggle-arrow-tiny">
-        <thead>
-          <tr>
-            <th data-toggle="true">Name</th>
-            <th>Status</th>
-            <th>Added by</th>
-            <th>Date</th>
-            <th>Collections</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each filteredTechnologiesStash}}
-            {{> techStashItem}}
-          {{/each}}
-        </tbody>
-      </table>
+      </div>      
+        <table class="footable table table-stripped toggle-arrow-tiny">
+          <thead>
+            <tr>
+              <th data-toggle="true">Name</th>
+              <th>Status</th>
+              <th>Added by</th>
+              <th>Date</th>
+              <th>Collections</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each filteredTechnologiesStash}}
+              {{> techStashItem}}
+            {{/each}}
+          </tbody>
+        </table>
+      {{else}}
+        <div class="empty-message">
+          <i class='fa fa-frown-o'></i>
+          <h3>
+            Empty Stash
+          </h3>
+        </div>   
+      {{/if}}        
     </div>
   </div>
 </template>
