@@ -1,6 +1,3 @@
-
-
-
 Template.techStash.events({
   'click .add-to-stash': function(event, template) {
     Modal.show('techStashAdd', {
@@ -13,5 +10,5 @@ Template.techStash.events({
 Template.techStash.onCreated(function() {
   this.autorun(() => {
     this.subscribe('techStash.single', );
-  })
+  });
 });

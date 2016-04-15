@@ -60,6 +60,53 @@ Meteor.methods({
   }
 });*/
 
+Projects.methods.pushTechnologiesStash = new ValidatedMethod({
+  name: 'Projects.methods.pushTechnologiesStash',
+  validate({projectId, techId}) {
+    check(projectId, String);
+    check(techId, String);
+  },
+  run({projectId, techId}) {
+    let project = Projects.findOne({
+      _id: projectId,
+      'technologiesStash.technologyId': techId
+    });
+    if (project) {
+      throw new Meteor.Error(500, 'Technology already on stash.');
+    }
+
+    let stashedTech = {
+      technologyId: techId,
+    };
+
+    return Projects.update({
+      _id: projectId
+    }, {
+      $addToSet: {
+        technologiesStash: stashedTech
+      }
+    });
+  }
+});
+
+Projects.methods.pullTechnologiesStash = new ValidatedMethod({
+  name: 'Projects.methods.pullTechnologiesStash',
+  validate({projectId, techId}) {
+    check(projectId, String);
+    check(techId, String);
+  },
+  run({projectId, techId}) {
+    return Projects.update({
+      _id: projectId
+    }, {
+      $pull: {
+        technologiesStash: {
+          technologyId: techId
+        }
+      }
+    });
+  }
+});
 
 Projects.methods.pushCollectionsSet = new ValidatedMethod({
   name: 'Projects.methods.pushCollectionsSet',
@@ -77,3 +124,4 @@ Projects.methods.pushCollectionsSet = new ValidatedMethod({
     });
   }
 });
+
