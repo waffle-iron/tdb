@@ -35,8 +35,20 @@
     </div>
     {{#with collectionSet.[0]}}
     <!-- COMEÇO de coleção -->
-    {{#each collection}}
-      {{>collectionView this}}
-    {{/each}} {{/with}}
+    {{#with collection.[0]}}
+    <div class="col-lg-9 collectionSetBox" style="width: 300px;">
+      <div class="panel panel-default">
+        <div class="panel-heading">{{title}}</div>
+        <div class="panel-body">
+          <p>{{description}}</p>
+          <ul class="sortable-list connectList agile-list">
+            {{#each subCollection}}
+            <li>{{title}} <a href="#" class="pull-btn pull-right btn-xs btn-white"> {{ technologies.length }}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {{/with}} {{#each collection}} {{>collectionView this}} {{/each}} {{/with}}
   </div>
 </div>
