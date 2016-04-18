@@ -16,11 +16,7 @@ Template.searchSourceDisplay.onCreated(function() {
 
   this.autorun(() => {
     let metadata = SearchSources.globalSearch.getMetadata();
-<<<<<<< HEAD
     if (!metadata || !metadata.total) return this.size.set(DEFAULT_SIZE);
-=======
-    if (!metadata || !metadata.total) this.size.set(DEFAULT_SIZE);
->>>>>>> 67a8128... Masonry search enchancements
     let hasMoreData = metadata && metadata.total > this.size.get();
     if (this.loaded.get() === this.size.get()) {
       if (isScrollOnBottom()) {
@@ -29,7 +25,6 @@ Template.searchSourceDisplay.onCreated(function() {
     }
   });
 
-<<<<<<< HEAD
   window.addEventListener('scroll', _.debounce(() => {
     if (this.loaded.get() === this.size.get()) {
       if (isScrollOnBottom()) {
@@ -39,37 +34,16 @@ Template.searchSourceDisplay.onCreated(function() {
   }), DEBOUNCE_TIME);
 });
 
-=======
-  let countScroll = 0;
-  window.addEventListener('scroll', _.debounce(() => {
-    if (isScrollOnBottom()) {
-      console.log('Increase from scroll ', countScroll++);
-      this.increaseSize(DEFAULT_SIZE);
-    }
-  }, 50));
-
-  this.size.set(DEFAULT_SIZE);
-});
-
-Template.searchSourceDisplay.events({
-  'input [name="search"]': (e, t) => {
-    //t.size.set(DEFAULT_SIZE);
-  }
-});
->>>>>>> 67a8128... Masonry search enchancements
 
 Template.searchSourceDisplay.helpers({
   results: () => Template.instance().data.source.getTransformedData(),
   isLoading: () => Template.instance().data.source.getStatus().loading,
-<<<<<<< HEAD
   onLayoutComplete() {
     let t = Template.instance();
     return (length) => {
       t.loaded.set(length);
     };
   },
-=======
->>>>>>> 67a8128... Masonry search enchancements
   options() {
     let t = Template.instance();
     return function() {
