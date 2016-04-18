@@ -1,0 +1,42 @@
+this["TDB"] = this["TDB"] || {};
+this["TDB"]["templates"] = this["TDB"]["templates"] || {};
+this["TDB"]["templates"]["projectEdit"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return " "
+    + ((stack1 = container.invokePartial(partials.organizationCard,depth0,{"name":"organizationCard","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + " ";
+},"3":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return " "
+    + ((stack1 = container.invokePartial(partials.technologyCard,depth0,{"name":"technologyCard","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + " ";
+},"5":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return " "
+    + ((stack1 = container.invokePartial(partials.projectCollection_element,depth0,{"name":"projectCollection_element","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + " ";
+},"7":function(container,depth0,helpers,partials,data) {
+    var stack1;
+
+  return " "
+    + ((stack1 = container.invokePartial(partials.attachmentCard,depth0,{"name":"attachmentCard","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + " ";
+},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, alias1=depth0 != null ? depth0 : {};
+
+  return ((stack1 = container.invokePartial(partials.navbar,depth0,{"name":"navbar","data":data,"helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + "<div class=\"row border-bottom white-bg page-heading\">\n  <div class=\"col-lg-12\">\n    <ol class=\"breadcrumb\">\n      <li>\n        <a href=\"#/projects\">Projects</a>\n      </li>\n      <li>\n        Futuro da Medicina\n      </li>\n      <li class=\"active\">\n        <strong>Edit</strong>\n      </li>\n    </ol>\n  </div>\n</div>\n<div class=\"wrapper-content\">\n  <div class=\"row tooltip-demo\">\n    <div class=\"col-lg-3\">\n      <div style=\"position: fixed; width: 22.5%;\">\n"
+    + ((stack1 = container.invokePartial(partials.projectCard_add,depth0,{"name":"projectCard_add","data":data,"indent":"        ","helpers":helpers,"partials":partials,"decorators":container.decorators})) != null ? stack1 : "")
+    + "      </div>\n    </div>\n    <div class=\"col-lg-9\">\n      <form id=\"insertTechnologiesForm\" class=\"form-horizontal\" novalidate=\"novalidate\">\n        <div class=\"ibox\">\n          <div class=\"ibox-title\">\n            <h3>Basic Information</h3>\n          </div>\n          <div class=\"ibox-content\">\n            <div class=\"form-group\" data-required=\"true\">\n              <label class=\"col-sm-2 control-label\" for=\"22aphY63CBfWzzHPD\">Title</label>\n              <div class=\"col-sm-9\">\n                <input type=\"text\" name=\"name\" id=\"22aphY63CBfWzzHPD\" required=\"\" data-schema-key=\"name\" placeholder=\"Futuro da Medicina\"\n                  class=\"form-control\">\n              </div>\n            </div>\n            <div class=\"form-group\">\n              <label class=\"col-sm-2 control-label\">Description</label>\n              <div class=\"col-sm-9\">\n                <textarea class=\"form-control\" style=\"resize: none;\" rows=\"2\" placeholder=\"Futuro da Medicina is a content platform that is being developed for OneHealth since 2013. It started with some visualizations back in 2011. Our main contact is Dr. Sergio, CEO.\"></textarea>\n                <span style=\"display: inline-block;text-align: right; position: absolute; right: 20px; font-size: 10px; margin-top: -17px;\">0 / 140</span>\n              </div>\n            </div>\n            <div class=\"form-group\" data-required=\"true\">\n              <label class=\"col-sm-2 control-label\" for=\"22aphY63CBfWzzHPD\">URL</label>\n              <div class=\"col-sm-9\">\n                <input type=\"text\" name=\"name\" id=\"22aphY63CBfWzzHPD\" required=\"\" data-schema-key=\"name\" placeholder=\"http://www.futurodamedicina.com.br\"\n                  class=\"form-control\">\n              </div>\n            </div>\n            <div class=\"form-group\">\n              <label class=\"col-sm-2 control-label\">Status</label>\n              <div class=\"col-sm-9\">\n                <div class=\"radio radio-warning radio-inline\">\n                  <input type=\"radio\" id=\"inlineRadio1\" value=\"option1\" name=\"radioInline\">\n                  <label for=\"inlineRadio1\"> Prospect </label>\n                </div>\n                <div class=\"radio radio-inline radio-primary\">\n                  <input type=\"radio\" id=\"inlineRadio2\" value=\"option2\" name=\"radioInline\" checked=\"\">\n                  <label for=\"inlineRadio2\"> Open </label>\n                </div>\n                <div class=\"radio radio-inline radio-danger\">\n                  <input type=\"radio\" id=\"inlineRadio3\" value=\"option3\" name=\"radioInline\">\n                  <label for=\"inlineRadio3\"> Closed </label>\n                </div>\n              </div>\n            </div>\n            <div class=\"form-group\" data-required=\"true\">\n              <label class=\"col-sm-2 control-label\" for=\"22aphY63CBfWzzHPD\">Image</label>\n              <div class=\"col-sm-9\">\n                <img src=\"images/add_image.jpg\" class=\"img-responsive\" />\n              </div>\n            </div>\n          </div>\n        </div>\n        <div class=\"ibox float-e-margins\">\n          <div class=\"ibox-title\">\n            <h1><i class=\"fa fa-paperclip\"></i> Organizations</h1>\n            <div class=\"ibox-tools\">\n              <a href=\"#\" id=\"manage-org-attachments\">\n                <i class=\"fa fa-plus\"></i>\n              </a>\n            </div>\n          </div>\n          <div class=\"ibox-content\">\n            <div class=\"row cards-box cards-responsive\">\n              <div class=\"cards-size\"></div>\n              "
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.organizations : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n            </div>\n          </div>\n        </div>\n        <!-- INICIO Projects -->\n        <div class=\"ibox float-e-margins\">\n          <div class=\"ibox-title\">\n            <h1><i class=\"fa fa-folder\"></i> Technology Stash</h1>\n            <div class=\"ibox-tools\">\n              <a href=\"#\" id=\"manage-org-projects\">\n                <i class=\"fa fa-plus\"></i>\n              </a>\n            </div>\n          </div>\n          <div class=\"ibox-content\">\n            <div class=\"row cards-box cards-responsive\">\n              <div class=\"cards-size\"></div>\n              "
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.technologies : depth0),{"name":"each","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n            </div>\n          </div>\n        </div>\n        <div class=\"ibox float-e-margins\">\n          <h2>Collection Sets</h2>\n        </div>\n        <div class=\"row-fluid\">\n          "
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.collectionSet : depth0),{"name":"each","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n        </div>\n        <div class=\"ibox float-e-margins\">\n          <div class=\"ibox-title\">\n            <h1> <i class=\"fa fa-paperclip\"></i> Attachments</h1>\n            <div class=\"ibox-tools\">\n              <a href=\"#\" id=\"manage-org-attachments\">\n                <i class=\"fa fa-plus\"></i>\n              </a>\n            </div>\n          </div>\n          <div class=\"ibox-content\">\n            <div class=\"row cards-box cards-responsive\">\n              <div class=\"cards-size\"></div>\n              "
+    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.attachments : depth0),{"name":"each","hash":{},"fn":container.program(7, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
+    + "\n            </div>\n          </div>\n        </div>\n    </div>\n  </div>\n</div>\n";
+},"usePartial":true,"useData":true});;
