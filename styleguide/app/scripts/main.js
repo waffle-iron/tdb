@@ -139,6 +139,15 @@ TDBRouter.addRoute({
 });
 
 TDBRouter.addRoute({
+  path: '/projects/add',
+  template: 'projectAdd',
+  onRendered: initMansory,
+  context: {
+    projects, technologies, organizations, attachments
+  }
+});
+
+TDBRouter.addRoute({
   path: '/projects/entry',
   template: 'projectEntry',
   onRendered: initProjectEntry,
