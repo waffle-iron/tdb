@@ -22,12 +22,14 @@ Schemas.Technology = new SimpleSchema({
   },
   name: {
     type: String,
+    label: 'Title',
     esDriver: true,
     logDriver: true,
   },
   synonyms: {
     type: [String],
     optional: true,
+    label: 'Alternative titles',
     autoform: {
       type: 'tags'
     }

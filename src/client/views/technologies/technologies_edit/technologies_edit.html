@@ -5,7 +5,7 @@
        {{#panel title="Basic Information"}}
           {{#autoForm
             collection="Technologies"
-            id="updateTechnologiesForm" 
+            id="updateBasicInformationTechnologiesForm" 
             type="method-update" 
             doc=tech
             singleMethodArgument=true
@@ -13,11 +13,36 @@
             class="form-horizontal"
             autosave=true}}
           
-            {{> afQuickField name="techId" label-class="col-sm-2" input-col-class="col-sm-10" disabled="true"}}
-            {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+            {{> afQuickField name="techId" label-class="col-sm-2" input-col-class="col-sm-10" disabled="true" type="hidden"}}
+
+            
+            {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-10"}}  
+            <div class="col-sm-10 col-sm-offset-2" style="margin-top:-20px">
+              <ol>
+                  <li>Use "Title Case": <i>Capitalize All Important Words</i>.</li>
+                  <li>Avoid plural titles: <i>"Solar Panels", "Self-driving Vehicles"</i></li>
+                  <li>Avoid empty words: <i>"Smart Car", "Next-gen Keychain", "Health 3.0"</i></li>
+                  <li>Avoid product names: <i>"Powerwall" → "Wall-mounted Household Battery"</i></li>
+                </ol>
+            </div>
+            
             {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-10"}} 
-            {{> afQuickField name="status" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+            <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
+              <span class="help-block m-b-none">
+                These are alternate names for this technology. They will be accessible via search.
+              </span>
+            </div>
+
+            {{> afQuickField name="images" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+
+
+
             {{> afQuickField name="tags" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+            <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
+              <span class="help-block m-b-none">
+                These will be used to correlate with other technologies.
+              </span>
+            </div>
 
           {{/autoForm}}      
       {{else}}
@@ -32,7 +57,7 @@
 
   {{#panel title="Edit Technology Form" }}
   {{#if Template.subscriptionsReady}}
-    <!-- {{#autoForm
+    {{#autoForm
       collection="Technologies"
       id="updateTechnologiesForm" 
       type="method-update" 
@@ -69,7 +94,7 @@
 
         <hr> 
         {{> editFormButtons buttonClass="col-sm-9" offsetClass="col-sm-offset-2" cancelPath='technologies.dashboard'}}
-    {{/autoForm}} -->
+    {{/autoForm}}
   {{else}}
     <div class="modal-body">
       {{> spinner}}

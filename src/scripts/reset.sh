@@ -5,8 +5,8 @@ then
 
 	cd ..
 	meteor reset
-	meteor npm install
 	meteor update
+	meteor npm install
 	print "Project reset successfully!"
 else
 	echo "> Can't run reset script outside development environment"
