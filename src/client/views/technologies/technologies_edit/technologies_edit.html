@@ -1,61 +1,68 @@
 <template name="technologiesEdit">
-  <div class="col-sm-9 col-sm-offset-3">    
   
-    {{#if Template.subscriptionsReady}}
-       {{#panel title="Basic Information"}}
-          {{#autoForm
-            collection="Technologies"
-            id="updateBasicInformationTechnologiesForm" 
-            type="method-update" 
-            doc=tech
-            singleMethodArgument=true
-            meteormethod="Technologies.methods.update" 
-            class="form-horizontal"
-            autosave=true}}
+  {{#if Template.subscriptionsReady}}
+
+     {{#panel title="Basic Information"}}
+        {{#autoForm
+          collection="Technologies"
+          id="updateBasicInformationTechnologiesForm" 
+          type="method-update" 
+          doc=tech
+          singleMethodArgument=true
+          meteormethod="Technologies.methods.update" 
+          class="form-horizontal"
+          autosave=true}}
+        
+          {{> afQuickField name="techId" label-class="col-sm-2" input-col-class="col-sm-10" disabled="true" type="hidden"}}
           
-            {{> afQuickField name="techId" label-class="col-sm-2" input-col-class="col-sm-10" disabled="true" type="hidden"}}
+          <!-- Technology Name -->
+          {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-10"}}  
+          <div class="col-sm-10 col-sm-offset-2" style="margin-top:-20px">
+            <ol>
+                <li>Use "Title Case": <i>Capitalize All Important Words</i>.</li>
+                <li>Avoid plural titles: <i>"Solar Panels", "Self-driving Vehicles"</i></li>
+                <li>Avoid empty words: <i>"Smart Car", "Next-gen Keychain", "Health 3.0"</i></li>
+                <li>Avoid product names: <i>"Powerwall" → "Wall-mounted Household Battery"</i></li>
+              </ol>
+          </div>
+          <!-- End Technology Name -->
 
-            
-            {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-10"}}  
-            <div class="col-sm-10 col-sm-offset-2" style="margin-top:-20px">
-              <ol>
-                  <li>Use "Title Case": <i>Capitalize All Important Words</i>.</li>
-                  <li>Avoid plural titles: <i>"Solar Panels", "Self-driving Vehicles"</i></li>
-                  <li>Avoid empty words: <i>"Smart Car", "Next-gen Keychain", "Health 3.0"</i></li>
-                  <li>Avoid product names: <i>"Powerwall" → "Wall-mounted Household Battery"</i></li>
-                </ol>
-            </div>
-            
-            {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-10"}} 
-            <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
-              <span class="help-block m-b-none">
-                These are alternate names for this technology. They will be accessible via search.
-              </span>
-            </div>
+          <!-- Technology Synonims -->
+          {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+          <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
+            <span class="help-block m-b-none">
+              These are alternate names for this technology. They will be accessible via search.
+            </span>
+          </div>
+          <!-- End Technology Synonims -->
 
-            {{> afQuickField name="images" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+          <!-- Technology Images -->
+          {{> afQuickField name="images" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+          <!-- End Technology Images -->
+
+          <!-- Technology Tags -->
+          {{> afQuickField name="tags" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+          <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
+            <span class="help-block m-b-none">
+              These will be used to correlate with other technologies.
+            </span>
+          </div>
+          <!-- End Technology Tags -->
+        {{/autoForm}}      
+    {{else}}
+      <div class="modal-body">
+        {{> spinner}}
+      </div>
+    {{/panel}}
 
 
+    {{> technologiesEditDescriptions tech}}
 
-            {{> afQuickField name="tags" label-class="col-sm-2" input-col-class="col-sm-10"}} 
-            <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
-              <span class="help-block m-b-none">
-                These will be used to correlate with other technologies.
-              </span>
-            </div>
 
-          {{/autoForm}}      
-      {{else}}
-        <div class="modal-body">
-          {{> spinner}}
-        </div>
-      {{/panel}}
-    {{/if}}
+  {{/if}}
 
-   
-  </div>
 
-  {{#panel title="Edit Technology Form" }}
+  <!-- {{#panel title="Edit Technology Form" }}
   {{#if Template.subscriptionsReady}}
     {{#autoForm
       collection="Technologies"
@@ -100,5 +107,5 @@
       {{> spinner}}
     </div>
   {{/if}}
-  {{/panel}}
+  {{/panel}} -->
 </template>

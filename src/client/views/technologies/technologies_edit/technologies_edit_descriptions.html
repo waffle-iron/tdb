@@ -1,0 +1,30 @@
+<template name="technologiesEditDescriptions">
+  {{#panel title="Descriptions"}}
+	  <div class="tabs-container">
+	    <div class="tabs-left">
+	      <ul class="nav nav-tabs">
+	        {{#each description}}
+	        <li class="{{#if isFirstItem @index}}active{{/if}}">
+	          <a data-toggle="tab" href="#tab-{{@index}}" aria-expanded="true">{{status}}</a>
+	        </li>
+	        {{/each}}
+	      </ul>
+	      <div class="tab-content">
+	      	{{#each description}}
+	        <div id="tab-{{@index}}" class="tab-pane {{#if isFirstItem @index}}active{{/if}}">
+	          <div class="panel-body">
+	            <label class="col-sm-2 text-right">Summary</label>
+	            <div class="col-sm-9">
+	              <p>{{shortText}}</p>
+	            </div>
+	            <div class="col-sm-9 col-md-offset-2">
+	              <button class="btn btn-primary btn-outline btn-sm btn-block">Edit</button>
+	            </div>
+	          </div>
+	        </div>
+	        {{/each}}
+	      </div>
+	    </div>
+	  </div>
+  {{/panel}}
+</template>
