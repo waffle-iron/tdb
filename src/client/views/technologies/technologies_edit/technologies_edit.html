@@ -1,7 +1,38 @@
 <template name="technologiesEdit">
+  <div class="col-sm-9 col-sm-offset-3">    
+  
+    {{#if Template.subscriptionsReady}}
+       {{#panel title="Basic Information"}}
+          {{#autoForm
+            collection="Technologies"
+            id="updateTechnologiesForm" 
+            type="method-update" 
+            doc=tech
+            singleMethodArgument=true
+            meteormethod="Technologies.methods.update" 
+            class="form-horizontal"
+            autosave=true}}
+          
+            {{> afQuickField name="techId" label-class="col-sm-2" input-col-class="col-sm-10" disabled="true"}}
+            {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+            {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+            {{> afQuickField name="status" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+            {{> afQuickField name="tags" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+
+          {{/autoForm}}      
+      {{else}}
+        <div class="modal-body">
+          {{> spinner}}
+        </div>
+      {{/panel}}
+    {{/if}}
+
+   
+  </div>
+
   {{#panel title="Edit Technology Form" }}
   {{#if Template.subscriptionsReady}}
-    {{#autoForm
+    <!-- {{#autoForm
       collection="Technologies"
       id="updateTechnologiesForm" 
       type="method-update" 
@@ -38,7 +69,7 @@
 
         <hr> 
         {{> editFormButtons buttonClass="col-sm-9" offsetClass="col-sm-offset-2" cancelPath='technologies.dashboard'}}
-    {{/autoForm}}
+    {{/autoForm}} -->
   {{else}}
     <div class="modal-body">
       {{> spinner}}

@@ -1,11 +1,26 @@
+// BUG: AutoForm autosave options triggers the submit when the
+// fields with type `tags` are loaded. This code fixes for don't
+// display the result message when this page loads.
+let firstAttemptOnSynonyms = 0;
+let firstAttemptOnTags = 0;
+
 AutoForm.hooks({
   updateTechnologiesForm: {
     onSuccess() {
-      toastr.success('Technology updated successfully', 'Success');
+      let key = $(this.autoSaveChangedElement).attr('data-schema-key');
+
+      if (firstAttemptOnTags && firstAttemptOnSynonyms) {
+        toastr.success('Technology updated successfully', 'Success');
+      }
+
+      if (key === 'synonyms') firstAttemptOnSynonyms = true;
+      if (key === 'tags') firstAttemptOnTags = true;
     },
     onError(formType, error) {
       toastr.error(error.toString(), 'Error');
     },
+
+
   }
 });
 
