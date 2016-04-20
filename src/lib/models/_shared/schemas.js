@@ -52,7 +52,13 @@ Schemas.Description = new SimpleSchema({
   createdBy: {
     type: String,
     optional: true,
-    autoValue: () => Meteor.userId()
+    autoValue() {
+      const userId = Meteor.isClient ? Meteor.userId() : this.userId;
+      if (!!userId) {
+        return userId;
+      }
+      throw Meteor.Error('Not Authorized');
+    }
   },
   createdAt: {
     type: Date,
@@ -60,6 +66,14 @@ Schemas.Description = new SimpleSchema({
     autoform: {
       omit: true
     }
+  },
+  updatedBy: {
+    type: String,
+    optional: true,
+  },
+  updatedAt: {
+    type: Date,
+    optional: true
   },
   status: {
     type: String,

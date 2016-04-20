@@ -52,19 +52,40 @@ Technologies.methods.updateDescription = new ValidatedMethod({
 Meteor.methods({
   'Technologies.methods.publishDescription': function(descriptionId) {
     check(descriptionId, String);
+    checkPermissions();
 
     const query = { 'description._id': descriptionId };
     const tech = Technologies.findOne(query);
 
-    // console.info('[Tech]', tech);
-    const currentPublishedIndex = _.indexOf(_.pluck(tech.description, 'status'), 'published');
-    const toPublishIndex = _.indexOf(_.pluck(tech.description, '_id'), descriptionId);
+    // Indexes from subdocuments to apply on modifier
+    const currentIndex = _.indexOf(_.pluck(tech.description, '_id'), descriptionId);
+    const publishedIndex = _.indexOf(_.pluck(tech.description, 'status'), 'published');
 
     let modifier = { $set: {} };
-    modifier.$set[`description.${currentPublishedIndex}.status`] = 'draft';
-    modifier.$set[`description.${toPublishIndex}.status`] = 'published';
+    modifier.$set[`description.${publishedIndex}.status`] = 'draft';
+    modifier.$set[`description.${publishedIndex}.updatedBy`] = this.userId;
+    modifier.$set[`description.${publishedIndex}.updatedAt`] = new Date();
+
+    modifier.$set[`description.${currentIndex}.status`] = 'published';
+    modifier.$set[`description.${currentIndex}.updatedBy`] = this.userId;
+    modifier.$set[`description.${currentIndex}.updatedAt`] = new Date();
 
     return Technologies.update({ _id: tech._id }, modifier);
+  },
+  'Technologies.methods.deleteDescription': function(descriptionId) {
+    check(descriptionId, String);
+    checkPermissions();
+
+    const query = { 'description._id': descriptionId };
+    const modifier = {
+      $pull: {
+        description: {
+          _id: descriptionId
+        }
+      }
+    };
+
+    return Technologies.update(query, modifier);
   },
   'Technologies.methods.remove': function(techId) {
     check(techId, String);

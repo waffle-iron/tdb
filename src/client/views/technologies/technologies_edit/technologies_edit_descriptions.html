@@ -9,7 +9,7 @@
 	      <ul class="nav nav-tabs">
 	        {{#each getOrderedDescriptions}}
 	        <li class="{{#if isFirstItem @index}}active{{/if}}">
-	          <a data-toggle="tab" href="#tab-{{_id}}" aria-expanded="true">{{status}}</a>
+	          <a data-toggle="tab" href="#tab-{{_id}}" aria-expanded="true">{{capitalizeFirstLetter status}}</a>
 	        </li>
 	        {{/each}}
 	      </ul>
@@ -49,14 +49,25 @@
 					          </div>
 					          <div class="col-sm-9 col-md-offset-2">
                       <div class="btn-group btn-block">
-                        <button class="btn btn-sm btn-primary btn-outline" type="button" data-action="publish-description">Publish</button>
-                        <button class="btn btn-sm btn-primary btn-outline" type="button">Save draft</button>
+                        <button 
+                        	class="btn btn-sm btn-primary btn-outline" 
+                        	type="button" 
+                        	data-action="publish-description">
+                        	Publish
+                        </button>
+                        
+                        <button class="btn btn-sm btn-primary btn-outline" type="submit">Save draft</button>
+                        
                         <button class="btn btn-sm btn-outline btn-primary" type="button">Cancel</button>
-                        <button class="btn btn-sm btn-outline btn-primary" type="button">Delete</button>
+                        
+                        <button 
+                        	class="btn btn-sm btn-outline btn-primary" 
+                        	type="button"
+                        	data-action="delete-description">
+                        	Delete
+                        </button>
                       </div>
                     </div>
-
-
 				    		{{/autoForm}}
 	          	{{/if}}
 	          </div>
