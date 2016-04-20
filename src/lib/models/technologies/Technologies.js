@@ -154,6 +154,7 @@ Schemas.Technology = new SimpleSchema({
  *
  */
 Technologies.helpers({
+  
   getPublishedDescription() {
     this.description = this.description || [];
     return _.find(this.description, function(desc) {

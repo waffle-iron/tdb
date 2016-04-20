@@ -46,12 +46,13 @@ Schemas.validatedMethodUpdateSchema = new SimpleSchema({
 
 
 Schemas.Description = new SimpleSchema({
-  userId: {
+  _id: {
+    type: String,
+  },
+  createdBy: {
     type: String,
     optional: true,
-    autoform: {
-      omit: true
-    }
+    autoValue: () => Meteor.userId()
   },
   createdAt: {
     type: Date,

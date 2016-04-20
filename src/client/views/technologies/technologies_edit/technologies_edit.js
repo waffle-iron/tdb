@@ -5,6 +5,11 @@
 // let firstAttemptOnTags = 0;
 
 AutoForm.hooks({
+  updateTechnologiesForm: {
+    formToModifier(modifier){
+      console.log(modifier)
+    }
+  },
   updateBasicInformationTechnologiesForm: {
     onSuccess() {
       let key = $(this.autoSaveChangedElement).attr('data-schema-key');
