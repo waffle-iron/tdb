@@ -50,6 +50,22 @@ Technologies.methods.updateDescription = new ValidatedMethod({
 });
 
 Meteor.methods({
+  'Technologies.methods.publishDescription': function(descriptionId) {
+    check(descriptionId, String);
+
+    const query = { 'description._id': descriptionId };
+    const tech = Technologies.findOne(query);
+
+    // console.info('[Tech]', tech);
+    const currentPublishedIndex = _.indexOf(_.pluck(tech.description, 'status'), 'published');
+    const toPublishIndex = _.indexOf(_.pluck(tech.description, '_id'), descriptionId);
+
+    let modifier = { $set: {} };
+    modifier.$set[`description.${currentPublishedIndex}.status`] = 'draft';
+    modifier.$set[`description.${toPublishIndex}.status`] = 'published';
+
+    return Technologies.update({ _id: tech._id }, modifier);
+  },
   'Technologies.methods.remove': function(techId) {
     check(techId, String);
     checkPermissions();

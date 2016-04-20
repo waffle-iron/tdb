@@ -86,7 +86,12 @@ Schemas.Description = new SimpleSchema({
   },
   shortText: {
     type: String,
-    optional: true
+    optional: true,
+    max: 140,
+    autoform: {
+      type: 'textarea',
+      rows: 3
+    }
 
   },
   applications: {

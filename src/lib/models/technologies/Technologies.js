@@ -154,7 +154,12 @@ Schemas.Technology = new SimpleSchema({
  *
  */
 Technologies.helpers({
-  
+  getOrderedDescriptions() {
+    const published = this.description.filter(d => d.status === 'published');
+    const review = this.description.filter(d => d.status === 'review');
+    const draft = this.description.filter(d => d.status === 'draft');
+    return Array.prototype.concat(published, review, draft);
+  },
   getPublishedDescription() {
     this.description = this.description || [];
     return _.find(this.description, function(desc) {

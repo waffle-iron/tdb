@@ -1,9 +1,13 @@
 Template.technologiesEditDescriptions.helpers({
   isFirstItem: (index) => index === 0,
-  isStatusPublished: (status) => {return status === 'published';},
-  fieldName: (_id, name) => {
-  	let techData = Template.instance().data;
-  	let itemIndex = _.indexOf(_.pluck(techData.description, '_id'), _id);
-  	return `description.${itemIndex}.${name}`;
+  isStatusPublished: (status) => status === 'published',
+});
+
+Template.technologiesEditDescriptions.events({
+  'click [data-action="publish-description"]': function(event, template) {
+  	Meteor.call('Technologies.methods.publishDescription', this._id, (err, res) => {
+  		if (err) throw err;
+  		console.log(res)
+  	});
   }
 });
