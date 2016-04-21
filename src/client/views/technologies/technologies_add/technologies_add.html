@@ -1,24 +1,16 @@
 <template name="technologiesAdd">
   {{#panel title="Create Technology Form" }}
-    {{#autoForm collection="Technologies" id="insertTechnologiesForm" type="method" meteormethod="Technologies.methods.add" class="form-horizontal" }}
+    {{#autoForm collection="Technologies" id="insertTechnologiesForm" type="method" meteormethod="technologies.insert" class="form-horizontal" }}
 
       <h2>Basic Information</h2>
       <hr>
 
       {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-9"}} 
         
-        
-  
-
-
       {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-9"}} 
       {{> afQuickField name="status" label-class="col-sm-2" input-col-class="col-sm-9"}} 
       {{> afQuickField name="tags" label-class="col-sm-2" input-col-class="col-sm-9"}} 
       {{> afQuickField name="images" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-
-      <h2>Technology Descriptions</h2>
-      <hr>
-      {{> afQuickField name="description" label-class="col-sm-2" input-col-class="col-sm-9"}} 
 
       <h2>Contextual Descriptions</h2>
       <hr>

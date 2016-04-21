@@ -47,8 +47,8 @@ export const TechnologySchema = new SimpleSchema({
       type: 'tags'
     }
   },
-  description: {
-    type: [Schemas.Description],
+  descriptionsId: {
+    type: [String],
     label: 'Descriptions',
     optional: true
   },
