@@ -4,6 +4,6 @@ CollectionsSet.methods.add = new ValidatedMethod({
   validate: Schemas.CollectionsSet.validator(),
   run(doc) {
     return CollectionsSet.insert(doc);
-
   }
 });
+

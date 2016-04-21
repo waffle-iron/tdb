@@ -30,21 +30,6 @@ Meteor.methods({
       return Projects.remove({ _id: projectId });
     }
     throw new Meteor.Error(403, 'Not authorized');
-  },
-  'Projects.methods.pushCollectionSet': function(projectId, collectionSet) {
-    check(projectId, String);
-    check(collectionSet, Schemas.CollectionsSet);
-
-    if (Roles.userIsInRole(Meteor.userId(), ['admin'])) {
-      return Projects.update({
-        _id: projectId
-      }, {
-        $push: {
-          collectionsSet: collectionSet
-        }
-      });
-    }
-    throw new Meteor.Error(403, 'Not authorized');
   }
 });
 
@@ -62,11 +47,11 @@ Meteor.methods({
 
 Projects.methods.pushTechnologiesStash = new ValidatedMethod({
   name: 'Projects.methods.pushTechnologiesStash',
-  validate({projectId, techId}) {
+  validate({ projectId, techId }) {
     check(projectId, String);
     check(techId, String);
   },
-  run({projectId, techId}) {
+  run({ projectId, techId }) {
     let project = Projects.findOne({
       _id: projectId,
       'technologiesStash.technologyId': techId
@@ -80,7 +65,6 @@ Projects.methods.pushTechnologiesStash = new ValidatedMethod({
         name: 1
       }
     });
-        
     if (Meteor.isServer && !tech) {
       throw new Meteor.Error(500, 'Technology not found.');
     }
@@ -96,6 +80,9 @@ Projects.methods.pushTechnologiesStash = new ValidatedMethod({
     }, {
       $addToSet: {
         technologiesStash: stashedTech
+      },
+      $inc: {
+        technologiesStashCount: 1
       }
     });
   }
@@ -103,11 +90,11 @@ Projects.methods.pushTechnologiesStash = new ValidatedMethod({
 
 Projects.methods.pullTechnologiesStash = new ValidatedMethod({
   name: 'Projects.methods.pullTechnologiesStash',
-  validate({projectId, techId}) {
+  validate({ projectId, techId }) {
     check(projectId, String);
     check(techId, String);
   },
-  run({projectId, techId}) {
+  run({ projectId, techId }) {
     return Projects.update({
       _id: projectId
     }, {
@@ -115,12 +102,15 @@ Projects.methods.pullTechnologiesStash = new ValidatedMethod({
         technologiesStash: {
           technologyId: techId
         }
+      },
+      $inc: {
+        technologiesStashCount: -1
       }
     });
   }
 });
 
-Projects.methods.pushCollectionsSet = new ValidatedMethod({
+/*Projects.methods.pushCollectionsSet = new ValidatedMethod({
   name: 'Projects.methods.pushCollectionsSet',
   validate({projectId, collectionsSet}) {
     check(projectId, String);
@@ -136,4 +126,4 @@ Projects.methods.pushCollectionsSet = new ValidatedMethod({
     });
   }
 });
-
+*/
