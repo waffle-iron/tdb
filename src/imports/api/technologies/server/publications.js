@@ -1,38 +1,26 @@
-Meteor.publishComposite('tabularTechnologiesList', function(tableName, ids, fields) {
-  check(tableName, String);
-  check(ids, Array);
-  check(fields, Match.Optional(Object));
-  this.unblock();
-  return {
-    find() {
-      this.unblock();
-      return Technologies.find({
-        _id: {
-          $in: ids
-        }
-      }, {
-        fields: fields
-      });
-    },
-  };
-});
+import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 
+import { SimpleSchema } from 'meteor/aldeed:simple-schema';
+import { Counts } from 'meteor/tmeasday:publish-counts';
 
-Meteor.publishComposite('technologies.single', function(techId) {
-  check(techId, String);
+import { Technologies } from '../technologies.js';
+
+Meteor.publishComposite('technologies.single', function(technologyId) {
+  check(technologyId, String);
   this.unblock();
 
   return {
     find() {
       this.unblock();
       return Technologies.find({
-        _id: techId
+        _id: technologyId
       });
     },
     children: [{
-      find(tech) {
-        if (tech.images) {
-          let imagesId = _.pluck(tech.images, 'src') || [];
+      find(technology) {
+        if (technology.images) {
+          let imagesId = _.pluck(technology.images, 'src') || [];
           return Images.find({
             _id: {
               $in: imagesId

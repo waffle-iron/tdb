@@ -2,7 +2,6 @@ import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { TechnologiesDescriptions } from './technologies_descriptions.js';
 import { TechnologyDescriptionSchema } from './schema.js';
 
-import '../../../lib/models/technologies/Technologies.js';
 
 /**
  * Insert a new technology description
@@ -27,7 +26,7 @@ export const publish = new ValidatedMethod({
   validate: new SimpleSchema({
     technologyId: { type: String },
     descriptionId: { type: String }
-  }),
+  }).validator(),
   run({ _id }) {
     TechnologiesDescriptions.update({
       technologyId: technologyId,
@@ -50,7 +49,7 @@ export const remove = new ValidatedMethod({
   name: 'technologies_descriptions.remove',
   validate: new SimpleSchema({
     descriptionId: { type: String }
-  }),
+  }).validator(),
   run({ _id }) {
     TechnologiesDescriptions.remove(descriptionId);
   },

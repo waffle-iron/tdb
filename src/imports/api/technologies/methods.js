@@ -23,7 +23,7 @@ export const update = new ValidatedMethod({
   validate: new SimpleSchema({
     _id: { type: String },
     modifier: { type: Object, blackbox: true }
-  }),
+  }).validator(),
   run({ _id, modifier }) {
     checkPermissions();
     return Technologies.update(_id, modifier);
@@ -34,7 +34,7 @@ export const remove = new ValidatedMethod({
   name: 'technologies.remove',
   validate: new SimpleSchema({
     _id: { type: String }
-  }),
+  }).validator(),
   run({ _id }) {
     checkPermissions();
     Technologies.remove({
