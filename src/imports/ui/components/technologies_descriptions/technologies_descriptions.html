@@ -1,0 +1,72 @@
+<template name="technologiesDescriptions">
+  <div class="ibox">
+    <div class="ibox-title">
+      Description
+    </div>
+    <div class="tabs-container">
+      <div class="tabs-left">
+        <ul class="nav nav-tabs">
+          {{#each getOrderedDescriptions}}
+          <li class="{{#if isFirstItem @index}}active{{/if}}">
+            <a data-toggle="tab" href="#tab-{{_id}}" aria-expanded="true">{{capitalizeFirstLetter status}}</a>
+          </li>
+          {{/each}}
+        </ul>
+        <div class="tab-content">
+        	<div id="tab-{{currentDescriptionId}}" class="tab-pane active">
+				    <div class="panel-body">
+				    	{{#if isEditing}}
+				    		 {{#autoForm 
+					      	doc=currentDescription 
+					      	schema=Schemas.Description 
+					      	id="updateTechnologyDescriptionForm"
+					      	type="method-update"
+					        meteormethod="Technologies.methods.updateDescription"
+					        singleMethodArgument=true 
+					        class="form-horizontal"}} 
+
+								  {{> afQuickField name="shortText" label-class="col-sm-2" input-col-class="col-sm-9"}}
+								  <div class="col-sm-10 col-sm-offset-2" style="margin-top:-20px;">
+								    <span class="help-block m-b-none">
+								      This description will be used in the cards inside TDB and FutureKit. It has a 140 characters limit.
+								     </span>
+								  </div>
+								  {{> afQuickField name="longText" label-class="col-sm-2" input-col-class="col-sm-9"}}
+								  <div class="col-sm-10 col-sm-offset-2" style="margin-top:-20; padding-left:5px">
+								    <span class="help-block m-b-none">
+								      Avoid starting description with technology Title. Try keeping description to ±3 sentences, highlighting: Technical (What is it?), Relevance (What does it do?) & Importance (Why does is matter?).
+								    </span>
+								  </div>
+								  <div class="col-sm-9 col-md-offset-2">
+								    <div class="btn-group btn-block">
+								      <button class="btn btn-sm btn-primary btn-outline" type="button" data-action="publish-description">
+								        Publish
+								      </button>
+								      <button class="btn btn-sm btn-primary btn-outline" type="submit">Save draft</button>
+								      <button class="btn btn-sm btn-outline btn-primary" type="button">Cancel</button>
+								      <button class="btn btn-sm btn-outline btn-primary" type="button" data-action="delete-description">
+								        Delete
+								      </button>
+								    </div>
+								  </div>
+							  {{/autoForm}}
+				    	{{else}}
+				    		<label class="col-sm-2 text-right">Summary</label>
+					      <div class="col-sm-9">
+					        <p>{{currentDescription.shortText}}</p>
+					      </div>
+					      <label class="col-sm-2 text-right">Description</label>
+					      <div class="col-sm-9">
+					        <p>{{currentDescription.longText}}</p>
+					      </div>
+					      <div class="col-sm-9 col-md-offset-2">
+					        <button class="btn btn-primary btn-outline btn-sm btn-block" data-action="toggle-form">Edit</button>
+					      </div>
+				    	{{/if}}
+				    </div>
+				  </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
