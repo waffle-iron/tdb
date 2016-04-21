@@ -1,6 +1,6 @@
 const TECH_ID_PAD_SIZE = 4;
 const SHORT_TEXT_TRUNCATE_AT = 144;
-let removeMarkdown = Meteor.isServer && Meteor.npmRequire('remove-markdown');
+let removeMarkdown = Meteor.npmRequire('remove-markdown');
 
 function generateShortDescription(userId, doc) {
   // create truncated shortText without markdown based on longText
@@ -18,17 +18,9 @@ function generateShortDescription(userId, doc) {
 function generateTechId(userId, doc) {
   doc.techId = s.lpad(AtomicCounter.increment('techId', 1), TECH_ID_PAD_SIZE, '0');
 }
+
 if (Meteor.isServer) {
   Technologies.before.insert(generateShortDescription);
   Technologies.before.insert(generateTechId);
 }
 
-/*
-    autoValue() {
-      let longText = this.field('name');
-      console.log(longText.value);
-      if (longText.isSet) {
-        return Meteor.isServer && removeMarkdown(longText.value);
-      }
-      return '';
-    }*/
