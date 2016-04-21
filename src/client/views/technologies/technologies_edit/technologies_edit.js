@@ -5,15 +5,6 @@
 // let firstAttemptOnTags = 0;
 
 AutoForm.hooks({
-  updateTechnologyDescriptionForm: {
-    onError(error) {
-      toastr.error(error.error);
-    },
-    onSuccess() {
-      toastr.success('Description saved successfully');
-      this.template.get('isEditing').set(false);
-    }
-  },
   updateBasicInformationTechnologiesForm: {
     onSuccess() {
       let key = $(this.autoSaveChangedElement).attr('data-schema-key');
@@ -28,8 +19,6 @@ AutoForm.hooks({
     onError(formType, error) {
       toastr.error(error.toString(), 'Error');
     },
-
-
   }
 });
 

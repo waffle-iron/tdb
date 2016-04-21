@@ -1,6 +1,26 @@
+import {
+  insert,
+  publish,
+  remove
+} from '../../../../imports/api/technologies_descriptions/methods.js';
+
+
+AutoForm.hooks({
+  updateTechnologyDescriptionForm: {
+    onError(error) {
+      toastr.error(error.error);
+    },
+    onSuccess() {
+      toastr.success('Description saved successfully');
+      // this.template.get('isEditing').set(false);
+    },
+  },
+});
+
 Template.technologiesEditDescriptions.onCreated(function() {
   this.isEditing = new ReactiveVar;
   this.currentDescription = new ReactiveVar(this.data.getPublishedDescription());
+  this.currentDescriptionId = new ReactiveVar(this.data.getPublishedDescription()._id);
 });
 
 Template.technologiesEditDescriptions.events({
@@ -9,7 +29,7 @@ Template.technologiesEditDescriptions.events({
   },
   'click [data-toggle="tab"]': function(event, template) {
     template.currentDescription.set(this);
-    template.isEditing.set(false);
+    template.currentDescriptionId.set(this._id);
   },
   'click [data-action="publish-description"]': function(event, template) {
     swal({
@@ -51,4 +71,5 @@ Template.technologiesEditDescriptions.helpers({
   isEditing: () => Template.instance().isEditing.get(),
   isStatusPublished: (status) => status === 'published',
   currentDescription: () => Template.instance().currentDescription.get(),
+  currentDescriptionId: () => Template.instance().currentDescriptionId.get(),
 });

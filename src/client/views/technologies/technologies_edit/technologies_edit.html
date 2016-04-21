@@ -2,6 +2,10 @@
   
   {{#if Template.subscriptionsReady}}
 
+
+    {{> technologiesEditDescriptions tech}}
+  
+
      {{#panel title="Basic Information"}}
         {{#autoForm
           collection="Technologies"
@@ -54,8 +58,6 @@
         {{> spinner}}
       </div>
     {{/panel}}
-
-    {{> technologiesEditDescriptions tech}}
 
 
   {{/if}}
