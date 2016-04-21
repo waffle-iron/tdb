@@ -5,9 +5,13 @@
 // let firstAttemptOnTags = 0;
 
 AutoForm.hooks({
-  updateTechnologiesForm: {
-    formToModifier(modifier){
-      console.log(modifier)
+  updateTechnologyDescriptionForm: {
+    onError(error) {
+      toastr.error(error.error);
+    },
+    onSuccess() {
+      toastr.success('Description saved successfully');
+      this.template.get('isEditing').set(false);
     }
   },
   updateBasicInformationTechnologiesForm: {
@@ -15,7 +19,7 @@ AutoForm.hooks({
       let key = $(this.autoSaveChangedElement).attr('data-schema-key');
 
       // if (firstAttemptOnTags && firstAttemptOnSynonyms) {
-        toastr.success(`Technology <b>${key}</b> updated successfully`, 'Success');
+      toastr.success(`Technology <b>${key}</b> updated successfully`, 'Success');
       // }
 
       // if (key === 'synonyms') firstAttemptOnSynonyms = true;

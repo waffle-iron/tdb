@@ -51,14 +51,6 @@ Schemas.Description = new SimpleSchema({
   },
   createdBy: {
     type: String,
-    optional: true,
-    autoValue() {
-      const userId = Meteor.isClient ? Meteor.userId() : this.userId;
-      if (!!userId) {
-        return userId;
-      }
-      throw Meteor.Error('Not Authorized');
-    }
   },
   createdAt: {
     type: Date,

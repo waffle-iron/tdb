@@ -37,6 +37,8 @@ Technologies.methods.updateDescription = new ValidatedMethod({
   run({ _id, modifier }) {
     checkPermissions();
 
+    console.log(_id)
+    console.log(modifier)
     const query = { 'description._id': _id };
     const keys = Object.keys(modifier.$set);
 
@@ -45,6 +47,7 @@ Technologies.methods.updateDescription = new ValidatedMethod({
       delete modifier.$set[key];
     });
 
+    console.log(modifier)
     return Technologies.update(query, modifier);
   }
 });
@@ -58,8 +61,8 @@ Meteor.methods({
     const tech = Technologies.findOne(query);
 
     // Indexes from subdocuments to apply on modifier
-    const currentIndex = _.indexOf(_.pluck(tech.description, '_id'), descriptionId);
-    const publishedIndex = _.indexOf(_.pluck(tech.description, 'status'), 'published');
+    const currentIndex = _.indexOf(tech.description.map(d => d._id), descriptionId);
+    const publishedIndex = _.indexOf(tech.description.map(d => d.status), 'published');
 
     let modifier = { $set: {} };
     modifier.$set[`description.${publishedIndex}.status`] = 'draft';
