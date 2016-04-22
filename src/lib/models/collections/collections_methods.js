@@ -16,3 +16,21 @@ Collections.methods.add = new ValidatedMethod({
     return Collections.insert(doc);
   }
 });
+
+
+Collections.methods.pushTechnology = new ValidatedMethod({
+  name: 'Collections.methods.pushTechnology',
+  validate({ collectionId, techId }) {
+    check(collectionId, String);
+    check(techId, String);
+  },
+  run({ collectionId, techId }) {
+    return Collections.update({
+      _id: collectionId
+    }, {
+      $addToSet: {
+        technologiesId: techId
+      }
+    });
+  }
+});

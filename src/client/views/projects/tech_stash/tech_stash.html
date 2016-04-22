@@ -16,7 +16,7 @@
     {{/panelTitle}} 
     {{#panelContent class="ibox-technologystash"}} 
       {{#perfectScrollbar}} 
-        <div class="stash-drag-area">
+        <div class="stash-drag-area" data-drag="stash">
         {{#each filteredTechnologiesStash}}
           {{#with getTechnology}}
             {{> miniTechCard }}

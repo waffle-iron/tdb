@@ -33,6 +33,7 @@
                         <!-- Technologies of Sub Collection -->
                         {{> subCollectionsDragArea
                           drake=getDrake
+                          collectionId=_id
                           technologies=technologies}}
                       {{/panelContent}}
                     {{/panelContainer}}
@@ -48,7 +49,7 @@
 </template>
 
 <template name="subCollectionsDragArea">
-  <div class="sub-collection-drag-area">
+  <div class="sub-collection-drag-area" data-drag="collection" data-collection="{{collectionId}}">
     {{#each technologies}}
       {{> techCard}}
     {{/each}}
