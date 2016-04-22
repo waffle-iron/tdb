@@ -31,11 +31,9 @@
                       {{#panelContent}}      
                         {{description.longText}}
                         <!-- Technologies of Sub Collection -->
-                        <div class="subcollection-drag-area" style="min-height:300px">
-                        {{#each technologies}}
-                          {{> techCard}}
-                        {{/each}}
-                        </div>
+                        {{> subCollectionsDragArea
+                          drake=getDrake
+                          technologies=technologies}}
                       {{/panelContent}}
                     {{/panelContainer}}
                   {{/each}}
@@ -47,4 +45,12 @@
       </div>
     {{/perfectScrollbar}}
   </div>  
+</template>
+
+<template name="subCollectionsDragArea">
+  <div class="sub-collection-drag-area">
+    {{#each technologies}}
+      {{> techCard}}
+    {{/each}}
+  </div>
 </template>

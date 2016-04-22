@@ -7,6 +7,9 @@ Template.collectionsSetEntry.helpers({
     return CollectionsSet.findOne({
       _id: FlowRouter.getParam('id'),
       projectId: FlowRouter.getParam('projectId')});
+  },
+  drake() {
+    return Template.instance().drake;
   }
 });
 
@@ -21,8 +24,5 @@ Template.collectionsSetEntry.events({
 
 
 Template.collectionsSetEntry.onRendered(function() {
-  Meteor.setTimeout(function() {
-    dragula([document.querySelector('.stash-drag-area'), ...document.querySelectorAll('.subcollection-drag-area')]);  
-  }, 100);
-  
+  this.drake = dragula([]);
 });

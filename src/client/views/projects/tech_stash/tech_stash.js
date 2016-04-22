@@ -27,10 +27,10 @@ Template.techStash.helpers({
 });
 
 Template.techStash.onRendered(function() {
-  //dragula([document.querySelector('.stash-drag-area')]);
+  let drake = Template.instance().data.drake;
+  drake.containers.push(this.find('.stash-drag-area'));
 });
 
 Template.techStash.onCreated(function() {
-  console.log(this);
   this.filter = new ReactiveVar('');
 });
