@@ -8,7 +8,9 @@
   <div class="row collections-set-entry">
     <div class="col col-sm-3">
       {{#with project}}
-        {{> techStash}}
+        {{> techStash 
+          style="vertical"
+          projectId=_id}}
       {{/with}}
     </div>
 

@@ -8,3 +8,8 @@ Template.collectionsBoard.events({
     });
   }
 });
+
+
+Template.collectionsBoard.onRendered(function() {
+  //dragula([document.querySelector('.subcollection-drag-area')]);
+});

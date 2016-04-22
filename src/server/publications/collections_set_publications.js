@@ -11,7 +11,7 @@ Meteor.publishComposite('collectionsSet.single', function(collectionsSetId) {
       children: [{
         find(project) {
           return Technologies.find({
-            _id: { $in: project.technologiesStash || [] }
+            _id: { $in: _.pluck(project.technologiesStash, 'technologyId') }
           });
         }
       }]

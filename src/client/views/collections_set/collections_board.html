@@ -21,7 +21,7 @@
             {{#panelContent}}
               {{description.longText}}
               <!-- Sub Collections -->
-              {{#perfectScrollbar}}
+              <!-- {{#perfectScrollbar}} -->
                 <div class="sub-collections-board">              
                   {{#each childCollections}}
                     {{#panelContainer class="sub-collection-card"}}
@@ -31,14 +31,16 @@
                       {{#panelContent}}      
                         {{description.longText}}
                         <!-- Technologies of Sub Collection -->
+                        <div class="subcollection-drag-area" style="min-height:300px">
                         {{#each technologies}}
                           {{> techCard}}
                         {{/each}}
+                        </div>
                       {{/panelContent}}
                     {{/panelContainer}}
                   {{/each}}
                 </div>
-              {{/perfectScrollbar}}
+              <!-- {{/perfectScrollbar}} -->
             {{/panelContent}}
           {{/panelContainer}}
         {{/each}}
