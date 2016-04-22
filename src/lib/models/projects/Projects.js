@@ -67,6 +67,11 @@ Schemas.Project = new SimpleSchema({
     optional: true,
     label: 'Technologies Stash',
   },
+  collectionsCount: {
+    type: Number,
+    optional: true,
+    defaultValue: 0
+  },
   collectionsSetCount: {
     type: Number,
     optional: true,
@@ -127,6 +132,13 @@ Meteor.isServer && Projects.esDriver(esClient, 'techdb', 'projects');
 
 
 Projects.helpers({
+  techStashReviewCount() {
+    let techIds = _.pluck(this.technologiesStash, 'technologyId');
+    return Technologies.find({
+      _id: {$in: techIds},
+      status: 'review'
+    }).count()
+  },
   link: function() {
     return window.location.host + '/projects/' + this._id + '/entry';
   },
