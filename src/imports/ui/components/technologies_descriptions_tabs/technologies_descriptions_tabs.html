@@ -2,8 +2,8 @@
   <div class="tabs-container">
     <div class="tabs-left">
       <ul class="nav nav-tabs">
-        {{#each this}} 
-        <li class="{{#if isFirstItem @index}}active{{/if}}">
+        {{#each this.descriptions}} 
+        <li class="{{#if isActive _id}}active{{/if}}">
           <a data-toggle="tab" href="#tab-{{_id}}" aria-expanded="true">{{capitalizeFirstLetter status}}</a>
         </li>
         {{/each}}
