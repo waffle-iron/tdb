@@ -5,7 +5,7 @@ import { AutoForm } from 'meteor/aldeed:autoform';
 
 
 import { insert, publish, remove } from '../../../api/technologies_descriptions/methods.js';
-import './technologies_descriptions.html';
+import './technologies_descriptions_tabs.html';
 
 
 AutoForm.hooks({
@@ -20,19 +20,19 @@ AutoForm.hooks({
   },
 });
 
-Template.technologiesDescriptions.onCreated(function() {
+Template.technologiesDescriptionsTabs.onCreated(function() {
   this.isEditing = new ReactiveVar;
-  this.currentDescription = new ReactiveVar(this.data.getPublishedDescription());
-  this.currentDescriptionId = new ReactiveVar(this.data.getPublishedDescription()._id);
+  // this.currentDescription = new ReactiveVar(this.data.getPublishedDescription());
+  // this.currentDescriptionId = new ReactiveVar(this.data.getPublishedDescription()._id);
 });
 
-Template.technologiesDescriptions.events({
+Template.technologiesDescriptionsTabs.events({
   'click [data-action="toggle-form"]': function(event, template) {
     template.isEditing.set(true);
   },
   'click [data-toggle="tab"]': function(event, template) {
-    template.currentDescription.set(this);
-    template.currentDescriptionId.set(this._id);
+    // template.currentDescription.set(this);
+    // template.currentDescriptionId.set(this._id);
   },
   'click [data-action="publish-description"]': function(event, template) {
     swal({
@@ -44,7 +44,10 @@ Template.technologiesDescriptions.events({
       closeOnConfirm: true,
       html: true
     }, () => {
-      Meteor.call('Technologies.methods.publishDescription', template.currentDescription.get()._id, (err, res) => {
+      publish.call({
+        technologyId: template.data.technologyId,
+        descriptionId: template.data.descriptionId
+      }, (err, res) => {
         if (err) toastr.error(err.error, 'Success');
         toastr.success('The description was published!', 'Success');
       });
@@ -69,7 +72,7 @@ Template.technologiesDescriptions.events({
   }
 });
 
-Template.technologiesDescriptions.helpers({
+Template.technologiesDescriptionsTabs.helpers({
   isFirstItem: (index) => index === 0,
   isEditing: () => Template.instance().isEditing.get(),
   isStatusPublished: (status) => status === 'published',

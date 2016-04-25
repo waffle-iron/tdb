@@ -1,12 +1,9 @@
 <template name="technologiesEdit">
   
   {{#if Template.subscriptionsReady}}
+    {{> technologiesDescriptionsPanel tech}}
 
-
-    {{> technologiesDescriptions tech}}
-  
-
-     {{#panel title="Basic Information"}}
+     <!-- {{#panel title="Basic Information"}}
         {{#autoForm
           collection="Technologies"
           id="updateBasicInformationTechnologiesForm" 
@@ -17,10 +14,10 @@
           class="form-horizontal"
           autosave=true}}
         
-          {{> afQuickField name="techId" label-class="col-sm-2" input-col-class="col-sm-10" disabled="true" type="hidden"}}
+          {{> afQuickField name="techId" label-class="col-sm-2" input-col-class="col-sm-10" disabled="true" type="hidden"}} -->
           
           <!-- Technology Name -->
-          {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-10"}}  
+        <!--   {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-10"}}  
           <div class="col-sm-10 col-sm-offset-2" style="margin-top:-20px">
             <ol>
                 <li>Use "Title Case": <i>Capitalize All Important Words</i>.</li>
@@ -28,38 +25,38 @@
                 <li>Avoid empty words: <i>"Smart Car", "Next-gen Keychain", "Health 3.0"</i></li>
                 <li>Avoid product names: <i>"Powerwall" → "Wall-mounted Household Battery"</i></li>
               </ol>
-          </div>
+          </div> -->
           <!-- End Technology Name -->
 
           <!-- Technology Synonims -->
-          {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+         <!--  {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-10"}} 
           <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
             <span class="help-block m-b-none">
               These are alternate names for this technology. They will be accessible via search.
             </span>
-          </div>
+          </div> -->
           <!-- End Technology Synonims -->
 
           <!-- Technology Images -->
-          {{> afQuickField name="images" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+          <!-- {{> afQuickField name="images" label-class="col-sm-2" input-col-class="col-sm-9"}}  -->
           <!-- End Technology Images -->
 
           <!-- Technology Tags -->
-          {{> afQuickField name="tags" label-class="col-sm-2" input-col-class="col-sm-10"}} 
+        <!--   {{> afQuickField name="tags" label-class="col-sm-2" input-col-class="col-sm-10"}} 
           <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
             <span class="help-block m-b-none">
               These will be used to correlate with other technologies.
             </span>
-          </div>
+          </div> -->
           <!-- End Technology Tags -->
-        {{/autoForm}}      
+        <!-- {{/autoForm}}      
     {{else}}
       <div class="modal-body">
         {{> spinner}}
       </div>
     {{/panel}}
 
-
+ -->
   {{/if}}
 
 

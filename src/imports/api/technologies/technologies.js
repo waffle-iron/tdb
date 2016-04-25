@@ -1,9 +1,8 @@
 import { Mongo } from 'meteor/mongo';
-import {
-  TechnologySchema,
-  DESCRIPTION_STATUS
-}
-from './schema.js';
+
+import { TechnologySchema } from './schema.js';
+import { TechnologiesDescriptions } from '../technologies_descriptions/technologies_descriptions.js';
+import { DESCRIPTION_STATUS } from '../technologies_descriptions/schema';
 
 export const Technologies = new Mongo.Collection('technologies');
 
@@ -11,17 +10,18 @@ Technologies.attachSchema(TechnologySchema);
 Technologies.attachBehaviour('timestampable');
 
 Technologies.helpers({
-  getOrderedDescriptions() {
-    const published = this.description.filter(d => d.status === DESCRIPTION_STATUS.PUBLISHED);
-    const review = this.description.filter(d => d.status === DESCRIPTION_STATUS.REVIEW);
-    const draft = this.description.filter(d => d.status === DESCRIPTION_STATUS.DRAFT);
-    return Array.prototype.concat(published, review, draft);
+  descriptions() {
+    return TechnologiesDescriptions.find({
+      _id: {
+        $in: this.descriptionsId ? this.descriptionsId : []
+      }
+    });
   },
   getPublishedDescription() {
-    this.description = this.description || [];
-    return _.find(this.description, function(desc) {
-      return desc.status === 'published';
-    }) || {};
+    return TechnologiesDescriptions.findOne({
+      technologyId: this._id,
+      status: DESCRIPTION_STATUS.PUBLISHED
+    });
   },
   getShowcasedImage() {
     if (!this.images) return false;

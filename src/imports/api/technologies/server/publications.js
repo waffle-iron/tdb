@@ -5,6 +5,7 @@ import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { Counts } from 'meteor/tmeasday:publish-counts';
 
 import { Technologies } from '../technologies.js';
+import { TechnologiesDescriptions } from '../../technologies_descriptions/technologies_descriptions';
 
 Meteor.publishComposite('technologies.single', function(technologyId) {
   check(technologyId, String);
@@ -27,6 +28,14 @@ Meteor.publishComposite('technologies.single', function(technologyId) {
             }
           });
         }
+      },
+    }, {
+      find(technology) {
+        return TechnologiesDescriptions.find({
+          _id: {
+            $in: technology.descriptionsId ? technology.descriptionsId : []
+          }
+        });
       }
     }]
   };

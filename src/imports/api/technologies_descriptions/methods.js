@@ -1,7 +1,7 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
+import { Technologies } from '../technologies/technologies';
 import { TechnologiesDescriptions } from './technologies_descriptions.js';
 import { TechnologyDescriptionSchema } from './schema.js';
-
 
 /**
  * Insert a new technology description
@@ -9,17 +9,25 @@ import { TechnologyDescriptionSchema } from './schema.js';
 export const insert = new ValidatedMethod({
   name: 'technologies_descriptions.insert',
   validate: TechnologyDescriptionSchema.validator(),
-  run({ doc }) {
-    const tech = Technologies.findOne(doc.technologyId);
-    TechnologiesDescriptions.insert(todo);
+  run(doc) {
+    TechnologiesDescriptions.insert(doc, (err, _id) => {
+      if (err) throw err;
+      return Technologies.update({
+        _id: doc.technologyId
+      }, {
+        $addToSet: {
+          descriptionsId: _id
+        }
+      });
+    });
   },
 });
 
 /**
  * Publish a description for a technology.
  * It will make two update operations:
- * 	- Change the current description published to draft (if exists)
- * 	- Publish the description with the given {descriptionId}
+ *  - Change the current description published to draft (if exists)
+ *  - Publish the description with the given {descriptionId}
  */
 export const publish = new ValidatedMethod({
   name: 'technologies_descriptions.publish',
