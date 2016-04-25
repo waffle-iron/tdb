@@ -9,10 +9,12 @@ import './technologies_descriptions_panel.html';
 
 Template.technologiesDescriptionsPanel.events({
   'click [data-action="create-new-draft"]': function(event, template) {
-    const newDraft = {
+    insert.call({
       technologyId: this._id,
       status: DESCRIPTION_STATUS.DRAFT
-    };
-    insert.call(newDraft);
+    }, (err, res) => {
+    	if (err) return toatr.error(err.error);
+    	return toastr.success('A new draft was created', 'Success');
+    });
   }
 });

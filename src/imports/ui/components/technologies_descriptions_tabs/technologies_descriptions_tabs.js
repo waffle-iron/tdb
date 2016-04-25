@@ -4,7 +4,8 @@ import { ReactiveVar } from 'meteor/reactive-var';
 import { AutoForm } from 'meteor/aldeed:autoform';
 
 
-import { insert, publish, remove } from '../../../api/technologies_descriptions/methods.js';
+import { TechnologiesDescriptions } from '../../../api/technologies_descriptions/technologies_descriptions.js';
+import { insert, publish, remove, update } from '../../../api/technologies_descriptions/methods.js';
 import './technologies_descriptions_tabs.html';
 
 
@@ -22,8 +23,17 @@ AutoForm.hooks({
 
 Template.technologiesDescriptionsTabs.onCreated(function() {
   this.isEditing = new ReactiveVar;
-  // this.currentDescription = new ReactiveVar(this.data.getPublishedDescription());
-  // this.currentDescriptionId = new ReactiveVar(this.data.getPublishedDescription()._id);
+  this.currentId = new ReactiveVar;
+
+  if (this.data.fetch() && this.data.fetch().length > 0) {
+    this.currentId.set(this.data.fetch()[0]._id);
+  }
+
+  this.autorun(() => {
+    if (this.currentId.get()) {
+      this.subscribe('technologies_descriptions.single', this.currentId.get());
+    }
+  });
 });
 
 Template.technologiesDescriptionsTabs.events({
@@ -31,8 +41,7 @@ Template.technologiesDescriptionsTabs.events({
     template.isEditing.set(true);
   },
   'click [data-toggle="tab"]': function(event, template) {
-    // template.currentDescription.set(this);
-    // template.currentDescriptionId.set(this._id);
+    template.currentId.set(this._id);
   },
   'click [data-action="publish-description"]': function(event, template) {
     swal({
@@ -44,12 +53,17 @@ Template.technologiesDescriptionsTabs.events({
       closeOnConfirm: true,
       html: true
     }, () => {
+      const description = TechnologiesDescriptions.findOne(template.currentId.get());
+
       publish.call({
-        technologyId: template.data.technologyId,
-        descriptionId: template.data.descriptionId
+        technologyId: description.technologyId,
+        descriptionId: description._id
       }, (err, res) => {
-        if (err) toastr.error(err.error, 'Success');
-        toastr.success('The description was published!', 'Success');
+        if (err) {
+          toastr.error(err.error, 'Error');
+          throw err;
+        }
+        return toastr.success('The description was published!', 'Success');
       });
     });
   },
@@ -76,6 +90,8 @@ Template.technologiesDescriptionsTabs.helpers({
   isFirstItem: (index) => index === 0,
   isEditing: () => Template.instance().isEditing.get(),
   isStatusPublished: (status) => status === 'published',
-  currentDescription: () => Template.instance().currentDescription.get(),
-  currentDescriptionId: () => Template.instance().currentDescriptionId.get(),
+  currentDescription() {
+    const _id = Template.instance().currentId.get();
+    return TechnologiesDescriptions.findOne(_id);
+  }
 });

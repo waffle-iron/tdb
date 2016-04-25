@@ -1,7 +1,7 @@
 import { ValidatedMethod } from 'meteor/mdg:validated-method';
 import { Technologies } from '../technologies/technologies';
 import { TechnologiesDescriptions } from './technologies_descriptions.js';
-import { TechnologyDescriptionSchema } from './schema.js';
+import { TechnologyDescriptionSchema, DESCRIPTION_STATUS } from './schema.js';
 
 /**
  * Insert a new technology description
@@ -35,21 +35,38 @@ export const publish = new ValidatedMethod({
     technologyId: { type: String },
     descriptionId: { type: String }
   }).validator(),
-  run({ _id }) {
-    TechnologiesDescriptions.update({
+  run({ technologyId, descriptionId }) {
+    const query = {
       technologyId: technologyId,
-      status: 'published'
-    }, {
-      $set: {
-        status: 'draft'
-      }
-    });
+      status: DESCRIPTION_STATUS.PUBLISHED
+    };
+
+    console.log(query)
+    const publishedDescription = TechnologiesDescriptions.findOne(query);
+    if (publishedDescription) {
+      TechnologiesDescriptions.update(publishedDescription._id, {
+        $set: {
+          status: DESCRIPTION_STATUS.DRAFT
+        }
+      });
+    }
 
     TechnologiesDescriptions.update(descriptionId, {
       $set: {
-        status: 'published'
+        status: DESCRIPTION_STATUS.PUBLISHED
       }
     });
+  }
+});
+
+export const update = new ValidatedMethod({
+  name: 'technologies_descriptions.update',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    modifier: { type: Object, blackbox: true }
+  }).validator(),
+  run({ _id, modifier }) {
+    return TechnologiesDescriptions.update(_id, modifier);
   },
 });
 
