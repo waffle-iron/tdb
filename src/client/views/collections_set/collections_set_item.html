@@ -15,12 +15,11 @@
               <p>
                 {{description.longText}}
               </p>
-
+              <ul class="sortable-list connectList agile-list ui-sortable">
               {{#each childCollections}}
-              <ul class="sortable-list agile-list">
-                <li>{{name}} <a href="#" class="pull-btn pull-right btn-xs btn-white"> {{techCount}}</a></li>
-              </ul>
+                <li class="ui-sortable-handle">{{name}} <a href="#" class="pull-btn pull-right btn-xs btn-white"> {{techCount}}</a></li>
               {{/each}}
+              </ul>
             </div>
             <div class="panel-footer">
               <div class="ibox-tools">

@@ -1,7 +1,3 @@
-Template.collectionsSetEntry.onCreated(function() {
-  this.subscribe('collectionsSet.single', FlowRouter.getParam('id'));
-});
-
 Template.collectionsSetEntry.helpers({
   collectionsSet() {
     return CollectionsSet.findOne({
@@ -10,6 +6,7 @@ Template.collectionsSetEntry.helpers({
     });
   },
   drake() {
+    console.log(Template.instance().drake);
     return Template.instance().drake;
   }
 });
@@ -23,12 +20,30 @@ Template.collectionsSetEntry.events({
   }
 });
 
+function handleErr(err) {
+  switch (err.error) {
+    case 'target-already-has-tech':
+      toastr.error('Can\'t create duplicated technologies', 'Error');
+      break;
+    default:
+      {
+        toastr.error(err.toString(), 'Error');
+      }
+  }
+}
 
-Template.collectionsSetEntry.onRendered(function() {
-  this.drake = dragula([]);
+Template.collectionsSetEntry.onCreated(function() {
+  this.subscribe('collectionsSet.single', FlowRouter.getParam('id'));
+
+  this.drake = dragula([], {
+    copy(el) {
+      return $(el).parent().data('drag') === 'stash';
+    },
+    revertOnSpill: true
+  });
 
   this.drake.on('drop', (el, target, source, sibling) => {
-    this.drake.cancel(true);
+    let position = sibling ? $(sibling).index() - 1 : null;
     let techId = $(el).data('technology-id');
     let targetType = $(target).data('drag');
     let sourceType = $(source).data('drag');
@@ -36,12 +51,15 @@ Template.collectionsSetEntry.onRendered(function() {
     // stash ---> collection
     if (targetType === 'collection' && sourceType === 'stash') {
       let targetCollection = $(target).data('collection');
-      $(el).hide();
-      Collections.methods.pushTechnology.call({ collectionId: targetCollection, techId: techId }, (err, res) => {
+      Collections.methods.pushTechnology.call({
+        collectionId: targetCollection,
+        techId: techId,
+        position: position
+      }, (err, res) => {
         if (err) {
-          toastr.error(err.toString(), 'Error');
-          $(el).show();
+          handleErr(err);
         }
+        $(el).remove();
       });
     }
 
@@ -50,16 +68,18 @@ Template.collectionsSetEntry.onRendered(function() {
       let sourceCollection = $(source).data('collection');
       let targetCollection = $(target).data('collection');
 
-      if (sourceCollection !== targetCollection) {
-        $(el).hide();
-        Collections.methods.moveTechnology.call({ source: sourceCollection, target: targetCollection, techId: techId },
-          (err, res) => {
-            if (err) {
-              toastr.error(err.toString(), 'Error');
-              $(el).show();
-            }
-          });
-      }
+      Collections.methods.moveTechnology.call({
+          source: sourceCollection,
+          target: targetCollection,
+          techId: techId,
+          position: position
+        },
+        (err, res) => {
+          if (err) {
+            handleErr(err);
+            this.drake.cancel(true);
+          }
+        });
     }
   });
 });

@@ -20,16 +20,28 @@ Collections.methods.add = new ValidatedMethod({
 
 Collections.methods.pushTechnology = new ValidatedMethod({
   name: 'Collections.methods.pushTechnology',
-  validate({ collectionId, techId }) {
+  validate({ collectionId, techId, position }) {
     check(collectionId, String);
     check(techId, String);
+    check(position, Match.Optional(Number));
   },
-  run({ collectionId, techId }) {
+  run({ collectionId, techId, position }) {
+    let pushedObj = { $each: [techId] };
+    if (position !== null && position >= 0) pushedObj.$position = position;
+
+
+    let targetCollection = Collections.findOne({
+      _id: collectionId
+    });
+    
+    if (!targetCollection) throw new Meteor.Error('target-not-found');
+    if (_.contains(targetCollection.technologiesId, techId)) throw new Meteor.Error('target-already-has-tech');
+
     return Collections.update({
       _id: collectionId
     }, {
-      $addToSet: {
-        technologiesId: techId
+      $push: {
+        technologiesId: pushedObj
       }
     });
   }
@@ -38,15 +50,13 @@ Collections.methods.pushTechnology = new ValidatedMethod({
 
 Collections.methods.moveTechnology = new ValidatedMethod({
   name: 'Collections.methods.moveTechnology',
-  validate({ source, target, techId}) {
+  validate({ source, target, techId, position}) {
     check(source, String);
     check(target, String);
     check(techId, String);
+    check(position, Match.Optional(Number));
   },
-  run({ source, target, techId}) {
-    console.log('source ', source);
-    console.log('target ', target);
-    console.log('techId ', techId);
+  run({ source, target, techId, position }) {
     let sourceCollection = Collections.findOne({
       _id: source
     });
@@ -59,7 +69,7 @@ Collections.methods.moveTechnology = new ValidatedMethod({
     });
 
     if (!targetCollection) throw new Meteor.Error('target-not-found');
-    if (_.contains(targetCollection.technologiesId, techId)) throw new Meteor.Error('target-already-has-tech');
+    if (source !== target && _.contains(targetCollection.technologiesId, techId)) throw new Meteor.Error('target-already-has-tech');
 
     let sourceUpdate = Collections.update({
       _id: source
@@ -71,11 +81,14 @@ Collections.methods.moveTechnology = new ValidatedMethod({
 
     if (!sourceUpdate) throw new Meteor.Error('source-update-error');
 
-    let targetUpdate =  Collections.update({
+    let pushedObj = { $each: [techId] };
+    if (position !== null && position >= 0) pushedObj.$position = position;
+
+    let targetUpdate = Collections.update({
       _id: target
     }, {
-      $addToSet: {
-        technologiesId: techId
+      $push: {
+        technologiesId: pushedObj
       }
     });
 

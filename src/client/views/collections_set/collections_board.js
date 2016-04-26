@@ -22,7 +22,6 @@ Template.subCollectionsDragArea.onRendered(function() {
 
 Template.subCollectionsDragArea.helpers({
   getTechnology() {
-    console.log(this.valueOf());
     return Technologies.findOne({
       _id: this.valueOf()
     });
