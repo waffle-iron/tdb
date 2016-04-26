@@ -37,7 +37,7 @@ SearchSource.defineSource('globalSearch', function(searchText, {
           bool: {
             should: [ // Any of these conditions should match, the most, more relevant
               {
-                match: {                  // Tech Id
+                match: { // Tech Id
                   techId: {
                     query: searchText,
                     boost: techIdBoost
@@ -51,7 +51,7 @@ SearchSource.defineSource('globalSearch', function(searchText, {
                   }
                 }
               }, {
-                match: {                  // Name
+                match: { // Name
                   name: {
                     query: searchText,
                     boost: nameBoost
@@ -65,7 +65,7 @@ SearchSource.defineSource('globalSearch', function(searchText, {
                   }
                 }
               }, {
-                match: {                // Description
+                match: { // Description
                   description: {
                     query: searchText,
                     boost: descriptionBoost
@@ -103,19 +103,23 @@ SearchSource.defineSource('globalSearch', function(searchText, {
     }
   };
 
+  let filter = {};
+
+  if (excludeIds.length) {
+    filter = {
+      bool: {
+        must_not: [{
+          ids: {
+            values: excludeIds
+          }
+        }]
+      }
+    };
+  }
+
   let finalQuery = {
     filtered: {
-      filter: {
-        bool: {
-          must_not: [
-            {
-              ids: {
-                values: excludeIds || ['']
-              }
-            }
-          ]
-        }
-      },
+      filter: filter,
       query: query
     }
   };

@@ -1,12 +1,7 @@
 <template name="collectionsSetEntry">
-  <div class="row">
-    <div class="col col-sm-12">
-      <button class="btn btn-success new-collection">New Collection</button>
-    </div>
-  </div>
   {{#with collectionsSet}}
   <div class="row collections-set-entry">
-    <div class="col col-sm-3">
+    <div class="col col-sm-3 no-padding">
       {{#with project}}
         {{> techStash 
           drake=drake
@@ -23,4 +18,10 @@
     </div>
   </div>
   {{/with}}
+
+  <div class="row">
+    <div class="col col-sm-12">
+      <button class="btn btn-success new-collection">New Collection</button>
+    </div>
+  </div>  
 </template>

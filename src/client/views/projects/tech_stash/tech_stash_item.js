@@ -18,7 +18,7 @@ removeSuccess = function() {
 };
 
 removeError = function(err) {
-  swal('Error!', err, 'danger');
+  swal('Error!', err, 'warning');
 };
 
 
@@ -39,9 +39,8 @@ Template.techStashItem.helpers({
 Template.techStashItem.events({
   'click .remove-tech': function(event, template) {
     let pData = Template.instance().parent().data;
-    let projectId = pData._id;
+    let projectId = pData.projectId;
     let techId = this._id;
-
     removeConfirmation(this.name, () => {
       Projects.methods.pullTechnologiesStash.call({projectId, techId}, (err, res) => {
         if (err) return removeError(err.toString(), 'Error');
