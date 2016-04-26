@@ -18,8 +18,8 @@ Cloudinary.helpers = {
   getMiniCard(cloudinaryId, options = {}) {
     if (cloudinaryId) {
       let baseOptions = {
-        width: 100,
-        height: 55,
+        width: 85,
+        height: 50,
         crop: 'fill',
         gravity: 'center'
       };
