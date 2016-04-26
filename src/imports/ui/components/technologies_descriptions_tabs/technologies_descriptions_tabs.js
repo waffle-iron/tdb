@@ -33,9 +33,12 @@ Template.technologiesDescriptionsTabs.onCreated(function() {
   let template = this;
   Technologies.find(this.data._id).observeChanges({
     changed: (id, fields) => {
-      console.log(fields)
       if (fields.descriptionsId) {
-        template.currentId.set(fields.descriptionsId[fields.descriptionsId.length - 1]);
+        const lastIndex = fields.descriptionsId.length - 1;
+        const description = TechnologiesDescriptions.findOne(fields.descriptionsId[lastIndex]);
+        if (description.createdBy === Meteor.userId()) {
+          template.currentId.set(fields.descriptionsId[lastIndex]);
+        }
       }
     }
   });
@@ -97,9 +100,11 @@ Template.technologiesDescriptionsTabs.events({
       closeOnConfirm: true,
       html: true
     }, () => {
-      Meteor.call('Technologies.methods.deleteDescription', template.currentDescription.get()._id, (err, res) => {
-        if (err) toastr.error(err.error, 'Success');
-        toastr.success('The description was deleted!', 'Success');
+      remove.call({
+        descriptionId: template.currentId.get()
+      }, (err, res) => {
+        if (err) throw err;
+        return toastr.success('The description was removed', 'Success');
       });
     });
   }

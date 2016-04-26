@@ -36,13 +36,11 @@ export const publish = new ValidatedMethod({
     descriptionId: { type: String }
   }).validator(),
   run({ technologyId, descriptionId }) {
-    const query = {
+    const publishedDescription = TechnologiesDescriptions.findOne({
       technologyId: technologyId,
       status: DESCRIPTION_STATUS.PUBLISHED
-    };
+    });
 
-    console.log(query)
-    const publishedDescription = TechnologiesDescriptions.findOne(query);
     if (publishedDescription) {
       TechnologiesDescriptions.update(publishedDescription._id, {
         $set: {
@@ -75,7 +73,18 @@ export const remove = new ValidatedMethod({
   validate: new SimpleSchema({
     descriptionId: { type: String }
   }).validator(),
-  run({ _id }) {
-    TechnologiesDescriptions.remove(descriptionId);
+  run({ descriptionId }) {
+    const description = TechnologiesDescriptions.findOne(descriptionId);
+
+    TechnologiesDescriptions.remove(descriptionId, (err) => {
+      if (err) throw err;
+      return Technologies.update({
+        _id: description.technologyId
+      }, {
+        $pull: {
+          descriptionsId: descriptionId
+        }
+      });
+    });
   },
 });
