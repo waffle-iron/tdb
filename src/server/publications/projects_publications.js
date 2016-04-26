@@ -31,7 +31,16 @@ Meteor.publishComposite('projects.single', function(projectId) {
     children: [{
       find(project) {
         return CollectionsSet.find({ projectId: project._id });
-      }
+      },
+      children: [
+        {
+          find(collectionSet) {
+            return Collections.find({
+              collectionsSetId: collectionSet._id
+            });
+          }
+        }
+      ]
     }, {
       find(project) {
         return Organizations.find({

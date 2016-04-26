@@ -27,8 +27,10 @@ Template.techStash.helpers({
 });
 
 Template.techStash.onRendered(function() {
-  let drake = Template.instance().data.drake;
-  drake.containers.push(this.find('.stash-drag-area'));
+  if (this.data.style === 'vertical') {
+    let drake = Template.instance().data.drake;
+    drake.containers.push(this.find('.stash-drag-area'));
+  }
 });
 
 Template.techStash.onCreated(function() {

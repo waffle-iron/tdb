@@ -13,12 +13,12 @@
             <div class="panel-heading">{{name}}</div>
             <div class="panel-body">
               <p>
-                {{description}}
+                {{description.longText}}
               </p>
 
               {{#each childCollections}}
-              <ul class="sortable-list connectList agile-list ui-sortable">
-                <li class="ui-sortable-handle">{{name}} <a href="#" class="pull-btn pull-right btn-xs btn-white"> {{techCount}}</a></li>
+              <ul class="sortable-list agile-list">
+                <li>{{name}} <a href="#" class="pull-btn pull-right btn-xs btn-white"> {{techCount}}</a></li>
               </ul>
               {{/each}}
             </div>
