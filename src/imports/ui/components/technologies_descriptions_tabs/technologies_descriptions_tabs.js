@@ -9,19 +9,6 @@ import { TechnologiesDescriptions } from '../../../api/technologies_descriptions
 import { insert, publish, remove, update } from '../../../api/technologies_descriptions/methods.js';
 import './technologies_descriptions_tabs.html';
 
-
-AutoForm.hooks({
-  updateTechnologyDescriptionForm: {
-    onError(error) {
-      toastr.error(error.error);
-    },
-    onSuccess() {
-      toastr.success('Description saved successfully');
-      // this.template.get('isEditing').set(false);
-    },
-  },
-});
-
 Template.technologiesDescriptionsTabs.onCreated(function() {
   this.isEditing = new ReactiveVar;
   this.currentId = new ReactiveVar;

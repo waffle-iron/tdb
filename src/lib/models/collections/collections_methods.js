@@ -23,7 +23,7 @@ Collections.methods.pushTechnology = new ValidatedMethod({
   validate({ collectionId, techId, position }) {
     check(collectionId, String);
     check(techId, String);
-    check(position, Match.Optional(Number));
+    check(position, Match.Maybe(Number));
   },
   run({ collectionId, techId, position }) {
     let pushedObj = { $each: [techId] };
@@ -54,7 +54,7 @@ Collections.methods.moveTechnology = new ValidatedMethod({
     check(source, String);
     check(target, String);
     check(techId, String);
-    check(position, Match.Optional(Number));
+    check(position, Match.Maybe(Number));
   },
   run({ source, target, techId, position }) {
     let sourceCollection = Collections.findOne({

@@ -1,3 +1,5 @@
+import { Technologies } from '../../imports/api/technologies/technologies';
+
 Meteor.publishComposite('collectionsSet.single', function(collectionsSetId) {
   check(collectionsSetId, String);
   return {
