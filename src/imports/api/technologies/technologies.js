@@ -16,10 +16,19 @@ Technologies.helpers({
     });
   },
   getPublishedDescription() {
-    return TechnologiesDescriptions.findOne({
+    const publishedDescription = TechnologiesDescriptions.findOne({
       technologyId: this._id,
       status: DESCRIPTION_STATUS.PUBLISHED
     });
+
+    if (!publishedDescription) {
+      return {
+        shortText: "There's no published description for this technology",
+        longText: "There's no published description for this technology"
+      };
+    }
+
+    return publishedDescription;
   },
   getShowcasedImage() {
     if (!this.images) return false;
