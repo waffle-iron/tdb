@@ -1,12 +1,14 @@
 <template name="technologiesEdit">
   <div class="row">
+    
     <div class="col-md-3">
-      {{> technologiesInformationCard tech}}
-      
+      <div style="position: fixed; width: 22.5%">
+        {{> technologiesInformationCard tech}}
 
-      <div class="ibox">
-        <div class="ibox-content">
-          {{> technologiesStatusForm tech}}  
+        <div class="ibox">
+          <div class="ibox-content">
+            {{> technologiesStatusForm tech}}  
+          </div>
         </div>
       </div>
     </div>
