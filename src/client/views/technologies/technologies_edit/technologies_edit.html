@@ -1,5 +1,21 @@
 <template name="technologiesEdit">
-  {{#panel title="Edit Technology Form" }}
+  <div class="row">
+    <div class="col-md-3">
+      Here theres some stuff
+    </div>
+    <div class="col-md-9">
+      {{#if Template.subscriptionsReady}}
+
+        {{#panel title="Basic Information"}}
+          {{> technologiesInformationForm tech}}
+        {{/panel}}
+
+        {{> technologiesDescriptionsPanel tech}}
+      {{/if}}  
+    </div>
+  </div>
+
+  <!-- {{#panel title="Edit Technology Form" }}
   {{#if Template.subscriptionsReady}}
     {{#autoForm
       collection="Technologies"
@@ -44,5 +60,5 @@
       {{> spinner}}
     </div>
   {{/if}}
-  {{/panel}}
+  {{/panel}} -->
 </template>

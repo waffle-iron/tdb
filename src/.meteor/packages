@@ -12,7 +12,7 @@ fortawesome:fontawesome
 aldeed:collection2
 audit-argument-checks
 dburles:collection-helpers
-meteorhacks:fast-render
+# meteorhacks:fast-render
 meteorhacks:subs-manager
 raix:handlebar-helpers
 reactive-dict

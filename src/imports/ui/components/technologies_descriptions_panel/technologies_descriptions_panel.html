@@ -1,0 +1,13 @@
+<template name="technologiesDescriptionsPanel">
+	{{#panelContainer}}
+    {{#panelTitle}}
+      <h3>Description</h3>
+      {{#panelTools}}
+        <a href="#" data-action="create-new-draft">
+          <i class="fa fa-plus"></i>
+        </a>
+      {{/panelTools}}
+    {{/panelTitle}}
+    {{> technologiesDescriptionsTabs this}}
+  {{/panelContainer}}
+</template>

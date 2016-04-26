@@ -46,12 +46,11 @@ Schemas.validatedMethodUpdateSchema = new SimpleSchema({
 
 
 Schemas.Description = new SimpleSchema({
-  userId: {
+  _id: {
     type: String,
-    optional: true,
-    autoform: {
-      omit: true
-    }
+  },
+  createdBy: {
+    type: String,
   },
   createdAt: {
     type: Date,
@@ -59,6 +58,14 @@ Schemas.Description = new SimpleSchema({
     autoform: {
       omit: true
     }
+  },
+  updatedBy: {
+    type: String,
+    optional: true,
+  },
+  updatedAt: {
+    type: Date,
+    optional: true
   },
   status: {
     type: String,
@@ -85,7 +92,12 @@ Schemas.Description = new SimpleSchema({
   },
   shortText: {
     type: String,
-    optional: true
+    optional: true,
+    max: 140,
+    autoform: {
+      type: 'textarea',
+      rows: 3
+    }
 
   },
   applications: {

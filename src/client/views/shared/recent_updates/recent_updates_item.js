@@ -1,3 +1,6 @@
+import { Technologies } from '../../../../imports/api/technologies/technologies.js';
+
+
 Template.recentUpdatesItem.helpers({
   getText() {
     switch (Template.instance().data.operation) {
