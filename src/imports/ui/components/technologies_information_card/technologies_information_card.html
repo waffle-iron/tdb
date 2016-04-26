@@ -1,7 +1,9 @@
 <template name="technologiesInformationCard">
   <div class="ibox card-box cards-item" data-template="technologies-information-card">
     <div class="ibox-content no-padding card-label {{status}}">
-    	{{> safeImg url=(s3pathImages getShowcasedImage.src) class="img-responsive" }}
+    	{{> safeImg 
+    		url=(getCloudinaryCard (s3pathImages getShowcasedImage.src))
+    	  class="img-responsive" }}
       <div class="card-description">
         <h5 class="card-name">
         	<span class="card-id">{{techId}}</span> 
