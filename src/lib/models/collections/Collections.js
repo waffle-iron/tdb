@@ -79,6 +79,6 @@ Collections.helpers({
     });
   },
   techCount() {
-    return this.technologiesId && this.technologiesId.lenght || 0;
+    return this.technologiesId && this.technologiesId.length || 0;
   }
 });

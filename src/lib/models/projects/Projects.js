@@ -67,10 +67,21 @@ Schemas.Project = new SimpleSchema({
     optional: true,
     label: 'Technologies Stash',
   },
-/*  collectionsSetId: {
-    type: [String],
-    optional: true
-  },*/
+  collectionsCount: {
+    type: Number,
+    optional: true,
+    defaultValue: 0
+  },
+  collectionsSetCount: {
+    type: Number,
+    optional: true,
+    defaultValue: 0
+  },
+  technologiesStashCount: {
+    type: Number,
+    optional: true,
+    defaultValue: 0
+  },
   organizationsId: {
     type: [String],
     logDriver: true,

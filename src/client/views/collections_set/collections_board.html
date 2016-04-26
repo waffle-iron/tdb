@@ -21,7 +21,7 @@
             {{#panelContent}}
               {{description.longText}}
               <!-- Sub Collections -->
-              {{#perfectScrollbar}}
+              <!-- {{#perfectScrollbar}} -->
                 <div class="sub-collections-board">              
                   {{#each childCollections}}
                     {{#panelContainer class="sub-collection-card"}}
@@ -31,18 +31,29 @@
                       {{#panelContent}}      
                         {{description.longText}}
                         <!-- Technologies of Sub Collection -->
-                        {{#each technologies}}
-                          {{> techCard}}
-                        {{/each}}
+                        {{> subCollectionsDragArea
+                          drake=getDrake
+                          collectionId=_id
+                          technologiesId=technologiesId}}
                       {{/panelContent}}
                     {{/panelContainer}}
                   {{/each}}
                 </div>
-              {{/perfectScrollbar}}
+              <!-- {{/perfectScrollbar}} -->
             {{/panelContent}}
           {{/panelContainer}}
         {{/each}}
       </div>
     {{/perfectScrollbar}}
   </div>  
+</template>
+
+<template name="subCollectionsDragArea">
+  <div class="sub-collection-drag-area" data-drag="collection" data-collection="{{collectionId}}">
+    {{#each technologiesId}}
+      {{#with getTechnology}}
+        {{> miniTechCard}}
+      {{/with}}
+    {{/each}}
+  </div>
 </template>

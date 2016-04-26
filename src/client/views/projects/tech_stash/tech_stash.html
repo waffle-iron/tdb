@@ -1,8 +1,35 @@
 
 
 <template name="techStash">
-  <div class="ibox">
-    <div class="ibox-title">
+{{#if $eq style 'vertical'}}
+  <!-- Vertical Style -->
+  {{#panelContainer class="tech-stash"}} 
+    {{#panelTitle}}
+      <div class="input-group">
+        <input type="text" placeholder="Search for a technology." class="input input-sm form-control stash-filter">
+        <span class="input-group-btn">
+            <button type="button" class="btn btn-sm btn-white add-to-stash">
+              <i class="fa fa-plus"></i> Add
+            </button>
+          </span>
+      </div>
+    {{/panelTitle}} 
+    {{#panelContent class="ibox-technologystash"}} 
+      {{#perfectScrollbar}} 
+        <div class="stash-drag-area" data-drag="stash">
+        {{#each filteredTechnologiesStash}}
+          {{#with getTechnology}}
+            {{> miniTechCard }}
+          {{/with}}
+       {{/each}} 
+       </div>
+      {{/perfectScrollbar}} 
+    {{/panelContent}} 
+  {{/panelContainer}}
+{{else}}
+  <!-- Table Style -->
+  {{#panelContainer}} 
+    {{#panelTitle}}
       <h1>Technology Stash</h1>
       <div class="ibox-tools">
         <a href="#" class="add-to-stash">
@@ -12,14 +39,14 @@
           <i class="fa fa-chevron-up"></i>
         </a>
       </div>
-    </div>
-    <div class="ibox-content">
-      {{#if technologiesStash}}
+    {{/panelTitle}}
+    {{#panelContent}}
       <div class="row">
         <div class="col-sm-12">
           <input type="text" placeholder="Search" class="input-sm form-control stash-filter">
         </div>
-      </div>      
+      </div>    
+      {{#if filteredTechnologiesStash}}  
         <table class="footable table table-stripped toggle-arrow-tiny">
           <thead>
             <tr>
@@ -45,6 +72,7 @@
           </h3>
         </div>   
       {{/if}}        
-    </div>
-  </div>
+    {{/panelContent}}
+  {{/panelContainer}}
+{{/if}}
 </template>

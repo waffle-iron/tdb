@@ -3,7 +3,7 @@
     <div class="ibox-title">
       <h2>{{name}}</h2>
       <div class="ibox-tools">
-        <a href="{{pathFor 'collectionSet.entry' id=_id}}">Browse</a>
+        <a href="{{pathFor 'collectionsSet.entry' projectId=getProjectId id=_id}}">Browse</a>
       </div>
     </div>
     <div class="ibox-content collectionSetBox">
@@ -13,14 +13,13 @@
             <div class="panel-heading">{{name}}</div>
             <div class="panel-body">
               <p>
-                {{description}}
+                {{description.longText}}
               </p>
-
-              {{#each childCollections}}
               <ul class="sortable-list connectList agile-list ui-sortable">
+              {{#each childCollections}}
                 <li class="ui-sortable-handle">{{name}} <a href="#" class="pull-btn pull-right btn-xs btn-white"> {{techCount}}</a></li>
-              </ul>
               {{/each}}
+              </ul>
             </div>
             <div class="panel-footer">
               <div class="ibox-tools">

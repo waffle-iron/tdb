@@ -87,6 +87,11 @@ Schemas.Technology = new SimpleSchema({
     type: [Schemas.Impact],
     optional: true
   },
+  attachmentsCount: {
+    type: Number,
+    counterFor: 'attachmentsId',
+    optional: true
+  },
   attachmentsId: {
     type: [String],
     optional: true,
@@ -104,6 +109,19 @@ Schemas.Technology = new SimpleSchema({
             };
           });
         }
+      }
+    }
+  },
+  organizationsCount: {
+    type: Number,
+    counterFor: 'organizationsId',
+    optional: true,
+    autoValue() {
+      let organizationsId = this.field('organizationsId');
+
+      if (organizationsId.isSet) {
+        let arr = organizationsId.value;
+        return _.isArray(arr) ? arr.length : 0;
       }
     }
   },
@@ -177,7 +195,9 @@ Technologies.helpers({
  * Behaviours
  *
  */
+
 Technologies.attachSchema(Schemas.Technology);
+//Technologies.simpleCounter();
 Technologies.attachBehaviour('timestampable');
 Meteor.isServer && Technologies.esDriver(esClient, 'techdb', 'technologies', (cleanedDoc, doc, hook) => {
   let tDoc = hook.transform();

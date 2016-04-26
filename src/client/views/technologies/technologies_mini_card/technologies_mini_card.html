@@ -1,0 +1,20 @@
+<template name="miniTechCard">
+  <div class="ibox card-box cards-item" data-technology-id="{{_id}}">
+    <div class="ibox-content no-padding card-label panel-{{techColor status}}">
+      <a href="#/technologies/entry">
+        {{> safeImg 
+          url=(getCloudinaryMiniCard (s3pathImages getShowcasedImage.src)) 
+
+          }}
+      </a>
+      <div class="card-description">
+        <h5 class="card-name">
+          <a href="#/technologies/entry">
+            <span class="card-id">{{evId}}</span> {{name}}
+          </a>
+        </h5>
+        <p>{{getPublishedDescription.shortText}}</p>
+      </div>
+    </div>
+  </div>
+</template>

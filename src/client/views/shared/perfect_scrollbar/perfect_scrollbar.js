@@ -1,12 +1,7 @@
-
 Template.perfectScrollbar.onRendered(function() {
   Ps.initialize(this.find('.ps-container'), {
-    useBothWheelAxes: true
+    useBothWheelAxes: true,
+    handlers: ['click-rail', 'drag-scrollbar', 'keyboard', 'wheel', 'touch']
   });
-  /*
-  $('.ps-container').bind('DOMSubtreeModified', () => {
-    Ps.update(this.find('.ps-container'));
-  });
-*/
 });
 

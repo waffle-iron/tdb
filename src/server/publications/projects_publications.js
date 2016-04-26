@@ -31,7 +31,16 @@ Meteor.publishComposite('projects.single', function(projectId) {
     children: [{
       find(project) {
         return CollectionsSet.find({ projectId: project._id });
-      }
+      },
+      children: [
+        {
+          find(collectionSet) {
+            return Collections.find({
+              collectionsSetId: collectionSet._id
+            });
+          }
+        }
+      ]
     }, {
       find(project) {
         return Organizations.find({
@@ -93,6 +102,18 @@ Meteor.publish('projects-status-counter', function() {
   }));
 });
 
+Meteor.publish('project-tech-stash', function(projectId) {
+  check(projectId, String);
+  let project = Projects.findOne(projectId);
+  let techIds = _.pluck(project.technologiesStash, 'technologyId');
+  let cursor = Technologies.find({
+    _id: { $in: techIds },
+    status: 'review'
+  });
+
+  Counts.publish(this, 'project-tech-stash-review', cursor);
+});
+
 Meteor.publish('last-project-added', function() {
   return Projects.find({}, {
     sort: {
@@ -101,3 +122,25 @@ Meteor.publish('last-project-added', function() {
     limit: 1
   });
 });
+
+
+/*Meteor.publishComposite('projects.techStash', function(projectId) {
+  check(projectId, String);
+  return {
+    find() {
+      return Projects.find({
+        _id: projectId
+      }, {
+        fields: {
+          technologiesStash: 1
+        }
+      });
+    },
+    children: [{
+      find(project) {
+
+      }
+    }]
+  };
+});
+*/

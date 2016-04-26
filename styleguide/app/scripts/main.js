@@ -139,6 +139,23 @@ TDBRouter.addRoute({
 });
 
 TDBRouter.addRoute({
+  path: '/projects/add',
+  template: 'projectAdd',
+  onRendered: initMansory,
+  context: {
+    projects, technologies, organizations, attachments
+  }
+});
+TDBRouter.addRoute({
+  path: '/projects/edit',
+  template: 'projectEdit',
+  onRendered: initMansory,
+  context: {
+    projects, technologies, organizations, attachments, collectionSet
+  }
+});
+
+TDBRouter.addRoute({
   path: '/projects/entry',
   template: 'projectEntry',
   onRendered: initProjectEntry,

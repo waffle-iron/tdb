@@ -55,7 +55,7 @@ projectsRoutes.route('/:id/edit', {
   },
 });
 
-projectsRoutes.route('/collections-set/:collectionsSetId', {
+projectsRoutes.route('/:projectId/collections-set/:id', {
   name: 'collectionsSet.entry',
   parent: 'projects.entry',
   action() {

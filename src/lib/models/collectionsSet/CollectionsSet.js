@@ -21,12 +21,13 @@ CollectionsSet.helpers({
   },
   // top level collections
   collections() {
-    return Collections.find({
+    let col =  Collections.find({
       collectionsSetId: this._id,
       parentId: {
         $exists: false
       }
     });
+    return col;
   }
 });
 

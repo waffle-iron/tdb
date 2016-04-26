@@ -5,7 +5,6 @@ Cloudinary.helpers = {
         width: 600,
         height: 400,
         crop: 'fill',
-        //background: 'white',
         gravity: 'center'
       };
       let finalOptions = {
@@ -15,6 +14,22 @@ Cloudinary.helpers = {
       return $.cloudinary.url(cloudinaryId, finalOptions);
     }
     return 'https://placehold.it/600x400';
+  },
+  getMiniCard(cloudinaryId, options = {}) {
+    if (cloudinaryId) {
+      let baseOptions = {
+        width: 100,
+        height: 55,
+        crop: 'fill',
+        gravity: 'center'
+      };
+      let finalOptions = {
+        ...baseOptions,
+        ...options
+      };
+      return $.cloudinary.url(cloudinaryId, finalOptions);
+    }
+    return 'https://placehold.it/100x55';
   },
   getThumb(cloudinaryId) {
     if (cloudinaryId) {
@@ -28,7 +43,6 @@ Cloudinary.helpers = {
     return '/img/unknown-user.png';
   },
   aboutBox(cloudinaryId) {
-    console.log(cloudinaryId);
     if (cloudinaryId) {
       return $.cloudinary.url(cloudinaryId);
     }
@@ -55,6 +69,7 @@ Cloudinary.helpers = {
 
 //  TODO: Refatorar para usar o CloudinaryHelpers
 Template.registerHelper('getCloudinaryCard', Cloudinary.helpers.getCard);
+Template.registerHelper('getCloudinaryMiniCard', Cloudinary.helpers.getMiniCard);
 Template.registerHelper('getUserThumb', Cloudinary.helpers.getThumb);
 Template.registerHelper('getCloudinaryFetchImage', Cloudinary.helpers.getFetchImage);
 //  ----
