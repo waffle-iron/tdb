@@ -12,9 +12,7 @@ Technologies.attachBehaviour('timestampable');
 Technologies.helpers({
   descriptions() {
     return TechnologiesDescriptions.find({
-      _id: {
-        $in: this.descriptionsId ? this.descriptionsId : []
-      }
+      technologyId: this._id
     });
   },
   getPublishedDescription() {

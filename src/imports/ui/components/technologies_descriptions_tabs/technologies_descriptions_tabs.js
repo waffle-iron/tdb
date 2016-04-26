@@ -26,22 +26,24 @@ Template.technologiesDescriptionsTabs.onCreated(function() {
   this.isEditing = new ReactiveVar;
   this.currentId = new ReactiveVar;
 
-  if (this.data.descriptions().fetch() && this.data.descriptions().fetch().length > 0) {
-    this.currentId.set(this.data.descriptions().fetch()[0]._id);
-  }
+  this.selectLastDescription = () => {
+    if (this.data.descriptions().fetch() && this.data.descriptions().fetch().length > 0) {
+      this.currentId.set(this.data.descriptions().fetch()[0]._id);
+    }
+  };
 
   let template = this;
-  Technologies.find(this.data._id).observeChanges({
-    changed: (id, fields) => {
-      if (fields.descriptionsId) {
-        const lastIndex = fields.descriptionsId.length - 1;
-        const description = TechnologiesDescriptions.findOne(fields.descriptionsId[lastIndex]);
-        if (description.createdBy === Meteor.userId()) {
-          template.currentId.set(fields.descriptionsId[lastIndex]);
-        }
+  TechnologiesDescriptions.find({
+    technologyId: this.data._id
+  }).observe({
+    changed: (newDocument) => {
+      if (newDocument.createdBy === Meteor.userId()) {
+        template.currentId.set(newDocument._id);
       }
     }
   });
+
+  this.selectLastDescription();
 
   this.autorun(() => {
     if (this.currentId.get()) {
@@ -104,6 +106,7 @@ Template.technologiesDescriptionsTabs.events({
         descriptionId: template.currentId.get()
       }, (err, res) => {
         if (err) throw err;
+        template.selectLastDescription();
         return toastr.success('The description was removed', 'Success');
       });
     });
@@ -114,8 +117,5 @@ Template.technologiesDescriptionsTabs.helpers({
   isActive: (_id) => Template.instance().currentId.get() === _id,
   isEditing: () => Template.instance().isEditing.get(),
   isStatusPublished: (status) => status === 'published',
-  currentDescription() {
-    const _id = Template.instance().currentId.get();
-    return TechnologiesDescriptions.findOne(_id);
-  }
+  currentDescription: () => TechnologiesDescriptions.findOne(Template.instance().currentId.get())
 });

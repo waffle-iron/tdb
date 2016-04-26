@@ -10,16 +10,7 @@ export const insert = new ValidatedMethod({
   name: 'technologies_descriptions.insert',
   validate: TechnologyDescriptionSchema.validator(),
   run(doc) {
-    TechnologiesDescriptions.insert(doc, (err, _id) => {
-      if (err) throw err;
-      return Technologies.update({
-        _id: doc.technologyId
-      }, {
-        $addToSet: {
-          descriptionsId: _id
-        }
-      });
-    });
+    return TechnologiesDescriptions.insert(doc);
   },
 });
 
@@ -74,17 +65,6 @@ export const remove = new ValidatedMethod({
     descriptionId: { type: String }
   }).validator(),
   run({ descriptionId }) {
-    const description = TechnologiesDescriptions.findOne(descriptionId);
-
-    TechnologiesDescriptions.remove(descriptionId, (err) => {
-      if (err) throw err;
-      return Technologies.update({
-        _id: description.technologyId
-      }, {
-        $pull: {
-          descriptionsId: descriptionId
-        }
-      });
-    });
+    return TechnologiesDescriptions.remove(descriptionId)
   },
 });

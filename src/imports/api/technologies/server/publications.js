@@ -32,9 +32,7 @@ Meteor.publishComposite('technologies.single', function(technologyId) {
     }, {
       find(technology) {
         return TechnologiesDescriptions.find({
-          _id: {
-            $in: technology.descriptionsId ? technology.descriptionsId : []
-          }
+          technologyId: technology._id
         });
       }
     }]

@@ -47,11 +47,6 @@ export const TechnologySchema = new SimpleSchema({
       type: 'tags'
     }
   },
-  descriptionsId: {
-    type: [String],
-    label: 'Descriptions',
-    optional: true
-  },
   contextualDescription: {
     type: [Schemas.contextualDescription],
     label: 'Contextual Descriptions',
