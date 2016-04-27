@@ -17,7 +17,7 @@ Template.technologiesInformationForm.helpers({
       doc: data.doc,
       type: data.type,
       meteormethod: data.meteormethod,
-      autoSave: data.autoSave || false,
+      autosave: data.autosave || false,
       singleMethodArgument: data.type === 'method-update'
     };
   }
