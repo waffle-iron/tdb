@@ -36,6 +36,14 @@
                           collectionId=_id
                           technologiesId=technologiesId}}
                       {{/panelContent}}
+                      {{#panelFooter}}
+                        {{#panelTools}}
+                          {{> deleteDragArea
+                            drake=getDrake
+                            collectionId=_id
+                            }}
+                        {{/panelTools}}
+                      {{/panelFooter}}                      
                     {{/panelContainer}}
                   {{/each}}
                 </div>
@@ -46,6 +54,12 @@
       </div>
     {{/perfectScrollbar}}
   </div>  
+</template>
+
+<template name="deleteDragArea">
+    <a class="delete-drag-area">
+      <i class="fa fa-trash"></i>
+    </a>
 </template>
 
 <template name="subCollectionsDragArea">

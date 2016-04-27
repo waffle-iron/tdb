@@ -1,3 +1,8 @@
+.out-mini-card {
+  .ibox-content {
+    background-color: rgba(255,0,0,0.2);
+  }
+}
 .tech-stash {
   .stash {
     height: 800px;
@@ -32,13 +37,15 @@
 
       .sub-collections-board {
         min-width: 400px;
-        
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+
         .sub-collection-drag-area {
           min-height: 300px
         }
 
-        display: flex;
-        flex-direction: row;
+
 
         .sub-collection-card {
           border:1px solid lightgray;

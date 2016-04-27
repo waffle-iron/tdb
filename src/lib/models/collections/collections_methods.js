@@ -47,6 +47,23 @@ Collections.methods.pushTechnology = new ValidatedMethod({
   }
 });
 
+Collections.methods.pullTechnology = new ValidatedMethod({
+name: 'Collections.methods.pullTechnology',
+  validate({ source, techId}) {
+    check(source, String);
+    check(techId, String);
+  },
+  run({ source, techId}) {
+    return Collections.update({
+      _id: source
+    }, {
+      $pull: {
+        technologiesId: techId
+      }
+    });
+  }
+});
+
 
 Collections.methods.moveTechnology = new ValidatedMethod({
   name: 'Collections.methods.moveTechnology',
