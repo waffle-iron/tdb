@@ -18,11 +18,11 @@
                 {{> technologiesDescriptionsForm currentDescription}}
               {{else}}
                 <div class="row animated fadeInLeft" >
-                  <label class="col-sm-2 text-right">Summary</label>
+                  <label class="col-sm-2">Summary</label>
                   <div class="col-sm-9">
                     <p>{{currentDescription.shortText}}</p>
                   </div>
-                  <label class="col-sm-2 text-right">Description</label>
+                  <label class="col-sm-2">Description</label>
                   <div class="col-sm-9">
                     {{{renderMarkdown currentDescription.longText}}}
                   </div> 

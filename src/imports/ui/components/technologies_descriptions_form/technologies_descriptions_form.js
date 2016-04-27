@@ -8,8 +8,8 @@ import './technologies_descriptions_form.html';
 
 AutoForm.hooks({
   'update-technologies-descriptions-form': {
-    onError(error) {
-      toastr.error(error.error);
+    onError(formType, error) {
+      toastr.error(error.toString(), 'Error');
     },
     onSuccess() {
       toastr.success('Description saved successfully');

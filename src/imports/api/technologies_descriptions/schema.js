@@ -29,7 +29,6 @@ export const TechnologyDescriptionSchema = new SimpleSchema({
   },
   longText: {
     type: String,
-    optional: true,
     label: 'Description',
     autoform: {
       type: 'markdown',
@@ -37,7 +36,6 @@ export const TechnologyDescriptionSchema = new SimpleSchema({
   },
   shortText: {
     type: String,
-    optional: true,
     label: 'Summary',
     max: 140,
   },
