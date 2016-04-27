@@ -1,18 +1,22 @@
 <template name="technologiesEntry">
   <div class="row">
-    <div class="col-lg-3">
-      {{> technologiesInformationCard tech}}
-      {{> technologiesInformationTable tech}}
-      <a 
-        class="btn btn-primary btn-block btn-outline btn-sm" 
-        href="{{pathFor 'technologies.edit' id=tech._id}}">
-        Edit
-      </a>
-    </div>
-    <div class="col-lg-9">
-      {{#panel title="Description"}}
-        {{{renderMarkdown tech.getPublishedDescription.longText}}}
-      {{/panel}}
-    </div>
+    {{#if Template.subscriptionsReady}}
+      <div class="col-lg-3">
+        {{> technologiesInformationCard tech}}
+        {{> technologiesInformationTable tech}}
+        <a 
+          class="btn btn-primary btn-block btn-outline btn-sm" 
+          href="{{pathFor 'technologies.edit' id=tech._id}}">
+          Edit
+        </a>
+      </div>
+      <div class="col-lg-9">
+        {{#panel title="Description"}}
+          {{{renderMarkdown tech.getPublishedDescription.longText}}}
+        {{/panel}}
+      </div>
+    {{else}}
+      {{> spinnerWave}}
+    {{/if}}
   </div>
 </template>
