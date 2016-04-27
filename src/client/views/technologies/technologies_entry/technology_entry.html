@@ -11,8 +11,7 @@
     </div>
     <div class="col-lg-9">
       {{#panel title="Description"}}
-        <p>{{tech.getPublishedDescription.shortText}}</p>
-        <p>{{tech.getPublishedDescription.longText}}</p>
+        {{{renderMarkdown tech.getPublishedDescription.longText}}}
       {{/panel}}
     </div>
   </div>
