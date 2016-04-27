@@ -55,14 +55,10 @@ Template.technologiesDescriptionsTabs.events({
     template.isEditing.set(true);
   },
   'click [data-action="hide-form"]': function(event, template) {
-    template.isEditing.set(false);
-  },
-  'click [data-action="switch-tab"]': function(event, template) {
-    event.preventDefault();
     if (template.isEditing.get()) {
       swal({
         title: 'Are you sure?',
-        text: 'Leaving a description while <b>editing</b> will discart all your changes.',
+        text: 'Cancel a description <b>editing</b> will discart all your changes.',
         type: 'info',
         showCancelButton: true,
         confirmButtonText: 'Yes',
@@ -75,6 +71,27 @@ Template.technologiesDescriptionsTabs.events({
     } else {
       template.currentId.set(this._id);
       template.isEditing.set(false);
+    }
+  },
+  'click [data-action="switch-tab"]': function(event, template) {
+    if (this._id !== template.currentId.get()) {
+      if (template.isEditing.get()) {
+        swal({
+          title: 'Are you sure?',
+          text: 'Leaving a description while <b>editing</b> will discart all your changes.',
+          type: 'info',
+          showCancelButton: true,
+          confirmButtonText: 'Yes',
+          closeOnConfirm: true,
+          html: true
+        }, () => {
+          template.currentId.set(this._id);
+          template.isEditing.set(false);
+        });
+      } else {
+        template.currentId.set(this._id);
+        template.isEditing.set(false);
+      }
     }
   },
   'click [data-action="publish-description"]': function(event, template) {
