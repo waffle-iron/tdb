@@ -32,9 +32,7 @@ accounts-password
 service-configuration
 risul:chance
 alanning:roles
-meteorhacks:npm
 mdg:camera-constraints
-npm-container
 matb33:collection-hooks
 lepozepo:cloudinary
 aldeed:autoform-bs-datepicker
@@ -112,4 +110,3 @@ velocityjs:velocityjs
 standard-minifier-css
 standard-minifier-js
 rubaxa:sortable
-ahref:dragula

@@ -1,4 +1,3 @@
-ahref:dragula@3.5.4
 accounts-base@1.2.7
 accounts-password@1.1.8
 ahref:flow-router-breadcrumb@1.1.0
@@ -53,16 +52,15 @@ chhib:selectize-bootstrap-3@0.0.1
 chrismbeckett:toastr@2.1.2_1
 cloudspider:icheck@1.0.2
 coffeescript@1.0.17
-comerc:autoform-selectize@2.2.5
-comerc:autoform-typeahead@1.0.4
+comerc:autoform-selectize@2.3.0
+comerc:autoform-typeahead@1.0.5
 comerc:bs-typeahead@1.0.2
 copleykj:tagstripper@1.0.0
-cosmos:browserify@0.9.4
 danappelxx:hover.css@1.0.0
 dburles:collection-helpers@1.0.4
 dburles:mongo-collection-instances@0.3.5
 ddp@1.2.5
-ddp-client@1.2.6
+ddp-client@1.2.7
 ddp-common@1.2.5
 ddp-rate-limiter@1.0.4
 ddp-server@1.2.6
@@ -94,7 +92,7 @@ jonblum:jquery-cropper@2.3.0
 jquery@1.11.8
 jss:flag-icon@0.7.3
 kadira:blaze-layout@2.3.0
-kadira:flow-router@2.11.0
+kadira:flow-router@2.12.1
 kevohagan:sweetalert@1.0.0
 lai:collection-extensions@0.2.1_1
 launch-screen@1.0.11
@@ -114,7 +112,6 @@ meteor-base@1.0.4
 meteorhacks:async@1.0.0
 meteorhacks:kadira@2.28.5
 meteorhacks:meteorx@1.4.1
-meteorhacks:npm@1.5.0
 meteorhacks:picker@1.0.3
 meteorhacks:search-source@1.4.3
 meteorhacks:subs-manager@1.6.4
@@ -137,7 +134,7 @@ meteortoys:throttle@2.1.0
 meteortoys:toykit@2.2.1
 minifier-css@1.1.11
 minifier-js@1.1.11
-minimongo@1.0.15
+minimongo@1.0.16
 mizzao:timesync@0.3.4
 mizzao:user-status@0.6.6
 mobile-experience@1.0.4
@@ -157,7 +154,6 @@ msavin:mongol@1.6.2
 natestrauser:animate-css@3.5.1
 newnectar:meteor-autoform-select-country-flags@0.0.1
 npm-bcrypt@0.8.5
-npm-container@1.1.0
 npm-mongo@1.4.43
 observe-sequence@1.0.11
 ordered-dict@1.0.7
@@ -179,8 +175,8 @@ reload@1.1.8
 retry@1.0.7
 reywood:publish-composite@1.4.2
 risul:chance@1.0.8
-rubaxa:sortable@1.3.0
 routepolicy@1.0.10
+rubaxa:sortable@1.3.0
 sacha:spin@2.3.1
 service-configuration@1.0.9
 session@1.1.5

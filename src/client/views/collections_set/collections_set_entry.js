@@ -1,3 +1,5 @@
+import dragula from 'dragula';
+
 Template.collectionsSetEntry.helpers({
   collectionsSet() {
     return CollectionsSet.findOne({
@@ -6,7 +8,6 @@ Template.collectionsSetEntry.helpers({
     });
   },
   drake() {
-    console.log(Template.instance().drake);
     return Template.instance().drake;
   }
 });
@@ -32,10 +33,10 @@ function handleErr(err) {
   }
 }
 
-Template.collectionsSetEntry.onCreated(function() {
+Template.collectionsSetEntry.onRendered(function() {
   this.subscribe('collectionsSet.single', FlowRouter.getParam('id'));
-  console.log(dragula);
   this.drake = dragula([], {
+    mirrorContainer: document.getElementById('__blaze-root'),
     copy(el) {
       return $(el).parent().data('drag') === 'stash';
     },
@@ -46,8 +47,8 @@ Template.collectionsSetEntry.onCreated(function() {
     removeOnSpill: true
   });
 
-  this.drake.on('drop', (el, target, source, sibling) => {
-      console.log(el, target, source, sibling);
+  this.drake
+    .on('drop', (el, target, source, sibling) => {
       let position = sibling ? $(sibling).index() - 1 : null;
       let techId = $(el).data('technology-id');
       let targetType = $(target).data('drag');

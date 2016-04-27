@@ -1,10 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { Technologies } from '../technologies.js';
-
+import { removeMarkdown} from 'remove-markdown';
 
 const TECH_ID_PAD_SIZE = 4;
 const SHORT_TEXT_TRUNCATE_AT = 144;
-let removeMarkdown = Meteor.npmRequire('remove-markdown');
 
 function generateShortDescription(userId, doc) {
   // create truncated shortText without markdown based on longText

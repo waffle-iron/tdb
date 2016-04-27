@@ -1,3 +1,4 @@
+import elasticsearch from 'elasticsearch';
 //
 //  Allow SimpleSchema to have esDriver field
 //
@@ -16,7 +17,7 @@ if (Meteor.isServer) {
   if (!esUrl) throw new Error('Please config ES_URL on settings.json');
 
   // instantiate elasticsearch from npm
-  let elasticsearch = Meteor.npmRequire('elasticsearch');
+  //let elasticsearch = Meteor.npmRequire('elasticsearch');
   let asyncEsClient = new elasticsearch.Client({
     host: esUrl
   });
