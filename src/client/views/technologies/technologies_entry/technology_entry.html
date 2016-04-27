@@ -1,3 +1,19 @@
 <template name="technologiesEntry">
-    This page is under construction
+  <div class="row">
+    <div class="col-lg-3">
+      {{> technologiesInformationCard tech}}
+      {{> technologiesInformationTable tech}}
+      <a 
+        class="btn btn-primary btn-block btn-outline btn-sm" 
+        href="{{pathFor 'technologies.edit' id=tech._id}}">
+        Edit
+      </a>
+    </div>
+    <div class="col-lg-9">
+      {{#panel title="Description"}}
+        <p>{{tech.getPublishedDescription.shortText}}</p>
+        <p>{{tech.getPublishedDescription.longText}}</p>
+      {{/panel}}
+    </div>
+  </div>
 </template>

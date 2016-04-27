@@ -1,18 +1,10 @@
-Template.technologiesEntry.helpers({
-  technologiesCardData() {
-    let technology = Technologies.findOne({_id: FlowRouter.getParam('id')});
+import { Template } from 'meteor/templating';
+import { FlowRouter } from 'meteor/kadira:flow-router';
 
-    return technology && {
-      name: technology.name,
-      imageUrl: technology.getShowcasedImage().src,
-      shortText: technology.getPublishedDescription().shortText,
-      tags: technology.tags,
-      attachmentsCount: technology.attachments && technology.attachments.length || 0,
-      organizationsCount: technology.organizations && technology.organizations.length || 0,
-      projectsCount: technology.projects && technology.projects.length || 0,
-      readinessScore: 1,
-      impactScore: 2,
-      status: technology.status
-    };
-  }
+Template.technologiesEntry.onCreated(function() {
+  this.subscribe('technologies.single', FlowRouter.getParam('id'));
+});
+
+Template.technologiesEntry.helpers({
+  tech: () => Technologies.findOne(FlowRouter.getParam('id')),
 });

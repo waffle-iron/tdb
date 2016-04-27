@@ -1,3 +1,7 @@
+/**
+ * context: {TechnologySchema}
+ */
+
 import { AutoForm } from 'meteor/aldeed:autoform';
 
 import './technologies_status_form.html';
