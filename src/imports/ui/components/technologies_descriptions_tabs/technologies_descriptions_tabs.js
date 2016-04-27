@@ -6,7 +6,7 @@ import { AutoForm } from 'meteor/aldeed:autoform';
 import { Technologies } from '../../../api/technologies/technologies';
 import { TechnologiesDescriptions } from '../../../api/technologies_descriptions/technologies_descriptions.js';
 
-import { insert, publish, remove, update } from '../../../api/technologies_descriptions/methods.js';
+import { publish, remove, update } from '../../../api/technologies_descriptions/methods.js';
 import './technologies_descriptions_tabs.html';
 
 Template.technologiesDescriptionsTabs.onCreated(function() {
@@ -45,6 +45,7 @@ Template.technologiesDescriptionsTabs.events({
   },
   'click [data-toggle="tab"]': function(event, template) {
     template.currentId.set(this._id);
+    template.isEditing.set(false);
   },
   'click [data-action="publish-description"]': function(event, template) {
     swal({

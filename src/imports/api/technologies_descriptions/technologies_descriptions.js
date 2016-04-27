@@ -5,3 +5,9 @@ export const TechnologiesDescriptions = new Mongo.Collection('technologies_descr
 
 TechnologiesDescriptions.attachSchema(TechnologyDescriptionSchema);
 TechnologiesDescriptions.attachBehaviour('timestampable');
+
+TechnologiesDescriptions.helpers({
+  modifiedAt() {
+    return this.updatedAt || this.createdAt;
+  }
+});

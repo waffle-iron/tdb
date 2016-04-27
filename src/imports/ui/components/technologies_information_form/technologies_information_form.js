@@ -2,20 +2,23 @@ import { AutoForm } from 'meteor/aldeed:autoform';
 
 import './technologies_information_form.html';
 
-AutoForm.hooks({
-  updateBasicInformationTechnologiesForm: {
-    onSuccess() {
-      let key = $(this.autoSaveChangedElement).attr('data-schema-key');
+Template.technologiesInformationForm.helpers({
+  options() {
+    const data = Template.instance().data;
 
-      // if (firstAttemptOnTags && firstAttemptOnSynonyms) {
-      toastr.success(`Technology <b>${key}</b> updated successfully`, 'Success');
-      // }
+    if (!data) {
+      throw Meteor.Error(
+        '[technologiesInformationForm]', 'Form options are required.'
+      );
+    }
 
-      // if (key === 'synonyms') firstAttemptOnSynonyms = true;
-      // if (key === 'tags') firstAttemptOnTags = true;
-    },
-    onError(formType, error) {
-      toastr.error(error.toString(), 'Error');
-    },
+    return {
+      id: data.id,
+      doc: data.doc,
+      type: data.type,
+      meteormethod: data.meteormethod,
+      autoSave: data.autoSave || false,
+      singleMethodArgument: data.type === 'method-update'
+    };
   }
 });
