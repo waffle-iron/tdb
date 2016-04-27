@@ -34,10 +34,13 @@ function handleErr(err) {
 
 Template.collectionsSetEntry.onCreated(function() {
   this.subscribe('collectionsSet.single', FlowRouter.getParam('id'));
-
+  //console.log(dragula);
   this.drake = dragula([], {
     copy(el) {
       return $(el).parent().data('drag') === 'stash';
+    },
+    accepts(el, target, source, sibling) {
+      return $(target).data('drag') === 'collection';
     },
     revertOnSpill: true
   });
