@@ -1,5 +1,5 @@
 /**
- * context: {Schema.Technology}
+ * context: {TechnologySchema}
  */
 
 import { AutoForm } from 'meteor/aldeed:autoform';
