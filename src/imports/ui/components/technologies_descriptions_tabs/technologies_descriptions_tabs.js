@@ -26,10 +26,17 @@ Template.technologiesDescriptionsTabs.onCreated(function() {
   let template = this;
   TechnologiesDescriptions.find({
     technologyId: this.data._id
-  }).observe({
-    changed: (newDocument) => {
-      if (newDocument.createdBy === Meteor.userId()) {
-        template.currentId.set(newDocument._id);
+  }).observeChanges({
+    changed: (id, fields) => {
+      const userId = Meteor.userId();
+      if (fields.createdBy === userId) {
+        template.currentId.set(id);
+        template.isEditing.set(true);
+      }
+
+      if (fields.updatedBy === userId) {
+        template.currentId.set(id);
+        template.isEditing.set(false);
       }
     }
   });
@@ -44,12 +51,31 @@ Template.technologiesDescriptionsTabs.onCreated(function() {
 });
 
 Template.technologiesDescriptionsTabs.events({
-  'click [data-action="toggle-form"]': function(event, template) {
+  'click [data-action="show-form"]': function(event, template) {
     template.isEditing.set(true);
   },
-  'click [data-toggle="tab"]': function(event, template) {
-    template.currentId.set(this._id);
+  'click [data-action="hide-form"]': function(event, template) {
     template.isEditing.set(false);
+  },
+  'click [data-action="switch-tab"]': function(event, template) {
+    event.preventDefault();
+    if (template.isEditing.get()) {
+      swal({
+        title: 'Are you sure?',
+        text: 'Leaving a description while <b>editing</b> will discart all your changes.',
+        type: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        closeOnConfirm: true,
+        html: true
+      }, () => {
+        template.currentId.set(this._id);
+        template.isEditing.set(false);
+      });
+    } else {
+      template.currentId.set(this._id);
+      template.isEditing.set(false);
+    }
   },
   'click [data-action="publish-description"]': function(event, template) {
     swal({
@@ -78,6 +104,7 @@ Template.technologiesDescriptionsTabs.events({
           descriptionId: description._id
         }, (publishErr, publishRes) => {
           if (publishErr) throw publishErr;
+          template.isEditing.set(false);
           return toastr.success('The description was <b>saved</b> and <b>published</b>!', 'Success');
         });
       });
@@ -99,6 +126,7 @@ Template.technologiesDescriptionsTabs.events({
       }, (err, res) => {
         if (err) throw err;
         template.selectLastDescription();
+        template.isEditing.set(false);
         return toastr.success('The description was removed', 'Success');
       });
     });

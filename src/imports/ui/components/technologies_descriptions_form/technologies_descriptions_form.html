@@ -2,7 +2,8 @@
 	<div data-template="technologies-descriptions-form" class="animated fadeInLeft">
 		{{#autoForm doc=this 
 	    collection="TechnologiesDescriptions" 
-	    id="updateDescriptionForm" type="method-update"
+	    id="update-technologies-descriptions-form" 
+	    type="method-update"
 	    meteormethod="technologies_descriptions.update" 
 	    singleMethodArgument=true
 	    class="form-horizontal"}} 
@@ -22,12 +23,27 @@
 	  </div> -->
 	  <div class="col-sm-9 col-md-offset-2">
 	    <div class="btn-group btn-block">
-	      <button class="btn btn-sm btn-primary btn-outline" type="button" data-action="publish-description">
+	      <button 
+	      	class="btn btn-sm btn-primary btn-outline" 
+	      	type="button" 
+	      	data-action="publish-description">
 	        Publish
 	      </button>
-	      <button class="btn btn-sm btn-primary btn-outline" type="submit">Save draft</button>
-	      <button class="btn btn-sm btn-outline btn-primary" type="button">Cancel</button>
-	      <button class="btn btn-sm btn-outline btn-primary" type="button" data-action="delete-description">
+	      <button 
+	      	class="btn btn-sm btn-primary btn-outline" 
+	      	type="submit">
+	      	Save draft
+	      </button>
+	      <button 
+	      	class="btn btn-sm btn-outline btn-primary" 
+	      	type="button"
+	      	data-action="hide-form">
+	      	Cancel
+	      	</button>
+	      <button 
+	      	class="btn btn-sm btn-outline btn-primary"
+	        type="button" 
+	        data-action="delete-description">
 	        Delete
 	      </button>
 	    </div>

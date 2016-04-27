@@ -4,7 +4,7 @@
       <ul class="nav nav-tabs">
         {{#each this.descriptions}} 
         <li class="{{#if isActive _id}}active{{/if}}">
-          <a data-toggle="tab" href="#tab-{{_id}}">
+          <a data-action="switch-tab" href="#tab-{{_id}}">
             {{capitalizeFirstLetter status}} <span style="color:#c2c2c2; font-weight:300; font-style: italic; font-size:85%;"> – {{moFromNow modifiedAt true}}</span>
           </a>
         </li>
@@ -17,26 +17,28 @@
               {{#if isEditing}}
                 {{> technologiesDescriptionsForm currentDescription}}
               {{else}}
-                <label class="col-sm-2 text-right">Summary</label>
-                <div class="col-sm-9">
-                  <p>{{currentDescription.shortText}}</p>
-                </div>
-                <label class="col-sm-2 text-right">Description</label>
-                <div class="col-sm-9">
-                  {{{renderMarkdown currentDescription.longText}}}
-                </div> 
-                <div class="col-sm-9 col-md-offset-2">
+                <div class="row animated fadeInLeft" >
+                  <label class="col-sm-2 text-right">Summary</label>
+                  <div class="col-sm-9">
+                    <p>{{currentDescription.shortText}}</p>
+                  </div>
+                  <label class="col-sm-2 text-right">Description</label>
+                  <div class="col-sm-9">
+                    {{{renderMarkdown currentDescription.longText}}}
+                  </div> 
+                  <div class="col-sm-9 col-md-offset-2">
 
-                  <p class="text-right">
-                    <small>
-                      <i>
-                        Latest edit done by 
-                        {{currentDescription.modifiedByUser.profile.fullName}} 
-                        {{moFromNow currentDescription.modifiedAt}}
-                      </i>
-                    </small> 
-                  </p>
-                  <button class="btn btn-primary btn-outline btn-sm btn-block" data-action="toggle-form">Edit</button>
+                    <p class="text-right">
+                      <small>
+                        <i>
+                          Latest edit done by 
+                          {{currentDescription.modifiedByUser.profile.fullName}} 
+                          {{moFromNow currentDescription.modifiedAt}}
+                        </i>
+                      </small> 
+                    </p>
+                    <button class="btn btn-primary btn-outline btn-sm btn-block" data-action="show-form">Edit</button>
+                  </div>
                 </div> 
               {{/if}}
             {{else}}
