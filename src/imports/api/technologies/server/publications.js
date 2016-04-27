@@ -34,7 +34,20 @@ Meteor.publishComposite('technologies.single', function(technologyId) {
         return TechnologiesDescriptions.find({
           technologyId: technology._id
         });
-      }
+      },
+      children: [{
+        find(description) {
+          return Meteor.users.find({
+            _id: {
+              $in: [description.createdBy, description.updatedBy]
+            }
+          }, {
+            fields: {
+              'profile.fullName': 1
+            }
+          });
+        }
+      }]
     }]
   };
 });

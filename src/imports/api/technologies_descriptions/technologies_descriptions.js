@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import { Mongo } from 'meteor/mongo';
 import { TechnologyDescriptionSchema } from './schema.js';
 
@@ -9,5 +10,8 @@ TechnologiesDescriptions.attachBehaviour('timestampable');
 TechnologiesDescriptions.helpers({
   modifiedAt() {
     return this.updatedAt || this.createdAt;
+  },
+  modifiedByUser() {
+    return Meteor.users.findOne(this.updatedBy || this.createdBy);
   }
 });
