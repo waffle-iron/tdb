@@ -23,7 +23,7 @@ Collections.methods.pushTechnology = new ValidatedMethod({
   validate({ collectionId, techId, position }) {
     check(collectionId, String);
     check(techId, String);
-    check(position, Match.Optional(Number));
+    check(position, Match.Maybe(Number));
   },
   run({ collectionId, techId, position }) {
     let pushedObj = { $each: [techId] };
@@ -47,6 +47,23 @@ Collections.methods.pushTechnology = new ValidatedMethod({
   }
 });
 
+Collections.methods.pullTechnology = new ValidatedMethod({
+name: 'Collections.methods.pullTechnology',
+  validate({ source, techId}) {
+    check(source, String);
+    check(techId, String);
+  },
+  run({ source, techId}) {
+    return Collections.update({
+      _id: source
+    }, {
+      $pull: {
+        technologiesId: techId
+      }
+    });
+  }
+});
+
 
 Collections.methods.moveTechnology = new ValidatedMethod({
   name: 'Collections.methods.moveTechnology',
@@ -54,7 +71,7 @@ Collections.methods.moveTechnology = new ValidatedMethod({
     check(source, String);
     check(target, String);
     check(techId, String);
-    check(position, Match.Optional(Number));
+    check(position, Match.Maybe(Number));
   },
   run({ source, target, techId, position }) {
     let sourceCollection = Collections.findOne({

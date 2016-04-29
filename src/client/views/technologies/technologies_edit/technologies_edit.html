@@ -1,48 +1,51 @@
 <template name="technologiesEdit">
-  {{#panel title="Edit Technology Form" }}
-  {{#if Template.subscriptionsReady}}
-    {{#autoForm
-      collection="Technologies"
-      id="updateTechnologiesForm" 
-      type="method-update" 
-      doc=tech
-      singleMethodArgument=true
-      meteormethod="Technologies.methods.update" 
-      class="form-horizontal"}}
-        <h2>Basic Information</h2>
-        <hr>
+  <div class="row">
+    
+    <div class="col-lg-3">
+      <div style="position: fixed; width: 22.5%">
+        {{> technologiesInformationCard tech}}
 
-        {{> afQuickField name="techId" label-class="col-sm-2" input-col-class="col-sm-9" disabled="true"}}
-        {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-        {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-        {{> afQuickField name="status" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-        {{> afQuickField name="tags" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-        {{> afQuickField name="images" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-
-        <h2>Technology Descriptions</h2>
-        <hr>
-        {{> afQuickField name="description" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-
-        <h2>Contextual Descriptions</h2>
-        <hr>
-        {{> afQuickField name="contextualDescription" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-
-        <h2>Relations</h2>
-        <hr>
-
-        {{> afQuickField name="organizationsId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-        {{> afQuickField name="projectsId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-            
-        
-        {{> attachmentsFieldInput name="attachmentsId" }}
-
-        <hr> 
-        {{> editFormButtons buttonClass="col-sm-9" offsetClass="col-sm-offset-2" cancelPath='technologies.dashboard'}}
-    {{/autoForm}}
-  {{else}}
-    <div class="modal-body">
-      {{> spinner}}
+        <div class="ibox">
+          <div class="ibox-content">
+            {{> technologiesStatusForm tech}}  
+          </div>
+        </div>
+      </div>
     </div>
-  {{/if}}
-  {{/panel}}
+    <div class="col-lg-9">
+      {{#if Template.subscriptionsReady}}
+
+        {{#panel title="Basic Information"}}
+          {{> technologiesInformationForm
+            id="update-technologies-information-form"
+            type="method-update"
+            meteormethod="technologies.update"
+            doc=tech
+            autosave=true}}
+        {{/panel}}
+
+        {{> technologiesDescriptionsPanel tech}}
+        {{#panel title="Relations"}}
+          {{#autoForm
+            collection="Technologies"
+            id="update-technologies-relations-form" 
+            type="method-update" 
+            doc=tech
+            singleMethodArgument=true
+            meteormethod="technologies.update" 
+            class="form-horizontal"
+            autosave=true}}
+
+            {{> afQuickField name="organizationsId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+
+            {{> afQuickField name="projectsId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
+
+            {{> attachmentsFieldInput name="attachmentsId" }}
+          {{/autoForm}}
+        {{/panel}}
+      {{else}}
+        {{> spinnerWave}}
+      {{/if}}  
+    </div>
+  </div>
 </template>

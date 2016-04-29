@@ -1,3 +1,5 @@
+import { Technologies } from '../../../imports/api/technologies/technologies';
+
 Projects.methods = {};
 
 Projects.methods.add = new ValidatedMethod({

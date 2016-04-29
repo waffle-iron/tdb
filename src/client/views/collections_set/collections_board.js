@@ -27,3 +27,9 @@ Template.subCollectionsDragArea.helpers({
     });
   }
 });
+
+
+Template.deleteDragArea.onRendered(function() {
+  let drake = Template.instance().data.drake;
+  drake.containers.push(this.find('.delete-drag-area'));
+});

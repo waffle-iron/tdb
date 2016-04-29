@@ -4,16 +4,18 @@
       <a href="{{pathFor 'technologies.entry' id=_id}}">
           {{> safeImg 
             url=(getCloudinaryMiniCard (s3pathImages getShowcasedImage.src)) 
+            width=85
+            height=50
             }}
         </a>
       <div class="info">
         <h5 class="card-name">
             <a href="{{pathFor 'technologies.entry' id=_id}}">
-              <span class="card-id">{{evId}}0001</span> {{name}}
+              <span class="card-id">{{evId}}</span> {{name}}
             </a>
           </h5>
         <p class="description">
-          {{getPublishedDescription.shortText}}Decrição teste aaaaaadasdasasdasdasdasdasdasddsadasdasdasdasdasdasd
+          {{getPublishedDescription.shortText}}
         </p>
       </div>
     </div>

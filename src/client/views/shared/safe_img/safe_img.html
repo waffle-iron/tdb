@@ -7,7 +7,13 @@
 <template name="safeImg">
   {{#if url}}
     {{#if loadingImg}}
-      {{> spinnerWave}}
+      {{#if $and width height}}
+        <div style="width: {{width}}px; height: {{height}}px">
+          {{> spinnerWave}}
+        </div>
+      {{else}}
+        {{> spinnerWave}}
+      {{/if}}
     {{/if}}
     
     {{#unless error}}

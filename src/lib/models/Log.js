@@ -1,3 +1,6 @@
+import { Technologies } from '../../imports/api/technologies/technologies.js';
+
+
 Logs = new Mongo.Collection('logs');
 
 

@@ -1,3 +1,5 @@
+import { Technologies } from '../../../../imports/api/technologies/technologies.js';
+
 Template.technologiesDashboardStat.onCreated(function() {
   this.subscribe('technologies-status-counter');
   this.subscribe('last-technology-added');
@@ -24,4 +26,3 @@ Template.technologiesDashboardStat.helpers({
     });
   }
 });
-

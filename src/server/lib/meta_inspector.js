@@ -1,4 +1,4 @@
-let MetaInspector = Meteor.npmRequire('node-metainspector');
+import MetaInspector from 'node-metainspector';
 
 Meteor.methods({
   getMetadataFromUrl: function(url) {
