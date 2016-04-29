@@ -7,10 +7,10 @@ import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { AutoForm } from 'meteor/aldeed:autoform';
 
-import { Technologies } from '../../../api/technologies/technologies';
-import { TechnologiesDescriptions } from '../../../api/technologies_descriptions/technologies_descriptions.js';
+import { Technologies } from '../../../../api/technologies/technologies';
+import { TechnologiesDescriptions } from '../../../../api/technologies_descriptions/technologies_descriptions.js';
 
-import { publish, remove, update } from '../../../api/technologies_descriptions/methods.js';
+import { publish, remove, update } from '../../../../api/technologies_descriptions/methods.js';
 import './technologies_descriptions_tabs.html';
 
 Template.technologiesDescriptionsTabs.onCreated(function() {

@@ -14,6 +14,17 @@
         {{#panel title="Description"}}
           {{{renderMarkdown tech.getPublishedDescription.longText}}}
         {{/panel}}
+        {{#panel title="Organizations"}}
+          {{#with tech.organizations}}
+            {{> masonryGrid items=tech.organizations template='orgCard'}}
+          {{/with}}
+        {{/panel}}
+        {{#panel title="Projects"}}
+          {{> masonryGrid items=tech.projects template='projectsCard'}}
+        {{/panel}}
+        {{#panel title="Attachments"}}
+          {{> masonryGrid items=tech.attachments template='attachmentsCard'}}
+        {{/panel}}
       </div>
     {{else}}
       {{> spinnerWave}}

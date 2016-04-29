@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { Template } from 'meteor/templating';
 
-import { insert } from '../../../api/technologies_descriptions/methods.js';
-import { DESCRIPTION_STATUS } from '../../../api/technologies_descriptions/schema.js';
+import { insert } from '../../../../api/technologies_descriptions/methods.js';
+import { DESCRIPTION_STATUS } from '../../../../api/technologies_descriptions/schema.js';
 
 import './technologies_descriptions_panel.html';
 

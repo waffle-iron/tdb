@@ -15,6 +15,27 @@ Technologies.helpers({
       technologyId: this._id
     });
   },
+  organizations() {
+    return Organizations.find({
+      _id: {
+        $in: this.organizationsId || []
+      }
+    });
+  },
+  projects() {
+    return Projects.find({
+      _id: {
+        $in: this.projectsId || []
+      }
+    });
+  },
+  attachments() {
+    return Attachments.find({
+      _id: {
+        $in: this.attachmentsId || []
+      }
+    });
+  },
   getPublishedDescription() {
     const publishedDescription = TechnologiesDescriptions.findOne({
       technologyId: this._id,

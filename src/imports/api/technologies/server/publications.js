@@ -7,9 +7,81 @@ import { Counts } from 'meteor/tmeasday:publish-counts';
 import { Technologies } from '../technologies.js';
 import { TechnologiesDescriptions } from '../../technologies_descriptions/technologies_descriptions';
 
-Meteor.publishComposite('technologies.single', function(technologyId) {
+/**
+ * Publish as sigle technology
+ * @param  {String} technologyId The technology _id.
+ * @param  {Boolean} options.organizations  If {true}, publish the related organizations. Default {false}.
+ * @param  {Boolean} options.projects If {true}, publish the related projects. Default {false}.
+ * @param  {Boolean} options.attachments If {true}, publish the related attachments. Default {false}.
+ */
+Meteor.publishComposite('technologies.single', function(technologyId, options = {
+  organizations: false,
+  projects: false,
+  attachments: false
+}) {
   check(technologyId, String);
+  check(options, Object);
+  if (options.organizations !== undefined) check(options.organizations, Boolean);
+  if (options.projects !== undefined) check(options.projects, Boolean);
+  if (options.attachments !== undefined) check(options.attachments, Boolean);
+
   this.unblock();
+
+  let children = [{
+    find(technology) {
+      if (technology.images) {
+        let imagesId = _.pluck(technology.images, 'src') || [];
+        return Images.find({
+          _id: {
+            $in: imagesId
+          }
+        });
+      }
+    },
+  }, {
+    find(technology) {
+      return TechnologiesDescriptions.find({
+        technologyId: technology._id
+      });
+    },
+    children: [{
+      find(description) {
+        return Meteor.users.find({
+          _id: {
+            $in: [description.createdBy, description.updatedBy]
+          }
+        }, {
+          fields: {
+            'profile.fullName': 1
+          }
+        });
+      }
+    }]
+  }];
+
+  if (options.organizations) {
+    children.push({
+      find(technology) {
+        return Organizations.find({ _id: { $in: technology.organizationsId || [] } });
+      }
+    });
+  }
+
+  if (options.projects) {
+    children.push({
+      find(technology) {
+        return Projects.find({ _id: { $in: technology.projectsId || [] } });
+      }
+    });
+  }
+
+  if (options.attachments) {
+    children.push({
+      find(technology) {
+        return Attachments.find({ _id: { $in: technology.attachmentsId || [] } });
+      }
+    });
+  }
 
   return {
     find() {
@@ -18,37 +90,7 @@ Meteor.publishComposite('technologies.single', function(technologyId) {
         _id: technologyId
       });
     },
-    children: [{
-      find(technology) {
-        if (technology.images) {
-          let imagesId = _.pluck(technology.images, 'src') || [];
-          return Images.find({
-            _id: {
-              $in: imagesId
-            }
-          });
-        }
-      },
-    }, {
-      find(technology) {
-        return TechnologiesDescriptions.find({
-          technologyId: technology._id
-        });
-      },
-      children: [{
-        find(description) {
-          return Meteor.users.find({
-            _id: {
-              $in: [description.createdBy, description.updatedBy]
-            }
-          }, {
-            fields: {
-              'profile.fullName': 1
-            }
-          });
-        }
-      }]
-    }]
+    children: children
   };
 });
 
