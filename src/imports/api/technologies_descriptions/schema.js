@@ -31,13 +31,19 @@ export const TechnologyDescriptionSchema = new SimpleSchema({
     type: String,
     label: 'Description',
     autoform: {
-      type: 'markdown',
+      type: 'markdownEditor',
     }
   },
   shortText: {
     type: String,
     label: 'Summary',
     max: 140,
+    autoform: {
+      afFieldInput: {
+        type: 'textarea',
+        rows: 4
+      }
+    }
   },
   applications: {
     type: [String],
