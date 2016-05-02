@@ -92,7 +92,7 @@ Schemas.Description = new SimpleSchema({
   longText: {
     type: String,
     autoform: {
-      type: 'markdown',
+      type: 'markdownEditor',
     }
   },
   shortText: {
