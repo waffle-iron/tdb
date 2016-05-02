@@ -33,7 +33,7 @@ function handleErr(err) {
   }
 }
 
-Template.collectionsSetEntry.onRendered(function() {
+Template.collectionsSetEntry.onCreated(function() {
   this.subscribe('collectionsSet.single', FlowRouter.getParam('id'));
   this.drake = dragula([], {
     mirrorContainer: document.getElementById('__blaze-root'),
