@@ -1,8 +1,8 @@
 <template name="technologiesImagesItem">
   <div 
   	data-template="technologies-images-item"
-  	class="{{#if showcased}}showcased{{/if}}" 
-  	data-action="select-image">
+  	class="{{#if isShowcased}}showcased{{/if}}" 
+  	data-action="set-showcased">
     {{#with image src}}
     	<img 
     		src="{{getCloudinaryCard (s3pathImages _id) imageOptions}}" 

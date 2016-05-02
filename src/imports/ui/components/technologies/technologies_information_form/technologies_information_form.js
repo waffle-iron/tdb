@@ -13,23 +13,6 @@ import { AutoForm } from 'meteor/aldeed:autoform';
 
 import './technologies_information_form.html';
 
-Template.technologiesInformationForm.events({
-  'click [data-action="select-image"]': function(event, template) {
-    const imageId = this.src;
-
-    Meteor.call('technologies.updateShowcasedImage', {
-      _id: Template.instance().data.doc._id,
-      imageId: imageId
-    }, (err, res) => {
-      if (err) {
-        toastr.error(err.error, 'Error');
-        throw err;
-      }
-      toastr.success('Image updated successfully', 'Success');
-    });
-  }
-});
-
 Template.technologiesInformationForm.helpers({
   options() {
     const data = Template.instance().data;
