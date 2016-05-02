@@ -34,7 +34,7 @@ projectsRoutes.route('/:id/entry', {
     let project = Projects.findOne({
       _id: FlowRouter.getParam('id')
     });
-    return project && project.name;
+    return project && project.name || 'Unknown Project';
   },
   action() {
     BlazeLayout.render('defaultLayout', {
@@ -55,12 +55,20 @@ projectsRoutes.route('/:id/edit', {
   },
 });
 
-projectsRoutes.route('/:projectId/collections-set/:id', {
+projectsRoutes.route('/:id/collections-set/:cSetId', {
   name: 'collectionsSet.entry',
   parent: 'projects.entry',
+  title() {
+    let collectionSet = CollectionsSet.findOne({
+      _id: FlowRouter.getParam('cSetId')
+    });
+    return collectionSet && collectionSet.name || 'Unknown Collection Set';
+  },
   action() {
     BlazeLayout.render('defaultLayout', {
-      main: 'collectionsSetEntry'
+      main: 'collectionsSetEntry',
+      noPadding: true,
+      pageHeading: true
     });
   },
 });

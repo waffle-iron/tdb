@@ -3,8 +3,8 @@ import dragula from 'dragula';
 Template.collectionsSetEntry.helpers({
   collectionsSet() {
     return CollectionsSet.findOne({
-      _id: FlowRouter.getParam('id'),
-      projectId: FlowRouter.getParam('projectId')
+      _id: FlowRouter.getParam('cSetId'),
+      projectId: FlowRouter.getParam('id')
     });
   },
   drake() {
@@ -15,8 +15,8 @@ Template.collectionsSetEntry.helpers({
 Template.collectionsSetEntry.events({
   'click .new-collection': function(event, template) {
     Modal.show('collectionsAdd', {
-      projectId: FlowRouter.getParam('projectId'),
-      collectionsSetId: FlowRouter.getParam('id')
+      projectId: FlowRouter.getParam('id'),
+      collectionsSetId: FlowRouter.getParam('cSetId')
     });
   }
 });
@@ -34,7 +34,7 @@ function handleErr(err) {
 }
 
 Template.collectionsSetEntry.onCreated(function() {
-  this.subscribe('collectionsSet.single', FlowRouter.getParam('id'));
+  this.subscribe('collectionsSet.single', FlowRouter.getParam('cSetId'));
   this.drake = dragula([], {
     mirrorContainer: document.getElementById('__blaze-root'),
     copy(el) {
