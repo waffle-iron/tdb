@@ -58,7 +58,7 @@ Template.technologiesDescriptionsTabs.events({
     if (template.isEditing.get()) {
       swal({
         title: 'Are you sure?',
-        text: 'Cancel a description <b>editing</b> will discart all your changes.',
+        text: 'Cancel a description <b>editing</b> will discard all your changes.',
         type: 'info',
         showCancelButton: true,
         confirmButtonText: 'Yes',
@@ -154,5 +154,13 @@ Template.technologiesDescriptionsTabs.helpers({
   isActive: (_id) => Template.instance().currentId.get() === _id,
   isEditing: () => Template.instance().isEditing.get(),
   isStatusPublished: (status) => status === 'published',
-  currentDescription: () => TechnologiesDescriptions.findOne(Template.instance().currentId.get())
+  currentDescription: () => TechnologiesDescriptions.findOne(Template.instance().currentId.get()),
+  descriptionsByModifiedAt: () =>
+    Template.instance().data
+    .descriptions()
+    .fetch()
+    .sort((previous, next) =>
+      next.modifiedAt() - previous.modifiedAt())
+
+
 });

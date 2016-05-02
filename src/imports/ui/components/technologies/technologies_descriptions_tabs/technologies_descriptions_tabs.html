@@ -2,7 +2,7 @@
   <div class="tabs-container" data-template="technologies-descriptions-tabs">
     <div class="tabs-left">
       <ul class="nav nav-tabs">
-        {{#each this.descriptions}} 
+        {{#each descriptionsByModifiedAt}} 
         <li class="{{#if isActive _id}}active{{/if}}">
           <a data-action="switch-tab" href="#tab-{{_id}}">
             {{capitalizeFirstLetter status}} <span style="color:#c2c2c2; font-weight:300; font-style: italic; font-size:85%;"> – {{moFromNow modifiedAt true}}</span>
