@@ -1,0 +1,42 @@
+[data-template="technologies-information-form"] {
+  .autoform-tags-field {
+    .bootstrap-tagsinput {
+      .tag.label.label-info {
+        background-color: #467ec1 !important;
+      }
+    }
+  }
+  .help-block {
+    margin-top: 12px;
+  }
+
+   .col-sm-3 {
+    padding: 5px;
+    height: 180px;
+    width: 180px;
+    transition: all 0.3s ease;
+    &.showcased {
+      -webkit-box-shadow: inset 0px 1px 10px 13px rgba(80, 133, 196, 1);
+      -moz-box-shadow: inset 0px 1px 10px 13px rgba(80, 133, 196, 1);
+      box-shadow: inset 0px 1px 10px 13px rgba(80, 133, 196, 1);
+    }
+    &:hover:not(:first-child) {
+      cursor: pointer;
+      -webkit-box-shadow: inset 0px 1px 10px 13px rgba(80, 133, 196, 1);
+      -moz-box-shadow: inset 0px 1px 10px 13px rgba(80, 133, 196, 1);
+      box-shadow: inset 0px 1px 10px 13px rgba(80, 133, 196, 1);
+    }
+  }
+  img {
+    border-radius: 3px;
+  }
+  .upload-image-box {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    border: 2px dotted #D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}

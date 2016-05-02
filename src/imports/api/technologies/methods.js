@@ -42,3 +42,88 @@ export const remove = new ValidatedMethod({
     });
   }
 });
+
+
+export const linkImage = new ValidatedMethod({
+  name: 'technologies.linkImage',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    imageId: { type: String }
+  }).validator(),
+  run({ _id, imageId }) {
+    checkPermissions();
+    const technology = Technologies.findOne(_id);
+    const image = technology.images.find(i => i.src === imageId);
+
+    if (image) {
+      throw new Meteor.Error('technologies.linkImage', 'Image already linked with the given technology.');
+    }
+
+    return Technologies.update(_id, {
+      $push: {
+        images: {
+          src: imageId,
+          showcased: false
+        }
+      }
+    });
+  }
+});
+
+export const unlinkImage = new ValidatedMethod({
+  name: 'technologies.unlinkImage',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    imageId: { type: String }
+  }).validator(),
+  run({ _id, imageId }) {
+    checkPermissions();
+    const technology = Technologies.findOne(_id);
+    const image = technology.images.find(i => i.src === imageId);
+    return Technologies.update(_id, {
+      $pull: {
+        images: image
+      }
+    });
+  }
+});
+
+/**
+ * Update the current showcased image of a given technology.
+ * - It will update the current showcased image to false
+ * - And then update the new image with the given imageId to true
+ * @param {String} _id The technology _id
+ * @param {String} imageId The image _id
+ */
+export const updateShowcasedImage = new ValidatedMethod({
+  name: 'technologies.updateShowcasedImage',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    imageId: { type: String }
+  }).validator(),
+  run({ _id, imageId }) {
+    checkPermissions();
+    const technology = Technologies.findOne(_id);
+    const currentShowcasedImage = technology.images.find(i => i.showcased);
+
+    if (currentShowcasedImage) {
+      Technologies.update({
+        _id: _id,
+        'images.src': currentShowcasedImage.src
+      }, {
+        $set: {
+          'images.$.showcased': false
+        }
+      });
+    }
+
+    return Technologies.update({
+      _id: _id,
+      'images.src': imageId
+    }, {
+      $set: {
+        'images.$.showcased': true
+      }
+    });
+  }
+});

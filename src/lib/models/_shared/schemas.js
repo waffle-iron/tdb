@@ -207,7 +207,7 @@ Schemas.Image = new SimpleSchema({
     type: String,
     autoform: {
       afFieldInput: {
-        type: 'fileUpload',
+        type: 'upload',
         collection: 'Images',
         label: 'Choose file',
         //  uploadProgressTemplate: 'customProgressBar'

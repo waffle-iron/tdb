@@ -1,0 +1,18 @@
+.item-showcased-shadow {
+  -webkit-box-shadow: inset 0px 1px 10px 13px rgba(80, 133, 196, 1);
+  -moz-box-shadow: inset 0px 1px 10px 13px rgba(80, 133, 196, 1);
+  box-shadow: inset 0px 1px 10px 13px rgba(80, 133, 196, 1);
+}
+
+[data-template="technologies-images-item"] {
+  &.showcased {
+    &:extend(.item-showcased-shadow);
+  }
+  &:hover {
+    cursor: pointer;
+    &:extend(.item-showcased-shadow);
+  }
+  img {
+    border-radius: 3px;
+  }
+}

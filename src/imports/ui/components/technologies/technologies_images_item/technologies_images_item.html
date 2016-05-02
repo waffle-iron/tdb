@@ -1,0 +1,13 @@
+<template name="technologiesImagesItem">
+  <div 
+  	data-template="technologies-images-item"
+  	class="{{#if showcased}}showcased{{/if}}" 
+  	data-action="select-image">
+    {{#with image src}}
+    	<img 
+    		src="{{getCloudinaryCard (s3pathImages _id) imageOptions}}" 
+    		class="img-responsive" 
+    		alt="">
+    {{/with}}
+  </div>
+</template>

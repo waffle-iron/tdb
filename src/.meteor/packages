@@ -4,6 +4,9 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
+tdb:autoform-file
+tdb:autoform-tags
+
 less
 jquery
 twbs:bootstrap
@@ -74,7 +77,6 @@ meteorhacks:unblock
 ecmascript
 es5-shim
 sacha:spin
-tdb:autoform-tags
 rafa93br:autoform-markdown
 fourseven:scss
 cfs:s3
@@ -97,7 +99,7 @@ meteorhacks:search-source
 dferber:reactive-var-toggle
 pauldowman:dotenv
 meteorhacks:kadira
-yogiben:autoform-file
+
 comerc:bs-typeahead
 comerc:autoform-typeahead
 harrison:papa-parse
@@ -112,3 +114,4 @@ standard-minifier-css
 standard-minifier-js
 rubaxa:sortable
 lnmunhoz:autoform-markdown-editor
+rafa93br:autoform-upload
