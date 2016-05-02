@@ -58,7 +58,7 @@ Template.technologiesDescriptionsTabs.events({
     if (template.isEditing.get()) {
       swal({
         title: 'Are you sure?',
-        text: 'Cancel a description <b>editing</b> will discart all your changes.',
+        text: 'Cancel a description <b>editing</b> will discard all your changes.',
         type: 'info',
         showCancelButton: true,
         confirmButtonText: 'Yes',
