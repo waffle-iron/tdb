@@ -41,7 +41,7 @@ export const TechnologyDescriptionSchema = new SimpleSchema({
     autoform: {
       afFieldInput: {
         type: 'textarea',
-        rows: 4
+        rows: 3
       }
     }
   },
