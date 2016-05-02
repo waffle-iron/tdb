@@ -6,6 +6,7 @@
 
 less
 jquery
+twbs:bootstrap
 momentjs:moment
 gromo:jquery.scrollbar
 fortawesome:fontawesome
@@ -73,7 +74,7 @@ meteorhacks:unblock
 ecmascript
 es5-shim
 sacha:spin
-yogiben:autoform-tags
+tdb:autoform-tags
 rafa93br:autoform-markdown
 fourseven:scss
 cfs:s3
