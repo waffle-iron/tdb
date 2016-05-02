@@ -2,6 +2,7 @@ AutoForm.hooks({
   updateProjectsForm: {
     onSuccess() {
       toastr.success('Project updated successfully', 'Success');
+      FlowRouter.go('projects.entry', {id: FlowRouter.getParam('id')});
     },
     onError(formType, error) {
       toastr.error(error.toString(), 'Error');

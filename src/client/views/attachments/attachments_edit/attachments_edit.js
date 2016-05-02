@@ -1,11 +1,11 @@
 AutoForm.hooks({
   updateAttachmentsForm: {
     onSuccess() {
-      toastr.success('Organization updated successfully', 'Success');
+      toastr.success('Attachment updated successfully', 'Success');
       if (this.template.data && typeof this.template.data.onSuccess === 'function') {
         this.template.data.onSuccess();
       }
-      this.template.parent().data.onSuccess();
+      //this.template.parent().data.onSuccess();
       Modal.hide();
     },
     onError(formType, error) {

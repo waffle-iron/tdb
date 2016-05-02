@@ -1,3 +1,5 @@
+import { Technologies } from '../../imports/api/technologies/technologies';
+
 Meteor.publishComposite('tabularAttachmentsList', function(tableName, ids, fields) {
   check(tableName, String);
   check(ids, Array);

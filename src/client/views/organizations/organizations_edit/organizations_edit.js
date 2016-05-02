@@ -2,6 +2,7 @@ AutoForm.hooks({
   updateOrganizationForm: {
     onSuccess() {
       toastr.success('Organization updated successfully', 'Success');
+      FlowRouter.go('organizations.entry', {id: FlowRouter.getParam('id')});
     },
     onError(formType, error) {
       toastr.error(error.toString(), 'Error');
