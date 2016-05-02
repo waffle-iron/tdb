@@ -7,3 +7,11 @@ Template.projectsDashboard.events({
   //   });
   // }
 });
+
+Template.projectsDashboard.helpers({
+  projectSelector() {
+    return {
+      collection: 'projects'
+    };
+  }
+});

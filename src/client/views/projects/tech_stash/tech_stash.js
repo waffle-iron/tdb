@@ -1,8 +1,3 @@
-//
-//  TODO: SEARCH SOLUTION
-//  $elemMatch with $regex is NOT WORKING on minimongo
-
-
 Template.techStash.events({
   'click .add-to-stash': function(event, template) {
     Modal.show('techStashAdd', {

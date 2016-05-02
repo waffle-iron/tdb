@@ -27,7 +27,6 @@ export const TechnologySchema = new SimpleSchema({
     logDriver: true,
     allowedValues: ['draft', 'review', 'published'],
     autoform: {
-      type: 'selectize',
       options: [{
         label: 'Draft',
         value: 'draft'
