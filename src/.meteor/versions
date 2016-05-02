@@ -4,6 +4,7 @@ ahref:flow-router-breadcrumb@1.1.0
 alanning:roles@1.2.15
 aldeed:autoform@5.8.1
 aldeed:autoform-bs-datepicker@1.1.1
+aldeed:autoform-select2@1.0.5
 aldeed:collection2@2.9.1
 aldeed:collection2-core@1.1.1
 aldeed:schema-deny@1.0.1
@@ -152,6 +153,7 @@ mquandalle:perfect-scrollbar@0.6.5_2
 msavin:jetsetter@1.5.2
 msavin:mongol@1.6.2
 natestrauser:animate-css@3.5.1
+natestrauser:select2@4.0.2
 newnectar:meteor-autoform-select-country-flags@0.0.1
 npm-bcrypt@0.8.5
 npm-mongo@1.4.43

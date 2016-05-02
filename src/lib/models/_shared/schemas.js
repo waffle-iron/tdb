@@ -71,17 +71,22 @@ Schemas.Description = new SimpleSchema({
     type: String,
     allowedValues: ['draft', 'review', 'published'],
     autoform: {
-      type: 'selectize',
-      options: [{
-        label: 'Draft',
-        value: 'draft'
-      }, {
-        label: 'Review',
-        value: 'review'
-      }, {
-        label: 'Published',
-        value: 'published'
-      }]
+      sortField: ['a'],
+      options() {
+        return [{
+          s: 'a',
+          label: 'Draft',
+          value: 'draft',
+        }, {
+          s: 'b',
+          label: 'Review',
+          value: 'review',
+        }, {
+          s: 'c',
+          label: 'Published',
+          value: 'published',
+        }];
+      }
     }
   },
   longText: {
