@@ -154,5 +154,13 @@ Template.technologiesDescriptionsTabs.helpers({
   isActive: (_id) => Template.instance().currentId.get() === _id,
   isEditing: () => Template.instance().isEditing.get(),
   isStatusPublished: (status) => status === 'published',
-  currentDescription: () => TechnologiesDescriptions.findOne(Template.instance().currentId.get())
+  currentDescription: () => TechnologiesDescriptions.findOne(Template.instance().currentId.get()),
+  descriptionsByModifiedAt: () =>
+    Template.instance().data
+    .descriptions()
+    .fetch()
+    .sort((previous, next) =>
+      next.modifiedAt() - previous.modifiedAt())
+
+
 });
