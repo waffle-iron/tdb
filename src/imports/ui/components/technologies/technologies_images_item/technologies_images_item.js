@@ -25,6 +25,21 @@ Template.technologiesImagesItem.events({
       }
       toastr.success('Image updated successfully', 'Success');
     });
+  },
+  'click [data-action="delete-image"]': function(event, template) {
+    const imageId = template.data.image.src;
+    const technologyId = template.data.technologyId;
+
+    Meteor.call('technologies.unlinkImage', {
+      _id: technologyId,
+      imageId: imageId
+    }, (err, res) => {
+      if (err) {
+        toastr.error(err.error, 'Error');
+        throw err;
+      }
+      toastr.success('Image removed successfully', 'Success');
+    });
   }
 });
 
@@ -39,4 +54,8 @@ Template.technologiesImagesItem.helpers({
       width: Template.instance().data.width
     };
   },
+});
+
+Template.technologiesImagesItem.onRendered(function() {
+  $('[data-toggle="tooltip"]').tooltip();
 });

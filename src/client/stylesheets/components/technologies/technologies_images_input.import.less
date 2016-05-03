@@ -10,11 +10,22 @@
     align-items: center;
     border: 2px dotted #D9D9D9;
     color: #D9D9D9;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border: 2px dotted #467ec1;
+    }
+
     .input-wrapper {
       text-align: center;
       color: #D9D9D9;
       text-align: center;
       width: inherit;
+      transition: all 0.3s ease;
+      &:hover {
+        color: #467ec1;
+      }
+
       i {
         font-size: 37px;
       }
@@ -22,6 +33,7 @@
         display: block;
         font-size: 18px;
       }
+
     }
   }
   .upload input[type=file] {
