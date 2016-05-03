@@ -1,5 +1,5 @@
 /**
- * context: {
+ * data: {
  *   @param {String} id
  *   @param {TechnologySchema} doc
  *   @param {String} type
@@ -8,17 +8,13 @@
  * }
  */
 
+import { Meteor } from 'meteor/meteor';
 import { AutoForm } from 'meteor/aldeed:autoform';
 
 import './technologies_information_form.html';
 
 Template.technologiesInformationForm.helpers({
-  /**
-   * [options description]
-   * @param  {[type]} a [description]
-   * @return {[type]}   [description]
-   */
-  options(a) {
+  options() {
     const data = Template.instance().data;
 
     if (!data) {
@@ -34,6 +30,24 @@ Template.technologiesInformationForm.helpers({
       meteormethod: data.meteormethod,
       autosave: data.autosave || false,
       singleMethodArgument: data.type === 'method-update'
+    };
+  },
+
+  onUploadSuccess() {
+    const template = Template.instance();
+    return (fileObj) => {
+      if (fileObj.hasStored('images')) {
+        Meteor.call('technologies.linkImage', {
+          _id: template.data.doc._id,
+          imageId: fileObj._id
+        }, (err, res) => {
+          if (err) {
+            toastr.error(err.error, 'Error');
+            throw err;
+          }
+          return toastr.success('Image added to technology successfully', 'Success');
+        });
+      }
     };
   }
 });
