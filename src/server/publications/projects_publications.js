@@ -93,7 +93,7 @@ Meteor.publish('projects.quickList', function() {
 
 Meteor.publish('projects-status-counter', function() {
   Counts.publish(this, 'projects-total', Projects.find());
-  
+
   Counts.publish(this, 'projects-prospect', Projects.find({
     status: 'prospect'
   }));
@@ -104,6 +104,20 @@ Meteor.publish('projects-status-counter', function() {
     status: 'closed'
   }));
 });
+
+Meteor.publish('project-relations-counter', function(projectId) {
+  check(projectId, String);
+  Counts.publish(this, 'project-collections-' + projectId, Collections.find({
+    projectId: projectId
+  }));
+  Counts.publish(this, 'project-technologies-stash-' + projectId, Projects.find({
+    _id: projectId
+  }), { countFromFieldLength: 'technologiesStash' });
+  Counts.publish(this, 'project-attachments-' + projectId, Projects.find({
+    _id: projectId
+  }), { countFromFieldLength: 'attachmentsId' });
+});
+
 
 Meteor.publish('project-tech-stash', function(projectId) {
   check(projectId, String);

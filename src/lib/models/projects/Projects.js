@@ -37,6 +37,7 @@ Schemas.Project = new SimpleSchema({
   },
   status: {
     type: String,
+    esDriver: true,
     allowedValues: ['prospect', 'open', 'closed'],
     autoform: {
       type: 'selectize',
