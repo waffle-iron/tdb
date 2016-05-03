@@ -13,8 +13,11 @@
 <template name="loadedContent">
   <div id="page-wrapper" class="gray-bg">
     {{> topNavigation }} 
+    {{#if pageHeading}}
+      {{> pageHeading}}
+    {{/if}}
     <!-- {{> pageHeading}} -->
-    <div class="wrapper wrapper-content">
+    <div class="wrapper wrapper-content {{#if noPadding}}no-padding{{/if}}">
       {{> Template.dynamic template=main}}
     </div>
   </div>

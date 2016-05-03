@@ -6,6 +6,7 @@
 
 tdb:autoform-file
 tdb:autoform-tags
+lnmunhoz:autoform-markdown-editor
 
 less
 jquery
@@ -99,7 +100,6 @@ meteorhacks:search-source
 dferber:reactive-var-toggle
 pauldowman:dotenv
 meteorhacks:kadira
-
 comerc:bs-typeahead
 comerc:autoform-typeahead
 harrison:papa-parse
@@ -113,5 +113,3 @@ velocityjs:velocityjs
 standard-minifier-css
 standard-minifier-js
 rubaxa:sortable
-lnmunhoz:autoform-markdown-editor
-rafa93br:autoform-upload

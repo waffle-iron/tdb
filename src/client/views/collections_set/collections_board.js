@@ -1,8 +1,8 @@
 Template.collectionsBoard.events({
   'click .add-sub-collection': function(event, template) {
     Modal.show('collectionsAdd', {
-      projectId: FlowRouter.getParam('projectId'),
-      collectionsSetId: FlowRouter.getParam('collectionsSetId'),
+      projectId: FlowRouter.getParam('id'),
+      collectionsSetId: FlowRouter.getParam('cSetId'),
       parentId: this._id
     });
   }
