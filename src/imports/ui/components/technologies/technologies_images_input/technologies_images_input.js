@@ -47,9 +47,7 @@ Template.technologiesImagesInput.onCreated(function() {
     if (fileObj) {
       this.subscribe('images.single', this.fileObj.get()._id);
 
-      // The method hasStored check when the file
-      // succefully uploaded.
-      let uploadedFile = Images.findOne(fileObj._id);
+      let uploadedFile = Images.findOne(fileObj._id, { fields: { copies: 1 } });
       if (uploadedFile && uploadedFile.hasStored('images')) {
         this.onUploadSuccess(uploadedFile);
       }

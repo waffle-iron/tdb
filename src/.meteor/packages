@@ -4,7 +4,6 @@
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
-tdb:autoform-file
 tdb:autoform-tags
 lnmunhoz:autoform-markdown-editor
 
@@ -72,6 +71,7 @@ mquandalle:perfect-scrollbar
 maazalik:malihu-jquery-custom-scrollbar
 danappelxx:hover.css
 yogiben:autoform-modals
+yogiben:autoform-file
 lbee:moment-helpers
 reywood:publish-composite
 meteorhacks:unblock
