@@ -91,3 +91,7 @@ Meteor.publish('last-organization-added', function() {
   });
 });
 
+
+Meteor.publish('organizations-counter', function() {
+  Counts.publish(this, 'organizations-total', Organizations.find());
+});

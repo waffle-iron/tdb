@@ -34,15 +34,13 @@ Meteor.publishComposite('projects.single', function(projectId) {
       find(project) {
         return CollectionsSet.find({ projectId: project._id });
       },
-      children: [
-        {
-          find(collectionSet) {
-            return Collections.find({
-              collectionsSetId: collectionSet._id
-            });
-          }
+      children: [{
+        find(collectionSet) {
+          return Collections.find({
+            collectionsSetId: collectionSet._id
+          });
         }
-      ]
+      }]
     }, {
       find(project) {
         return Organizations.find({
@@ -92,7 +90,10 @@ Meteor.publish('projects.quickList', function() {
   });
 });
 
+
 Meteor.publish('projects-status-counter', function() {
+  Counts.publish(this, 'projects-total', Projects.find());
+  
   Counts.publish(this, 'projects-prospect', Projects.find({
     status: 'prospect'
   }));

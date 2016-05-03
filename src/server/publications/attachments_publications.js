@@ -83,3 +83,6 @@ Meteor.publish('last-attachment-added', function() {
   });
 });
 
+Meteor.publish('attachments-counter', function() {
+  Counts.publish(this, 'attachments-total', Attachments.find());
+});

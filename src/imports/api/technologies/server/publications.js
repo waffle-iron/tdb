@@ -103,6 +103,7 @@ Meteor.publish('technologies.quickList', function() {
 });
 
 Meteor.publish('technologies-status-counter', function() {
+  Counts.publish(this, 'technologies-total', Technologies.find());
   Counts.publish(this, 'technologies-published', Technologies.find({
     status: 'published'
   }));
