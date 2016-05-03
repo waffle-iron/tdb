@@ -191,7 +191,6 @@ srp@1.0.8
 standard-minifier-css@1.0.6
 standard-minifier-js@1.0.6
 tap:i18n@1.8.0
-tdb:autoform-file@0.4.2
 tdb:autoform-tags@0.2.0
 templating@1.1.9
 templating-tools@1.0.4
@@ -211,6 +210,7 @@ vazco:universe-selectize@0.1.15
 velocityjs:velocityjs@1.2.1
 webapp@1.2.8
 webapp-hashing@1.0.9
+yogiben:autoform-file@0.4.2
 yogiben:autoform-modals@0.3.8
 zimme:active-route@2.3.2
 zimme:collection-behaviours@1.1.3
