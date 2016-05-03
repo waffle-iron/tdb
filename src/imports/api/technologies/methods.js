@@ -56,7 +56,7 @@ export const linkImage = new ValidatedMethod({
     const image = technology.images.find(i => i.src === imageId);
 
     if (image) {
-      throw new Meteor.Error('technologies.linkImage', 'Image already linked with the given technology.');
+      throw new Meteor.Error('Image already linked with the given technology.');
     }
 
     return Technologies.update(_id, {
@@ -80,6 +80,11 @@ export const unlinkImage = new ValidatedMethod({
     checkPermissions();
     const technology = Technologies.findOne(_id);
     const image = technology.images.find(i => i.src === imageId);
+
+    if (image.showcased) {
+      throw new Meteor.Error("Can't remove showcased image.");
+    }
+
     return Technologies.update(_id, {
       $pull: {
         images: image
