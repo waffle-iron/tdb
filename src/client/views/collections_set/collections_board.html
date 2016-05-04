@@ -14,7 +14,7 @@
                 <ul class="dropdown-menu dropdown-user">
                   <li><a href="#">Edit Title</a></li>
                   <li><a href="#">Edit Description</a></li>
-                  <li><a href="#" class="add-sub-collection">Add SubCollection</a></li>
+                  <li><a href="#" data-action="add-sub-collection">Add SubCollection</a></li>
                 </ul>
               {{/panelTools}}
             {{/panelTitle}}        
@@ -38,10 +38,9 @@
                       {{/panelContent}}
                       {{#panelFooter}}
                         {{#panelTools}}
-                          {{> deleteDragArea
-                            drake=getDrake
-                            collectionId=_id
-                            }}
+                          <a data-action="delete-collection" data-type='sub-collection'>
+                            <i class="fa fa-trash"></i>
+                          </a>
                         {{/panelTools}}
                       {{/panelFooter}}                      
                     {{/panelContainer}}
@@ -49,6 +48,13 @@
                 </div>
               <!-- {{/perfectScrollbar}} -->
             {{/panelContent}}
+            {{#panelFooter}}
+              {{#panelTools}}
+                <a data-action="delete-collection" data-type='collection'>
+                  <i class="fa fa-trash"></i>
+                </a>
+              {{/panelTools}}
+            {{/panelFooter}}             
           {{/panelContainer}}
         {{/each}}
       </div>

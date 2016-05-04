@@ -18,3 +18,10 @@ Meteor.publishComposite('collections.single', function(collectionId) {
     }]
   };
 });
+
+Meteor.publish('collections.single.noChildren', function(collectionId) {
+  check(collectionId, String);
+  return Collections.find({
+    _id: collectionId
+  });
+});
