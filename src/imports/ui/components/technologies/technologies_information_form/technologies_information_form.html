@@ -1,9 +1,19 @@
 <template name="technologiesInformationForm">
   <div data-template="technologies-information-form">
-    {{#autoForm id=options.id class="form-horizontal" collection="Technologies" doc=options.doc type=options.type autosave=options.autosave
-    meteormethod=options.meteormethod singleMethodArgument=options.singleMethodArgument}} {{> afQuickField name="techId"
-    label-class="col-sm-2" input-col-class="col-sm-10" disabled="true" type="hidden"}} {{> afQuickField name="name" label-class="col-sm-2"
-    input-col-class="col-sm-10"}}
+    {{#autoForm 
+      id=options.id 
+      class="form-horizontal" 
+      collection="Technologies"
+      doc=options.doc 
+      type=options.type
+      autosave=options.autosave
+      meteormethod=options.meteormethod 
+      singleMethodArgument=options.singleMethodArgument}} 
+
+    {{> afQuickField name="techId" label-class="col-sm-2" input-col-class="col-sm-10" disabled="true" type="hidden"}}
+    {{> afQuickField name="status" label-class="col-sm-2" input-col-class="col-sm-10" type="hidden"}}
+
+    {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-10"}}
     <div class="col-sm-10 col-sm-offset-2" style="margin-top:-20px">
       <ol>
         <li>Use "Title Case": <i>Capitalize All Important Words</i>.</li>
@@ -12,44 +22,62 @@
         <li>Avoid product names: <i>"Powerwall" → "Wall-mounted Household Battery"</i></li>
       </ol>
     </div>
-    {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-10"}}
-    <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
-      <span class="help-block m-b-none">
-		      These are alternate names for this technology. They will be accessible via search.
-		    </span>
-    </div>
 
-    <div class="form-group">
-      <label class="col-sm-2 control-label">Images</label>
-      <div class="col-sm-10">
-        <div class="row">
-          <div class="col-sm-3">
-            {{> technologiesImagesInput 
-              _id=options.doc._id 
-              onUploadSuccess=onUploadSuccess}}        
-          </div>
-          {{#each doc.images}}
+    {{#if options.doc.name}}
+
+      {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-10"}}
+      <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
+        <span class="help-block m-b-none">
+  		      These are alternate names for this technology. They will be accessible via search.
+  		    </span>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Images</label>
+        <div class="col-sm-10">
+          <div class="row">
             <div class="col-sm-3">
-              {{> technologiesImagesItem 
-                image=this
-                technologyId=options.doc._id
-                width=180
-                height=180}}
+              {{> technologiesImagesInput 
+                _id=options.doc._id 
+                onUploadSuccess=onUploadSuccess}}        
             </div>
-          {{/each}}
+            {{#each doc.images}}
+              <div class="col-sm-3">
+                {{> technologiesImagesItem 
+                  image=this
+                  technologyId=options.doc._id
+                  width=180
+                  height=180}}
+              </div>
+            {{/each}}
+          </div>
         </div>
       </div>
-    </div>
-    
+      
 
-    <!-- {{> afQuickField name="images" label-class="col-sm-2" input-col-class="col-sm-9"}} -->
-    {{> afQuickField name="tags" label-class="col-sm-2"
-    input-col-class="col-sm-10"}}
-    <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
-      <span class="help-block m-b-none">
-		      These will be used to correlate with other technologies.
-		    </span>
-    </div>
+      <!-- {{> afQuickField name="images" label-class="col-sm-2" input-col-class="col-sm-9"}} -->
+      {{> afQuickField name="tags" label-class="col-sm-2"
+      input-col-class="col-sm-10"}}
+      <div class="col-sm-10 col-sm-offset-2" style="margin-top:-37px; padding-left:5px">
+        <span class="help-block m-b-none">
+  		      These will be used to correlate with other technologies.
+  		    </span>
+      </div>
+    {{/if}}
+
+
+      {{#unless options.autosave}}
+        <div class="form-group">
+          <div class="col-sm-12" align="right">
+          <a href="{{pathFor 'technologies.dashboard'}}" class="btn btn-default">
+              Cancel
+            </a>
+            <button type="submit" class="btn btn-success">
+              Create
+            </button>
+          </div>
+        </div>
+      {{/unless}}
     {{/autoForm}}
   </div>
 </template>
