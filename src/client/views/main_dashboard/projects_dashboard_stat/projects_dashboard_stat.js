@@ -5,7 +5,7 @@ Template.projectsDashboardStat.onCreated(function() {
 
 Template.projectsDashboardStat.helpers({
   totalCount() {
-    return Counts.get('docCounter-projects');
+    return Counts.get('projects-total');
   },
   openCount() {
     return Counts.get('projects-open');

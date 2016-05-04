@@ -1,11 +1,12 @@
 Template.organizationsDashboardStat.onCreated(function() {
   this.subscribe('last-organization-added');
+  this.subscribe('organizations-counter');
 });
 
 Template.organizationsDashboardStat.helpers({
   totalCount() {
-    return Counts.get('docCounter-organizations');
-  },  
+    return Counts.get('organizations-total');
+  },
   lastOrganizationAdded() {
     return Organizations.findOne({}, {
       sort: {

@@ -7,7 +7,7 @@ Template.technologiesDashboardStat.onCreated(function() {
 
 Template.technologiesDashboardStat.helpers({
   totalCount() {
-    return Counts.get('docCounter-technologies');
+    return Counts.get('technologies-total');
   },
   publishedCount() {
     return Counts.get('technologies-published');

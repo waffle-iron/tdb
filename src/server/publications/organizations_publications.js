@@ -1,3 +1,5 @@
+import { Technologies } from '../../imports/api/technologies/technologies';
+
 Meteor.publishComposite('tabularOrganizationsList', function(tableName, ids, fields) {
   check(tableName, String);
   check(ids, Array);
@@ -29,18 +31,24 @@ Meteor.publishComposite('organizations.single', function(organizationId) {
     },
     children: [{
       find(org) {
-        return org.projectsId && Projects.find({
+        /*return org.projectsId && Projects.find({
           _id: {
             $in: org.projectsId
           }
+        });*/
+        return Projects.find({
+          organizationsId: org._id
         });
       }
     }, {
       find(org) {
-        return org.technologiesId && Technologies.find({
+/*        return org.technologiesId && Technologies.find({
           _id: {
             $in: org.technologiesId
           }
+        });*/
+        return Technologies.find({
+          organizationsId: org._id
         });
       }
     }, {
@@ -91,3 +99,20 @@ Meteor.publish('last-organization-added', function() {
   });
 });
 
+
+Meteor.publish('organizations-counter', function() {
+  Counts.publish(this, 'organizations-total', Organizations.find());
+});
+
+Meteor.publish('organization-relations-counter', function(organizationId) {
+  check(organizationId, String);
+  Counts.publish(this, 'organization-technologies-' + organizationId, Technologies.find({
+    organizationsId: organizationId
+  }));
+  Counts.publish(this, 'organization-projects-' + organizationId, Projects.find({
+    organizationsId: organizationId
+  }));
+  Counts.publish(this, 'organization-attachments-' + organizationId, Organizations.find({
+    _id: organizationId
+  }), { countFromFieldLength: 'attachmentsId' });
+});

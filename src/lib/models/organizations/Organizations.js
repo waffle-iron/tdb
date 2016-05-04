@@ -79,7 +79,7 @@ Schemas.Organization = new SimpleSchema({
     logDriver: true,
     optional: true
   },
-  projectsId: {
+/*  projectsId: {
     type: [String],
     optional: true,
     label: 'Related Projects',
@@ -96,8 +96,8 @@ Schemas.Organization = new SimpleSchema({
         });
       }
     }
-  },
-  technologiesId: {
+  },*/
+/*  technologiesId: {
     type: [String],
     optional: true,
     label: 'Related Technologies',
@@ -114,7 +114,7 @@ Schemas.Organization = new SimpleSchema({
         });
       }
     }
-  },
+  },*/
   attachmentsId: {
     type: [String],
     optional: true,
@@ -154,18 +154,28 @@ Meteor.isServer && Organizations.esDriver(esClient, 'techdb', 'organizations');
  *
  */
 Organizations.helpers({
-  getProjects() {
+/*  getProjects() {
     return Projects.find({
       _id: {
         $in: this.projectsId || []
       }
     });
+  },*/
+  getProjects() {
+    return Projects.find({
+      organizationsId: this._id
+    });
   },
-  technologies() {
+/*  technologies() {
     return Technologies.find({
       _id: {
         $in: this.technologiesId || []
       }
+    });
+  },*/
+  technologies() {
+    return Technologies.find({
+      organizationsId: this._id
     });
   },
   attachments() {
