@@ -1,8 +1,10 @@
+import { Technologies } from '../../../../imports/api/technologies/technologies';
+
 AutoForm.hooks({
-  insertTechnologiesForm: {
-    onSuccess() {
-      toastr.success('Technology created successfully: ' + this.insertDoc.name, 'Success');
-      FlowRouter.go('technologies.dashboard');
+  'insert-technologies-form': {
+    onSuccess(formType, result) {
+      toastr.success('Technology created successfully', 'Success');
+      FlowRouter.go('technologies.edit', { id: result });
     },
     onError(formType, error) {
       toastr.error(error.toString(), 'Error');
@@ -11,6 +13,23 @@ AutoForm.hooks({
 });
 
 Template.technologiesAdd.onCreated(function() {
-  this.subscribe('projects.quickList');
-  this.subscribe('organizations.quickList');
-})
+  this.name = new ReactiveVar('');
+});
+
+Template.technologiesAdd.helpers({
+  technologiesCollection() {
+    return Technologies;
+  },
+  tech() {
+    return {
+      name: Template.instance().name.get(),
+      status: 'draft'
+    };
+  },
+});
+
+Template.technologiesAdd.events({
+  'keyup input[name="name"]': function(event, template) {
+    template.name.set(event.target.value);
+  }
+});

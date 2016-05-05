@@ -26,7 +26,8 @@ export const update = new ValidatedMethod({
   }).validator(),
   run({ _id, modifier }) {
     checkPermissions();
-    return Technologies.update(_id, modifier);
+    console.log(modifier)
+    return Technologies.upsert(_id, modifier);
   }
 });
 
@@ -53,17 +54,23 @@ export const linkImage = new ValidatedMethod({
   run({ _id, imageId }) {
     checkPermissions();
     const technology = Technologies.findOne(_id);
-    const image = technology.images.find(i => i.src === imageId);
 
-    if (image) {
+    if (!technology) {
+      throw new Meteor.Error(`Could not find a technology with _id ${_id}.`);
+    }
+
+    if (technology.images && technology.images.find(i => i.src === imageId)) {
       throw new Meteor.Error('Image already linked with the given technology.');
     }
+
+    // If is the first image, set as showcased.
+    const showcased = !technology.images;
 
     return Technologies.update(_id, {
       $push: {
         images: {
           src: imageId,
-          showcased: false
+          showcased: showcased
         }
       }
     });

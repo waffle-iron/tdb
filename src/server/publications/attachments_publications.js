@@ -83,3 +83,21 @@ Meteor.publish('last-attachment-added', function() {
   });
 });
 
+Meteor.publish('attachments-counter', function() {
+  Counts.publish(this, 'attachments-total', Attachments.find());
+});
+
+
+Meteor.publish('attachment-relations-counter', function(attachmentId) {
+  check(attachmentId, String);
+
+  Counts.publish(this, 'attachment-technologies-' + attachmentId, Technologies.find({
+    attachmentsId: attachmentId
+  }));
+  Counts.publish(this, 'attachment-organizations-' + attachmentId, Organizations.find({
+    attachmentsId: attachmentId
+  }));
+  Counts.publish(this, 'attachment-projects-' + attachmentId, Projects.find({
+    attachmentsId: attachmentId
+  }));
+});

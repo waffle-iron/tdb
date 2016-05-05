@@ -12,6 +12,11 @@ export const TechnologySchema = new SimpleSchema({
     label: 'Title',
     esDriver: true,
     logDriver: true,
+    autoform: {
+      afFieldInput: {
+        placeholder: "Drone Delivery"
+      }
+    }
   },
   synonyms: {
     type: [String],

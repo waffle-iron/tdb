@@ -103,6 +103,7 @@ Meteor.publish('technologies.quickList', function() {
 });
 
 Meteor.publish('technologies-status-counter', function() {
+  Counts.publish(this, 'technologies-total', Technologies.find());
   Counts.publish(this, 'technologies-published', Technologies.find({
     status: 'published'
   }));
@@ -134,4 +135,19 @@ Meteor.publish('technology.status', function(techId) {
       status: 1
     }
   });
+});
+
+Meteor.publish('technology-relations-counter', function(technologyId) {
+  check(technologyId, String);
+  Counts.publish(this, 'technology-attachments-' + technologyId, Technologies.find({
+    _id: technologyId
+  }), { countFromFieldLength: 'attachmentsId' });
+
+  Counts.publish(this, 'technology-projects-' + technologyId, Technologies.find({
+    _id: technologyId
+  }), { countFromFieldLength: 'projectsId' });
+
+  Counts.publish(this, 'technology-organizations-' + technologyId, Technologies.find({
+    _id: technologyId
+  }), { countFromFieldLength: 'organizationsId' });
 });

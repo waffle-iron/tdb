@@ -13,12 +13,34 @@ removeConfirmation = function(name, callback) {
   });
 };
 
+removeConfirmationPopup = function(text = 'Are you sure you want to delete this?', callback) {
+  swal({
+    title: 'Are you sure?',
+    text: text,
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#DD6B55',
+    confirmButtonText: 'Yes',
+    closeOnConfirm: false,
+    html: true
+  }, () => {
+    callback();
+  });
+};
+removeConfirmationSuccess = function(text = 'Your document has been deleted.') {
+  swal('Deleted!', text, 'success');
+};
+removeConfirmationError = function(text = 'Something went wrong and your document has not been deleted.') {
+  swal('Error!', text, 'error');
+};
+
+
 removeSuccess = function() {
   swal('Deleted!', 'Your document has been deleted.', 'success');
 };
 
 removeError = function() {
-  swal('Error!', 'Your document has not been deleted.', 'danger');
+  swal('Error!', 'Your document has not been deleted.', 'error');
 };
 
 

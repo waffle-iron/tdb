@@ -17,6 +17,60 @@ Collections.methods.add = new ValidatedMethod({
   }
 });
 
+Collections.methods.remove = new ValidatedMethod({
+  name: 'Collections.methods.remove',
+  validate: new SimpleSchema({
+    _id: { type: String }
+  }).validator(),
+  run({ _id }) {
+    check(_id, String);
+    checkPermissions();
+    // Delete the collection and all it's children
+    return Collections.remove({
+      $or: [{
+        _id: _id
+      }, {
+        parentId: _id
+      }]
+    });
+  }
+});
+
+Collections.methods.copy = new ValidatedMethod({
+  name: 'Collections.methods.copy',
+  validate: new SimpleSchema({
+    _id: { type: String }
+  }).validator(),
+  run({ _id }) {
+    check(_id, String);
+    checkPermissions();
+
+    let collection = Collections.findOne({
+      _id: _id
+    });
+
+    delete collection._id;
+    delete collection.updatedAt;
+    delete collection.createdAt;
+    delete collection.updatedBy;
+
+    collection.name = `${collection.name} Copy`;
+    return Collections.insert(collection);
+  }
+});
+
+
+Collections.methods.update = new ValidatedMethod({
+  name: 'Collections.methods.update',
+  validate: new SimpleSchema({
+    _id: { type: String },
+    modifier: { type: Object, blackbox: true }
+  }).validator(),
+  run({ _id, modifier }) {
+    checkPermissions();
+    return Collections.update(_id, modifier);
+  }
+});
 
 Collections.methods.pushTechnology = new ValidatedMethod({
   name: 'Collections.methods.pushTechnology',
@@ -33,7 +87,7 @@ Collections.methods.pushTechnology = new ValidatedMethod({
     let targetCollection = Collections.findOne({
       _id: collectionId
     });
-    
+
     if (!targetCollection) throw new Meteor.Error('target-not-found');
     if (_.contains(targetCollection.technologiesId, techId)) throw new Meteor.Error('target-already-has-tech');
 
@@ -48,12 +102,12 @@ Collections.methods.pushTechnology = new ValidatedMethod({
 });
 
 Collections.methods.pullTechnology = new ValidatedMethod({
-name: 'Collections.methods.pullTechnology',
-  validate({ source, techId}) {
+  name: 'Collections.methods.pullTechnology',
+  validate({ source, techId }) {
     check(source, String);
     check(techId, String);
   },
-  run({ source, techId}) {
+  run({ source, techId }) {
     return Collections.update({
       _id: source
     }, {
@@ -67,7 +121,7 @@ name: 'Collections.methods.pullTechnology',
 
 Collections.methods.moveTechnology = new ValidatedMethod({
   name: 'Collections.methods.moveTechnology',
-  validate({ source, target, techId, position}) {
+  validate({ source, target, techId, position }) {
     check(source, String);
     check(target, String);
     check(techId, String);
@@ -86,7 +140,9 @@ Collections.methods.moveTechnology = new ValidatedMethod({
     });
 
     if (!targetCollection) throw new Meteor.Error('target-not-found');
-    if (source !== target && _.contains(targetCollection.technologiesId, techId)) throw new Meteor.Error('target-already-has-tech');
+    if (source !== target && _.contains(targetCollection.technologiesId, techId)) {
+      throw new Meteor.Error('target-already-has-tech');
+    }
 
     let sourceUpdate = Collections.update({
       _id: source

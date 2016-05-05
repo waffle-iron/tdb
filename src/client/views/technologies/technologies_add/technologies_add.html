@@ -1,34 +1,37 @@
 <template name="technologiesAdd">
-  {{#panel title="Create Technology Form" }}
+  <div class="row" data-template="technologies-add-page">
+    <div class="col-lg-3">
+      <div style="position: fixed; width: 22.5%">
+        {{> technologiesInformationCard tech}}
+      </div>
+    </div>
+    <div class="col-lg-9">
+      {{#panel title="Basic Information"}}
+        {{#autoForm 
+          id="insert-technologies-form"
+          class="form-horizontal" 
+          collection=technologiesCollection
+          type="method"
+          meteormethod="technologies.insert"
+          singleMethodArgument=true}} 
 
-    {{> technologiesInformationForm 
-      id="technologies-add-form" 
-      type="method"
-      meteormethod="technologies.insert"}}
+          {{> afQuickField name="status" label-class="col-sm-2" input-col-class="col-sm-10" value="draft" type="hidden"}}
+          {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-10"}}
+          <div class="col-sm-10 col-sm-offset-2" style="margin-top:-20px">
+            <ol>
+              <li>Use "Title Case": <i>Capitalize All Important Words</i>.</li>
+              <li>Avoid plural titles: <i>"Solar Panels", "Self-driving Vehicles"</i></li>
+              <li>Avoid empty words: <i>"Smart Car", "Next-gen Keychain", "Health 3.0"</i></li>
+              <li>Avoid product names: <i>"Powerwall" → "Wall-mounted Household Battery"</i></li>
+            </ol>
+          </div>
 
-    {{#autoForm collection="Technologies" id="insertTechnologiesForm" type="method" meteormethod="technologies.insert" class="form-horizontal" }}
-
-      <h2>Basic Information</h2>
-      <hr>
-
-      {{> afQuickField name="name" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-        
-      {{> afQuickField name="synonyms" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-      {{> afQuickField name="status" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-      {{> afQuickField name="tags" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-      {{> afQuickField name="images" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-
-      <h2>Relations</h2>
-      <hr>
-
-      {{> afQuickField name="organizationsId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-      {{> afQuickField name="projectsId" label-class="col-sm-2" input-col-class="col-sm-9"}} 
-        
-      
-      {{> attachmentsFieldInput name="attachmentsId" }}
-
-      <hr>
-      {{> submit texto="Add Technology" buttonClass="col-sm-9" offsetClass="col-sm-offset-2"}}
-    {{/autoForm}}
-  {{/panel}}
+          <div class="from-group" style="text-align: right;">
+            <a href="{{pathFor 'technologies.dashboard'}}" class="btn btn-default">Cancel</a>
+            <button type="submit" class="btn btn-success">Create</button>
+          </div>
+        {{/autoForm}}
+      {{/panel}}
+    </div>
+  </div>
 </template>

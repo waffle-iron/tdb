@@ -1,5 +1,21 @@
 Template.collectionsBoard.events({
-  'click .add-sub-collection': function(event, template) {
+  'click [data-action="delete-collection"]': function(event, template) {
+    let el = $(event.target);
+    let type = el.data('type');
+    let name = this.name;
+    let _id = this._id;
+    let text = `Are you sure you want to delete <b>${name}</b>? You will not be able to undo this action.`;
+    removeConfirmationPopup(text, () => {
+      Collections.methods.remove.call({_id}, (err, res) => {
+        if (err) {
+          removeConfirmationError();
+        } else {
+          removeConfirmationSuccess(`The ${type} ${name} has been removed successfully.`);
+        }
+      });
+    });
+  },
+  'click [data-action="add-sub-collection"]': function(event, template) {
     Modal.show('collectionsAdd', {
       projectId: FlowRouter.getParam('id'),
       collectionsSetId: FlowRouter.getParam('cSetId'),
@@ -7,7 +23,6 @@ Template.collectionsBoard.events({
     });
   }
 });
-
 Template.collectionsBoard.helpers({
   getDrake() {
     return Template.instance().data.drake;

@@ -1,4 +1,4 @@
-Template.organizationsDashboard.helpers({
+/*Template.organizationsDashboard.helpers({
   organizations() {
     return SearchSources.globalSearch.getTransformedData();
   },
@@ -20,6 +20,14 @@ Template.organizationsDashboard.helpers({
       Modal.show('orgEdit', {
         orgId: data._id
       });
+    };
+  }
+});*/
+
+Template.organizationsDashboard.helpers({
+  organizationSelector() {
+    return {
+      collection: 'organizations'
     };
   }
 });
