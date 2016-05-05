@@ -27,3 +27,9 @@ With a nice description.
     });
   }
 });
+
+Template.technologiesDescriptionsPanel.helpers({
+  hasDescriptions() {
+    return Template.instance().data.descriptions().fetch().length > 0;
+  }
+});
