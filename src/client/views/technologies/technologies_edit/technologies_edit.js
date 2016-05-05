@@ -56,4 +56,21 @@ Template.technologiesEdit.helpers({
   tech() {
     return Technologies.findOne(FlowRouter.getParam('id'));
   },
+  onUploadSuccess() {
+    const template = Template.instance();
+    return (fileObj) => {
+      if (fileObj.hasStored('images')) {
+        Meteor.call('technologies.linkImage', {
+          _id: FlowRouter.getParam('id'),
+          imageId: fileObj._id
+        }, (err, res) => {
+          if (err) {
+            toastr.error(err.error, 'Error');
+            throw err;
+          }
+          return toastr.success('Image added to technology successfully', 'Success');
+        });
+      }
+    };
+  }
 });
